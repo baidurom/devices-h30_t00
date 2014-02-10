@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.internal.policy.impl.keyguard.KeyguardWidgetFrame android:gravity="center_horizontal" android:id="@id/keyguard_status_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_maxHeight="@dimen/keyguard_security_height" android:layout_maxWidth="@dimen/keyguard_security_width"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.internal.policy.impl.keyguard.KeyguardStatusView android:gravity="top|center" android:orientation="vertical" android:id="@id/keyguard_status_view_face_palm" android:layout_width="fill_parent" android:layout_height="fill_parent" android:contentDescription="@string/keyguard_accessibility_status">
+        <LinearLayout android:layout_gravity="top|center" android:orientation="vertical" android:focusable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.android.internal.policy.impl.keyguard.MediatekCarrierText android:orientation="vertical" android:id="@id/carrier_view" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <com.android.internal.policy.impl.keyguard.ClockView android:gravity="center_horizontal" android:id="@id/clock_view" android:layout_width="fill_parent" android:layout_height="60.0dip">
+                <FrameLayout android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/clock_parent" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="-10.0dip" android:layout_centerHorizontal="true">
+                    <TextView android:textAppearance="?textAppearanceMedium" android:textSize="@dimen/kg_status_clock_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/clock_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+                    <TextView android:textAppearance="?textAppearanceMedium" android:textSize="@dimen/kg_status_clock_font_size" android:textColor="#ffffffff" android:ellipsize="none" android:id="@id/clock_text2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+                </FrameLayout>
+            </com.android.internal.policy.impl.keyguard.ClockView>
+            <ViewStub android:id="@id/dual_clock_view" android:layout="@layout/keyguard_dualclock_view" android:inflatedId="@id/dual_clock_view" android:layout_width="fill_parent" android:layout_height="80.0dip" />
+            <include layout="@layout/keyguard_status_area" />
+            <include android:gravity="center_horizontal" android:layout_gravity="bottom|center" android:orientation="vertical" android:id="@id/keyguard_selector_fade_container" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/keyguard_eca" />
+        </LinearLayout>
+    </com.android.internal.policy.impl.keyguard.KeyguardStatusView>
+</com.android.internal.policy.impl.keyguard.KeyguardWidgetFrame>

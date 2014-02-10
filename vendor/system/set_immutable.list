@@ -1,0 +1,13 @@
+/system/bin
+/system/build.prop
+/system/etc
+/system/fonts
+/system/framework
+/system/lib
+/system/usr
+/system/vendor
+/system/xbin
+/system/app/HwLauncher6.apk
+/system/app/HwLauncher6.odex
+/system/app/SettingsProvider.apk
+/system/app/SettingsProvider.odex

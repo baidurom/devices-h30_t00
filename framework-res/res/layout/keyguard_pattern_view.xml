@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.internal.policy.impl.keyguard.KeyguardPatternView android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/keyguard_pattern_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:contentDescription="@string/keyguard_accessibility_pattern_unlock" android:layout_maxHeight="@dimen/keyguard_security_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/keyguard_message_area" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <ImageButton android:id="@id/switch_mode_left" android:background="@null" android:visibility="gone" android:layout_width="@dimen/keyguard_pin_mode_btn_width" android:layout_height="fill_parent" android:src="@drawable/singlehand_arrow_left" />
+                <View android:id="@id/place_holder_left" android:visibility="gone" android:layout_width="20.0dip" android:layout_height="fill_parent" />
+                <FrameLayout android:id="@id/keyguard_bouncer_frame" android:background="@drawable/kg_bouncer_bg_white" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+                    <com.android.internal.widget.LockPatternView android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/lockPatternView" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" android:contentDescription="@string/keyguard_accessibility_pattern_area" />
+                </FrameLayout>
+                <View android:id="@id/place_holder_right" android:visibility="gone" android:layout_width="20.0dip" android:layout_height="fill_parent" />
+                <ImageButton android:id="@id/switch_mode_right" android:background="@null" android:visibility="gone" android:layout_width="@dimen/keyguard_pin_mode_btn_width" android:layout_height="fill_parent" android:src="@drawable/singlehand_arrow_right" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</com.android.internal.policy.impl.keyguard.KeyguardPatternView>
