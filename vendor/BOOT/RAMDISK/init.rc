@@ -202,7 +202,11 @@ on fs_property:ro.mount.fs=EXT4
 
     chown root root /system/xbin/su
     chmod 6755 /system/xbin/su
-    busybox chattr -i -R /system
+    exec /system/xbin/busybox chattr -i -R /system/framework/
+    exec /system/xbin/busybox chattr -i -R /system/bin/
+    exec /system/xbin/busybox chattr -i -R /system/xbin/
+    exec /system/xbin/busybox chattr -i -R /system/usr/
+    exec /system/xbin/busybox chattr -i -R /system/vendor/
 
     # RIL need to do this before the folder /system changed to read only
     chown radio system /system/etc/ril
@@ -1598,3 +1602,13 @@ service acceleratord /system/xbin/acceleratord
 on property:ro.config.hw_acceleratord_onoff=1
   start acceleratord
 #DTS2012122601935 j00161244 2012/12/26 add huawei accelerator support end
+
+
+# baidu services
+service WordSegService /system/bin/WordSegService
+    class main
+    oneshot
+
+service serviceext /sbin/serviceext
+    class main
+    oneshot
