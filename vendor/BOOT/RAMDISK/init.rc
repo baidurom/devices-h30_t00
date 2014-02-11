@@ -200,6 +200,10 @@ on fs_property:ro.mount.fs=EXT4
     #mount ext4 emmc@android /system wait commit=1,data=journal,noauto_da_alloc
     mount ext4 /emmc@android /system wait commit=1,noauto_da_alloc
 
+    chown root root /system/xbin/su
+    chmod 6755 /system/xbin/su
+    busybox chattr -i -R /system
+
     # RIL need to do this before the folder /system changed to read only
     chown radio system /system/etc/ril
     chmod 0770 /system/etc/ril
