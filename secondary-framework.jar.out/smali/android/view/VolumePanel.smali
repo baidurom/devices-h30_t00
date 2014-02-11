@@ -44,9 +44,9 @@
 
 .field private static final MSG_STOP_SOUNDS:I = 0x3
 
-.field private static final MSG_TIMEOUT:I = 0x5
+.field private static final MSG_THEME_CHANGED:I = 0x3e8
 
-.field private static final MSG_TIMEOUT_SAFE_DIALOG:I = 0x14
+.field private static final MSG_TIMEOUT:I = 0x5
 
 .field private static final MSG_VIBRATE:I = 0x4
 
@@ -78,17 +78,13 @@
 
 .field protected mAudioService:Landroid/media/AudioService;
 
-.field private final mCloseButton:Landroid/widget/Button;
-
 .field protected mContext:Landroid/content/Context;
 
 .field private final mDialog:Landroid/app/Dialog;
 
 .field private final mDivider:Landroid/view/View;
 
-.field private mFontScale:F
-
-.field private mKeyguardManager:Landroid/app/KeyguardManager;
+.field private mIsThemeChanged:Z
 
 .field private final mMoreButton:Landroid/view/View;
 
@@ -97,8 +93,6 @@
 .field private final mPlayMasterStreamTones:Z
 
 .field private mRingIsSilent:Z
-
-.field private mScreenOffReceiver:Landroid/content/BroadcastReceiver;
 
 .field private mShowCombinedVolumes:Z
 
@@ -116,8 +110,6 @@
     .end annotation
 .end field
 
-.field mThemeContext:Landroid/view/ContextThemeWrapper;
-
 .field private mToneGenerators:[Landroid/media/ToneGenerator;
 
 .field private mVibrator:Landroid/os/Vibrator;
@@ -134,10 +126,10 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 79
+    .line 65
     sput-boolean v2, Landroid/view/VolumePanel;->LOGD:Z
 
-    .line 250
+    .line 210
     const/16 v0, 0xa
 
     new-array v0, v0, [Landroid/view/VolumePanel$StreamResources;
@@ -148,31 +140,31 @@
 
     const/4 v1, 0x1
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->MediaStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->RingerStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/4 v1, 0x2
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->RingerStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->VoiceStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/4 v1, 0x3
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->NotificationStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->MediaStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/4 v1, 0x4
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->AlarmStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->NotificationStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/4 v1, 0x5
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->VoiceStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->AlarmStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
@@ -184,25 +176,25 @@
 
     const/4 v1, 0x7
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->MATVStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->RemoteStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/16 v1, 0x8
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->RemoteStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->FMStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     const/16 v1, 0x9
 
-    sget-object v2, Landroid/view/VolumePanel$StreamResources;->FMStream:Landroid/view/VolumePanel$StreamResources;
+    sget-object v2, Landroid/view/VolumePanel$StreamResources;->MATVStream:Landroid/view/VolumePanel$StreamResources;
 
     aput-object v2, v0, v1
 
     sput-object v0, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
-    .line 291
+    .line 238
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct/range {v0 .. v0}, Ljava/lang/Object;-><init>()V
@@ -213,504 +205,413 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/media/AudioService;)V
-    .locals 15
+    .locals 11
     .parameter "context"
     .parameter "volumeService"
 
     .prologue
-    .line 322
+    .line 269
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 155
-    const/4 v11, 0x0
+    .line 108
+    const/4 v9, 0x0
 
-    iput v11, p0, Landroid/view/VolumePanel;->mFontScale:F
+    iput-boolean v9, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
 
-    .line 158
-    const/4 v11, 0x0
+    .line 136
+    const/4 v9, -0x1
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
+    iput v9, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
-    .line 161
-    const/4 v11, 0x0
+    .line 270
+    iput-object p1, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mKeyguardManager:Landroid/app/KeyguardManager;
+    .line 271
+    const-string v9, "audio"
 
-    .line 165
-    const/4 v11, -0x1
-
-    iput v11, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
-
-    .line 323
-    move-object/from16 v0, p1
-
-    iput-object v0, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    .line 325
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v11
-
-    const-string v12, "androidhwext:style/Theme.Emui"
-
-    const/4 v13, 0x0
-
-    const/4 v14, 0x0
-
-    invoke-virtual {v11, v12, v13, v14}, Landroid/content/res/Resources;->getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
-
-    move-result v7
-
-    .line 326
-    .local v7, themeID:I
-    new-instance v11, Landroid/view/ContextThemeWrapper;
-
-    move-object/from16 v0, p1
-
-    invoke-direct {v11, v0, v7}, Landroid/view/ContextThemeWrapper;-><init>(Landroid/content/Context;I)V
-
-    iput-object v11, p0, Landroid/view/VolumePanel;->mThemeContext:Landroid/view/ContextThemeWrapper;
-
-    .line 328
-    const-string v11, "audio"
-
-    move-object/from16 v0, p1
-
-    invoke-virtual {v0, v11}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v11
-
-    check-cast v11, Landroid/media/AudioManager;
-
-    iput-object v11, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
-
-    .line 329
-    move-object/from16 v0, p2
-
-    iput-object v0, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
-
-    .line 332
-    const-string v11, "keyguard"
-
-    move-object/from16 v0, p1
-
-    invoke-virtual {v0, v11}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v11
-
-    check-cast v11, Landroid/app/KeyguardManager;
-
-    iput-object v11, p0, Landroid/view/VolumePanel;->mKeyguardManager:Landroid/app/KeyguardManager;
-
-    .line 335
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v11
-
-    const v12, 0x1110010
-
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getBoolean(I)Z
-
-    move-result v8
-
-    .line 337
-    .local v8, useMasterVolume:Z
-    if-eqz v8, :cond_1
-
-    .line 338
-    const/4 v1, 0x0
-
-    .local v1, i:I
-    :goto_0
-    sget-object v11, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
-
-    array-length v11, v11
-
-    if-ge v1, v11, :cond_1
-
-    .line 339
-    sget-object v11, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
-
-    aget-object v6, v11, v1
-
-    .line 340
-    .local v6, streamRes:Landroid/view/VolumePanel$StreamResources;
-    iget v11, v6, Landroid/view/VolumePanel$StreamResources;->streamType:I
-
-    const/16 v12, -0x64
-
-    if-ne v11, v12, :cond_0
-
-    const/4 v11, 0x1
-
-    :goto_1
-    iput-boolean v11, v6, Landroid/view/VolumePanel$StreamResources;->show:Z
-
-    .line 338
-    add-int/lit8 v1, v1, 0x1
-
-    goto :goto_0
-
-    .line 340
-    :cond_0
-    const/4 v11, 0x0
-
-    goto :goto_1
-
-    .line 344
-    .end local v1           #i:I
-    .end local v6           #streamRes:Landroid/view/VolumePanel$StreamResources;
-    :cond_1
-    iget-object v11, p0, Landroid/view/VolumePanel;->mThemeContext:Landroid/view/ContextThemeWrapper;
-
-    const-string v12, "layout_inflater"
-
-    invoke-virtual {v11, v12}, Landroid/view/ContextThemeWrapper;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Landroid/view/LayoutInflater;
-
-    .line 347
-    .local v2, inflater:Landroid/view/LayoutInflater;
-    const v11, 0x10900e2
-
-    const/4 v12, 0x0
-
-    invoke-virtual {v2, v11, v12}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
+    invoke-virtual {p1, v9}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v9
 
-    iput-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    check-cast v9, Landroid/media/AudioManager;
 
-    .line 348
-    .local v9, view:Landroid/view/View;
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
-    new-instance v12, Landroid/view/VolumePanel$1;
+    .line 272
+    iput-object p2, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
-    invoke-direct {v12, p0}, Landroid/view/VolumePanel$1;-><init>(Landroid/view/VolumePanel;)V
+    .line 275
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
+    move-result-object v9
 
-    .line 354
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    const v10, #bool@config_useMasterVolume#t
 
-    const v12, 0x10203a3
+    invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getBoolean(I)Z
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    move-result v6
 
-    move-result-object v11
+    .line 277
+    .local v6, useMasterVolume:Z
+    if-eqz v6, :cond_1
 
-    check-cast v11, Landroid/view/ViewGroup;
+    .line 278
+    const/4 v0, 0x0
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+    .local v0, i:I
+    :goto_0
+    sget-object v9, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
-    .line 356
-    iget-object v11, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+    array-length v9, v9
 
-    const v12, 0x30300a9
+    if-ge v0, v9, :cond_1
 
-    invoke-virtual {v11, v12}, Landroid/view/ViewGroup;->setBackgroundResource(I)V
+    .line 279
+    sget-object v9, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
-    .line 358
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    aget-object v5, v9, v0
 
-    const v12, 0x10203a4
+    .line 280
+    .local v5, streamRes:Landroid/view/VolumePanel$StreamResources;
+    iget v9, v5, Landroid/view/VolumePanel$StreamResources;->streamType:I
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    const/16 v10, -0x64
 
-    move-result-object v11
+    if-ne v9, v10, :cond_0
 
-    check-cast v11, Landroid/view/ViewGroup;
+    const/4 v9, 0x1
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
+    :goto_1
+    iput-boolean v9, v5, Landroid/view/VolumePanel$StreamResources;->show:Z
 
-    .line 359
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    .line 278
+    add-int/lit8 v0, v0, 0x1
 
-    const v12, 0x102031c
+    goto :goto_0
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    .line 280
+    :cond_0
+    const/4 v9, 0x0
 
-    move-result-object v11
+    goto :goto_1
 
-    check-cast v11, Landroid/widget/ImageView;
+    .line 284
+    .end local v0           #i:I
+    .end local v5           #streamRes:Landroid/view/VolumePanel$StreamResources;
+    :cond_1
+    const-string v9, "layout_inflater"
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
+    invoke-virtual {p1, v9}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    .line 360
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    move-result-object v1
 
-    const v12, 0x10203a5
+    check-cast v1, Landroid/view/LayoutInflater;
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    .line 286
+    .local v1, inflater:Landroid/view/LayoutInflater;
+    const v9, #layout@volume_adjust#t
 
-    move-result-object v11
+    const/4 v10, 0x0
 
-    check-cast v11, Landroid/widget/ImageView;
+    invoke-virtual {v1, v9, v10}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
+    move-result-object v7
 
-    .line 362
-    iget-object v11, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    iput-object v7, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    const v12, 0x10203d2
+    .line 287
+    .local v7, view:Landroid/view/View;
+    iget-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    invoke-virtual {v11, v12}, Landroid/view/View;->findViewById(I)Landroid/view/View;
+    new-instance v10, Landroid/view/VolumePanel$1;
 
-    move-result-object v11
+    invoke-direct {v10, p0}, Landroid/view/VolumePanel$1;-><init>(Landroid/view/VolumePanel;)V
 
-    check-cast v11, Landroid/widget/Button;
+    invoke-virtual {v9, v10}, Landroid/view/View;->setOnTouchListener(Landroid/view/View$OnTouchListener;)V
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
+    .line 293
+    iget-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    .line 363
-    iget-object v11, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
+    const v10, #id@visible_panel#t
 
-    invoke-virtual {v11, p0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    invoke-virtual {v9, v10}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    .line 366
-    invoke-direct {p0}, Landroid/view/VolumePanel;->setExpandBackground()V
+    move-result-object v9
 
-    .line 367
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
+    check-cast v9, Landroid/view/ViewGroup;
 
-    check-cast v11, Landroid/widget/ImageView;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
 
-    const v12, 0x3030087
+    .line 294
+    iget-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    invoke-virtual {v11, v12}, Landroid/widget/ImageView;->setImageResource(I)V
+    const v10, #id@slider_group#t
 
-    .line 369
-    new-instance v11, Landroid/view/VolumePanel$2;
+    invoke-virtual {v9, v10}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    const v12, 0x10302fe
+    move-result-object v9
 
-    move-object/from16 v0, p1
+    check-cast v9, Landroid/view/ViewGroup;
 
-    invoke-direct {v11, p0, v0, v12}, Landroid/view/VolumePanel$2;-><init>(Landroid/view/VolumePanel;Landroid/content/Context;I)V
+    iput-object v9, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
+    .line 295
+    iget-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    .line 378
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
+    const v10, #id@expand_button#t
 
-    const-string v12, "Volume control"
+    invoke-virtual {v9, v10}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    invoke-virtual {v11, v12}, Landroid/app/Dialog;->setTitle(Ljava/lang/CharSequence;)V
+    move-result-object v9
 
-    .line 379
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
+    check-cast v9, Landroid/widget/ImageView;
 
-    iget-object v12, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
 
-    invoke-virtual {v11, v12}, Landroid/app/Dialog;->setContentView(Landroid/view/View;)V
+    .line 296
+    iget-object v9, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    .line 380
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
+    const v10, #id@expand_button_divider#t
 
-    new-instance v12, Landroid/view/VolumePanel$3;
+    invoke-virtual {v9, v10}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
-    invoke-direct {v12, p0}, Landroid/view/VolumePanel$3;-><init>(Landroid/view/VolumePanel;)V
+    move-result-object v9
 
-    invoke-virtual {v11, v12}, Landroid/app/Dialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
+    check-cast v9, Landroid/widget/ImageView;
 
-    .line 387
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
 
-    invoke-virtual {v11}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
+    .line 298
+    new-instance v9, Landroid/view/VolumePanel$2;
 
-    move-result-object v10
+    const v10, #style@Theme.Panel.Volume#t
 
-    .line 388
-    .local v10, window:Landroid/view/Window;
-    const/16 v11, 0x30
+    invoke-direct {v9, p0, p1, v10}, Landroid/view/VolumePanel$2;-><init>(Landroid/view/VolumePanel;Landroid/content/Context;I)V
 
-    invoke-virtual {v10, v11}, Landroid/view/Window;->setGravity(I)V
+    iput-object v9, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
-    .line 389
-    invoke-virtual {v10}, Landroid/view/Window;->getAttributes()Landroid/view/WindowManager$LayoutParams;
+    .line 307
+    iget-object v9, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
-    move-result-object v3
+    const-string v10, "Volume control"
 
-    .line 390
-    .local v3, lp:Landroid/view/WindowManager$LayoutParams;
-    const/4 v11, 0x0
+    invoke-virtual {v9, v10}, Landroid/app/Dialog;->setTitle(Ljava/lang/CharSequence;)V
 
-    iput-object v11, v3, Landroid/view/WindowManager$LayoutParams;->token:Landroid/os/IBinder;
+    .line 308
+    iget-object v9, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
-    .line 392
-    iget-object v11, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
+    iget-object v10, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
-    invoke-virtual {v11}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {v9, v10}, Landroid/app/Dialog;->setContentView(Landroid/view/View;)V
 
-    move-result-object v11
+    .line 309
+    iget-object v9, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
-    const v12, 0x105004d
+    new-instance v10, Landroid/view/VolumePanel$3;
 
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getDimensionPixelOffset(I)I
+    invoke-direct {v10, p0}, Landroid/view/VolumePanel$3;-><init>(Landroid/view/VolumePanel;)V
 
-    move-result v11
+    invoke-virtual {v9, v10}, Landroid/app/Dialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
 
-    iput v11, v3, Landroid/view/WindowManager$LayoutParams;->y:I
+    .line 316
+    iget-object v9, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
-    .line 394
-    const/16 v11, 0x7e4
+    invoke-virtual {v9}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
 
-    iput v11, v3, Landroid/view/WindowManager$LayoutParams;->type:I
+    move-result-object v8
 
-    .line 395
-    const/4 v11, -0x2
+    .line 317
+    .local v8, window:Landroid/view/Window;
+    const/16 v9, 0x30
 
-    iput v11, v3, Landroid/view/ViewGroup$LayoutParams;->width:I
+    invoke-virtual {v8, v9}, Landroid/view/Window;->setGravity(I)V
 
-    .line 396
-    const/4 v11, -0x2
+    .line 318
+    invoke-virtual {v8}, Landroid/view/Window;->getAttributes()Landroid/view/WindowManager$LayoutParams;
 
-    iput v11, v3, Landroid/view/ViewGroup$LayoutParams;->height:I
+    move-result-object v2
 
-    .line 397
-    iget v11, v3, Landroid/view/WindowManager$LayoutParams;->privateFlags:I
+    .line 319
+    .local v2, lp:Landroid/view/WindowManager$LayoutParams;
+    const/4 v9, 0x0
 
-    or-int/lit8 v11, v11, 0x20
+    iput-object v9, v2, Landroid/view/WindowManager$LayoutParams;->token:Landroid/os/IBinder;
 
-    iput v11, v3, Landroid/view/WindowManager$LayoutParams;->privateFlags:I
+    .line 321
+    iget-object v9, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
-    .line 398
-    invoke-virtual {v10, v3}, Landroid/view/Window;->setAttributes(Landroid/view/WindowManager$LayoutParams;)V
+    invoke-virtual {v9}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 399
-    const v11, 0x40028
+    move-result-object v9
 
-    invoke-virtual {v10, v11}, Landroid/view/Window;->addFlags(I)V
+    const v10, #dimen@volume_panel_top#t
 
-    .line 402
+    invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getDimensionPixelOffset(I)I
+
+    move-result v9
+
+    iput v9, v2, Landroid/view/WindowManager$LayoutParams;->y:I
+
+    .line 323
+    const/16 v9, 0x7e4
+
+    iput v9, v2, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    .line 324
+    const/4 v9, -0x2
+
+    iput v9, v2, Landroid/view/ViewGroup$LayoutParams;->width:I
+
+    .line 325
+    const/4 v9, -0x2
+
+    iput v9, v2, Landroid/view/ViewGroup$LayoutParams;->height:I
+
+    .line 326
+    invoke-virtual {v8, v2}, Landroid/view/Window;->setAttributes(Landroid/view/WindowManager$LayoutParams;)V
+
+    .line 327
+    const v9, 0x40028
+
+    invoke-virtual {v8, v9}, Landroid/view/Window;->addFlags(I)V
+
+    .line 330
     invoke-static {}, Landroid/media/AudioSystem;->getNumStreamTypes()I
 
-    move-result v11
+    move-result v9
 
-    new-array v11, v11, [Landroid/media/ToneGenerator;
+    new-array v9, v9, [Landroid/media/ToneGenerator;
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
-    .line 403
-    const-string v11, "vibrator"
+    .line 331
+    const-string v9, "vibrator"
 
-    move-object/from16 v0, p1
+    invoke-virtual {p1, v9}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    invoke-virtual {v0, v11}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    move-result-object v9
 
-    move-result-object v11
+    check-cast v9, Landroid/os/Vibrator;
 
-    check-cast v11, Landroid/os/Vibrator;
+    iput-object v9, p0, Landroid/view/VolumePanel;->mVibrator:Landroid/os/Vibrator;
 
-    iput-object v11, p0, Landroid/view/VolumePanel;->mVibrator:Landroid/os/Vibrator;
+    .line 333
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    .line 405
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    move-result-object v9
 
-    move-result-object v11
+    const v10, #bool@config_voice_capable#t
 
-    const v12, 0x111002f
+    invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getBoolean(I)Z
 
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getBoolean(I)Z
+    move-result v9
 
-    move-result v11
+    iput-boolean v9, p0, Landroid/view/VolumePanel;->mVoiceCapable:Z
 
-    iput-boolean v11, p0, Landroid/view/VolumePanel;->mVoiceCapable:Z
+    .line 334
+    iget-boolean v9, p0, Landroid/view/VolumePanel;->mVoiceCapable:Z
 
-    .line 407
-    const/4 v11, 0x1
+    if-nez v9, :cond_2
 
-    iput-boolean v11, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
+    if-nez v6, :cond_2
 
-    .line 410
-    iget-boolean v11, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
+    const/4 v9, 0x1
 
-    if-nez v11, :cond_2
-
-    .line 411
-    iget-object v11, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    const/16 v12, 0x8
-
-    invoke-virtual {v11, v12}, Landroid/view/View;->setVisibility(I)V
-
-    .line 412
-    iget-object v11, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
-
-    const/16 v12, 0x8
-
-    invoke-virtual {v11, v12}, Landroid/view/View;->setVisibility(I)V
-
-    .line 417
     :goto_2
-    invoke-virtual/range {p1 .. p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    iput-boolean v9, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
 
-    move-result-object v11
+    .line 336
+    iget-boolean v9, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
 
-    const v12, 0x1110010
+    if-nez v9, :cond_3
 
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getBoolean(I)Z
+    .line 337
+    iget-object v9, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
 
-    move-result v5
+    const/16 v10, 0x8
 
-    .line 419
-    .local v5, masterVolumeOnly:Z
-    iget-object v11, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
+    invoke-virtual {v9, v10}, Landroid/view/View;->setVisibility(I)V
 
-    invoke-virtual {v11}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    .line 338
+    iget-object v9, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
 
-    move-result-object v11
+    const/16 v10, 0x8
 
-    const v12, 0x1110011
+    invoke-virtual {v9, v10}, Landroid/view/View;->setVisibility(I)V
 
-    invoke-virtual {v11, v12}, Landroid/content/res/Resources;->getBoolean(I)Z
+    .line 343
+    :goto_3
+    invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v9
+
+    const v10, #bool@config_useMasterVolume#t
+
+    invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getBoolean(I)Z
 
     move-result v4
 
-    .line 422
-    .local v4, masterVolumeKeySounds:Z
-    if-eqz v5, :cond_3
+    .line 345
+    .local v4, masterVolumeOnly:Z
+    iget-object v9, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
-    if-eqz v4, :cond_3
+    invoke-virtual {v9}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    const/4 v11, 0x1
+    move-result-object v9
 
-    :goto_3
-    iput-boolean v11, p0, Landroid/view/VolumePanel;->mPlayMasterStreamTones:Z
+    const v10, #bool@config_useVolumeKeySounds#t
 
-    .line 424
+    invoke-virtual {v9, v10}, Landroid/content/res/Resources;->getBoolean(I)Z
+
+    move-result v3
+
+    .line 348
+    .local v3, masterVolumeKeySounds:Z
+    if-eqz v4, :cond_4
+
+    if-eqz v3, :cond_4
+
+    const/4 v9, 0x1
+
+    :goto_4
+    iput-boolean v9, p0, Landroid/view/VolumePanel;->mPlayMasterStreamTones:Z
+
+    .line 350
     invoke-direct {p0}, Landroid/view/VolumePanel;->listenToRingerMode()V
 
-    .line 425
+    .line 351
     return-void
 
-    .line 414
-    .end local v4           #masterVolumeKeySounds:Z
-    .end local v5           #masterVolumeOnly:Z
+    .line 334
+    .end local v3           #masterVolumeKeySounds:Z
+    .end local v4           #masterVolumeOnly:Z
     :cond_2
-    iget-object v11, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    invoke-virtual {v11, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    const/4 v9, 0x0
 
     goto :goto_2
 
-    .line 422
-    .restart local v4       #masterVolumeKeySounds:Z
-    .restart local v5       #masterVolumeOnly:Z
+    .line 340
     :cond_3
-    const/4 v11, 0x0
+    iget-object v9, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
+
+    invoke-virtual {v9, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     goto :goto_3
+
+    .line 348
+    .restart local v3       #masterVolumeKeySounds:Z
+    .restart local v4       #masterVolumeOnly:Z
+    :cond_4
+    const/4 v9, 0x0
+
+    goto :goto_4
 .end method
 
 .method static synthetic access$000()Ljava/lang/Object;
     .locals 1
 
     .prologue
-    .line 76
+    .line 62
     sget-object v0, Landroid/view/VolumePanel;->sConfirmSafeVolumeLock:Ljava/lang/Object;
 
     return-object v0
@@ -721,7 +622,7 @@
     .parameter "x0"
 
     .prologue
-    .line 76
+    .line 62
     sput-object p0, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
     return-object p0
@@ -732,7 +633,7 @@
     .parameter "x0"
 
     .prologue
-    .line 76
+    .line 62
     invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
 
     return-void
@@ -743,7 +644,7 @@
     .parameter "x0"
 
     .prologue
-    .line 76
+    .line 62
     invoke-direct {p0}, Landroid/view/VolumePanel;->forceTimeout()V
 
     return-void
@@ -754,7 +655,7 @@
     .parameter "x0"
 
     .prologue
-    .line 76
+    .line 62
     iget v0, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     return v0
@@ -766,7 +667,7 @@
     .parameter "x1"
 
     .prologue
-    .line 76
+    .line 62
     iput p1, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     return p1
@@ -777,53 +678,8 @@
     .parameter "x0"
 
     .prologue
-    .line 76
+    .line 62
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
-
-    return-object v0
-.end method
-
-.method static synthetic access$600(Landroid/view/VolumePanel;)Landroid/app/Dialog;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 76
-    iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
-
-    return-object v0
-.end method
-
-.method static synthetic access$700(Landroid/view/VolumePanel;)V
-    .locals 0
-    .parameter "x0"
-
-    .prologue
-    .line 76
-    invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
-
-    return-void
-.end method
-
-.method static synthetic access$800(Landroid/view/VolumePanel;I)V
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    .line 76
-    invoke-direct {p0, p1}, Landroid/view/VolumePanel;->reorderSliders(I)V
-
-    return-void
-.end method
-
-.method static synthetic access$900(Landroid/view/VolumePanel;)Landroid/view/View;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 76
-    iget-object v0, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
     return-object v0
 .end method
@@ -832,16 +688,16 @@
     .locals 5
 
     .prologue
-    .line 574
+    .line 463
     iget-boolean v3, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
 
     if-nez v3, :cond_1
 
-    .line 595
+    .line 475
     :cond_0
     return-void
 
-    .line 576
+    .line 465
     :cond_1
     const/4 v0, 0x0
 
@@ -853,14 +709,14 @@
 
     if-ge v0, v3, :cond_0
 
-    .line 578
+    .line 467
     sget-object v3, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
     aget-object v3, v3, v0
 
     iget v2, v3, Landroid/view/VolumePanel$StreamResources;->streamType:I
 
-    .line 580
+    .line 468
     .local v2, streamType:I
     sget-object v3, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
@@ -868,30 +724,21 @@
 
     iget-boolean v3, v3, Landroid/view/VolumePanel$StreamResources;->show:Z
 
-    invoke-direct {p0, v3, v2}, Landroid/view/VolumePanel;->isExpandableStream(ZI)Z
+    if-eqz v3, :cond_2
 
-    move-result v3
+    iget v3, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
-    if-nez v3, :cond_3
+    if-ne v2, v3, :cond_3
 
-    .line 576
+    .line 465
     :cond_2
     :goto_1
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 585
+    .line 471
     :cond_3
-    const/4 v1, 0x0
-
-    .line 586
-    .local v1, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v3, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v3, :cond_4
-
-    .line 587
     iget-object v3, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -902,182 +749,71 @@
 
     move-result-object v1
 
-    .end local v1           #sc:Landroid/view/VolumePanel$StreamControl;
     check-cast v1, Landroid/view/VolumePanel$StreamControl;
 
-    .line 589
-    .restart local v1       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_4
-    if-eqz v1, :cond_2
-
-    .line 590
+    .line 472
+    .local v1, sc:Landroid/view/VolumePanel$StreamControl;
     iget-object v3, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     iget-object v4, v1, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
     invoke-virtual {v3, v4}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    .line 591
+    .line 473
     invoke-direct {p0, v1}, Landroid/view/VolumePanel;->updateSlider(Landroid/view/VolumePanel$StreamControl;)V
 
     goto :goto_1
 .end method
 
-.method private checkAndRemoveFirstSlider()V
-    .locals 5
-
-    .prologue
-    const/4 v4, 0x0
-
-    .line 1456
-    iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v2, v4}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    move-result-object v1
-
-    .line 1457
-    .local v1, v:Landroid/view/View;
-    if-eqz v1, :cond_0
-
-    .line 1458
-    invoke-virtual {v1}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/view/VolumePanel$StreamControl;
-
-    .line 1459
-    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
-    if-eqz v0, :cond_0
-
-    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v3, 0x2
-
-    if-eq v2, v3, :cond_0
-
-    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v3, 0x5
-
-    if-eq v2, v3, :cond_0
-
-    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v3, 0x3
-
-    if-eq v2, v3, :cond_0
-
-    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v3, 0x4
-
-    if-eq v2, v3, :cond_0
-
-    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    if-eqz v2, :cond_0
-
-    .line 1465
-    iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v2, v4}, Landroid/view/ViewGroup;->removeViewAt(I)V
-
-    .line 1468
-    .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_0
-    return-void
-.end method
-
 .method private collapse()V
-    .locals 5
+    .locals 4
 
     .prologue
-    const/16 v4, 0x8
-
     const/4 v3, 0x0
 
-    .line 657
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    invoke-virtual {v2, v4}, Landroid/widget/Button;->setVisibility(I)V
-
-    .line 659
+    .line 511
     iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
 
     invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
-    .line 661
+    .line 512
     iget-object v2, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
 
     invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
-    .line 662
+    .line 513
     iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v2}, Landroid/view/ViewGroup;->getChildCount()I
 
     move-result v0
 
-    .line 663
+    .line 514
     .local v0, count:I
-    if-lez v0, :cond_0
-
-    .line 664
-    iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v2, v3}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object v2
-
-    check-cast v2, Landroid/view/VolumePanel$StreamControl;
-
-    invoke-direct {p0, v2, v3}, Landroid/view/VolumePanel;->updateVolumeTitle(Landroid/view/VolumePanel$StreamControl;Z)V
-
-    .line 666
-    :cond_0
     const/4 v1, 0x1
 
     .local v1, i:I
     :goto_0
-    if-ge v1, v0, :cond_1
+    if-ge v1, v0, :cond_0
 
-    .line 667
+    .line 515
     iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v2, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Landroid/view/View;->getTag()Ljava/lang/Object;
+    const/16 v3, 0x8
 
-    move-result-object v2
+    invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
-    check-cast v2, Landroid/view/VolumePanel$StreamControl;
-
-    invoke-direct {p0, v2, v3}, Landroid/view/VolumePanel;->updateVolumeTitle(Landroid/view/VolumePanel$StreamControl;Z)V
-
-    .line 668
-    iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v2, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v4}, Landroid/view/View;->setVisibility(I)V
-
-    .line 666
+    .line 514
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 671
-    :cond_1
+    .line 517
+    :cond_0
     return-void
 .end method
 
@@ -1087,18 +823,18 @@
     .prologue
     const/4 v9, 0x0
 
-    .line 511
-    iget-object v7, p0, Landroid/view/VolumePanel;->mThemeContext:Landroid/view/ContextThemeWrapper;
+    .line 415
+    iget-object v7, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
     const-string v8, "layout_inflater"
 
-    invoke-virtual {v7, v8}, Landroid/view/ContextThemeWrapper;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {v7, v8}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Landroid/view/LayoutInflater;
 
-    .line 514
+    .line 417
     .local v1, inflater:Landroid/view/LayoutInflater;
     new-instance v7, Ljava/util/HashMap;
 
@@ -1110,14 +846,14 @@
 
     iput-object v7, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
-    .line 515
+    .line 418
     iget-object v7, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
     invoke-virtual {v7}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
 
-    .line 516
+    .line 419
     .local v3, res:Landroid/content/res/Resources;
     const/4 v0, 0x0
 
@@ -1129,16 +865,16 @@
 
     if-ge v0, v7, :cond_3
 
-    .line 517
+    .line 420
     sget-object v7, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
     aget-object v5, v7, v0
 
-    .line 518
+    .line 421
     .local v5, streamRes:Landroid/view/VolumePanel$StreamResources;
     iget v6, v5, Landroid/view/VolumePanel$StreamResources;->streamType:I
 
-    .line 519
+    .line 422
     .local v6, streamType:I
     iget-boolean v7, p0, Landroid/view/VolumePanel;->mVoiceCapable:Z
 
@@ -1148,21 +884,21 @@
 
     if-ne v5, v7, :cond_0
 
-    .line 520
+    .line 423
     sget-object v5, Landroid/view/VolumePanel$StreamResources;->RingerStream:Landroid/view/VolumePanel$StreamResources;
 
-    .line 522
+    .line 425
     :cond_0
     new-instance v4, Landroid/view/VolumePanel$StreamControl;
 
     invoke-direct {v4, p0, v9}, Landroid/view/VolumePanel$StreamControl;-><init>(Landroid/view/VolumePanel;Landroid/view/VolumePanel$1;)V
 
-    .line 523
+    .line 426
     .local v4, sc:Landroid/view/VolumePanel$StreamControl;
     iput v6, v4, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    .line 524
-    const v7, 0x10900e3
+    .line 427
+    const v7, #layout@volume_adjust_item#t
 
     invoke-virtual {v1, v7, v9}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
 
@@ -1172,15 +908,15 @@
 
     iput-object v7, v4, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
-    .line 525
+    .line 428
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
     invoke-virtual {v7, v4}, Landroid/view/ViewGroup;->setTag(Ljava/lang/Object;)V
 
-    .line 526
+    .line 429
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
-    const v8, 0x10203a6
+    const v8, #id@stream_icon#t
 
     invoke-virtual {v7, v8}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -1190,12 +926,12 @@
 
     iput-object v7, v4, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
-    .line 527
+    .line 430
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
     invoke-virtual {v7, v4}, Landroid/widget/ImageView;->setTag(Ljava/lang/Object;)V
 
-    .line 528
+    .line 431
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
     iget v8, v5, Landroid/view/VolumePanel$StreamResources;->descRes:I
@@ -1206,45 +942,27 @@
 
     invoke-virtual {v7, v8}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    .line 529
+    .line 432
     iget v7, v5, Landroid/view/VolumePanel$StreamResources;->iconRes:I
 
     iput v7, v4, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
-    .line 530
+    .line 433
     iget v7, v5, Landroid/view/VolumePanel$StreamResources;->iconMuteRes:I
 
     iput v7, v4, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
 
-    .line 531
+    .line 434
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
     iget v8, v4, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
     invoke-virtual {v7, v8}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 533
-    iget v7, v5, Landroid/view/VolumePanel$StreamResources;->descRes:I
-
-    invoke-direct {p0, v4, v7}, Landroid/view/VolumePanel;->initVolumeTitleRes(Landroid/view/VolumePanel$StreamControl;I)V
-
-    .line 536
+    .line 435
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
-    const v8, 0x10203d3
-
-    invoke-virtual {v7, v8}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
-
-    move-result-object v7
-
-    check-cast v7, Landroid/widget/TextView;
-
-    iput-object v7, v4, Landroid/view/VolumePanel$StreamControl;->title:Landroid/widget/TextView;
-
-    .line 538
-    iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
-
-    const v8, 0x1020347
+    const v8, #id@seekbar#t
 
     invoke-virtual {v7, v8}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -1254,7 +972,7 @@
 
     iput-object v7, v4, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
-    .line 539
+    .line 436
     const/4 v7, 0x6
 
     if-eq v6, v7, :cond_1
@@ -1264,7 +982,7 @@
     :cond_1
     const/4 v2, 0x1
 
-    .line 541
+    .line 438
     .local v2, plusOne:I
     :goto_1
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
@@ -1277,20 +995,17 @@
 
     invoke-virtual {v7, v8}, Landroid/widget/SeekBar;->setMax(I)V
 
-    .line 542
+    .line 439
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v7, p0}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V
 
-    .line 543
+    .line 440
     iget-object v7, v4, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v7, v4}, Landroid/widget/SeekBar;->setTag(Ljava/lang/Object;)V
 
-    .line 545
-    invoke-direct {p0, v4, v6}, Landroid/view/VolumePanel;->setSeekbarRange(Landroid/view/VolumePanel$StreamControl;I)V
-
-    .line 547
+    .line 441
     iget-object v7, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1299,19 +1014,19 @@
 
     invoke-virtual {v7, v8, v4}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 516
+    .line 419
     add-int/lit8 v0, v0, 0x1
 
     goto/16 :goto_0
 
-    .line 539
+    .line 436
     .end local v2           #plusOne:I
     :cond_2
     const/4 v2, 0x0
 
     goto :goto_1
 
-    .line 549
+    .line 443
     .end local v4           #sc:Landroid/view/VolumePanel$StreamControl;
     .end local v5           #streamRes:Landroid/view/VolumePanel$StreamResources;
     .end local v6           #streamType:I
@@ -1320,29 +1035,19 @@
 .end method
 
 .method private expand()V
-    .locals 6
+    .locals 5
 
     .prologue
-    const/16 v5, 0x8
+    const/4 v4, 0x4
 
-    const/4 v4, 0x0
-
-    .line 641
-    invoke-direct {p0}, Landroid/view/VolumePanel;->checkAndRemoveFirstSlider()V
-
-    .line 642
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    invoke-virtual {v2, v4}, Landroid/widget/Button;->setVisibility(I)V
-
-    .line 644
+    .line 502
     iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v2}, Landroid/view/ViewGroup;->getChildCount()I
 
     move-result v0
 
-    .line 646
+    .line 503
     .local v0, count:I
     const/4 v1, 0x0
 
@@ -1350,49 +1055,34 @@
     :goto_0
     if-ge v1, v0, :cond_0
 
-    .line 647
+    .line 504
     iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v2, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Landroid/view/View;->getTag()Ljava/lang/Object;
+    const/4 v3, 0x0
 
-    move-result-object v2
+    invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
-    check-cast v2, Landroid/view/VolumePanel$StreamControl;
-
-    const/4 v3, 0x1
-
-    invoke-direct {p0, v2, v3}, Landroid/view/VolumePanel;->updateVolumeTitle(Landroid/view/VolumePanel$StreamControl;Z)V
-
-    .line 648
-    iget-object v2, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v2, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v4}, Landroid/view/View;->setVisibility(I)V
-
-    .line 646
+    .line 503
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 650
+    .line 506
     :cond_0
     iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
 
-    invoke-virtual {v2, v5}, Landroid/view/View;->setVisibility(I)V
+    invoke-virtual {v2, v4}, Landroid/view/View;->setVisibility(I)V
 
-    .line 651
+    .line 507
     iget-object v2, p0, Landroid/view/VolumePanel;->mDivider:Landroid/view/View;
 
-    invoke-virtual {v2, v5}, Landroid/view/View;->setVisibility(I)V
+    invoke-virtual {v2, v4}, Landroid/view/View;->setVisibility(I)V
 
-    .line 653
+    .line 508
     return-void
 .end method
 
@@ -1402,17 +1092,17 @@
     .prologue
     const/4 v0, 0x5
 
-    .line 1267
+    .line 1051
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1268
+    .line 1052
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->sendMessage(Landroid/os/Message;)Z
 
-    .line 1269
+    .line 1053
     return-void
 .end method
 
@@ -1421,24 +1111,24 @@
     .parameter "streamType"
 
     .prologue
-    .line 1109
+    .line 922
     const/16 v1, -0x64
 
     if-ne p1, v1, :cond_0
 
-    .line 1113
+    .line 926
     iget-boolean v1, p0, Landroid/view/VolumePanel;->mPlayMasterStreamTones:Z
 
     if-eqz v1, :cond_2
 
-    .line 1114
+    .line 927
     const/4 p1, 0x1
 
-    .line 1119
+    .line 932
     :cond_0
     monitor-enter p0
 
-    .line 1120
+    .line 933
     :try_start_0
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
@@ -1448,7 +1138,7 @@
 
     if-nez v1, :cond_1
 
-    .line 1122
+    .line 935
     :try_start_1
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
@@ -1463,7 +1153,7 @@
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
     .catch Ljava/lang/RuntimeException; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 1130
+    .line 943
     :cond_1
     :goto_0
     :try_start_2
@@ -1476,23 +1166,23 @@
     :goto_1
     return-object v1
 
-    .line 1116
+    .line 929
     :cond_2
     const/4 v1, 0x0
 
     goto :goto_1
 
-    .line 1123
+    .line 936
     :catch_0
     move-exception v0
 
-    .line 1124
+    .line 937
     .local v0, e:Ljava/lang/RuntimeException;
     sget-boolean v1, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v1, :cond_1
 
-    .line 1125
+    .line 938
     const-string v1, "VolumePanel"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1517,7 +1207,7 @@
 
     goto :goto_0
 
-    .line 1131
+    .line 944
     .end local v0           #e:Ljava/lang/RuntimeException;
     :catchall_0
     move-exception v1
@@ -1534,29 +1224,29 @@
     .parameter "streamType"
 
     .prologue
-    .line 480
+    .line 385
     const/16 v0, -0x64
 
     if-ne p1, v0, :cond_0
 
-    .line 481
+    .line 386
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v0}, Landroid/media/AudioManager;->getMasterMaxVolume()I
 
     move-result v0
 
-    .line 485
+    .line 390
     :goto_0
     return v0
 
-    .line 482
+    .line 387
     :cond_0
     const/16 v0, -0xc8
 
     if-ne p1, v0, :cond_1
 
-    .line 483
+    .line 388
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
     invoke-virtual {v0}, Landroid/media/AudioService;->getRemoteStreamMaxVolume()I
@@ -1565,7 +1255,7 @@
 
     goto :goto_0
 
-    .line 485
+    .line 390
     :cond_1
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
@@ -1581,29 +1271,29 @@
     .parameter "streamType"
 
     .prologue
-    .line 490
+    .line 395
     const/16 v0, -0x64
 
     if-ne p1, v0, :cond_0
 
-    .line 491
+    .line 396
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v0}, Landroid/media/AudioManager;->getMasterVolume()I
 
     move-result v0
 
-    .line 495
+    .line 400
     :goto_0
     return v0
 
-    .line 492
+    .line 397
     :cond_0
     const/16 v0, -0xc8
 
     if-ne p1, v0, :cond_1
 
-    .line 493
+    .line 398
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
     invoke-virtual {v0}, Landroid/media/AudioService;->getRemoteStreamVolume()I
@@ -1612,7 +1302,7 @@
 
     goto :goto_0
 
-    .line 495
+    .line 400
     :cond_1
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
@@ -1623,142 +1313,11 @@
     goto :goto_0
 .end method
 
-.method private initVolumeTitleRes(Landroid/view/VolumePanel$StreamControl;I)V
-    .locals 3
-    .parameter "sc"
-    .parameter "defaultRes"
-
-    .prologue
-    const v2, 0x302008d
-
-    .line 1364
-    iget v0, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v1, 0x5
-
-    if-ne v0, v1, :cond_0
-
-    .line 1365
-    sget-object v0, Landroid/view/VolumePanel$StreamResources;->NotificationStream:Landroid/view/VolumePanel$StreamResources;
-
-    iget v0, v0, Landroid/view/VolumePanel$StreamResources;->descRes:I
-
-    iput v0, p1, Landroid/view/VolumePanel$StreamControl;->titleRes:I
-
-    .line 1366
-    iput v2, p1, Landroid/view/VolumePanel$StreamControl;->titleExpandRes:I
-
-    .line 1374
-    :goto_0
-    return-void
-
-    .line 1367
-    :cond_0
-    iget v0, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v1, 0x2
-
-    if-ne v0, v1, :cond_1
-
-    .line 1368
-    iput p2, p1, Landroid/view/VolumePanel$StreamControl;->titleRes:I
-
-    .line 1369
-    iput v2, p1, Landroid/view/VolumePanel$StreamControl;->titleExpandRes:I
-
-    goto :goto_0
-
-    .line 1371
-    :cond_1
-    iput p2, p1, Landroid/view/VolumePanel$StreamControl;->titleRes:I
-
-    .line 1372
-    const/4 v0, 0x0
-
-    iput v0, p1, Landroid/view/VolumePanel$StreamControl;->titleExpandRes:I
-
-    goto :goto_0
-.end method
-
-.method private declared-synchronized isExpandableStream(ZI)Z
-    .locals 4
-    .parameter "show"
-    .parameter "streamType"
-
-    .prologue
-    const/4 v1, 0x1
-
-    const/4 v0, 0x0
-
-    .line 1379
-    monitor-enter p0
-
-    :try_start_0
-    iget v2, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    if-ne p2, v2, :cond_1
-
-    .line 1396
-    :cond_0
-    :goto_0
-    monitor-exit p0
-
-    return v0
-
-    .line 1384
-    :cond_1
-    const/4 v2, 0x2
-
-    if-ne p2, v2, :cond_2
-
-    :try_start_1
-    iget v2, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    const/4 v3, 0x5
-
-    if-eq v2, v3, :cond_2
-
-    move v0, v1
-
-    .line 1386
-    goto :goto_0
-
-    .line 1389
-    :cond_2
-    const/4 v2, 0x3
-
-    if-eq p2, v2, :cond_3
-
-    const/4 v2, 0x4
-
-    if-eq p2, v2, :cond_3
-
-    if-nez p2, :cond_0
-
-    :cond_3
-    move v0, v1
-
-    .line 1392
-    goto :goto_0
-
-    .line 1379
-    :catchall_0
-    move-exception v0
-
-    monitor-exit p0
-
-    throw v0
-.end method
-
 .method private isExpanded()Z
     .locals 1
 
     .prologue
-    .line 636
+    .line 498
     iget-object v0, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
 
     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
@@ -1783,29 +1342,29 @@
     .parameter "streamType"
 
     .prologue
-    .line 470
+    .line 375
     const/16 v0, -0x64
 
     if-ne p1, v0, :cond_0
 
-    .line 471
+    .line 376
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v0}, Landroid/media/AudioManager;->isMasterMute()Z
 
     move-result v0
 
-    .line 475
+    .line 380
     :goto_0
     return v0
 
-    .line 472
+    .line 377
     :cond_0
     const/16 v0, -0xc8
 
     if-ne p1, v0, :cond_2
 
-    .line 473
+    .line 378
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
     invoke-virtual {v0}, Landroid/media/AudioService;->getRemoteStreamVolume()I
@@ -1823,7 +1382,7 @@
 
     goto :goto_0
 
-    .line 475
+    .line 380
     :cond_2
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
@@ -1838,28 +1397,23 @@
     .locals 3
 
     .prologue
-    .line 428
+    .line 354
     new-instance v0, Landroid/content/IntentFilter;
 
     invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
 
-    .line 429
+    .line 355
     .local v0, filter:Landroid/content/IntentFilter;
     const-string v1, "android.media.RINGER_MODE_CHANGED"
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 430
-    const-string v1, "android.intent.action.SCREEN_OFF"
+    .line 356
+    const-string v1, "android.intent.action.THEME_CHANGED"
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 431
-    const-string v1, "android.intent.action.LOCALE_CHANGED"
-
-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
-
-    .line 437
+    .line 357
     iget-object v1, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
     new-instance v2, Landroid/view/VolumePanel$4;
@@ -1868,47 +1422,7 @@
 
     invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    .line 467
-    return-void
-.end method
-
-.method private registerScreenOffReceiver()V
-    .locals 3
-
-    .prologue
-    .line 1401
-    iget-object v1, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    if-nez v1, :cond_0
-
-    .line 1402
-    new-instance v1, Landroid/view/VolumePanel$6;
-
-    invoke-direct {v1, p0}, Landroid/view/VolumePanel$6;-><init>(Landroid/view/VolumePanel;)V
-
-    iput-object v1, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    .line 1414
-    new-instance v0, Landroid/content/IntentFilter;
-
-    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
-
-    .line 1415
-    .local v0, iFilter:Landroid/content/IntentFilter;
-    const-string v1, "android.intent.action.SCREEN_OFF"
-
-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
-
-    .line 1416
-    iget-object v1, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    iget-object v2, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
-
-    .line 1418
-    .end local v0           #iFilter:Landroid/content/IntentFilter;
-    :cond_0
+    .line 372
     return-void
 .end method
 
@@ -1917,21 +1431,12 @@
     .parameter "activeStreamType"
 
     .prologue
-    .line 552
+    .line 446
     iget-object v1, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v1}, Landroid/view/ViewGroup;->removeAllViews()V
 
-    .line 555
-    const/4 v0, 0x0
-
-    .line 556
-    .local v0, active:Landroid/view/VolumePanel$StreamControl;
-    iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v1, :cond_0
-
-    .line 557
+    .line 448
     iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1942,15 +1447,13 @@
 
     move-result-object v0
 
-    .end local v0           #active:Landroid/view/VolumePanel$StreamControl;
     check-cast v0, Landroid/view/VolumePanel$StreamControl;
 
-    .line 560
-    .restart local v0       #active:Landroid/view/VolumePanel$StreamControl;
-    :cond_0
-    if-nez v0, :cond_1
+    .line 449
+    .local v0, active:Landroid/view/VolumePanel$StreamControl;
+    if-nez v0, :cond_0
 
-    .line 561
+    .line 450
     const-string v1, "VolumePanel"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1973,37 +1476,37 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 562
+    .line 451
     const/4 v1, -0x1
 
     iput v1, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
-    .line 570
+    .line 459
     :goto_0
     invoke-direct {p0}, Landroid/view/VolumePanel;->addOtherVolumes()V
 
-    .line 571
+    .line 460
     return-void
 
-    .line 564
-    :cond_1
+    .line 453
+    :cond_0
     iget-object v1, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     iget-object v2, v0, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
     invoke-virtual {v1, v2}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    .line 565
+    .line 454
     iput p1, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
-    .line 566
+    .line 455
     iget-object v1, v0, Landroid/view/VolumePanel$StreamControl;->group:Landroid/view/ViewGroup;
 
     const/4 v2, 0x0
 
     invoke-virtual {v1, v2}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 567
+    .line 456
     invoke-direct {p0, v0}, Landroid/view/VolumePanel;->updateSlider(Landroid/view/VolumePanel$StreamControl;)V
 
     goto :goto_0
@@ -2015,10 +1518,10 @@
     .prologue
     const/4 v0, 0x5
 
-    .line 1262
+    .line 1046
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1263
+    .line 1047
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
@@ -2027,205 +1530,8 @@
 
     invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 1264
+    .line 1048
     return-void
-.end method
-
-.method private resetTimeoutSafeDialog()V
-    .locals 3
-
-    .prologue
-    const/16 v0, 0x14
-
-    .line 1498
-    invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
-
-    .line 1499
-    invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
-
-    move-result-object v0
-
-    const-wide/16 v1, 0xbb8
-
-    invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
-
-    .line 1500
-    return-void
-.end method
-
-.method private setExpandBackground()V
-    .locals 5
-
-    .prologue
-    const/4 v4, 0x0
-
-    .line 1430
-    iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    if-eqz v2, :cond_0
-
-    .line 1431
-    iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    check-cast v2, Landroid/widget/ImageView;
-
-    const v3, 0x303004b
-
-    invoke-virtual {v2, v3}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 1433
-    iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    invoke-virtual {v2, v4}, Landroid/view/View;->setBackgroundResource(I)V
-
-    .line 1434
-    iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    const v3, 0x303004a
-
-    invoke-virtual {v2, v3}, Landroid/view/View;->setBackgroundResource(I)V
-
-    .line 1436
-    iget-object v2, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v2
-
-    const v3, 0x30b003d
-
-    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
-
-    move-result v1
-
-    .line 1437
-    .local v1, padding:I
-    iget-object v2, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    invoke-virtual {v2, v1, v4, v1, v4}, Landroid/view/View;->setPadding(IIII)V
-
-    .line 1440
-    .end local v1           #padding:I
-    :cond_0
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    if-eqz v2, :cond_2
-
-    .line 1441
-    iget-object v2, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v2
-
-    const v3, 0x3050045
-
-    invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getColorStateList(I)Landroid/content/res/ColorStateList;
-
-    move-result-object v0
-
-    .line 1442
-    .local v0, csl:Landroid/content/res/ColorStateList;
-    if-eqz v0, :cond_1
-
-    .line 1443
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    invoke-virtual {v2, v0}, Landroid/widget/Button;->setTextColor(Landroid/content/res/ColorStateList;)V
-
-    .line 1446
-    :cond_1
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    const v3, 0x3020020
-
-    invoke-virtual {v2, v3}, Landroid/widget/Button;->setText(I)V
-
-    .line 1447
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    invoke-virtual {v2, v4}, Landroid/widget/Button;->setBackgroundResource(I)V
-
-    .line 1448
-    iget-object v2, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
-
-    const v3, 0x3030143
-
-    invoke-virtual {v2, v3}, Landroid/widget/Button;->setBackgroundResource(I)V
-
-    .line 1451
-    .end local v0           #csl:Landroid/content/res/ColorStateList;
-    :cond_2
-    return-void
-.end method
-
-.method private setFmIcon(II)V
-    .locals 3
-    .parameter "resId"
-    .parameter "resMuteId"
-
-    .prologue
-    .line 1159
-    const/4 v0, 0x0
-
-    .line 1160
-    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v1, :cond_0
-
-    .line 1161
-    iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    const/16 v2, 0xa
-
-    invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v0
-
-    .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
-    check-cast v0, Landroid/view/VolumePanel$StreamControl;
-
-    .line 1164
-    .restart local v0       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_0
-    if-eqz v0, :cond_1
-
-    .line 1165
-    iput p1, v0, Landroid/view/VolumePanel$StreamControl;->iconRes:I
-
-    .line 1166
-    iput p2, v0, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
-
-    .line 1167
-    iget-object v2, v0, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
-
-    iget v1, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    invoke-direct {p0, v1}, Landroid/view/VolumePanel;->isMuted(I)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_2
-
-    iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
-
-    :goto_0
-    invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 1169
-    :cond_1
-    return-void
-
-    .line 1167
-    :cond_2
-    iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconRes:I
-
-    goto :goto_0
 .end method
 
 .method private setMusicIcon(II)V
@@ -2234,16 +1540,7 @@
     .parameter "resMuteId"
 
     .prologue
-    .line 1141
-    const/4 v0, 0x0
-
-    .line 1142
-    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v1, :cond_0
-
-    .line 1143
+    .line 953
     iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     const/4 v2, 0x3
@@ -2256,21 +1553,19 @@
 
     move-result-object v0
 
-    .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
     check-cast v0, Landroid/view/VolumePanel$StreamControl;
 
-    .line 1146
-    .restart local v0       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_0
-    if-eqz v0, :cond_1
+    .line 954
+    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
+    if-eqz v0, :cond_0
 
-    .line 1147
+    .line 955
     iput p1, v0, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
-    .line 1148
+    .line 956
     iput p2, v0, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
 
-    .line 1149
+    .line 957
     iget-object v2, v0, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
@@ -2279,59 +1574,22 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_1
 
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
 
     :goto_0
     invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 1151
-    :cond_1
+    .line 959
+    :cond_0
     return-void
 
-    .line 1149
-    :cond_2
+    .line 957
+    :cond_1
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
     goto :goto_0
-.end method
-
-.method private setSeekbarRange(Landroid/view/VolumePanel$StreamControl;I)V
-    .locals 3
-    .parameter "sc"
-    .parameter "streamType"
-
-    .prologue
-    .line 1488
-    const/4 v0, 0x6
-
-    if-eq p2, v0, :cond_0
-
-    if-nez p2, :cond_1
-
-    .line 1490
-    :cond_0
-    iget-object v0, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
-
-    instance-of v0, v0, Landroid/widget/RangeSeekBar;
-
-    if-eqz v0, :cond_1
-
-    .line 1491
-    iget-object v0, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
-
-    check-cast v0, Landroid/widget/RangeSeekBar;
-
-    const/4 v1, 0x1
-
-    const/4 v2, -0x1
-
-    invoke-virtual {v0, v1, v2}, Landroid/widget/RangeSeekBar;->setRange(II)V
-
-    .line 1494
-    :cond_1
-    return-void
 .end method
 
 .method private setStreamVolume(III)V
@@ -2341,34 +1599,34 @@
     .parameter "flags"
 
     .prologue
-    .line 500
+    .line 405
     const/16 v0, -0x64
 
     if-ne p1, v0, :cond_0
 
-    .line 501
+    .line 406
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v0, p2, p3}, Landroid/media/AudioManager;->setMasterVolume(II)V
 
-    .line 507
+    .line 412
     :goto_0
     return-void
 
-    .line 502
+    .line 407
     :cond_0
     const/16 v0, -0xc8
 
     if-ne p1, v0, :cond_1
 
-    .line 503
+    .line 408
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
     invoke-virtual {v0, p2}, Landroid/media/AudioService;->setRemoteStreamVolume(I)V
 
     goto :goto_0
 
-    .line 505
+    .line 410
     :cond_1
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
@@ -2377,175 +1635,115 @@
     goto :goto_0
 .end method
 
-.method private unregisterScreenOffReceiver()V
-    .locals 2
-
-    .prologue
-    .line 1422
-    iget-object v0, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    if-eqz v0, :cond_0
-
-    .line 1423
-    iget-object v0, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    iget-object v1, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    invoke-virtual {v0, v1}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
-
-    .line 1424
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Landroid/view/VolumePanel;->mScreenOffReceiver:Landroid/content/BroadcastReceiver;
-
-    .line 1426
-    :cond_0
-    return-void
-.end method
-
 .method private updateSlider(Landroid/view/VolumePanel$StreamControl;)V
-    .locals 5
+    .locals 4
     .parameter "sc"
 
     .prologue
-    const/4 v4, 0x1
+    const/4 v3, 0x1
 
-    .line 600
-    const/4 v1, 0x0
-
-    .line 601
-    .local v1, plus:I
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    if-eqz v2, :cond_0
+    .line 479
+    iget-object v1, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    const/4 v3, 0x6
+    invoke-direct {p0, v2}, Landroid/view/VolumePanel;->getStreamVolume(I)I
 
-    if-ne v2, v3, :cond_1
+    move-result v2
 
-    .line 603
-    :cond_0
-    const/4 v1, 0x1
+    invoke-virtual {v1, v2}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 605
-    :cond_1
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
+    .line 480
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    iget v3, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    invoke-direct {p0, v3}, Landroid/view/VolumePanel;->getStreamVolume(I)I
-
-    move-result v3
-
-    add-int/2addr v3, v1
-
-    invoke-virtual {v2, v3}, Landroid/widget/SeekBar;->setProgress(I)V
-
-    .line 607
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    invoke-direct {p0, v2}, Landroid/view/VolumePanel;->isMuted(I)Z
+    invoke-direct {p0, v1}, Landroid/view/VolumePanel;->isMuted(I)Z
 
     move-result v0
 
-    .line 608
+    .line 481
     .local v0, muted:Z
-    iget-object v3, p1, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
-
-    if-eqz v0, :cond_3
-
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
-
-    :goto_0
-    invoke-virtual {v3, v2}, Landroid/widget/ImageView;->setImageResource(I)V
-
-    .line 611
-    invoke-direct {p0}, Landroid/view/VolumePanel;->isExpanded()Z
-
-    move-result v2
-
-    invoke-direct {p0, p1, v2}, Landroid/view/VolumePanel;->updateVolumeTitle(Landroid/view/VolumePanel$StreamControl;Z)V
-
-    .line 614
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    const/4 v3, 0x2
-
-    if-ne v2, v3, :cond_2
-
-    iget-object v2, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
-
-    invoke-virtual {v2}, Landroid/media/AudioManager;->getRingerMode()I
-
-    move-result v2
-
-    if-ne v2, v4, :cond_2
-
-    .line 617
     iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
-    const v3, 0x3030075
+    if-eqz v0, :cond_1
 
-    invoke-virtual {v2, v3}, Landroid/widget/ImageView;->setImageResource(I)V
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
 
-    .line 620
-    :cond_2
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
+    :goto_0
+    invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    const/16 v3, -0xc8
+    .line 482
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    if-ne v2, v3, :cond_4
+    const/4 v2, 0x2
 
-    .line 623
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
+    if-ne v1, v2, :cond_0
 
-    invoke-virtual {v2, v4}, Landroid/widget/SeekBar;->setEnabled(Z)V
+    iget-object v1, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
-    .line 631
+    invoke-virtual {v1}, Landroid/media/AudioManager;->getRingerMode()I
+
+    move-result v1
+
+    if-ne v1, v3, :cond_0
+
+    .line 484
+    iget-object v1, p1, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
+
+    const v2, #drawable@ic_audio_ring_notif_vibrate#t
+
+    invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageResource(I)V
+
+    .line 486
+    :cond_0
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
+
+    const/16 v2, -0xc8
+
+    if-ne v1, v2, :cond_2
+
+    .line 489
+    iget-object v1, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
+
+    invoke-virtual {v1, v3}, Landroid/widget/SeekBar;->setEnabled(Z)V
+
+    .line 495
     :goto_1
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
-
-    invoke-virtual {v2, v4}, Landroid/widget/SeekBar;->setEnabled(Z)V
-
-    .line 633
     return-void
 
-    .line 608
-    :cond_3
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->iconRes:I
+    .line 481
+    :cond_1
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
     goto :goto_0
 
-    .line 624
-    :cond_4
-    iget v2, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
+    .line 490
+    :cond_2
+    iget v1, p1, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    iget-object v3, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
+    iget-object v2, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
-    invoke-virtual {v3}, Landroid/media/AudioManager;->getMasterStreamType()I
+    invoke-virtual {v2}, Landroid/media/AudioManager;->getMasterStreamType()I
 
-    move-result v3
+    move-result v2
 
-    if-eq v2, v3, :cond_5
+    if-eq v1, v2, :cond_3
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_3
 
-    .line 625
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
+    .line 491
+    iget-object v1, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
-    const/4 v3, 0x0
+    const/4 v2, 0x0
 
-    invoke-virtual {v2, v3}, Landroid/widget/SeekBar;->setEnabled(Z)V
+    invoke-virtual {v1, v2}, Landroid/widget/SeekBar;->setEnabled(Z)V
 
     goto :goto_1
 
-    .line 627
-    :cond_5
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
+    .line 493
+    :cond_3
+    iget-object v1, p1, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
-    invoke-virtual {v2, v4}, Landroid/widget/SeekBar;->setEnabled(Z)V
+    invoke-virtual {v1, v3}, Landroid/widget/SeekBar;->setEnabled(Z)V
 
     goto :goto_1
 .end method
@@ -2554,14 +1752,14 @@
     .locals 4
 
     .prologue
-    .line 674
+    .line 520
     iget-object v3, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v3}, Landroid/view/ViewGroup;->getChildCount()I
 
     move-result v0
 
-    .line 675
+    .line 521
     .local v0, count:I
     const/4 v1, 0x0
 
@@ -2569,7 +1767,7 @@
     :goto_0
     if-ge v1, v0, :cond_0
 
-    .line 676
+    .line 522
     iget-object v3, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
 
     invoke-virtual {v3, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
@@ -2582,197 +1780,19 @@
 
     check-cast v2, Landroid/view/VolumePanel$StreamControl;
 
-    .line 677
+    .line 523
     .local v2, sc:Landroid/view/VolumePanel$StreamControl;
     invoke-direct {p0, v2}, Landroid/view/VolumePanel;->updateSlider(Landroid/view/VolumePanel$StreamControl;)V
 
-    .line 675
+    .line 521
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 679
+    .line 525
     .end local v2           #sc:Landroid/view/VolumePanel$StreamControl;
     :cond_0
     return-void
-.end method
-
-.method private updateTextFontSize()V
-    .locals 9
-
-    .prologue
-    .line 1345
-    iget-object v5, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v5}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
-
-    move-result-object v5
-
-    iget v4, v5, Landroid/content/res/Configuration;->fontScale:F
-
-    .line 1346
-    .local v4, scale:F
-    iget v5, p0, Landroid/view/VolumePanel;->mFontScale:F
-
-    const/4 v6, 0x0
-
-    cmpl-float v5, v5, v6
-
-    if-nez v5, :cond_0
-
-    .line 1347
-    iput v4, p0, Landroid/view/VolumePanel;->mFontScale:F
-
-    .line 1351
-    :cond_0
-    iget v5, p0, Landroid/view/VolumePanel;->mFontScale:F
-
-    sub-float v5, v4, v5
-
-    invoke-static {v5}, Ljava/lang/Math;->abs(F)F
-
-    move-result v5
-
-    float-to-double v5, v5
-
-    const-wide v7, 0x3f947ae147ae147bL
-
-    cmpl-double v5, v5, v7
-
-    if-ltz v5, :cond_2
-
-    .line 1352
-    iget-object v5, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v5}, Landroid/view/ViewGroup;->getChildCount()I
-
-    move-result v0
-
-    .line 1354
-    .local v0, count:I
-    const/4 v1, 0x0
-
-    .local v1, i:I
-    :goto_0
-    if-ge v1, v0, :cond_1
-
-    .line 1355
-    iget-object v5, p0, Landroid/view/VolumePanel;->mSliderGroup:Landroid/view/ViewGroup;
-
-    invoke-virtual {v5, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Landroid/view/View;->getTag()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/view/VolumePanel$StreamControl;
-
-    .line 1356
-    .local v3, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->title:Landroid/widget/TextView;
-
-    invoke-virtual {v5}, Landroid/widget/TextView;->getTextSize()F
-
-    move-result v5
-
-    mul-float/2addr v5, v4
-
-    iget v6, p0, Landroid/view/VolumePanel;->mFontScale:F
-
-    div-float v2, v5, v6
-
-    .line 1357
-    .local v2, newSize:F
-    iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->title:Landroid/widget/TextView;
-
-    const/4 v6, 0x0
-
-    invoke-virtual {v5, v6, v2}, Landroid/widget/TextView;->setTextSize(IF)V
-
-    .line 1354
-    add-int/lit8 v1, v1, 0x1
-
-    goto :goto_0
-
-    .line 1359
-    .end local v2           #newSize:F
-    .end local v3           #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_1
-    iput v4, p0, Landroid/view/VolumePanel;->mFontScale:F
-
-    .line 1361
-    .end local v0           #count:I
-    .end local v1           #i:I
-    :cond_2
-    return-void
-.end method
-
-.method private updateVolumeTitle(Landroid/view/VolumePanel$StreamControl;Z)V
-    .locals 3
-    .parameter "sc"
-    .parameter "expand"
-
-    .prologue
-    .line 1328
-    if-eqz p2, :cond_2
-
-    iget v0, p1, Landroid/view/VolumePanel$StreamControl;->titleExpandRes:I
-
-    .line 1330
-    .local v0, resId:I
-    :goto_0
-    if-eqz v0, :cond_1
-
-    .line 1331
-    iget-object v2, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    move-result-object v1
-
-    .line 1333
-    .local v1, title:Ljava/lang/String;
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
-
-    if-eqz v2, :cond_0
-
-    .line 1334
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
-
-    invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setContentDescription(Ljava/lang/CharSequence;)V
-
-    .line 1337
-    :cond_0
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->title:Landroid/widget/TextView;
-
-    if-eqz v2, :cond_1
-
-    .line 1338
-    iget-object v2, p1, Landroid/view/VolumePanel$StreamControl;->title:Landroid/widget/TextView;
-
-    invoke-virtual {v2, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 1342
-    .end local v1           #title:Ljava/lang/String;
-    :cond_1
-    return-void
-
-    .line 1328
-    .end local v0           #resId:I
-    :cond_2
-    iget v0, p1, Landroid/view/VolumePanel$StreamControl;->titleRes:I
-
-    goto :goto_0
 .end method
 
 
@@ -2798,7 +1818,7 @@
 
     .line 1481
     :cond_0
-    invoke-direct {p0}, Landroid/view/VolumePanel;->setExpandBackground()V
+#    invoke-direct {p0}, Landroid/view/VolumePanel;->setExpandBackground()V
 
     .line 1483
     return-void
@@ -2809,19 +1829,18 @@
     .parameter "msg"
 
     .prologue
-    .line 1184
+    .line 974
     iget v0, p1, Landroid/os/Message;->what:I
 
-    packed-switch v0, :pswitch_data_0
+    sparse-switch v0, :sswitch_data_0
 
-    .line 1259
+    .line 1043
     :cond_0
     :goto_0
-    :pswitch_0
     return-void
 
-    .line 1187
-    :pswitch_1
+    .line 977
+    :sswitch_0
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -2830,8 +1849,8 @@
 
     goto :goto_0
 
-    .line 1192
-    :pswitch_2
+    .line 982
+    :sswitch_1
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -2840,20 +1859,20 @@
 
     goto :goto_0
 
-    .line 1197
-    :pswitch_3
+    .line 987
+    :sswitch_2
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onFreeResources()V
 
     goto :goto_0
 
-    .line 1202
-    :pswitch_4
+    .line 992
+    :sswitch_3
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onStopSounds()V
 
     goto :goto_0
 
-    .line 1207
-    :pswitch_5
+    .line 997
+    :sswitch_4
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -2862,14 +1881,14 @@
 
     goto :goto_0
 
-    .line 1212
-    :pswitch_6
+    .line 1002
+    :sswitch_5
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onVibrate()V
 
     goto :goto_0
 
-    .line 1217
-    :pswitch_7
+    .line 1007
+    :sswitch_6
     iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
@@ -2878,44 +1897,20 @@
 
     if-eqz v0, :cond_0
 
-    .line 1218
+    .line 1008
     iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
 
-    .line 1220
-    invoke-direct {p0}, Landroid/view/VolumePanel;->unregisterScreenOffReceiver()V
-
-    .line 1222
+    .line 1009
     const/4 v0, -0x1
 
     iput v0, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     goto :goto_0
 
-    .line 1228
-    :pswitch_8
-    sget-object v0, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    if-eqz v0, :cond_0
-
-    sget-object v0, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog;->isShowing()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 1230
-    sget-object v0, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog;->dismiss()V
-
-    goto :goto_0
-
-    .line 1236
-    :pswitch_9
+    .line 1014
+    :sswitch_7
     iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
@@ -2924,13 +1919,13 @@
 
     if-eqz v0, :cond_0
 
-    .line 1237
+    .line 1015
     invoke-direct {p0}, Landroid/view/VolumePanel;->updateStates()V
 
     goto :goto_0
 
-    .line 1243
-    :pswitch_a
+    .line 1021
+    :sswitch_8
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -2939,14 +1934,14 @@
 
     goto :goto_0
 
-    .line 1248
-    :pswitch_b
+    .line 1026
+    :sswitch_9
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onRemoteVolumeUpdateIfShown()V
 
     goto :goto_0
 
-    .line 1252
-    :pswitch_c
+    .line 1030
+    :sswitch_a
     iget v0, p1, Landroid/os/Message;->arg1:I
 
     iget v1, p1, Landroid/os/Message;->arg2:I
@@ -2955,37 +1950,39 @@
 
     goto :goto_0
 
-    .line 1256
-    :pswitch_d
+    .line 1034
+    :sswitch_b
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onDisplaySafeVolumeWarning()V
 
     goto :goto_0
 
-    .line 1184
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_1
-        :pswitch_3
-        :pswitch_5
-        :pswitch_4
-        :pswitch_6
-        :pswitch_7
-        :pswitch_9
-        :pswitch_2
-        :pswitch_a
-        :pswitch_b
-        :pswitch_c
-        :pswitch_d
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_8
-    .end packed-switch
+    .line 1038
+    :sswitch_c
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+
+    goto :goto_0
+
+    .line 974
+    nop
+
+    :sswitch_data_0
+    .sparse-switch
+        0x0 -> :sswitch_0
+        0x1 -> :sswitch_2
+        0x2 -> :sswitch_4
+        0x3 -> :sswitch_3
+        0x4 -> :sswitch_5
+        0x5 -> :sswitch_6
+        0x6 -> :sswitch_7
+        0x7 -> :sswitch_1
+        0x8 -> :sswitch_8
+        0x9 -> :sswitch_9
+        0xa -> :sswitch_a
+        0xb -> :sswitch_b
+        0x3e8 -> :sswitch_c
+    .end sparse-switch
 .end method
 
 .method public onClick(Landroid/view/View;)V
@@ -2993,73 +1990,59 @@
     .parameter "v"
 
     .prologue
-    .line 1314
+    .line 1091
     iget-object v0, p0, Landroid/view/VolumePanel;->mMoreButton:Landroid/view/View;
-
-    if-ne p1, v0, :cond_1
-
-    .line 1315
-    invoke-direct {p0}, Landroid/view/VolumePanel;->expand()V
-
-    .line 1322
-    :cond_0
-    invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
-
-    .line 1323
-    :goto_0
-    return-void
-
-    .line 1317
-    :cond_1
-    iget-object v0, p0, Landroid/view/VolumePanel;->mCloseButton:Landroid/widget/Button;
 
     if-ne p1, v0, :cond_0
 
-    .line 1318
-    invoke-direct {p0}, Landroid/view/VolumePanel;->forceTimeout()V
+    .line 1092
+    invoke-direct {p0}, Landroid/view/VolumePanel;->expand()V
 
-    goto :goto_0
+    .line 1094
+    :cond_0
+    invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
+
+    .line 1095
+    return-void
 .end method
 
 .method protected onDisplaySafeVolumeWarning()V
     .locals 5
 
     .prologue
-    .line 1065
+    .line 893
     sget-object v2, Landroid/view/VolumePanel;->sConfirmSafeVolumeLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 1066
+    .line 894
     :try_start_0
     sget-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
     if-eqz v1, :cond_0
 
-    .line 1067
+    .line 895
     monitor-exit v2
 
-    .line 1103
+    .line 916
     :goto_0
     return-void
 
-    .line 1072
+    .line 897
     :cond_0
     new-instance v1, Landroid/app/AlertDialog$Builder;
 
     iget-object v3, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
-    const v4, 0x3060061
+    invoke-direct {v1, v3}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    invoke-direct {v1, v3, v4}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
-
-    const v3, 0x1040545
+    const v3, #string@safe_media_volume_warning#t
 
     invoke-virtual {v1, v3}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
 
     move-result-object v1
 
-    const v3, 0x1040013
+    const v3, #string@yes#t
 
     new-instance v4, Landroid/view/VolumePanel$5;
 
@@ -3069,7 +2052,7 @@
 
     move-result-object v1
 
-    const v3, 0x1040009
+    const v3, #string@no#t
 
     const/4 v4, 0x0
 
@@ -3077,7 +2060,7 @@
 
     move-result-object v1
 
-    const v3, 0x1010355
+    const v3, #attr@alertDialogIcon#t
 
     invoke-virtual {v1, v3}, Landroid/app/AlertDialog$Builder;->setIconAttribute(I)Landroid/app/AlertDialog$Builder;
 
@@ -3089,7 +2072,7 @@
 
     sput-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
-    .line 1085
+    .line 908
     new-instance v0, Landroid/view/VolumePanel$WarningDialogReceiver;
 
     iget-object v1, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
@@ -3098,26 +2081,13 @@
 
     invoke-direct {v0, v1, v3}, Landroid/view/VolumePanel$WarningDialogReceiver;-><init>(Landroid/content/Context;Landroid/app/Dialog;)V
 
-    .line 1088
+    .line 911
     .local v0, warning:Landroid/view/VolumePanel$WarningDialogReceiver;
     sget-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
     invoke-virtual {v1, v0}, Landroid/app/AlertDialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
 
-    .line 1090
-    iget-object v1, p0, Landroid/view/VolumePanel;->mKeyguardManager:Landroid/app/KeyguardManager;
-
-    if-eqz v1, :cond_1
-
-    iget-object v1, p0, Landroid/view/VolumePanel;->mKeyguardManager:Landroid/app/KeyguardManager;
-
-    invoke-virtual {v1}, Landroid/app/KeyguardManager;->isKeyguardLocked()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_1
-
-    .line 1091
+    .line 912
     sget-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
     invoke-virtual {v1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
@@ -3128,16 +2098,12 @@
 
     invoke-virtual {v1, v3}, Landroid/view/Window;->setType(I)V
 
-    .line 1098
-    :goto_1
+    .line 914
     sget-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
 
     invoke-virtual {v1}, Landroid/app/AlertDialog;->show()V
 
-    .line 1100
-    invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeoutSafeDialog()V
-
-    .line 1102
+    .line 915
     monitor-exit v2
 
     goto :goto_0
@@ -3151,34 +2117,16 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
-
-    .line 1094
-    .restart local v0       #warning:Landroid/view/VolumePanel$WarningDialogReceiver;
-    :cond_1
-    :try_start_1
-    sget-object v1, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
-
-    move-result-object v1
-
-    const/16 v3, 0x7e4
-
-    invoke-virtual {v1, v3}, Landroid/view/Window;->setType(I)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    goto :goto_1
 .end method
 
 .method protected onFreeResources()V
     .locals 3
 
     .prologue
-    .line 1172
+    .line 962
     monitor-enter p0
 
-    .line 1173
+    .line 963
     :try_start_0
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
@@ -3190,21 +2138,21 @@
     :goto_0
     if-ltz v0, :cond_1
 
-    .line 1174
+    .line 964
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
     aget-object v1, v1, v0
 
     if-eqz v1, :cond_0
 
-    .line 1175
+    .line 965
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
     aget-object v1, v1, v0
 
     invoke-virtual {v1}, Landroid/media/ToneGenerator;->release()V
 
-    .line 1177
+    .line 967
     :cond_0
     iget-object v1, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
@@ -3212,19 +2160,19 @@
 
     aput-object v2, v1, v0
 
-    .line 1173
+    .line 963
     add-int/lit8 v0, v0, -0x1
 
     goto :goto_0
 
-    .line 1179
+    .line 969
     :cond_1
     monitor-exit p0
 
-    .line 1180
+    .line 970
     return-void
 
-    .line 1179
+    .line 969
     .end local v0           #i:I
     :catchall_0
     move-exception v1
@@ -3242,7 +2190,7 @@
     .parameter "flags"
 
     .prologue
-    .line 798
+    .line 633
     sget-boolean v1, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v1, :cond_0
@@ -3285,17 +2233,8 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 800
+    .line 635
     :cond_0
-    const/4 v0, 0x0
-
-    .line 801
-    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v1, :cond_1
-
-    .line 802
     iget-object v1, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -3306,15 +2245,13 @@
 
     move-result-object v0
 
-    .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
     check-cast v0, Landroid/view/VolumePanel$StreamControl;
 
-    .line 805
-    .restart local v0       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_1
-    if-eqz v0, :cond_2
+    .line 636
+    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
+    if-eqz v0, :cond_1
 
-    .line 806
+    .line 637
     iget-object v2, v0, Landroid/view/VolumePanel$StreamControl;->icon:Landroid/widget/ImageView;
 
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
@@ -3323,22 +2260,22 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_2
 
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconMuteRes:I
 
     :goto_0
     invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setImageResource(I)V
 
-    .line 809
-    :cond_2
+    .line 640
+    :cond_1
     invoke-virtual {p0, p1, p2}, Landroid/view/VolumePanel;->onVolumeChanged(II)V
 
-    .line 810
+    .line 641
     return-void
 
-    .line 806
-    :cond_3
+    .line 637
+    :cond_2
     iget v1, v0, Landroid/view/VolumePanel$StreamControl;->iconRes:I
 
     goto :goto_0
@@ -3352,39 +2289,39 @@
     .prologue
     const/4 v2, 0x3
 
-    .line 960
+    .line 788
     invoke-virtual {p0, v2}, Landroid/view/VolumePanel;->hasMessages(I)Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    .line 961
+    .line 789
     invoke-virtual {p0, v2}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 963
+    .line 791
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onStopSounds()V
 
-    .line 966
+    .line 794
     :cond_0
     monitor-enter p0
 
-    .line 967
+    .line 795
     :try_start_0
     invoke-direct {p0, p1}, Landroid/view/VolumePanel;->getOrCreateToneGenerator(I)Landroid/media/ToneGenerator;
 
     move-result-object v0
 
-    .line 968
+    .line 796
     .local v0, toneGen:Landroid/media/ToneGenerator;
     if-eqz v0, :cond_1
 
-    .line 969
+    .line 797
     const/16 v1, 0x18
 
     invoke-virtual {v0, v1}, Landroid/media/ToneGenerator;->startTone(I)Z
 
-    .line 970
+    .line 798
     const/4 v1, 0x3
 
     invoke-virtual {p0, v1}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
@@ -3395,14 +2332,14 @@
 
     invoke-virtual {p0, v1, v2, v3}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 972
+    .line 800
     :cond_1
     monitor-exit p0
 
-    .line 973
+    .line 801
     return-void
 
-    .line 972
+    .line 800
     .end local v0           #toneGen:Landroid/media/ToneGenerator;
     :catchall_0
     move-exception v1
@@ -3415,78 +2352,53 @@
 .end method
 
 .method public onProgressChanged(Landroid/widget/SeekBar;IZ)V
-    .locals 6
+    .locals 4
     .parameter "seekBar"
     .parameter "progress"
     .parameter "fromUser"
 
     .prologue
-    .line 1273
+    .line 1057
     invoke-virtual {p1}, Landroid/widget/SeekBar;->getTag()Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v1
 
-    .line 1274
-    .local v2, tag:Ljava/lang/Object;
-    if-eqz p3, :cond_2
+    .line 1058
+    .local v1, tag:Ljava/lang/Object;
+    if-eqz p3, :cond_0
 
-    instance-of v3, v2, Landroid/view/VolumePanel$StreamControl;
+    instance-of v2, v1, Landroid/view/VolumePanel$StreamControl;
 
-    if-eqz v3, :cond_2
+    if-eqz v2, :cond_0
 
-    move-object v1, v2
+    move-object v0, v1
 
-    .line 1275
-    check-cast v1, Landroid/view/VolumePanel$StreamControl;
+    .line 1059
+    check-cast v0, Landroid/view/VolumePanel$StreamControl;
 
-    .line 1277
-    .local v1, sc:Landroid/view/VolumePanel$StreamControl;
-    const/4 v0, 0x0
+    .line 1060
+    .local v0, sc:Landroid/view/VolumePanel$StreamControl;
+    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    .line 1278
-    .local v0, plus:I
-    iget v3, v1, Landroid/view/VolumePanel$StreamControl;->streamType:I
+    invoke-direct {p0, v2}, Landroid/view/VolumePanel;->getStreamVolume(I)I
 
-    if-eqz v3, :cond_0
+    move-result v2
 
-    iget v3, v1, Landroid/view/VolumePanel$StreamControl;->streamType:I
+    if-eq v2, p2, :cond_0
 
-    const/4 v4, 0x6
+    .line 1061
+    iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
-    if-ne v3, v4, :cond_1
+    const/4 v3, 0x0
 
-    .line 1280
+    invoke-direct {p0, v2, p2, v3}, Landroid/view/VolumePanel;->setStreamVolume(III)V
+
+    .line 1064
+    .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
     :cond_0
-    const/4 v0, 0x1
-
-    .line 1282
-    :cond_1
-    iget v3, v1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    invoke-direct {p0, v3}, Landroid/view/VolumePanel;->getStreamVolume(I)I
-
-    move-result v3
-
-    sub-int v4, p2, v0
-
-    if-eq v3, v4, :cond_2
-
-    .line 1283
-    iget v3, v1, Landroid/view/VolumePanel$StreamControl;->streamType:I
-
-    sub-int v4, p2, v0
-
-    const/4 v5, 0x0
-
-    invoke-direct {p0, v3, v4, v5}, Landroid/view/VolumePanel;->setStreamVolume(III)V
-
-    .line 1287
-    .end local v0           #plus:I
-    .end local v1           #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_2
     invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
 
-    .line 1288
+    .line 1065
     return-void
 .end method
 
@@ -3502,7 +2414,7 @@
 
     const/16 v3, -0xc8
 
-    .line 1002
+    .line 830
     sget-boolean v0, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v0, :cond_0
@@ -3545,7 +2457,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1004
+    .line 832
     :cond_0
     and-int/lit8 v0, p2, 0x1
 
@@ -3559,33 +2471,33 @@
 
     if-eqz v0, :cond_6
 
-    .line 1005
+    .line 833
     :cond_1
     monitor-enter p0
 
-    .line 1006
+    .line 834
     :try_start_0
     iget v0, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     if-eq v0, v3, :cond_2
 
-    .line 1007
+    .line 835
     const/16 v0, -0xc8
 
     invoke-direct {p0, v0}, Landroid/view/VolumePanel;->reorderSliders(I)V
 
-    .line 1009
+    .line 837
     :cond_2
     const/16 v0, -0xc8
 
     invoke-virtual {p0, v0, p2}, Landroid/view/VolumePanel;->onShowVolumeChanged(II)V
 
-    .line 1010
+    .line 838
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1015
+    .line 843
     :cond_3
     :goto_0
     and-int/lit8 v0, p2, 0x4
@@ -3596,10 +2508,10 @@
 
     if-nez v0, :cond_4
 
-    .line 1016
+    .line 844
     invoke-virtual {p0, v4}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1017
+    .line 845
     invoke-virtual {p0, v4, p1, p2}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v0
@@ -3608,28 +2520,28 @@
 
     invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 1020
+    .line 848
     :cond_4
     and-int/lit8 v0, p2, 0x8
 
     if-eqz v0, :cond_5
 
-    .line 1021
+    .line 849
     invoke-virtual {p0, v4}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1022
+    .line 850
     const/4 v0, 0x4
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1023
+    .line 851
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onStopSounds()V
 
-    .line 1026
+    .line 854
     :cond_5
     invoke-virtual {p0, v5}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 1027
+    .line 855
     invoke-virtual {p0, v5}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
@@ -3638,13 +2550,13 @@
 
     invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 1029
+    .line 857
     invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
 
-    .line 1030
+    .line 858
     return-void
 
-    .line 1010
+    .line 838
     :catchall_0
     move-exception v0
 
@@ -3655,7 +2567,7 @@
 
     throw v0
 
-    .line 1012
+    .line 840
     :cond_6
     sget-boolean v0, Landroid/view/VolumePanel;->LOGD:Z
 
@@ -3676,7 +2588,7 @@
     .prologue
     const/16 v2, -0xc8
 
-    .line 1033
+    .line 861
     sget-boolean v0, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v0, :cond_0
@@ -3687,7 +2599,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1034
+    .line 862
     :cond_0
     iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
@@ -3705,45 +2617,43 @@
 
     if-eqz v0, :cond_1
 
-    .line 1037
+    .line 865
     const/4 v0, 0x0
 
     invoke-virtual {p0, v2, v0}, Landroid/view/VolumePanel;->onShowVolumeChanged(II)V
 
-    .line 1039
+    .line 867
     :cond_1
     return-void
 .end method
 
 .method protected onShowVolumeChanged(II)V
-    .locals 12
+    .locals 11
     .parameter "streamType"
     .parameter "flags"
 
     .prologue
-    const v11, 0x303006c
-
     const/4 v10, 0x0
 
     const/16 v9, -0xc8
 
     const/4 v8, 0x1
 
-    .line 813
+    .line 644
     invoke-direct {p0, p1}, Landroid/view/VolumePanel;->getStreamVolume(I)I
 
     move-result v0
 
-    .line 815
+    .line 646
     .local v0, index:I
     iput-boolean v10, p0, Landroid/view/VolumePanel;->mRingIsSilent:Z
 
-    .line 817
+    .line 648
     sget-boolean v5, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v5, :cond_0
 
-    .line 818
+    .line 649
     const-string v5, "VolumePanel"
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -3786,29 +2696,20 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 824
+    .line 655
     :cond_0
     invoke-direct {p0, p1}, Landroid/view/VolumePanel;->getStreamMaxVolume(I)I
 
     move-result v1
 
-    .line 826
+    .line 657
     .local v1, max:I
     sparse-switch p1, :sswitch_data_0
 
-    .line 909
+    .line 731
     :cond_1
     :goto_0
     :sswitch_0
-    const/4 v3, 0x0
-
-    .line 910
-    .local v3, sc:Landroid/view/VolumePanel$StreamControl;
-    iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
-
-    if-eqz v5, :cond_2
-
-    .line 911
     iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -3819,45 +2720,60 @@
 
     move-result-object v3
 
-    .end local v3           #sc:Landroid/view/VolumePanel$StreamControl;
     check-cast v3, Landroid/view/VolumePanel$StreamControl;
 
-    .line 914
-    .restart local v3       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_2
+    .line 732
+    .local v3, sc:Landroid/view/VolumePanel$StreamControl;
     if-eqz v3, :cond_4
 
-    .line 915
+    .line 733
     iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v5}, Landroid/widget/SeekBar;->getMax()I
 
     move-result v5
 
-    if-eq v5, v1, :cond_3
+    if-eq v5, v1, :cond_2
 
-    .line 916
+    .line 734
     iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v5, v1}, Landroid/widget/SeekBar;->setMax(I)V
 
-    .line 919
-    :cond_3
+    .line 737
+    :cond_2
     iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v5, v0}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 921
+    .line 738
     and-int/lit8 v5, p2, 0x20
 
-    if-eqz v5, :cond_a
+    if-nez v5, :cond_3
 
-    .line 923
+    iget-object v5, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
+
+    invoke-virtual {v5}, Landroid/media/AudioManager;->getMasterStreamType()I
+
+    move-result v5
+
+    if-eq p1, v5, :cond_c
+
+    if-eq p1, v9, :cond_c
+
+    invoke-direct {p0, p1}, Landroid/view/VolumePanel;->isMuted(I)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_c
+
+    .line 742
+    :cond_3
     iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v5, v10}, Landroid/widget/SeekBar;->setEnabled(Z)V
 
-    .line 930
+    .line 748
     :cond_4
     :goto_1
     iget-object v5, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
@@ -3866,68 +2782,109 @@
 
     move-result v5
 
-    if-nez v5, :cond_7
+    if-nez v5, :cond_9
 
-    sget-object v5, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    if-eqz v5, :cond_5
-
-    sget-object v5, Landroid/view/VolumePanel;->sConfirmSafeVolumeDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v5}, Landroid/app/AlertDialog;->isShowing()Z
-
-    move-result v5
-
-    if-nez v5, :cond_7
-
-    .line 934
-    :cond_5
-    if-ne p1, v9, :cond_b
+    .line 749
+    if-ne p1, v9, :cond_d
 
     const/4 v4, -0x1
 
-    .line 936
+    .line 751
     .local v4, stream:I
     :goto_2
     iget-object v5, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v5, v4}, Landroid/media/AudioManager;->forceVolumeControlStream(I)V
 
-    .line 937
+    .line 754
+    iget-boolean v5, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+
+    if-eqz v5, :cond_7
+
+    .line 755
+    monitor-enter p0
+
+    .line 756
+    :try_start_0
+    iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
+
+    if-eqz v5, :cond_5
+
+    .line 757
+    iget-object v5, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
+
+    invoke-virtual {v5}, Ljava/util/HashMap;->clear()V
+
+    .line 758
+    invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
+
+    .line 759
+    iget v5, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
+
+    invoke-direct {p0, v5}, Landroid/view/VolumePanel;->reorderSliders(I)V
+
+    .line 761
+    :cond_5
+    iget-object v5, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+
+    if-eqz v5, :cond_6
+
+    .line 762
+    iget-object v5, p0, Landroid/view/VolumePanel;->mPanel:Landroid/view/ViewGroup;
+
+    iget-object v6, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v6}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v6
+
+    const v7, #drawable@yi_dialog_full_baidu_light#t
+
+    invoke-virtual {v6, v7}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v6
+
+    invoke-virtual {v5, v6}, Landroid/view/ViewGroup;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+
+    .line 765
+    :cond_6
+    monitor-exit p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 766
+    iput-boolean v10, p0, Landroid/view/VolumePanel;->mIsThemeChanged:Z
+
+    .line 769
+    :cond_7
     iget-object v5, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     iget-object v6, p0, Landroid/view/VolumePanel;->mView:Landroid/view/View;
 
     invoke-virtual {v5, v6}, Landroid/app/Dialog;->setContentView(Landroid/view/View;)V
 
-    .line 940
-    invoke-direct {p0}, Landroid/view/VolumePanel;->updateTextFontSize()V
-
-    .line 941
-    invoke-direct {p0}, Landroid/view/VolumePanel;->registerScreenOffReceiver()V
-
-    .line 943
+    .line 771
     iget-boolean v5, p0, Landroid/view/VolumePanel;->mShowCombinedVolumes:Z
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_8
 
-    .line 944
+    .line 772
     invoke-direct {p0}, Landroid/view/VolumePanel;->collapse()V
 
-    .line 946
-    :cond_6
+    .line 774
+    :cond_8
     iget-object v5, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v5}, Landroid/app/Dialog;->show()V
 
-    .line 950
+    .line 778
     .end local v4           #stream:I
-    :cond_7
-    if-eq p1, v9, :cond_8
+    :cond_9
+    if-eq p1, v9, :cond_a
 
     and-int/lit8 v5, p2, 0x10
 
-    if-eqz v5, :cond_8
+    if-eqz v5, :cond_a
 
     iget-object v5, p0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
@@ -3935,7 +2892,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_8
+    if-eqz v5, :cond_a
 
     iget-object v5, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
@@ -3943,9 +2900,9 @@
 
     move-result v5
 
-    if-ne v5, v8, :cond_8
+    if-ne v5, v8, :cond_a
 
-    .line 954
+    .line 782
     const/4 v5, 0x4
 
     invoke-virtual {p0, v5}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
@@ -3956,11 +2913,11 @@
 
     invoke-virtual {p0, v5, v6, v7}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 956
-    :cond_8
+    .line 784
+    :cond_a
     return-void
 
-    .line 830
+    .line 661
     .end local v3           #sc:Landroid/view/VolumePanel$StreamControl;
     :sswitch_1
     iget-object v5, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
@@ -3969,28 +2926,18 @@
 
     move-result-object v2
 
-    .line 832
+    .line 663
     .local v2, ringuri:Landroid/net/Uri;
     if-nez v2, :cond_1
 
-    .line 833
+    .line 664
     iput-boolean v8, p0, Landroid/view/VolumePanel;->mRingIsSilent:Z
 
     goto/16 :goto_0
 
-    .line 840
+    .line 671
     .end local v2           #ringuri:Landroid/net/Uri;
     :sswitch_2
-    const v5, 0x10802a4
-
-    const v6, 0x10802a5
-
-    invoke-direct {p0, v5, v6}, Landroid/view/VolumePanel;->setFmIcon(II)V
-
-    goto/16 :goto_0
-
-    .line 847
-    :sswitch_3
     iget-object v5, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     const/4 v6, 0x3
@@ -4001,35 +2948,39 @@
 
     and-int/lit16 v5, v5, 0x380
 
-    if-eqz v5, :cond_9
+    if-eqz v5, :cond_b
 
-    .line 852
-    invoke-direct {p0, v11, v11}, Landroid/view/VolumePanel;->setMusicIcon(II)V
+    .line 675
+    const v5, #drawable@ic_audio_bt#t
 
-    goto/16 :goto_0
-
-    .line 854
-    :cond_9
-    const v5, 0x3030076
-
-    const v6, 0x3030077
+    const v6, #drawable@ic_audio_bt_mute#t
 
     invoke-direct {p0, v5, v6}, Landroid/view/VolumePanel;->setMusicIcon(II)V
 
     goto/16 :goto_0
 
-    .line 866
-    :sswitch_4
-    add-int/lit8 v0, v0, 0x1
+    .line 677
+    :cond_b
+    const v5, #drawable@ic_audio_vol#t
 
-    .line 867
-    add-int/lit8 v1, v1, 0x1
+    const v6, #drawable@ic_audio_vol_mute#t
 
-    .line 868
+    invoke-direct {p0, v5, v6}, Landroid/view/VolumePanel;->setMusicIcon(II)V
+
     goto/16 :goto_0
 
-    .line 884
-    :sswitch_5
+    .line 688
+    :sswitch_3
+    add-int/lit8 v0, v0, 0x1
+
+    .line 689
+    add-int/lit8 v1, v1, 0x1
+
+    .line 690
+    goto/16 :goto_0
+
+    .line 706
+    :sswitch_4
     iget-object v5, p0, Landroid/view/VolumePanel;->mContext:Landroid/content/Context;
 
     const/4 v6, 0x2
@@ -4038,28 +2989,28 @@
 
     move-result-object v2
 
-    .line 886
+    .line 708
     .restart local v2       #ringuri:Landroid/net/Uri;
     if-nez v2, :cond_1
 
-    .line 887
+    .line 709
     iput-boolean v8, p0, Landroid/view/VolumePanel;->mRingIsSilent:Z
 
     goto/16 :goto_0
 
-    .line 898
+    .line 720
     .end local v2           #ringuri:Landroid/net/Uri;
-    :sswitch_6
+    :sswitch_5
     add-int/lit8 v0, v0, 0x1
 
-    .line 899
+    .line 721
     add-int/lit8 v1, v1, 0x1
 
-    .line 900
+    .line 722
     goto/16 :goto_0
 
-    .line 904
-    :sswitch_7
+    .line 726
+    :sswitch_6
     sget-boolean v5, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v5, :cond_1
@@ -4098,34 +3049,44 @@
 
     goto/16 :goto_0
 
-    .line 925
+    .line 744
     .restart local v3       #sc:Landroid/view/VolumePanel$StreamControl;
-    :cond_a
+    :cond_c
     iget-object v5, v3, Landroid/view/VolumePanel$StreamControl;->seekbarView:Landroid/widget/SeekBar;
 
     invoke-virtual {v5, v8}, Landroid/widget/SeekBar;->setEnabled(Z)V
 
     goto/16 :goto_1
 
-    :cond_b
+    :cond_d
     move v4, p1
 
-    .line 934
+    .line 749
     goto/16 :goto_2
 
-    .line 826
-    nop
+    .line 765
+    .restart local v4       #stream:I
+    :catchall_0
+    move-exception v5
 
+    :try_start_1
+    monitor-exit p0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v5
+
+    .line 657
     :sswitch_data_0
     .sparse-switch
-        -0xc8 -> :sswitch_7
-        0x0 -> :sswitch_4
+        -0xc8 -> :sswitch_6
+        0x0 -> :sswitch_3
         0x2 -> :sswitch_1
-        0x3 -> :sswitch_3
+        0x3 -> :sswitch_2
         0x4 -> :sswitch_0
-        0x5 -> :sswitch_5
-        0x6 -> :sswitch_6
-        0xa -> :sswitch_2
+        0x5 -> :sswitch_4
+        0x6 -> :sswitch_5
+        0xa -> :sswitch_0
         0xb -> :sswitch_0
     .end sparse-switch
 .end method
@@ -4138,7 +3099,7 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 1050
+    .line 878
     monitor-enter p0
 
     :try_start_0
@@ -4184,11 +3145,11 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1051
+    .line 879
     :cond_0
     if-ne p2, v1, :cond_2
 
-    .line 1052
+    .line 880
     .local v1, isVisible:Z
     :goto_0
     sget-object v3, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
@@ -4201,42 +3162,42 @@
     :goto_1
     if-ltz v0, :cond_1
 
-    .line 1053
+    .line 881
     sget-object v3, Landroid/view/VolumePanel;->STREAMS:[Landroid/view/VolumePanel$StreamResources;
 
     aget-object v2, v3, v0
 
-    .line 1054
+    .line 882
     .local v2, streamRes:Landroid/view/VolumePanel$StreamResources;
     iget v3, v2, Landroid/view/VolumePanel$StreamResources;->streamType:I
 
     if-ne v3, p1, :cond_3
 
-    .line 1055
+    .line 883
     iput-boolean v1, v2, Landroid/view/VolumePanel$StreamResources;->show:Z
 
-    .line 1056
+    .line 884
     if-nez v1, :cond_1
 
     iget v3, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     if-ne v3, p1, :cond_1
 
-    .line 1057
+    .line 885
     const/4 v3, -0x1
 
     iput v3, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1062
+    .line 890
     .end local v2           #streamRes:Landroid/view/VolumePanel$StreamResources;
     :cond_1
     monitor-exit p0
 
     return-void
 
-    .line 1051
+    .line 879
     .end local v0           #i:I
     .end local v1           #isVisible:Z
     :cond_2
@@ -4244,7 +3205,7 @@
 
     goto :goto_0
 
-    .line 1052
+    .line 880
     .restart local v0       #i:I
     .restart local v1       #isVisible:Z
     .restart local v2       #streamRes:Landroid/view/VolumePanel$StreamResources;
@@ -4253,7 +3214,7 @@
 
     goto :goto_1
 
-    .line 1050
+    .line 878
     .end local v0           #i:I
     .end local v1           #isVisible:Z
     .end local v2           #streamRes:Landroid/view/VolumePanel$StreamResources;
@@ -4270,7 +3231,7 @@
     .parameter "seekBar"
 
     .prologue
-    .line 1291
+    .line 1068
     return-void
 .end method
 
@@ -4278,16 +3239,16 @@
     .locals 4
 
     .prologue
-    .line 977
+    .line 805
     monitor-enter p0
 
-    .line 978
+    .line 806
     :try_start_0
     invoke-static {}, Landroid/media/AudioSystem;->getNumStreamTypes()I
 
     move-result v1
 
-    .line 979
+    .line 807
     .local v1, numStreamTypes:I
     add-int/lit8 v0, v1, -0x1
 
@@ -4295,33 +3256,33 @@
     :goto_0
     if-ltz v0, :cond_1
 
-    .line 980
+    .line 808
     iget-object v3, p0, Landroid/view/VolumePanel;->mToneGenerators:[Landroid/media/ToneGenerator;
 
     aget-object v2, v3, v0
 
-    .line 981
+    .line 809
     .local v2, toneGen:Landroid/media/ToneGenerator;
     if-eqz v2, :cond_0
 
-    .line 982
+    .line 810
     invoke-virtual {v2}, Landroid/media/ToneGenerator;->stopTone()V
 
-    .line 979
+    .line 807
     :cond_0
     add-int/lit8 v0, v0, -0x1
 
     goto :goto_0
 
-    .line 985
+    .line 813
     .end local v2           #toneGen:Landroid/media/ToneGenerator;
     :cond_1
     monitor-exit p0
 
-    .line 986
+    .line 814
     return-void
 
-    .line 985
+    .line 813
     .end local v0           #i:I
     .end local v1           #numStreamTypes:I
     :catchall_0
@@ -4341,12 +3302,12 @@
     .prologue
     const/16 v3, -0xc8
 
-    .line 1294
+    .line 1071
     invoke-virtual {p1}, Landroid/widget/SeekBar;->getTag()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 1295
+    .line 1072
     .local v1, tag:Ljava/lang/Object;
     instance-of v2, v1, Landroid/view/VolumePanel$StreamControl;
 
@@ -4354,23 +3315,23 @@
 
     move-object v0, v1
 
-    .line 1296
+    .line 1073
     check-cast v0, Landroid/view/VolumePanel$StreamControl;
 
-    .line 1301
+    .line 1078
     .local v0, sc:Landroid/view/VolumePanel$StreamControl;
     iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
     if-ne v2, v3, :cond_0
 
-    .line 1302
+    .line 1079
     invoke-direct {p0, v3}, Landroid/view/VolumePanel;->getStreamVolume(I)I
 
     move-result v2
 
     invoke-virtual {p1, v2}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 1305
+    .line 1082
     :cond_0
     iget v2, v0, Landroid/view/VolumePanel$StreamControl;->streamType:I
 
@@ -4389,12 +3350,12 @@
 
     if-gtz v2, :cond_2
 
-    .line 1308
+    .line 1085
     const/4 v2, 0x1
 
     invoke-virtual {p1, v2}, Landroid/widget/SeekBar;->setProgress(I)V
 
-    .line 1311
+    .line 1088
     .end local v0           #sc:Landroid/view/VolumePanel$StreamControl;
     :cond_2
     return-void
@@ -4404,7 +3365,7 @@
     .locals 3
 
     .prologue
-    .line 991
+    .line 819
     iget-object v0, p0, Landroid/view/VolumePanel;->mAudioManager:Landroid/media/AudioManager;
 
     invoke-virtual {v0}, Landroid/media/AudioManager;->getRingerMode()I
@@ -4415,11 +3376,11 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 996
+    .line 824
     :goto_0
     return-void
 
-    .line 995
+    .line 823
     :cond_0
     iget-object v0, p0, Landroid/view/VolumePanel;->mVibrator:Landroid/os/Vibrator;
 
@@ -4440,7 +3401,7 @@
 
     const/4 v3, 0x2
 
-    .line 761
+    .line 603
     sget-boolean v0, Landroid/view/VolumePanel;->LOGD:Z
 
     if-eqz v0, :cond_0
@@ -4483,36 +3444,35 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 765
+    .line 605
     :cond_0
     and-int/lit8 v0, p2, 0x1
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_2
 
-    .line 767
+    .line 606
     monitor-enter p0
 
-    .line 768
+    .line 607
     :try_start_0
     iget v0, p0, Landroid/view/VolumePanel;->mActiveStreamType:I
 
     if-eq v0, p1, :cond_1
 
-    .line 769
+    .line 608
     invoke-direct {p0, p1}, Landroid/view/VolumePanel;->reorderSliders(I)V
 
-    .line 771
+    .line 610
     :cond_1
     invoke-virtual {p0, p1, p2}, Landroid/view/VolumePanel;->onShowVolumeChanged(II)V
 
-    .line 772
+    .line 611
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 779
+    .line 614
     :cond_2
-    :goto_0
     and-int/lit8 v0, p2, 0x4
 
     if-eqz v0, :cond_3
@@ -4521,10 +3481,10 @@
 
     if-nez v0, :cond_3
 
-    .line 780
+    .line 615
     invoke-virtual {p0, v3}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 781
+    .line 616
     invoke-virtual {p0, v3, p1, p2}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v0
@@ -4533,28 +3493,28 @@
 
     invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 784
+    .line 619
     :cond_3
     and-int/lit8 v0, p2, 0x8
 
     if-eqz v0, :cond_4
 
-    .line 785
+    .line 620
     invoke-virtual {p0, v3}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 786
+    .line 621
     const/4 v0, 0x4
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 787
+    .line 622
     invoke-virtual {p0}, Landroid/view/VolumePanel;->onStopSounds()V
 
-    .line 790
+    .line 625
     :cond_4
     invoke-virtual {p0, v4}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 791
+    .line 626
     invoke-virtual {p0, v4}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
 
     move-result-object v0
@@ -4563,13 +3523,13 @@
 
     invoke-virtual {p0, v0, v1, v2}, Landroid/view/VolumePanel;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 793
+    .line 628
     invoke-direct {p0}, Landroid/view/VolumePanel;->resetTimeout()V
 
-    .line 794
+    .line 629
     return-void
 
-    .line 772
+    .line 611
     :catchall_0
     move-exception v0
 
@@ -4579,25 +3539,6 @@
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     throw v0
-
-    .line 773
-    :cond_5
-    iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
-
-    invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_2
-
-    const/4 v0, 0x3
-
-    if-ne p1, v0, :cond_2
-
-    .line 775
-    invoke-virtual {p0, p1, p2}, Landroid/view/VolumePanel;->onShowVolumeChanged(II)V
-
-    goto :goto_0
 .end method
 
 .method public postDisplaySafeVolumeWarning()V
@@ -4608,18 +3549,18 @@
 
     const/4 v1, 0x0
 
-    .line 750
+    .line 592
     invoke-virtual {p0, v2}, Landroid/view/VolumePanel;->hasMessages(I)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 752
+    .line 594
     :goto_0
     return-void
 
-    .line 751
+    .line 593
     :cond_0
     invoke-virtual {p0, v2, v1, v1}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
 
@@ -4636,18 +3577,18 @@
     .prologue
     const/16 v1, 0x9
 
-    .line 724
+    .line 566
     invoke-virtual {p0, v1}, Landroid/view/VolumePanel;->hasMessages(I)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 728
+    .line 570
     :goto_0
     return-void
 
-    .line 727
+    .line 569
     :cond_0
     invoke-virtual {p0, v1}, Landroid/view/VolumePanel;->obtainMessage(I)Landroid/os/Message;
 
@@ -4663,12 +3604,12 @@
     .parameter "flags"
 
     .prologue
-    .line 746
+    .line 588
     const/16 v0, -0x64
 
     invoke-virtual {p0, v0, p1}, Landroid/view/VolumePanel;->postMuteChanged(II)V
 
-    .line 747
+    .line 589
     return-void
 .end method
 
@@ -4677,12 +3618,12 @@
     .parameter "flags"
 
     .prologue
-    .line 731
+    .line 573
     const/16 v0, -0x64
 
     invoke-virtual {p0, v0, p1}, Landroid/view/VolumePanel;->postVolumeChanged(II)V
 
-    .line 732
+    .line 574
     return-void
 .end method
 
@@ -4692,7 +3633,7 @@
     .parameter "flags"
 
     .prologue
-    .line 735
+    .line 577
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->hasMessages(I)Z
@@ -4701,35 +3642,35 @@
 
     if-eqz v0, :cond_0
 
-    .line 743
+    .line 585
     :goto_0
     return-void
 
-    .line 736
+    .line 578
     :cond_0
     monitor-enter p0
 
-    .line 737
+    .line 579
     :try_start_0
     iget-object v0, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     if-nez v0, :cond_1
 
-    .line 738
+    .line 580
     invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
 
-    .line 740
+    .line 582
     :cond_1
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 741
+    .line 583
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 742
+    .line 584
     const/4 v0, 0x7
 
     invoke-virtual {p0, v0, p1, p2}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
@@ -4740,7 +3681,7 @@
 
     goto :goto_0
 
-    .line 740
+    .line 582
     :catchall_0
     move-exception v0
 
@@ -4757,7 +3698,7 @@
     .parameter "visible"
 
     .prologue
-    .line 708
+    .line 550
     const/16 v1, 0xa
 
     const/16 v2, -0xc8
@@ -4773,10 +3714,10 @@
 
     invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
 
-    .line 710
+    .line 552
     return-void
 
-    .line 708
+    .line 550
     :cond_0
     const/4 v0, 0x0
 
@@ -4791,42 +3732,42 @@
     .prologue
     const/16 v1, 0x8
 
-    .line 697
+    .line 539
     invoke-virtual {p0, v1}, Landroid/view/VolumePanel;->hasMessages(I)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 705
+    .line 547
     :goto_0
     return-void
 
-    .line 698
+    .line 540
     :cond_0
     monitor-enter p0
 
-    .line 699
+    .line 541
     :try_start_0
     iget-object v0, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
     if-nez v0, :cond_1
 
-    .line 700
+    .line 542
     invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
 
-    .line 702
+    .line 544
     :cond_1
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 703
+    .line 545
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 704
+    .line 546
     invoke-virtual {p0, v1, p1, p2}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v0
@@ -4835,7 +3776,7 @@
 
     goto :goto_0
 
-    .line 702
+    .line 544
     :catchall_0
     move-exception v0
 
@@ -4855,61 +3796,42 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 682
+    .line 528
     invoke-virtual {p0, v1}, Landroid/view/VolumePanel;->hasMessages(I)Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 694
+    .line 536
     :goto_0
     return-void
 
-    .line 683
+    .line 529
     :cond_0
     monitor-enter p0
 
-    .line 684
+    .line 530
     :try_start_0
     iget-object v0, p0, Landroid/view/VolumePanel;->mStreamControls:Ljava/util/HashMap;
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_1
 
-    .line 686
-    iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
-
-    invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    .line 687
-    iget-object v0, p0, Landroid/view/VolumePanel;->mDialog:Landroid/app/Dialog;
-
-    invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
-
-    .line 689
-    :cond_1
+    .line 531
     invoke-direct {p0}, Landroid/view/VolumePanel;->createSliders()V
 
-    .line 691
-    :cond_2
+    .line 533
+    :cond_1
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 692
+    .line 534
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Landroid/view/VolumePanel;->removeMessages(I)V
 
-    .line 693
+    .line 535
     invoke-virtual {p0, v1, p1, p2}, Landroid/view/VolumePanel;->obtainMessage(III)Landroid/os/Message;
 
     move-result-object v0
@@ -4918,7 +3840,7 @@
 
     goto :goto_0
 
-    .line 691
+    .line 533
     :catchall_0
     move-exception v0
 
