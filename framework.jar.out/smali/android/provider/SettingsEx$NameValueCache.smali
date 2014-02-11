@@ -203,6 +203,8 @@
 
     move-object/from16 v0, p1
 
+    if-eqz v0, :cond_3
+    
     invoke-virtual {v0, v2}, Landroid/content/ContentResolver;->acquireProvider(Ljava/lang/String;)Landroid/content/IContentProvider;
 
     move-result-object v10
@@ -308,6 +310,10 @@
     const/4 v6, 0x0
 
     const/4 v7, 0x0
+    
+    const/4 v14, 0x0
+    
+    if-eqz v1, :cond_1
 
     invoke-interface/range {v1 .. v7}, Landroid/content/IContentProvider;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Landroid/os/ICancellationSignal;)Landroid/database/Cursor;
 

@@ -1292,7 +1292,7 @@
 
     move-result-object v45
 
-    invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Boolean;)V
+    #invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Boolean;)V
 
     .line 1148
     const-wide/16 v17, 0x0
@@ -1374,7 +1374,7 @@
 
     move-result-object v45
 
-    invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1160
     const-string v44, "focus_value_low"
@@ -1383,7 +1383,7 @@
 
     move-result-object v45
 
-    invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1161
     const-string v44, "group_id"
@@ -1392,7 +1392,7 @@
 
     move-result-object v45
 
-    invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+    #invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
     .line 1162
     const-string v44, "group_index"
@@ -1401,7 +1401,7 @@
 
     move-result-object v45
 
-    invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
+    #invoke-virtual/range {v43 .. v45}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 1165
     .end local v12           #focusHigh:J
