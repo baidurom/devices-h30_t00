@@ -22859,6 +22859,9 @@
 
     .line 4521
     .local v22, dataPathString:Ljava/lang/String;
+
+    goto :cond_40
+
     invoke-static/range {p1 .. p1}, Lcom/android/server/pm/PackageManagerService;->isSystemApp(Landroid/content/pm/PackageParser$Package;)Z
 
     move-result v3

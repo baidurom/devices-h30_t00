@@ -1295,6 +1295,7 @@
     .catch Ljava/lang/RuntimeException; {:try_start_11 .. :try_end_11} :catch_5
 
     :goto_d
+    invoke-static {v5}, Lcom/baidu/service/YiServiceLoader;->main(Landroid/content/Context;)V
     move-object/from16 v146, v147
 
     .end local v147           #telephonyRegistry2:Lcom/android/server/TelephonyRegistry;
