@@ -31,8 +31,8 @@
     .locals 0
 
     .prologue
-    .line 95
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    .line 85
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
@@ -42,7 +42,7 @@
     .parameter "x0"
 
     .prologue
-    .line 95
+    .line 85
     invoke-direct {p0}, Lcom/android/internal/telephony/CallerInfoAsyncQuery$CookieWrapper;-><init>()V
 
     return-void
