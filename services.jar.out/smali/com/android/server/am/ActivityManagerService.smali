@@ -25611,7 +25611,7 @@
 
     .line 1679
     .local v1, context:Landroid/content/Context;
-    const v4, 0x103006b
+    const v4, 0x103012b
 
     invoke-virtual {v1, v4}, Landroid/content/Context;->setTheme(I)V
 
@@ -27964,168 +27964,153 @@
 .end method
 
 .method private retrieveSettings()V
-    .locals 9
+    .locals 8
 
     .prologue
-    const/4 v6, 0x1
+    const/4 v5, 0x1
 
-    const/4 v7, 0x0
+    const/4 v6, 0x0
 
-    .line 8629
-    iget-object v8, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+    .line 8197
+    iget-object v7, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v8}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    invoke-virtual {v7}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v3
 
-    .line 8630
+    .line 8198
     .local v3, resolver:Landroid/content/ContentResolver;
-    const-string v8, "debug_app"
+    const-string v7, "debug_app"
 
-    invoke-static {v3, v8}, Landroid/provider/Settings$Global;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v3, v7}, Landroid/provider/Settings$Global;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 8632
+    .line 8200
     .local v2, debugApp:Ljava/lang/String;
-    const-string v8, "wait_for_debugger"
+    const-string v7, "wait_for_debugger"
 
-    invoke-static {v3, v8, v7}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    invoke-static {v3, v7, v6}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
-    move-result v8
+    move-result v7
 
-    if-eqz v8, :cond_1
+    if-eqz v7, :cond_1
 
-    move v5, v6
+    move v4, v5
 
-    .line 8634
-    .local v5, waitForDebugger:Z
+    .line 8202
+    .local v4, waitForDebugger:Z
     :goto_0
-    const-string v8, "always_finish_activities"
+    const-string v7, "always_finish_activities"
 
-    invoke-static {v3, v8, v7}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    invoke-static {v3, v7, v6}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
-    move-result v8
+    move-result v7
 
-    if-eqz v8, :cond_2
+    if-eqz v7, :cond_2
 
-    move v0, v6
+    move v0, v5
 
-    .line 8638
+    .line 8205
     .local v0, alwaysFinishActivities:Z
     :goto_1
-    const-string v7, "simpleui_mode"
-
-    invoke-static {v3, v7, v6}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
-
-    move-result v4
-
-    .line 8640
-    .local v4, simpleuiVal:I
     new-instance v1, Landroid/content/res/Configuration;
 
     invoke-direct {v1}, Landroid/content/res/Configuration;-><init>()V
 
-    .line 8641
+    .line 8206
     .local v1, configuration:Landroid/content/res/Configuration;
     invoke-static {v3, v1}, Landroid/provider/Settings$System;->getConfiguration(Landroid/content/ContentResolver;Landroid/content/res/Configuration;)V
 
-    .line 8642
-    iget-object v6, v1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
-
-    iput v4, v6, Landroid/content/res/ConfigurationEx;->simpleuiMode:I
-
-    .line 8645
+    .line 8208
     monitor-enter p0
 
-    .line 8646
+    .line 8209
     :try_start_0
     iput-object v2, p0, Lcom/android/server/am/ActivityManagerService;->mOrigDebugApp:Ljava/lang/String;
 
     iput-object v2, p0, Lcom/android/server/am/ActivityManagerService;->mDebugApp:Ljava/lang/String;
 
-    .line 8647
-    iput-boolean v5, p0, Lcom/android/server/am/ActivityManagerService;->mOrigWaitForDebugger:Z
+    .line 8210
+    iput-boolean v4, p0, Lcom/android/server/am/ActivityManagerService;->mOrigWaitForDebugger:Z
 
-    iput-boolean v5, p0, Lcom/android/server/am/ActivityManagerService;->mWaitForDebugger:Z
+    iput-boolean v4, p0, Lcom/android/server/am/ActivityManagerService;->mWaitForDebugger:Z
 
-    .line 8648
+    .line 8211
     iput-boolean v0, p0, Lcom/android/server/am/ActivityManagerService;->mAlwaysFinishActivities:Z
 
-    .line 8651
+    .line 8214
+    const/4 v5, 0x0
+
     const/4 v6, 0x0
 
-    const/4 v7, 0x0
+    const/4 v7, 0x1
 
-    const/4 v8, 0x1
+    invoke-virtual {p0, v1, v5, v6, v7}, Lcom/android/server/am/ActivityManagerService;->updateConfigurationLocked(Landroid/content/res/Configuration;Lcom/android/server/am/ActivityRecord;ZZ)Z
 
-    invoke-virtual {p0, v1, v6, v7, v8}, Lcom/android/server/am/ActivityManagerService;->updateConfigurationLocked(Landroid/content/res/Configuration;Lcom/android/server/am/ActivityRecord;ZZ)Z
+    .line 8215
+    sget-boolean v5, Lcom/android/server/am/ActivityManagerService;->DEBUG_CONFIGURATION:Z
 
-    .line 8652
-    sget-boolean v6, Lcom/android/server/am/ActivityManagerService;->DEBUG_CONFIGURATION:Z
+    if-eqz v5, :cond_0
 
-    if-eqz v6, :cond_0
+    const-string v5, "ActivityManager"
 
-    const-string v6, "ActivityManager"
+    new-instance v6, Ljava/lang/StringBuilder;
 
-    new-instance v7, Ljava/lang/StringBuilder;
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+    const-string v7, "Initial config: "
 
-    const-string v8, "Initial config: "
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v6
 
-    move-result-object v7
+    iget-object v7, p0, Lcom/android/server/am/ActivityManagerService;->mConfiguration:Landroid/content/res/Configuration;
 
-    iget-object v8, p0, Lcom/android/server/am/ActivityManagerService;->mConfiguration:Landroid/content/res/Configuration;
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    move-result-object v6
 
-    move-result-object v7
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v6
 
-    move-result-object v7
+    invoke-static {v5, v6}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-static {v6, v7}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 8653
+    .line 8216
     :cond_0
     monitor-exit p0
 
-    .line 8654
+    .line 8217
     return-void
 
     .end local v0           #alwaysFinishActivities:Z
     .end local v1           #configuration:Landroid/content/res/Configuration;
-    .end local v4           #simpleuiVal:I
-    .end local v5           #waitForDebugger:Z
+    .end local v4           #waitForDebugger:Z
     :cond_1
-    move v5, v7
+    move v4, v6
 
-    .line 8632
+    .line 8200
     goto :goto_0
 
-    .restart local v5       #waitForDebugger:Z
+    .restart local v4       #waitForDebugger:Z
     :cond_2
-    move v0, v7
+    move v0, v6
 
-    .line 8634
+    .line 8202
     goto :goto_1
 
-    .line 8653
+    .line 8216
     .restart local v0       #alwaysFinishActivities:Z
     .restart local v1       #configuration:Landroid/content/res/Configuration;
-    .restart local v4       #simpleuiVal:I
     :catchall_0
-    move-exception v6
+    move-exception v5
 
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    throw v6
+    throw v5
 .end method
 
 .method private revokeUriPermissionLocked(ILandroid/net/Uri;I)V

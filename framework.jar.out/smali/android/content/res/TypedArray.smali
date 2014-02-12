@@ -380,9 +380,9 @@
     if-gt v2, v4, :cond_2
 
     .line 319
-    invoke-virtual {p0, v1, p1}, Landroid/content/res/TypedArray;->getThemeColor([II)I
+    add-int/lit8 v4, p1, 0x1
 
-    move-result p2
+    aget p2, v1, v4
 
     goto :goto_0
 

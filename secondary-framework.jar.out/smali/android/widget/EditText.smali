@@ -34,7 +34,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
-    .locals 1
+    .locals 0
     .parameter "context"
     .parameter "attrs"
     .parameter "defStyle"
@@ -44,11 +44,6 @@
     invoke-direct {p0, p1, p2, p3}, Landroid/widget/TextView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
     .line 61
-    const/4 v0, 0x0
-
-    invoke-virtual {p0, v0}, Landroid/widget/EditText;->setSmartFit(Z)V
-
-    .line 62
     return-void
 .end method
 
