@@ -578,7 +578,7 @@
 .end method
 
 .method protected isFilterStopped(Landroid/content/pm/PackageParser$ActivityIntentInfo;I)Z
-    .locals 5
+    .locals 6
     .parameter "filter"
     .parameter "userId"
 
@@ -587,7 +587,7 @@
 
     const/4 v3, 0x0
 
-    .line 5661
+    .line 5362
     sget-object v4, Lcom/android/server/pm/PackageManagerService;->sUserManager:Lcom/android/server/pm/UserManagerService;
 
     invoke-virtual {v4, p2}, Lcom/android/server/pm/UserManagerService;->exists(I)Z
@@ -596,36 +596,57 @@
 
     if-nez v4, :cond_1
 
-    .line 5673
+    .line 5380
     :cond_0
     :goto_0
     return v2
 
-    .line 5662
+    .line 5363
     :cond_1
     iget-object v4, p1, Landroid/content/pm/PackageParser$ActivityIntentInfo;->activity:Landroid/content/pm/PackageParser$Activity;
 
     iget-object v0, v4, Landroid/content/pm/PackageParser$Activity;->owner:Landroid/content/pm/PackageParser$Package;
 
-    .line 5663
+    .line 5364
     .local v0, p:Landroid/content/pm/PackageParser$Package;
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4
 
-    .line 5664
+    .line 5365
     iget-object v1, v0, Landroid/content/pm/PackageParser$Package;->mExtras:Ljava/lang/Object;
 
     check-cast v1, Lcom/android/server/pm/PackageSetting;
 
-    .line 5665
+    .line 5366
     .local v1, ps:Lcom/android/server/pm/PackageSetting;
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_4
 
-    .line 5669
-    iget v4, v1, Lcom/android/server/pm/GrantedPermissions;->pkgFlags:I
+    .line 5371
+    iget-object v4, p0, Lcom/android/server/pm/PackageManagerService$ActivityIntentResolver;->this$0:Lcom/android/server/pm/PackageManagerService;
+
+    iget-object v4, v4, Lcom/android/server/pm/PackageManagerService;->mSettings:Lcom/android/server/pm/Settings;
+
+    iget-object v5, v0, Landroid/content/pm/PackageParser$Package;->packageName:Ljava/lang/String;
+
+    invoke-virtual {v4, v5}, Lcom/android/server/pm/Settings;->isThirdBaiduApps(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_2
+
+    .line 5372
+    invoke-virtual {v1, p2}, Lcom/android/server/pm/PackageSetting;->getStopped(I)Z
+
+    move-result v2
+
+    goto :goto_0
+
+    .line 5376
+    :cond_2
+    iget v4, v1, Lcom/android/server/pm/PackageSetting;->pkgFlags:I
 
     and-int/lit8 v4, v4, 0x1
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_3
 
     invoke-virtual {v1, p2}, Lcom/android/server/pm/PackageSetting;->getStopped(I)Z
 
@@ -633,16 +654,16 @@
 
     if-nez v4, :cond_0
 
-    :cond_2
+    :cond_3
     move v2, v3
 
     goto :goto_0
 
     .end local v1           #ps:Lcom/android/server/pm/PackageSetting;
-    :cond_3
+    :cond_4
     move v2, v3
 
-    .line 5673
+    .line 5380
     goto :goto_0
 .end method
 
