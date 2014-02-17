@@ -104,6 +104,11 @@
 
 
 # instance fields
+.field private HOME_ACTION:Ljava/lang/String;
+
+.field private HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
+
+.field private isHomeVisiable:Z
 .field mAnimationOptions:Landroid/os/Bundle;
 
 .field mAnimationPrev:Lcom/android/server/am/ActivityRecord;
@@ -523,7 +528,20 @@
 
     iput-object v1, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
 
-    .line 5476
+    .line 5041
+    iput-boolean v3, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    .line 5042
+    const-string v1, "yi.intent.action.HOME_ACTIVITY_CHANGED"
+
+    iput-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION:Ljava/lang/String;
+
+    .line 5043
+    const-string v1, "visiable"
+
+    iput-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
+
+    .line 5090
     iput-boolean v3, p0, Lcom/android/server/am/ActivityStack;->mHaltActivity:Z
 
     .line 5477
@@ -5177,6 +5195,72 @@
     goto/16 :goto_4
 .end method
 
+
+.method private sendHomeVisibilityBroadcast(Z)V
+    .locals 4
+    .parameter "visibility"
+
+    .prologue
+    .line 5057
+    new-instance v0, Landroid/content/Intent;
+
+    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION:Ljava/lang/String;
+
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 5058
+    .local v0, intent:Landroid/content/Intent;
+    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->HOME_ACTION_EXTRY_KEY:Ljava/lang/String;
+
+    invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    .line 5059
+    const-string v1, "ActivityManager"
+
+    const/4 v2, 0x3
+
+    invoke-static {v1, v2}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const-string v1, "ActivityManager"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "sendHomeVisibilityBroadcast "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 5060
+    :cond_0
+    iget-object v1, p0, Lcom/android/server/am/ActivityStack;->mHandler:Landroid/os/Handler;
+
+    new-instance v2, Lcom/android/server/am/ActivityStack$5;
+
+    invoke-direct {v2, p0, v0}, Lcom/android/server/am/ActivityStack$5;-><init>(Lcom/android/server/am/ActivityStack;Landroid/content/Intent;)V
+
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    .line 5066
+    return-void
+.end method
+
 .method private final startActivityLocked(Lcom/android/server/am/ActivityRecord;ZZZLandroid/os/Bundle;)V
     .locals 24
     .parameter "r"
@@ -7531,6 +7615,55 @@
 
     .line 577
     return v0
+.end method
+
+.method private yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
+    .locals 3
+    .parameter "r"
+    .parameter "visibility"
+
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v1, 0x0
+
+    .line 5045
+    if-eqz p2, :cond_1
+
+    .line 5046
+    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
+
+    if-eqz v0, :cond_0
+
+    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    if-nez v0, :cond_0
+
+    .line 5047
+    iput-boolean v2, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    .line 5048
+    invoke-direct {p0, v2}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
+
+    .line 5050
+    :cond_0
+    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
+
+    if-nez v0, :cond_1
+
+    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    if-eqz v0, :cond_1
+
+    .line 5051
+    iput-boolean v1, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    .line 5052
+    invoke-direct {p0, v1}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
+
+    .line 5055
+    :cond_1
+    return-void
 .end method
 
 
