@@ -162,7 +162,7 @@
 
     move-result-object v2
 
-    const v3, 0x1010308
+    const v3, #attr@dialogTheme#t
 
     invoke-virtual {v2, v3, v0, v4}, Landroid/content/res/Resources$Theme;->resolveAttribute(ILandroid/util/TypedValue;Z)Z
 
@@ -272,6 +272,70 @@
 
     .line 182
     return-void
+.end method
+
+.method private forbidActivityWithSystemAlert(Landroid/view/WindowManager$LayoutParams;)V
+    .locals 4
+    .parameter "p"
+
+    .prologue
+    .line 298
+    iget v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    const/16 v3, 0x7d3
+
+    if-ne v2, v3, :cond_1
+
+    .line 299
+    const/4 v1, 0x0
+
+    .line 300
+    .local v1, isStartedFromActivity:Z
+    iget-object v0, p0, Landroid/app/Dialog;->mContext:Landroid/content/Context;
+
+    .line 301
+    .local v0, context:Landroid/content/Context;
+    :goto_0
+    instance-of v2, v0, Landroid/view/ContextThemeWrapper;
+
+    if-eqz v2, :cond_0
+
+    .line 302
+    instance-of v2, v0, Landroid/app/Activity;
+
+    if-eqz v2, :cond_2
+
+    .line 303
+    const/4 v1, 0x1
+
+    .line 308
+    :cond_0
+    if-eqz v1, :cond_1
+
+    .line 309
+    const/4 v2, 0x2
+
+    iput v2, p1, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    .line 312
+    .end local v0           #context:Landroid/content/Context;
+    .end local v1           #isStartedFromActivity:Z
+    :cond_1
+    return-void
+
+    .line 306
+    .restart local v0       #context:Landroid/content/Context;
+    .restart local v1       #isStartedFromActivity:Z
+    :cond_2
+    check-cast v0, Landroid/view/ContextThemeWrapper;
+
+    .end local v0           #context:Landroid/content/Context;
+    invoke-virtual {v0}, Landroid/view/ContextThemeWrapper;->getBaseContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    .restart local v0       #context:Landroid/content/Context;
+    goto :goto_0
 .end method
 
 .method private getAssociatedActivity()Landroid/content/ComponentName;
@@ -2357,6 +2421,8 @@
     .line 281
     .end local v1           #nl:Landroid/view/WindowManager$LayoutParams;
     :cond_5
+    invoke-direct {p0, v0}, Landroid/app/Dialog;->forbidActivityWithSystemAlert(Landroid/view/WindowManager$LayoutParams;)V
+    
     :try_start_0
     iget-object v2, p0, Landroid/app/Dialog;->mWindowManager:Landroid/view/WindowManager;
 
