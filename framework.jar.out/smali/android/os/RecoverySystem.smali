@@ -496,7 +496,7 @@
 .end method
 
 .method public static installPackage(Landroid/content/Context;Ljava/io/File;)V
-    .locals 5
+    .locals 7
     .parameter "context"
     .parameter "packageFile"
     .annotation system Ldalvik/annotation/Throws;
@@ -506,84 +506,130 @@
     .end annotation
 
     .prologue
-    .line 328
-    invoke-virtual {p1}, Ljava/io/File;->getCanonicalPath()Ljava/lang/String;
+    .line 332
+    invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 329
+    .line 338
     .local v1, filename:Ljava/lang/String;
-    const-string v2, "RecoverySystem"
+    const-string v2, "/sdcard"
 
-    new-instance v3, Ljava/lang/StringBuilder;
+    .line 339
+    .local v2, str0:Ljava/lang/String;
+    const-string v3, "/sdcard2"
 
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    .line 348
+    .local v3, str1:Ljava/lang/String;
+    const-string v4, "/storage/sdcard0"
 
-    const-string v4, "!!! REBOOTING TO INSTALL "
+    invoke-virtual {v1, v4}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result v4
 
-    move-result-object v3
+    if-eqz v4, :cond_1
 
-    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 349
+    const-string v4, "/storage/sdcard0"
 
-    move-result-object v3
+    invoke-virtual {v1, v4, v2}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
 
-    const-string v4, " !!!"
+    move-result-object v1
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 356
+    :cond_0
+    :goto_0
+    const-string v4, "RecoverySystem"
 
-    move-result-object v3
+    new-instance v5, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result-object v3
+    const-string v6, "!!! REBOOTING TO INSTALL "
 
-    invoke-static {v2, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 330
-    new-instance v2, Ljava/lang/StringBuilder;
+    move-result-object v5
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    const-string v3, "--update_package="
+    move-result-object v5
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v6, " !!!"
 
-    move-result-object v2
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v5
 
-    move-result-object v2
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    const-string v3, "\n--locale="
+    move-result-object v5
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static {v4, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    move-result-object v2
+    .line 357
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v5, "--update_package="
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    const-string v5, "\n--locale="
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
 
     invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
 
-    move-result-object v3
+    move-result-object v5
 
-    invoke-virtual {v3}, Ljava/util/Locale;->toString()Ljava/lang/String;
+    invoke-virtual {v5}, Ljava/util/Locale;->toString()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v5
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v4
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 332
+    .line 359
     .local v0, arg:Ljava/lang/String;
     invoke-static {p0, v0}, Landroid/os/RecoverySystem;->bootCommand(Landroid/content/Context;Ljava/lang/String;)V
 
-    .line 333
+    .line 360
     return-void
+
+    .line 350
+    .end local v0           #arg:Ljava/lang/String;
+    :cond_1
+    const-string v4, "/storage/sdcard1"
+
+    invoke-virtual {v1, v4}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_0
+
+    .line 351
+    const-string v4, "/storage/sdcard1"
+
+    invoke-virtual {v1, v4, v3}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object v1
+
+    goto :goto_0
 .end method
 
 .method public static rebootWipeCache(Landroid/content/Context;)V
