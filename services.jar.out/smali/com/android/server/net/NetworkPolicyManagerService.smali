@@ -3123,6 +3123,29 @@
     goto :goto_0
 .end method
 
+.method private getUidRulesBaidu(II)I
+    .locals 2
+    .parameter "uidPolicy"
+    .parameter "orgUidRules"
+
+    .prologue
+    .line 2243
+    move v0, p2
+
+    .line 2244
+    .local v0, uidRules:I
+    and-int/lit8 v1, p1, 0x2
+
+    if-eqz v1, :cond_0
+
+    .line 2246
+    const/4 v0, 0x1
+
+    .line 2248
+    :cond_0
+    return v0
+.end method
+
 .method private initDataUsageSimInfo(I)V
     .locals 5
     .parameter "num"
@@ -7790,6 +7813,10 @@
 
     .line 2299
     :cond_2
+    invoke-direct {p0, v2, v3}, Lcom/android/server/net/NetworkPolicyManagerService;->getUidRulesBaidu(II)I
+
+    move-result v3
+
     if-nez v3, :cond_3
 
     .line 2300
