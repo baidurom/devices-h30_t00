@@ -4491,6 +4491,60 @@
     goto/16 :goto_2
 .end method
 
+.method private broadcastConfigTheme(I)V
+    .locals 15
+    .parameter "changes"
+
+    .prologue
+    .line 13196
+    const/high16 v0, -0x8000
+
+    and-int v0, v0, p1
+
+    if-eqz v0, :cond_0
+
+    .line 13197
+    const/4 v1, 0x0
+
+    const/4 v2, 0x0
+
+    new-instance v3, Landroid/content/Intent;
+
+    const-string v0, "android.intent.action.THEME_CHANGED"
+
+    invoke-direct {v3, v0}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x0
+
+    const/4 v7, 0x0
+
+    const/4 v8, 0x0
+
+    const/4 v9, 0x0
+
+    const/4 v10, 0x0
+
+    const/4 v11, 0x0
+
+    sget v12, Lcom/android/server/am/ActivityManagerService;->MY_PID:I
+
+    const/16 v13, 0x3e8
+
+    const/4 v14, 0x0
+
+    move-object v0, p0
+
+    invoke-direct/range {v0 .. v14}, Lcom/android/server/am/ActivityManagerService;->broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
+
+    .line 13202
+    :cond_0
+    return-void
+.end method
+
 .method private final broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
     .locals 65
     .parameter "callerApp"
@@ -6107,6 +6161,18 @@
 
     .line 13154
     :cond_20
+    move-object/from16 v0, p0
+
+    iget-object v4, v0, Lcom/android/server/am/ActivityManagerService;->mLruProcesses:Ljava/util/ArrayList;
+
+    move-object/from16 v0, v25
+
+    move-object/from16 v1, v16
+
+    move-object/from16 v2, v46
+
+    invoke-static {v0, v1, v2, v4}, Lcom/baidu/security/bm/BroadcastManagerService;->filterBroadcastReceiver(Ljava/util/List;Ljava/util/List;Landroid/content/Intent;Ljava/util/ArrayList;)I
+
     invoke-virtual/range {v46 .. v46}, Landroid/content/Intent;->getFlags()I
 
     move-result v4
@@ -6224,6 +6290,10 @@
 
     .line 13170
     .local v8, r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v8}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+
     sget-boolean v4, Lcom/android/server/am/ActivityManagerService;->DEBUG_BROADCAST:Z
 
     if-eqz v4, :cond_22
@@ -6810,6 +6880,10 @@
 
     .line 13260
     .restart local v8       #r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v8}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+
     sget-boolean v4, Lcom/android/server/am/ActivityManagerService;->DEBUG_BROADCAST:Z
 
     if-eqz v4, :cond_39
@@ -24096,6 +24170,26 @@
     return-void
 .end method
 
+.method private hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    .locals 1
+    .parameter "r"
+
+    .prologue
+    .line 12153
+    invoke-direct {p0}, Lcom/android/server/am/ActivityManagerService;->isMmsHookEnabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 12154
+    invoke-virtual {p1}, Lcom/android/server/am/BroadcastRecord;->hookMessageBroadcast()V
+
+    .line 12156
+    :cond_0
+    return-void
+.end method
+
 .method public static final installSystemProviders()V
     .locals 8
 
@@ -24408,6 +24502,33 @@
 
     .line 8790
     goto :goto_0
+.end method
+
+.method private final isMmsHookEnabled()Z
+    .locals 3
+
+    .prologue
+    const/4 v0, 0x0
+
+    .line 11978
+    iget-object v1, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v1
+
+    const-string v2, "system.mms"
+
+    invoke-static {v1, v2, v0}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :cond_0
+    return v0
 .end method
 
 .method private isReceivingBroadcast(Lcom/android/server/am/ProcessRecord;)Lcom/android/server/am/BroadcastQueue;
@@ -70774,6 +70895,10 @@
 
     .line 12750
     .local v9, r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v9}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+
     invoke-virtual {v10, v9}, Lcom/android/server/am/BroadcastQueue;->enqueueParallelBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)V
 
     .line 12751
@@ -82773,6 +82898,12 @@
 
     .line 13742
     :cond_d
+    move-object/from16 v0, p0
+
+    move/from16 v1, v23
+
+    invoke-direct {v0, v1}, Lcom/android/server/am/ActivityManagerService;->broadcastConfigTheme(I)V
+
     const/high16 v2, -0x8000
 
     and-int v2, v2, v23
@@ -82828,7 +82959,7 @@
 
     move-object/from16 v6, p0
 
-    invoke-direct/range {v6 .. v20}, Lcom/android/server/am/ActivityManagerService;->broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
+    #invoke-direct/range {v6 .. v20}, Lcom/android/server/am/ActivityManagerService;->broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
 
     .line 13755
     .end local v5           #intent:Landroid/content/Intent;
