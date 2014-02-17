@@ -42,7 +42,7 @@
 
     iput-boolean v8, p0, Lcom/android/server/am/AppErrorDialog;->mTargetProcess:Z
 
-    .line 155
+    .line 151
     new-instance v8, Lcom/android/server/am/AppErrorDialog$1;
 
     invoke-direct {v8, p0}, Lcom/android/server/am/AppErrorDialog$1;-><init>(Lcom/android/server/am/AppErrorDialog;)V
@@ -93,7 +93,7 @@
 
     const/4 v9, 0x1
 
-    if-ne v8, v9, :cond_4
+    if-ne v8, v9, :cond_3
 
     invoke-virtual {p1}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
@@ -108,7 +108,7 @@
     move-result-object v6
 
     .local v6, name:Ljava/lang/CharSequence;
-    if-eqz v6, :cond_4
+    if-eqz v6, :cond_3
 
     .line 66
     const/4 v8, 0x0
@@ -118,7 +118,7 @@
     .line 67
     const/4 v8, 0x1
 
-    if-ne v2, v8, :cond_3
+    if-ne v2, v8, :cond_2
 
     .line 68
     const v8, 0x2050045
@@ -161,7 +161,7 @@
     invoke-virtual {p0, v8}, Lcom/android/server/am/AppErrorDialog;->setCancelable(Z)V
 
     .line 103
-    const/4 v8, -0x1
+    const/4 v8, -0x2
 
     const v9, 0x10403db
 
@@ -179,15 +179,8 @@
 
     invoke-virtual {p0, v8, v9, v10}, Lcom/android/server/am/AppErrorDialog;->setButton(ILjava/lang/CharSequence;Landroid/os/Message;)V
 
-    .line 107
-    move-object/from16 v0, p4
-
-    iget-object v8, v0, Lcom/android/server/am/ProcessRecord;->errorReportReceiver:Landroid/content/ComponentName;
-
-    if-eqz v8, :cond_0
-
     .line 108
-    const/4 v8, -0x2
+    const/4 v8, -0x1
 
     const v9, 0x10403dc
 
@@ -205,11 +198,10 @@
 
     invoke-virtual {p0, v8, v9, v10}, Lcom/android/server/am/AppErrorDialog;->setButton(ILjava/lang/CharSequence;Landroid/os/Message;)V
 
-    .line 113
-    :cond_0
+    .line 112
     const/4 v4, 0x0
 
-    .line 115
+    .line 114
     .local v4, lsh:Lcom/mediatek/common/lowstorage/ILowStorageHandle;
     :try_start_0
     const-class v8, Lcom/mediatek/common/lowstorage/ILowStorageHandle;
@@ -234,20 +226,20 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 119
+    .line 118
     :goto_2
-    if-eqz v4, :cond_8
+    if-eqz v4, :cond_0
 
-    .line 120
+    .line 119
     invoke-interface {v4}, Lcom/mediatek/common/lowstorage/ILowStorageHandle;->GetCurrentFlag()Z
 
     move-result v8
 
     const/4 v9, 0x1
 
-    if-ne v8, v9, :cond_1
+    if-ne v8, v9, :cond_0
 
-    .line 121
+    .line 120
     const/4 v8, -0x3
 
     const v9, 0x2050047
@@ -268,9 +260,8 @@
 
     invoke-virtual {p0, v8, v9, v10}, Lcom/android/server/am/AppErrorDialog;->setButton(ILjava/lang/CharSequence;Landroid/os/Message;)V
 
-    .line 129
-    :cond_1
-    :goto_3
+    .line 125
+    :cond_0
     const v8, 0x10403d3
 
     invoke-virtual {v7, v8}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
@@ -279,7 +270,7 @@
 
     invoke-virtual {p0, v8}, Lcom/android/server/am/AppErrorDialog;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 130
+    .line 126
     invoke-virtual {p0}, Lcom/android/server/am/AppErrorDialog;->getWindow()Landroid/view/Window;
 
     move-result-object v8
@@ -288,7 +279,7 @@
 
     invoke-virtual {v8, v9}, Landroid/view/Window;->addFlags(I)V
 
-    .line 131
+    .line 127
     invoke-virtual {p0}, Lcom/android/server/am/AppErrorDialog;->getWindow()Landroid/view/Window;
 
     move-result-object v8
@@ -297,7 +288,7 @@
 
     move-result-object v1
 
-    .line 132
+    .line 128
     .local v1, attrs:Landroid/view/WindowManager$LayoutParams;
     new-instance v8, Ljava/lang/StringBuilder;
 
@@ -325,28 +316,28 @@
 
     invoke-virtual {v1, v8}, Landroid/view/WindowManager$LayoutParams;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 133
+    .line 129
     iget v8, v1, Landroid/view/WindowManager$LayoutParams;->privateFlags:I
 
     or-int/lit8 v8, v8, 0x10
 
     iput v8, v1, Landroid/view/WindowManager$LayoutParams;->privateFlags:I
 
-    .line 134
+    .line 130
     invoke-virtual {p0}, Lcom/android/server/am/AppErrorDialog;->getWindow()Landroid/view/Window;
 
     move-result-object v8
 
     invoke-virtual {v8, v1}, Landroid/view/Window;->setAttributes(Landroid/view/WindowManager$LayoutParams;)V
 
-    .line 135
+    .line 131
     move-object/from16 v0, p4
 
     iget-boolean v8, v0, Lcom/android/server/am/ProcessRecord;->persistent:Z
 
-    if-eqz v8, :cond_2
+    if-eqz v8, :cond_1
 
-    .line 136
+    .line 132
     invoke-virtual {p0}, Lcom/android/server/am/AppErrorDialog;->getWindow()Landroid/view/Window;
 
     move-result-object v8
@@ -355,24 +346,24 @@
 
     invoke-virtual {v8, v9}, Landroid/view/Window;->setType(I)V
 
-    .line 140
-    :cond_2
+    .line 136
+    :cond_1
     const/4 v8, 0x1
 
-    if-ne v2, v8, :cond_9
+    if-ne v2, v8, :cond_7
 
     iget-boolean v8, p0, Lcom/android/server/am/AppErrorDialog;->mTargetProcess:Z
 
-    if-eqz v8, :cond_9
+    if-eqz v8, :cond_7
 
-    .line 141
+    .line 137
     const-string v8, "AppErrorDialog"
 
     const-string v9, "do not show the error dialog!"
 
     invoke-static {v8, v9}, Landroid/util/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 142
+    .line 138
     iget-object v8, p0, Lcom/android/server/am/AppErrorDialog;->mHandler:Landroid/os/Handler;
 
     iget-object v9, p0, Lcom/android/server/am/AppErrorDialog;->mHandler:Landroid/os/Handler;
@@ -387,15 +378,15 @@
 
     invoke-virtual {v8, v9, v10, v11}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    .line 153
-    :goto_4
+    .line 149
+    :goto_3
     return-void
 
     .line 73
     .end local v1           #attrs:Landroid/view/WindowManager$LayoutParams;
     .end local v4           #lsh:Lcom/mediatek/common/lowstorage/ILowStorageHandle;
     .end local v5           #message:Ljava/lang/CharSequence;
-    :cond_3
+    :cond_2
     const v8, 0x10403d4
 
     const/4 v9, 0x2
@@ -430,7 +421,7 @@
     .line 79
     .end local v5           #message:Ljava/lang/CharSequence;
     .end local v6           #name:Ljava/lang/CharSequence;
-    :cond_4
+    :cond_3
     move-object/from16 v0, p4
 
     iget-object v6, v0, Lcom/android/server/am/ProcessRecord;->processName:Ljava/lang/String;
@@ -449,7 +440,7 @@
 
     const/4 v9, -0x1
 
-    if-ne v8, v9, :cond_5
+    if-ne v8, v9, :cond_4
 
     invoke-virtual {v6}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
@@ -463,10 +454,10 @@
 
     const/4 v9, -0x1
 
-    if-eq v8, v9, :cond_6
+    if-eq v8, v9, :cond_5
 
     .line 83
-    :cond_5
+    :cond_4
     const-string v8, "AppErrorDialog"
 
     const-string v9, "got target error process"
@@ -479,10 +470,10 @@
     iput-boolean v8, p0, Lcom/android/server/am/AppErrorDialog;->mTargetProcess:Z
 
     .line 89
-    :goto_5
+    :goto_4
     const/4 v8, 0x1
 
-    if-ne v2, v8, :cond_7
+    if-ne v2, v8, :cond_6
 
     .line 90
     const v8, 0x2050046
@@ -505,22 +496,22 @@
 
     .line 98
     .restart local v5       #message:Ljava/lang/CharSequence;
-    :goto_6
+    :goto_5
     invoke-virtual {p0, v5}, Lcom/android/server/am/AppErrorDialog;->setMessage(Ljava/lang/CharSequence;)V
 
     goto/16 :goto_1
 
     .line 86
     .end local v5           #message:Ljava/lang/CharSequence;
-    :cond_6
+    :cond_5
     const/4 v8, 0x0
 
     iput-boolean v8, p0, Lcom/android/server/am/AppErrorDialog;->mTargetProcess:Z
 
-    goto :goto_5
+    goto :goto_4
 
     .line 94
-    :cond_7
+    :cond_6
     const v8, 0x10403d5
 
     const/4 v9, 0x1
@@ -540,22 +531,12 @@
     move-result-object v5
 
     .restart local v5       #message:Ljava/lang/CharSequence;
-    goto :goto_6
+    goto :goto_5
 
-    .line 126
-    .restart local v4       #lsh:Lcom/mediatek/common/lowstorage/ILowStorageHandle;
-    :cond_8
-    const-string v8, "AppErrorDialog"
-
-    const-string v9, "Failed to get ILowStorageHandle instance"
-
-    invoke-static {v8, v9}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto/16 :goto_3
-
-    .line 147
+    .line 143
     .restart local v1       #attrs:Landroid/view/WindowManager$LayoutParams;
-    :cond_9
+    .restart local v4       #lsh:Lcom/mediatek/common/lowstorage/ILowStorageHandle;
+    :cond_7
     iget-object v8, p0, Lcom/android/server/am/AppErrorDialog;->mHandler:Landroid/os/Handler;
 
     iget-object v9, p0, Lcom/android/server/am/AppErrorDialog;->mHandler:Landroid/os/Handler;
@@ -570,9 +551,9 @@
 
     invoke-virtual {v8, v9, v10, v11}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
 
-    goto/16 :goto_4
+    goto/16 :goto_3
 
-    .line 116
+    .line 115
     .end local v1           #attrs:Landroid/view/WindowManager$LayoutParams;
     :catch_0
     move-exception v8
