@@ -4027,6 +4027,35 @@
     if-nez v8, :cond_8
 
     .line 1296
+    iget v8, p0, Landroid/text/Layout;->mSpacingMult:F
+
+    const/high16 v9, 0x3f80
+
+    invoke-static {v8, v9}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v8
+
+    if-nez v8, :cond_95
+
+    iget v8, p0, Landroid/text/Layout;->mSpacingAdd:F
+
+    const/4 v9, 0x0
+
+    invoke-static {v8, v9}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v8
+
+    if-eqz v8, :cond_96
+
+    :cond_95
+    invoke-virtual {p0, v6}, Landroid/text/Layout;->getLineBaseline(I)I
+
+    move-result v8
+
+    add-int/lit8 v0, v8, 0x6
+
+    .line 1299
+    :cond_96
     int-to-float v8, v7
 
     invoke-virtual {p2, v4, v8}, Landroid/graphics/Path;->moveTo(FF)V
@@ -5805,6 +5834,40 @@
     .local v7, bottom:I
     if-ne v3, v15, :cond_2
 
+    move-object/from16 v0, p0
+
+    iget v2, v0, Landroid/text/Layout;->mSpacingMult:F
+
+    const/high16 v4, 0x3f80
+
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v2
+
+    if-nez v2, :cond_92
+
+    move-object/from16 v0, p0
+
+    iget v2, v0, Landroid/text/Layout;->mSpacingAdd:F
+
+    const/4 v4, 0x0
+
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v2
+
+    if-eqz v2, :cond_93
+
+    :cond_92
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineBaseline(I)I
+
+    move-result v2
+
+    add-int/lit8 v7, v2, 0x6
+
+    :cond_93
     move-object/from16 v2, p0
 
     move/from16 v4, p1
@@ -5984,6 +6047,40 @@
     move-result v7
 
     .line 1420
+    move-object/from16 v0, p0
+
+    iget v2, v0, Landroid/text/Layout;->mSpacingMult:F
+
+    const/high16 v4, 0x3f80
+
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v2
+
+    if-nez v2, :cond_97
+
+    move-object/from16 v0, p0
+
+    iget v2, v0, Landroid/text/Layout;->mSpacingAdd:F
+
+    const/4 v4, 0x0
+
+    invoke-static {v2, v4}, Ljava/lang/Float;->compare(FF)I
+
+    move-result v2
+
+    if-eqz v2, :cond_98
+
+    :cond_97
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineBaseline(I)I
+
+    move-result v2
+
+    add-int/lit8 v7, v2, 0x6
+
+    :cond_98
     move-object/from16 v0, p0
 
     invoke-virtual {v0, v15}, Landroid/text/Layout;->getLineStart(I)I
