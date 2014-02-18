@@ -7990,7 +7990,7 @@
 
     iget-object v1, v0, Landroid/media/AudioService;->mVolumePanel:Landroid/view/VolumePanel;
 
-    invoke-virtual {v1}, Landroid/view/VolumePanel;->clearStreamControl()V
+    #invoke-virtual {v1}, Landroid/view/VolumePanel;->clearStreamControl()V
 
     .line 6305
     :cond_1
