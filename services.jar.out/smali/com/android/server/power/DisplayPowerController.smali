@@ -4364,6 +4364,31 @@
 
     .line 1426
     .local v10, newScreenAutoBrightness:I
+
+    const-string v2, "persist.sys.brightness_coe"
+
+    const/16 v3, 0x64
+
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v8
+
+    .local v8, brightnessCoe:I
+    mul-int v2, v10, v8
+
+    div-int/lit8 v10, v2, 0x64
+
+    iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMaximum:I
+
+    invoke-static {v10, v2}, Ljava/lang/Math;->min(II)I
+
+    move-result v10
+
+    iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMinimum:I
+
+    invoke-static {v10, v2}, Ljava/lang/Math;->max(II)I
+
+    move-result v10
     iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenAutoBrightness:I
 
     if-eq v2, v10, :cond_0
