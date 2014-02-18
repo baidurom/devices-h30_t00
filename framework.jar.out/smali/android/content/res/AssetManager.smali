@@ -1325,7 +1325,7 @@
 .end method
 
 .method private final openIconAsset(Ljava/lang/String;Ljava/lang/String;Z)Ljava/io/InputStream;
-    .locals 8
+    .locals 10
     .parameter "fileName"
     .parameter "packageName"
     .parameter "isIcon"
@@ -1373,6 +1373,27 @@
 
     invoke-virtual {v6, v7}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
 
+    const-string v8, "com.mediatek.FMRadio"
+
+    invoke-virtual {v8, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v9
+
+    if-eqz v9, :cond_4
+
+    const-string v8, "com.mediatek.FMRadio.png"
+
+    invoke-virtual {v8, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v9
+
+    if-eqz v9, :cond_4
+
+    const-string v8, "com.baidu.fm.png"
+
+    move-object p1, v8
+
+    :cond_4
     .line 1104
     invoke-virtual {v6, p1}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
 

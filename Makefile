@@ -42,7 +42,7 @@ vendor_remove_dirs := app vendor/operator/app delapp
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-vendor_saved_apps := FMRadio HwBluetoothImport MtkBt
+vendor_saved_apps := HwBluetoothImport MtkBt
 
 ##############################################################################
 # Apks build from current project root directory
@@ -60,7 +60,7 @@ vendor_saved_apps := FMRadio HwBluetoothImport MtkBt
 # you need decode FMRadio.apk to the project directory (use apktool d FMRadio.apk) first
 # then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-# vendor_modify_apps := FMRadio
+vendor_modify_apps := FMRadio
 
 ##############################################################################
 # Jars build from current project root directory
