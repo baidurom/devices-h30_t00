@@ -168,7 +168,7 @@
 
     .line 721
     .local v2, text2:Landroid/widget/TextView;
-    const v3, 0x30d0013
+    const v3, 0x1020006
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -183,21 +183,6 @@
     invoke-virtual {v1, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 726
-    const/4 v3, 0x2
-
-    invoke-virtual {v1, v3}, Landroid/widget/TextView;->setMaxLines(I)V
-
-    .line 727
-    const/4 v3, 0x1
-
-    invoke-virtual {v1, v3}, Landroid/widget/TextView;->setSmartFit(Z)V
-
-    .line 728
-    const/4 v3, 0x0
-
-    invoke-virtual {v1, v3}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
-
-    .line 731
     iget-object v3, p0, Lcom/android/internal/app/ResolverActivity$ResolveListAdapter;->this$0:Lcom/android/internal/app/ResolverActivity;
 
     #getter for: Lcom/android/internal/app/ResolverActivity;->mShowExtended:Z
@@ -1159,25 +1144,8 @@
     .end local v12           #r0Label:Ljava/lang/CharSequence;
     .end local v13           #N:I
     .end local v16           #i:I
-    :goto_8
-    return-void
-
-    .line 608
     :cond_10
-    const-string v1, "ResolverActivity"
-
-    const-string/jumbo v2, "rebuildList zero count, set mList to null"
-
-    invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 609
-    const/4 v1, 0x0
-
-    move-object/from16 v0, p0
-
-    iput-object v1, v0, Lcom/android/internal/app/ResolverActivity$ResolveListAdapter;->mList:Ljava/util/List;
-
-    goto :goto_8
+    return-void
 .end method
 
 
@@ -1243,7 +1211,7 @@
     .line 702
     iget-object v3, p0, Lcom/android/internal/app/ResolverActivity$ResolveListAdapter;->mInflater:Landroid/view/LayoutInflater;
 
-    const v4, 0x3070016
+    const v4, 0x10900b1
 
     const/4 v5, 0x0
 
@@ -1253,7 +1221,7 @@
 
     .line 706
     .local v2, view:Landroid/view/View;
-    const v3, 0x30d0013
+    const v3, 0x1020006
 
     invoke-virtual {v2, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 

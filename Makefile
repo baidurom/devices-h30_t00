@@ -111,9 +111,8 @@ baidu_modify_jars := android.policy
 # override_property: this property will override the build.prop
 #-----------------------------------------------------------------------------
 
-# hide the soft mainkeys
-# override_property += \
-#    qemu.hw.mainkeys=1
+override_property += \
+    ro.config.hwtheme=0
 
 ##############################################################################
 # override_property: this property will override the build.prop

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.ProgressBar.Horizontal" parent="@style/Widget.ProgressBar">
+        <item name="maxHeight">20.0dip</item>
+        <item name="indeterminateOnly">false</item>
+        <item name="indeterminateDrawable">@drawable/progress_indeterminate_horizontal</item>
+        <item name="progressDrawable">@drawable/yi_progress_horizontal_baidu_light</item>
+        <item name="minHeight">20.0dip</item>
+    </style>
+    <style name="TextAppearance.StatusBar.EventContent" parent="@style/TextAppearance.StatusBar">
+        <item name="textSize">12.0sp</item>
+        <item name="textColor">@color/yi_status_bar_event_content</item>
+    </style>
+    <style name="TextAppearance.StatusBar.EventContent.Title" parent="@style/TextAppearance.StatusBar.EventContent">
+        <item name="textSize">16.0sp</item>
+        <item name="textStyle">normal</item>
+        <item name="textColor">@color/yi_status_bar_event_content_title</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+    <style name="Widget.CalendarView" parent="@style/Widget">
+        <item name="firstDayOfWeek">1</item>
+    </style>
+    <style name="Widget.DeviceDefault.EditText" parent="@style/Widget.Holo.EditText">
+        <item name="textColorHighlight">@color/yi_highlighted_text_baidu_dark</item>
+    </style>
+    <style name="Widget.DeviceDefault.TabWidget" parent="@style/Widget.Holo.TabWidget">
+        <item name="showDividers">none</item>
+        <item name="tabLayout">@layout/yi_tab_indicator_baidu</item>
+    </style>
+    <style name="Widget.DeviceDefault.Tab" parent="@style/Widget.Holo.Tab">
+        <item name="background">@drawable/yi_tab_indicator_baidu</item>
+    </style>
+    <style name="Widget.DeviceDefault.ActionBar.TabView" parent="@style/Widget.Holo.ActionBar.TabView">
+        <item name="background">@drawable/yi_tab_indicator_ab_baidu</item>
+    </style>
+    <style name="Widget.DeviceDefault.Light.EditText" parent="@style/Widget.Holo.Light.EditText">
+        <item name="textColorHighlight">@color/yi_highlighted_text_baidu_dark</item>
+        <item name="paddingTop">3.0dip</item>
+        <item name="paddingBottom">3.0dip</item>
+    </style>
+    <style name="Widget.DeviceDefault.Light.TabWidget" parent="@style/Widget.DeviceDefault.TabWidget">
+        <item name="background">@drawable/yi_ab_stacked_solid_inverse_baidu</item>
+        <item name="divider">@drawable/yi_divider_vertical_tab_baidu_light</item>
+        <item name="showDividers">middle</item>
+    </style>
+    <style name="Widget.DeviceDefault.Light.Tab" parent="@style/Widget.Holo.Light.Tab">
+        <item name="background">@drawable/yi_tab_indicator_baidu</item>
+    </style>
+    <style name="Widget.DeviceDefault.Light.ActionBar.TabView" parent="@style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="background">@drawable/yi_tab_indicator_ab_baidu</item>
+    </style>
+</resources>
