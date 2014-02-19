@@ -10,6 +10,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Lcom/android/server/MountService$QuickbootBroadcastReceiver;,
         Lcom/android/server/MountService$UnmountObbAction;,
         Lcom/android/server/MountService$MountObbAction;,
         Lcom/android/server/MountService$ObbAction;,
@@ -217,6 +218,8 @@
 .field private mOldUserId:I
 
 .field private mPms:Lcom/android/server/pm/PackageManagerService;
+
+.field private final mQuickbootReceiver:Landroid/content/BroadcastReceiver;
 
 .field private mSD1BootMounted:Z
 
@@ -543,6 +546,15 @@
 
     iput-object v0, p0, Lcom/android/server/MountService;->mBootIPOReceiver:Landroid/content/BroadcastReceiver;
 
+    .line 3974
+    new-instance v0, Lcom/android/server/MountService$QuickbootBroadcastReceiver;
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, p0, v1}, Lcom/android/server/MountService$QuickbootBroadcastReceiver;-><init>(Lcom/android/server/MountService;Lcom/android/server/MountService$1;)V
+
+    iput-object v0, p0, Lcom/android/server/MountService;->mQuickbootReceiver:Landroid/content/BroadcastReceiver;
+
     .line 2115
     iput-object p1, p0, Lcom/android/server/MountService;->mContext:Landroid/content/Context;
 
@@ -711,6 +723,9 @@
     iget-object v2, p0, Lcom/android/server/MountService;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1, v6, v11, v2}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;Ljava/lang/String;Landroid/os/Handler;)Landroid/content/Intent;
+
+    .line 1958
+    invoke-direct {p0}, Lcom/android/server/MountService;->registerQbReceiver()V
 
     .line 2167
     new-instance v0, Lcom/android/server/MountService$ObbActionHandler;
@@ -1123,6 +1138,19 @@
     .prologue
     .line 120
     iget-object v0, p0, Lcom/android/server/MountService;->mVolumesLock:Ljava/lang/Object;
+
+    return-object v0
+.end method
+
+.method static synthetic access$2800(Lcom/android/server/MountService;)Landroid/os/storage/StorageVolume;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 107
+    invoke-direct {p0}, Lcom/android/server/MountService;->getPrimaryPhysicalVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
 
     return-object v0
 .end method
@@ -5648,6 +5676,36 @@
     const/16 v20, 0x0
 
     goto/16 :goto_1
+.end method
+
+.method private registerQbReceiver()V
+    .locals 5
+
+    .prologue
+    .line 3977
+    new-instance v0, Landroid/content/IntentFilter;
+
+    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+
+    .line 3978
+    .local v0, filter:Landroid/content/IntentFilter;
+    const-string v1, "android.intent.action.ACTION_QUICKBOOT_BOOT"
+
+    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 3979
+    iget-object v1, p0, Lcom/android/server/MountService;->mContext:Landroid/content/Context;
+
+    iget-object v2, p0, Lcom/android/server/MountService;->mQuickbootReceiver:Landroid/content/BroadcastReceiver;
+
+    const/4 v3, 0x0
+
+    iget-object v4, p0, Lcom/android/server/MountService;->mHandler:Landroid/os/Handler;
+
+    invoke-virtual {v1, v2, v0, v3, v4}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;Ljava/lang/String;Landroid/os/Handler;)Landroid/content/Intent;
+
+    .line 3980
+    return-void
 .end method
 
 .method private removeObbStateLocked(Lcom/android/server/MountService$ObbState;)V

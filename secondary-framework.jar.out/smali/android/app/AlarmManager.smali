@@ -3,7 +3,17 @@
 .source "AlarmManager.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroid/app/AlarmManager$PoweroffAlarm;
+    }
+.end annotation
+
+
 # static fields
+.field public static final ALLOW_POWEROFF_ALARM_FLAG:I = 0x3
+
 .field public static final ELAPSED_REALTIME:I = 0x3
 
 .field public static final ELAPSED_REALTIME_WAKEUP:I = 0x2
@@ -18,9 +28,17 @@
 
 .field public static final INTERVAL_HOUR:J = 0x36ee80L
 
+.field public static final POWEROFF_ALARM_ENABLE:I = 0x1
+
+.field public static final POWEROFF_ALARM_FLAG_MAX:I = 0x2
+
+.field public static final POWEROFF_WAKEUP:I = 0xa
+
 .field public static final RTC:I = 0x1
 
-.field public static final RTC_WAKEUP:I
+.field public static final RTC_WAKEUP:I = 0x0
+
+.field public static final SCHEDULE_POWER_ON_OFF_ENABLE:I = 0x2
 
 
 # instance fields
@@ -33,13 +51,13 @@
     .parameter "service"
 
     .prologue
-    .line 91
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    .line 131
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 92
+    .line 132
     iput-object p1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
-    .line 93
+    .line 133
     return-void
 .end method
 
@@ -49,7 +67,7 @@
     .locals 2
 
     .prologue
-    .line 328
+    .line 390
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -59,15 +77,15 @@
 
     move-result v1
 
-    .line 330
+    .line 392
     :goto_0
     return v1
 
-    .line 329
+    .line 391
     :catch_0
     move-exception v0
 
-    .line 330
+    .line 392
     .local v0, ex:Landroid/os/RemoteException;
     const/4 v1, 0x0
 
@@ -79,7 +97,7 @@
     .parameter "operation"
 
     .prologue
-    .line 278
+    .line 342
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -87,11 +105,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 281
+    .line 345
     :goto_0
     return-void
 
-    .line 279
+    .line 343
     :catch_0
     move-exception v0
 
@@ -103,7 +121,7 @@
     .parameter "name"
 
     .prologue
-    .line 316
+    .line 379
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -111,125 +129,89 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 319
+    .line 382
     :goto_0
     return-void
 
-    .line 317
+    .line 380
     :catch_0
     move-exception v0
 
     goto :goto_0
 .end method
 
-.method public getAlarmHeartBeat()I
-    .locals 2
+.method public getPoweroffAlarm(J)[Landroid/app/AlarmManager$PoweroffAlarm;
+    .locals 6
+    .parameter "nowRtc"
 
     .prologue
-    .line 360
+    .line 246
+    const/4 v1, 0x0
+
+    .line 248
+    .local v1, pwoffAlarmArray:[Landroid/app/AlarmManager$PoweroffAlarm;
+    :try_start_0
+    iget-object v3, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
+
+    invoke-interface {v3, p1, p2}, Landroid/app/IAlarmManager;->getPoweroffAlarm(J)[J
+
+    move-result-object v2
+
+    .line 250
+    .local v2, pwoffLongArray:[J
+    if-eqz v2, :cond_0
+
+    .line 251
+    array-length v3, v2
+
+    new-array v1, v3, [Landroid/app/AlarmManager$PoweroffAlarm;
+
+    .line 252
     const/4 v0, 0x0
 
-    .line 362
-    .local v0, result:I
-    :try_start_0
-    iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
+    .local v0, idx:I
+    :goto_0
+    array-length v3, v2
 
-    invoke-interface {v1}, Landroid/app/IAlarmManager;->getAlarmHeartBeat()I
+    if-ge v0, v3, :cond_0
+
+    .line 253
+    new-instance v3, Landroid/app/AlarmManager$PoweroffAlarm;
+
+    invoke-direct {v3, p0}, Landroid/app/AlarmManager$PoweroffAlarm;-><init>(Landroid/app/AlarmManager;)V
+
+    aput-object v3, v1, v0
+
+    .line 254
+    aget-object v3, v1, v0
+
+    add-int/lit8 v4, v0, 0x1
+
+    iput v4, v3, Landroid/app/AlarmManager$PoweroffAlarm;->alarmType:I
+
+    .line 255
+    aget-object v3, v1, v0
+
+    aget-wide v4, v2, v0
+
+    iput-wide v4, v3, Landroid/app/AlarmManager$PoweroffAlarm;->when:J
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    move-result v0
-
-    .line 365
-    :goto_0
-    return v0
-
-    .line 363
-    :catch_0
-    move-exception v1
+    .line 252
+    add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
-.end method
 
-.method public getAlarmPolicyState()Z
-    .locals 2
-
-    .prologue
-    .line 342
-    const/4 v0, 0x0
-
-    .line 344
-    .local v0, result:Z
-    :try_start_0
-    iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v1}, Landroid/app/IAlarmManager;->getAlarmPolicyState()Z
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v0
-
-    .line 347
-    :goto_0
-    return v0
-
-    .line 345
+    .line 258
+    .end local v0           #idx:I
+    .end local v2           #pwoffLongArray:[J
     :catch_0
-    move-exception v1
+    move-exception v3
 
-    goto :goto_0
-.end method
-
-.method public getPhbState()Z
-    .locals 2
-
-    .prologue
-    .line 429
-    const/4 v0, 0x0
-
-    .line 431
-    .local v0, result:Z
-    :try_start_0
-    iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v1}, Landroid/app/IAlarmManager;->getPhbState()Z
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v0
-
-    .line 434
-    :goto_0
-    return v0
-
-    .line 432
-    :catch_0
-    move-exception v1
-
-    goto :goto_0
-.end method
-
-.method public removeAllPendingAlarms()V
-    .locals 1
-
-    .prologue
-    .line 405
-    :try_start_0
-    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v0}, Landroid/app/IAlarmManager;->removeAllPendingAlarms()V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 408
-    :goto_0
-    return-void
-
-    .line 406
-    :catch_0
-    move-exception v0
-
-    goto :goto_0
+    .line 260
+    :cond_0
+    return-object v1
 .end method
 
 .method public set(IJLandroid/app/PendingIntent;)V
@@ -239,7 +221,7 @@
     .parameter "operation"
 
     .prologue
-    .line 140
+    .line 180
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -247,132 +229,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 143
+    .line 183
     :goto_0
     return-void
 
-    .line 141
-    :catch_0
-    move-exception v0
-
-    goto :goto_0
-.end method
-
-.method public setAlarmDynList(Ljava/lang/String;I)I
-    .locals 2
-    .parameter "pkg"
-    .parameter "type"
-
-    .prologue
-    .line 370
-    const/4 v0, 0x0
-
-    .line 372
-    .local v0, result:I
-    :try_start_0
-    iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v1, p1, p2}, Landroid/app/IAlarmManager;->setAlarmDynList(Ljava/lang/String;I)I
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v0
-
-    .line 375
-    :goto_0
-    return v0
-
-    .line 373
-    :catch_0
-    move-exception v1
-
-    goto :goto_0
-.end method
-
-.method public setAlarmHeartBeat(I)Z
-    .locals 2
-    .parameter "hb"
-
-    .prologue
-    .line 351
-    const/4 v0, 0x0
-
-    .line 353
-    .local v0, result:Z
-    :try_start_0
-    iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v1, p1}, Landroid/app/IAlarmManager;->setAlarmHeartBeat(I)Z
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v0
-
-    .line 356
-    :goto_0
-    return v0
-
-    .line 354
-    :catch_0
-    move-exception v1
-
-    goto :goto_0
-.end method
-
-.method public setAlarmPolicyState(Z)V
-    .locals 1
-    .parameter "flag"
-
-    .prologue
-    .line 336
-    :try_start_0
-    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v0, p1}, Landroid/app/IAlarmManager;->setAlarmPolicyState(Z)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 339
-    :goto_0
-    return-void
-
-    .line 337
-    :catch_0
-    move-exception v0
-
-    goto :goto_0
-.end method
-
-.method public setAlarmsPending(Ljava/util/List;ZI)V
-    .locals 1
-    .parameter
-    .parameter "pending"
-    .parameter "allAlarms"
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Ljava/util/List",
-            "<",
-            "Ljava/lang/String;",
-            ">;ZI)V"
-        }
-    .end annotation
-
-    .prologue
-    .line 394
-    .local p1, pkgList:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
-    :try_start_0
-    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v0, p1, p2, p3}, Landroid/app/IAlarmManager;->setAlarmsPending(Ljava/util/List;ZI)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 397
-    :goto_0
-    return-void
-
-    .line 395
+    .line 181
     :catch_0
     move-exception v0
 
@@ -387,7 +248,7 @@
     .parameter "operation"
 
     .prologue
-    .line 261
+    .line 325
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -403,35 +264,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 264
+    .line 328
     :goto_0
     return-void
 
-    .line 262
-    :catch_0
-    move-exception v0
-
-    goto :goto_0
-.end method
-
-.method public setPhbEnable(Z)V
-    .locals 1
-    .parameter "enable"
-
-    .prologue
-    .line 420
-    :try_start_0
-    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
-
-    invoke-interface {v0, p1}, Landroid/app/IAlarmManager;->setPhbEnable(Z)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 423
-    :goto_0
-    return-void
-
-    .line 421
+    .line 326
     :catch_0
     move-exception v0
 
@@ -446,7 +283,7 @@
     .parameter "operation"
 
     .prologue
-    .line 195
+    .line 235
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -462,11 +299,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 198
+    .line 238
     :goto_0
     return-void
 
-    .line 196
+    .line 236
     :catch_0
     move-exception v0
 
@@ -478,7 +315,7 @@
     .parameter "millis"
 
     .prologue
-    .line 291
+    .line 355
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -486,11 +323,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 294
+    .line 358
     :goto_0
     return-void
 
-    .line 292
+    .line 356
     :catch_0
     move-exception v0
 
@@ -502,7 +339,7 @@
     .parameter "timeZone"
 
     .prologue
-    .line 304
+    .line 368
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -510,11 +347,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 307
+    .line 371
     :goto_0
     return-void
 
-    .line 305
+    .line 369
     :catch_0
     move-exception v0
 

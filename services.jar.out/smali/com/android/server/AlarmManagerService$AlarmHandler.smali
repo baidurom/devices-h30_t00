@@ -21,8 +21,6 @@
 
 .field public static final MINUTE_CHANGE_EVENT:I = 0x2
 
-.field public static final TRIM_PKG_ALARM:I = 0x5
-
 
 # instance fields
 .field final synthetic this$0:Lcom/android/server/AlarmManagerService;
@@ -34,12 +32,12 @@
     .parameter
 
     .prologue
-    .line 1834
+    .line 1206
     iput-object p1, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 1835
+    .line 1207
     return-void
 .end method
 
@@ -50,99 +48,99 @@
     .parameter "msg"
 
     .prologue
-    const/4 v8, 0x1
-
-    .line 1838
+    .line 1210
     iget v6, p1, Landroid/os/Message;->what:I
 
-    if-ne v6, v8, :cond_1
+    const/4 v7, 0x1
 
-    .line 1839
+    if-ne v6, v7, :cond_1
+
+    .line 1211
     new-instance v5, Ljava/util/ArrayList;
 
     invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
 
-    .line 1840
+    .line 1212
     .local v5, triggerList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/AlarmManagerService$Alarm;>;"
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mLock:Ljava/lang/Object;
-    invoke-static {v6}, Lcom/android/server/AlarmManagerService;->access$1500(Lcom/android/server/AlarmManagerService;)Ljava/lang/Object;
+    invoke-static {v6}, Lcom/android/server/AlarmManagerService;->access$900(Lcom/android/server/AlarmManagerService;)Ljava/lang/Object;
 
     move-result-object v7
 
     monitor-enter v7
 
-    .line 1841
+    .line 1213
     :try_start_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
 
-    .line 1842
+    .line 1214
     .local v3, nowRTC:J
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mRtcWakeupAlarms:Ljava/util/ArrayList;
-    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1700(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
+    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1400(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
 
     move-result-object v8
 
     #calls: Lcom/android/server/AlarmManagerService;->triggerAlarmsLocked(Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
-    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2300(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
+    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2000(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
 
-    .line 1843
+    .line 1215
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mRtcAlarms:Ljava/util/ArrayList;
-    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1800(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
+    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1500(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
 
     move-result-object v8
 
     #calls: Lcom/android/server/AlarmManagerService;->triggerAlarmsLocked(Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
-    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2300(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
+    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2000(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
 
-    .line 1844
+    .line 1216
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mElapsedRealtimeWakeupAlarms:Ljava/util/ArrayList;
-    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1900(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
+    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1600(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
 
     move-result-object v8
 
     #calls: Lcom/android/server/AlarmManagerService;->triggerAlarmsLocked(Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
-    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2300(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
+    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2000(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
 
-    .line 1845
+    .line 1217
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     iget-object v8, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mElapsedRealtimeAlarms:Ljava/util/ArrayList;
-    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$2000(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
+    invoke-static {v8}, Lcom/android/server/AlarmManagerService;->access$1700(Lcom/android/server/AlarmManagerService;)Ljava/util/ArrayList;
 
     move-result-object v8
 
     #calls: Lcom/android/server/AlarmManagerService;->triggerAlarmsLocked(Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
-    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2300(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
+    invoke-static {v6, v8, v5, v3, v4}, Lcom/android/server/AlarmManagerService;->access$2000(Lcom/android/server/AlarmManagerService;Ljava/util/ArrayList;Ljava/util/ArrayList;J)V
 
-    .line 1846
+    .line 1218
     monitor-exit v7
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1849
+    .line 1221
     invoke-virtual {v5}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .line 1850
+    .line 1222
     .local v2, it:Ljava/util/Iterator;,"Ljava/util/Iterator<Lcom/android/server/AlarmManagerService$Alarm;>;"
     :cond_0
     :goto_0
@@ -150,16 +148,16 @@
 
     move-result v6
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_1
 
-    .line 1852
+    .line 1224
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/server/AlarmManagerService$Alarm;
 
-    .line 1854
+    .line 1226
     .local v0, alarm:Lcom/android/server/AlarmManagerService$Alarm;
     :try_start_1
     iget-object v6, v0, Lcom/android/server/AlarmManagerService$Alarm;->operation:Landroid/app/PendingIntent;
@@ -170,11 +168,11 @@
 
     goto :goto_0
 
-    .line 1855
+    .line 1227
     :catch_0
     move-exception v1
 
-    .line 1856
+    .line 1228
     .local v1, e:Landroid/app/PendingIntent$CanceledException;
     iget-wide v6, v0, Lcom/android/server/AlarmManagerService$Alarm;->repeatInterval:J
 
@@ -184,7 +182,7 @@
 
     if-lez v6, :cond_0
 
-    .line 1859
+    .line 1231
     iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
 
     iget-object v7, v0, Lcom/android/server/AlarmManagerService$Alarm;->operation:Landroid/app/PendingIntent;
@@ -193,7 +191,7 @@
 
     goto :goto_0
 
-    .line 1846
+    .line 1218
     .end local v0           #alarm:Lcom/android/server/AlarmManagerService$Alarm;
     .end local v1           #e:Landroid/app/PendingIntent$CanceledException;
     .end local v2           #it:Ljava/util/Iterator;,"Ljava/util/Iterator<Lcom/android/server/AlarmManagerService$Alarm;>;"
@@ -208,88 +206,8 @@
 
     throw v6
 
-    .line 1864
+    .line 1236
     .end local v5           #triggerList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/AlarmManagerService$Alarm;>;"
     :cond_1
-    iget v6, p1, Landroid/os/Message;->what:I
-
-    const/4 v7, 0x2
-
-    if-ne v6, v7, :cond_3
-
-    .line 1865
-    iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    #calls: Lcom/android/server/AlarmManagerService;->updatePendingWakeupAlarms()V
-    invoke-static {v6}, Lcom/android/server/AlarmManagerService;->access$3700(Lcom/android/server/AlarmManagerService;)V
-
-    .line 1877
-    :cond_2
-    :goto_1
     return-void
-
-    .line 1866
-    :cond_3
-    iget v6, p1, Landroid/os/Message;->what:I
-
-    const/4 v7, 0x3
-
-    if-ne v6, v7, :cond_4
-
-    .line 1867
-    iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    invoke-virtual {v6, v8}, Lcom/android/server/AlarmManagerService;->setPhbEnable(Z)V
-
-    goto :goto_1
-
-    .line 1868
-    :cond_4
-    iget v6, p1, Landroid/os/Message;->what:I
-
-    const/4 v7, 0x4
-
-    if-ne v6, v7, :cond_5
-
-    .line 1869
-    iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    const/4 v7, 0x0
-
-    invoke-virtual {v6, v7}, Lcom/android/server/AlarmManagerService;->setPhbEnable(Z)V
-
-    goto :goto_1
-
-    .line 1872
-    :cond_5
-    const/4 v6, 0x5
-
-    iget v7, p1, Landroid/os/Message;->what:I
-
-    if-ne v6, v7, :cond_2
-
-    .line 1873
-    iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    iget-object v7, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    #getter for: Lcom/android/server/AlarmManagerService;->mTrimAlarmPkg:Ljava/util/HashSet;
-    invoke-static {v7}, Lcom/android/server/AlarmManagerService;->access$3800(Lcom/android/server/AlarmManagerService;)Ljava/util/HashSet;
-
-    move-result-object v7
-
-    #calls: Lcom/android/server/AlarmManagerService;->removeByPkg(Ljava/util/HashSet;)V
-    invoke-static {v6, v7}, Lcom/android/server/AlarmManagerService;->access$3900(Lcom/android/server/AlarmManagerService;Ljava/util/HashSet;)V
-
-    .line 1874
-    iget-object v6, p0, Lcom/android/server/AlarmManagerService$AlarmHandler;->this$0:Lcom/android/server/AlarmManagerService;
-
-    #getter for: Lcom/android/server/AlarmManagerService;->mTrimAlarmPkg:Ljava/util/HashSet;
-    invoke-static {v6}, Lcom/android/server/AlarmManagerService;->access$3800(Lcom/android/server/AlarmManagerService;)Ljava/util/HashSet;
-
-    move-result-object v6
-
-    invoke-virtual {v6}, Ljava/util/HashSet;->clear()V
-
-    goto :goto_1
 .end method

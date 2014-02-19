@@ -151,6 +151,8 @@
 
 .field private mWifiIpoOff:Z
 
+.field private mWifiOffForQb:Z
+
 .field private final mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
 .field private mWifiStateMachineChannel:Lcom/android/internal/util/AsyncChannel;
@@ -239,6 +241,9 @@
     invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v3, p0, Lcom/android/server/WifiService;->mClients:Ljava/util/List;
+
+    .line 245
+    iput-boolean v5, p0, Lcom/android/server/WifiService;->mWifiOffForQb:Z
 
     .line 397
     new-instance v3, Landroid/os/WorkSource;
@@ -3853,7 +3858,7 @@
 
     const/4 v4, 0x0
 
-    .line 1294
+    .line 1264
     iget-object v6, p0, Lcom/android/server/WifiService;->mLocks:Lcom/android/server/WifiService$LockList;
 
     #calls: Lcom/android/server/WifiService$LockList;->hasLocks()Z
@@ -3861,32 +3866,32 @@
 
     move-result v0
 
-    .line 1295
+    .line 1265
     .local v0, lockHeld:Z
     const/4 v1, 0x1
 
-    .line 1299
+    .line 1269
     .local v1, strongestLockMode:I
     iget-boolean v6, p0, Lcom/android/server/WifiService;->mEmergencyCallbackMode:Z
 
     if-eqz v6, :cond_3
 
-    .line 1300
+    .line 1270
     const/4 v3, 0x0
 
-    .line 1305
+    .line 1275
     .local v3, wifiShouldBeStarted:Z
     :goto_0
     if-eqz v0, :cond_0
 
-    .line 1306
+    .line 1276
     const-string v6, "WifiService"
 
     const-string v7, "There is WifiLock being held!"
 
     invoke-static {v6, v7}, Lcom/mediatek/xlog/SXlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1307
+    .line 1277
     iget-object v6, p0, Lcom/android/server/WifiService;->mLocks:Lcom/android/server/WifiService$LockList;
 
     #calls: Lcom/android/server/WifiService$LockList;->getStrongestLockMode()I
@@ -3894,7 +3899,7 @@
 
     move-result v1
 
-    .line 1310
+    .line 1280
     :cond_0
     iget-boolean v6, p0, Lcom/android/server/WifiService;->mDeviceIdle:Z
 
@@ -3902,10 +3907,10 @@
 
     if-ne v1, v9, :cond_1
 
-    .line 1311
+    .line 1281
     const/4 v1, 0x1
 
-    .line 1314
+    .line 1284
     :cond_1
     iget-object v6, p0, Lcom/android/server/WifiService;->mAirplaneModeOn:Ljava/util/concurrent/atomic/AtomicBoolean;
 
@@ -3915,7 +3920,7 @@
 
     invoke-virtual {v6, v7}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 1317
+    .line 1287
     iget-object v6, p0, Lcom/android/server/WifiService;->mAirplaneModeOn:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v6}, Ljava/util/concurrent/atomic/AtomicBoolean;->get()Z
@@ -3924,14 +3929,14 @@
 
     if-eqz v6, :cond_2
 
-    .line 1318
+    .line 1288
     iget-object v6, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
     const/4 v7, 0x0
 
     invoke-virtual {v6, v7, v4}, Landroid/net/wifi/WifiStateMachine;->setWifiApEnabled(Landroid/net/wifi/WifiConfiguration;Z)V
 
-    .line 1321
+    .line 1291
     :cond_2
     invoke-direct {p0}, Lcom/android/server/WifiService;->shouldWifiBeEnabled()Z
 
@@ -3939,13 +3944,13 @@
 
     if-eqz v6, :cond_6
 
-    iget-boolean v6, p0, Lcom/android/server/WifiService;->mWifiIpoOff:Z
+    iget-boolean v6, p0, Lcom/android/server/WifiService;->mWifiOffForQb:Z
 
     if-nez v6, :cond_6
 
     move v2, v5
 
-    .line 1322
+    .line 1292
     .local v2, wifiShouldBeEnabled:Z
     :goto_1
     const-string v6, "WifiService"
@@ -3974,13 +3979,13 @@
 
     move-result-object v7
 
-    const-string v8, ", mWifiIpoOff:"
+    const-string v8, ", mWifiOffForQb:"
 
     invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v7
 
-    iget-boolean v8, p0, Lcom/android/server/WifiService;->mWifiIpoOff:Z
+    iget-boolean v8, p0, Lcom/android/server/WifiService;->mWifiOffForQb:Z
 
     invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
@@ -3992,21 +3997,21 @@
 
     invoke-static {v6, v7}, Lcom/mediatek/xlog/SXlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1324
+    .line 1294
     if-eqz v2, :cond_a
 
-    .line 1325
+    .line 1295
     if-eqz v3, :cond_9
 
-    .line 1326
+    .line 1296
     invoke-direct {p0}, Lcom/android/server/WifiService;->reportStartWorkSource()V
 
-    .line 1327
+    .line 1297
     iget-object v6, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
     invoke-virtual {v6, v5}, Landroid/net/wifi/WifiStateMachine;->setWifiEnabled(Z)V
 
-    .line 1328
+    .line 1298
     iget-object v7, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
     if-ne v1, v9, :cond_7
@@ -4016,14 +4021,14 @@
     :goto_2
     invoke-virtual {v7, v6}, Landroid/net/wifi/WifiStateMachine;->setScanOnlyMode(Z)V
 
-    .line 1330
+    .line 1300
     iget-object v6, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
     iget-boolean v7, p0, Lcom/android/server/WifiService;->mEmergencyCallbackMode:Z
 
     invoke-virtual {v6, v5, v7}, Landroid/net/wifi/WifiStateMachine;->setDriverStart(ZZ)V
 
-    .line 1331
+    .line 1301
     iget-object v6, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
     const/4 v7, 0x3
@@ -4033,11 +4038,11 @@
     :goto_3
     invoke-virtual {v6, v5}, Landroid/net/wifi/WifiStateMachine;->setHighPerfModeEnabled(Z)V
 
-    .line 1339
+    .line 1309
     :goto_4
     return-void
 
-    .line 1302
+    .line 1272
     .end local v2           #wifiShouldBeEnabled:Z
     .end local v3           #wifiShouldBeStarted:Z
     :cond_3
@@ -4064,23 +4069,23 @@
     :cond_6
     move v2, v4
 
-    .line 1321
+    .line 1291
     goto :goto_1
 
     .restart local v2       #wifiShouldBeEnabled:Z
     :cond_7
     move v6, v4
 
-    .line 1328
+    .line 1298
     goto :goto_2
 
     :cond_8
     move v5, v4
 
-    .line 1331
+    .line 1301
     goto :goto_3
 
-    .line 1334
+    .line 1304
     :cond_9
     iget-object v5, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
@@ -4090,7 +4095,7 @@
 
     goto :goto_4
 
-    .line 1337
+    .line 1307
     :cond_a
     iget-object v5, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
 
@@ -7513,6 +7518,154 @@
     goto :goto_1
 .end method
 
+.method public declared-synchronized setWifiEnabledForQb(Z)Z
+    .locals 4
+    .parameter "enable"
+
+    .prologue
+    const/4 v3, 0x1
+
+    .line 735
+    monitor-enter p0
+
+    :try_start_0
+    invoke-direct {p0}, Lcom/android/server/WifiService;->enforceChangePermission()V
+
+    .line 736
+    const-string v0, "WifiService"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "setWifiEnabled: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " pid="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-static {}, Landroid/os/Binder;->getCallingPid()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, ", uid="
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-static {}, Landroid/os/Binder;->getCallingUid()I
+
+    move-result v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 739
+    if-eqz p1, :cond_1
+
+    .line 740
+    invoke-direct {p0}, Lcom/android/server/WifiService;->reportStartWorkSource()V
+
+    .line 741
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/android/server/WifiService;->mWifiOffForQb:Z
+
+    .line 746
+    :goto_0
+    iget-object v0, p0, Lcom/android/server/WifiService;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
+
+    invoke-virtual {v0, p1}, Landroid/net/wifi/WifiStateMachine;->setWifiEnabled(Z)V
+
+    .line 748
+    if-eqz p1, :cond_2
+
+    .line 749
+    iget-boolean v0, p0, Lcom/android/server/WifiService;->mIsReceiverRegistered:Z
+
+    if-nez v0, :cond_0
+
+    .line 750
+    invoke-direct {p0}, Lcom/android/server/WifiService;->registerForBroadcasts()V
+
+    .line 751
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lcom/android/server/WifiService;->mIsReceiverRegistered:Z
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 758
+    :cond_0
+    :goto_1
+    monitor-exit p0
+
+    return v3
+
+    .line 743
+    :cond_1
+    const/4 v0, 0x1
+
+    :try_start_1
+    iput-boolean v0, p0, Lcom/android/server/WifiService;->mWifiOffForQb:Z
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    goto :goto_0
+
+    .line 735
+    :catchall_0
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
+
+    .line 753
+    :cond_2
+    :try_start_2
+    iget-boolean v0, p0, Lcom/android/server/WifiService;->mIsReceiverRegistered:Z
+
+    if-eqz v0, :cond_0
+
+    .line 754
+    iget-object v0, p0, Lcom/android/server/WifiService;->mContext:Landroid/content/Context;
+
+    iget-object v1, p0, Lcom/android/server/WifiService;->mReceiver:Landroid/content/BroadcastReceiver;
+
+    invoke-virtual {v0, v1}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+
+    .line 755
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Lcom/android/server/WifiService;->mIsReceiverRegistered:Z
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    goto :goto_1
+.end method
 .method public startApWps(Landroid/net/wifi/WpsInfo;)V
     .locals 1
     .parameter "config"

@@ -1,11 +1,14 @@
 .class Lcom/android/server/net/NetworkStatsService$10;
-.super Ljava/lang/Thread;
+.super Ljava/lang/Object;
 .source "NetworkStatsService.java"
+
+# interfaces
+.implements Landroid/os/Handler$Callback;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/server/net/NetworkStatsService;->performPoll(I)V
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/server/net/NetworkStatsService;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -24,30 +27,71 @@
     .parameter
 
     .prologue
-    .line 1019
+    .line 1318
     iput-object p1, p0, Lcom/android/server/net/NetworkStatsService$10;->this$0:Lcom/android/server/net/NetworkStatsService;
 
-    invoke-direct {p0}, Ljava/lang/Thread;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public run()V
-    .locals 1
+.method public handleMessage(Landroid/os/Message;)Z
+    .locals 3
+    .parameter "msg"
 
     .prologue
-    .line 1022
-    iget-object v0, p0, Lcom/android/server/net/NetworkStatsService$10;->this$0:Lcom/android/server/net/NetworkStatsService;
+    const/4 v1, 0x1
 
-    #getter for: Lcom/android/server/net/NetworkStatsService;->mTime:Landroid/util/TrustedTime;
-    invoke-static {v0}, Lcom/android/server/net/NetworkStatsService;->access$1700(Lcom/android/server/net/NetworkStatsService;)Landroid/util/TrustedTime;
+    .line 1321
+    iget v2, p1, Landroid/os/Message;->what:I
 
-    move-result-object v0
+    packed-switch v2, :pswitch_data_0
 
-    invoke-interface {v0}, Landroid/util/TrustedTime;->forceRefresh()Z
+    .line 1336
+    const/4 v1, 0x0
 
-    .line 1023
-    return-void
+    :goto_0
+    return v1
+
+    .line 1323
+    :pswitch_0
+    iget v0, p1, Landroid/os/Message;->arg1:I
+
+    .line 1324
+    .local v0, flags:I
+    iget-object v2, p0, Lcom/android/server/net/NetworkStatsService$10;->this$0:Lcom/android/server/net/NetworkStatsService;
+
+    #calls: Lcom/android/server/net/NetworkStatsService;->performPoll(I)V
+    invoke-static {v2, v0}, Lcom/android/server/net/NetworkStatsService;->access$900(Lcom/android/server/net/NetworkStatsService;I)V
+
+    goto :goto_0
+
+    .line 1328
+    .end local v0           #flags:I
+    :pswitch_1
+    iget-object v2, p0, Lcom/android/server/net/NetworkStatsService$10;->this$0:Lcom/android/server/net/NetworkStatsService;
+
+    #calls: Lcom/android/server/net/NetworkStatsService;->updateIfaces()V
+    invoke-static {v2}, Lcom/android/server/net/NetworkStatsService;->access$800(Lcom/android/server/net/NetworkStatsService;)V
+
+    goto :goto_0
+
+    .line 1332
+    :pswitch_2
+    iget-object v2, p0, Lcom/android/server/net/NetworkStatsService$10;->this$0:Lcom/android/server/net/NetworkStatsService;
+
+    #calls: Lcom/android/server/net/NetworkStatsService;->registerGlobalAlert()V
+    invoke-static {v2}, Lcom/android/server/net/NetworkStatsService;->access$1000(Lcom/android/server/net/NetworkStatsService;)V
+
+    goto :goto_0
+
+    .line 1321
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_0
+        :pswitch_1
+        :pswitch_2
+    .end packed-switch
 .end method

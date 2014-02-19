@@ -15,72 +15,27 @@
 
 
 # instance fields
-.field aggregateTime:J
-
 .field count:I
-
-.field mAdjust:I
-
-.field mBroadcastStats:Lcom/android/server/AlarmManagerService$BroadcastStats;
-
-.field mIntentTimeOutHistory:Lcom/android/server/AlarmManagerService$AlarmPolicy$IntentTimeOutHistory;
-
-.field mRecordRTCTime:J
-
-.field final mTarget:Landroid/util/Pair;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Landroid/util/Pair",
-            "<",
-            "Ljava/lang/String;",
-            "Landroid/content/ComponentName;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field nesting:I
-
-.field numWakeup:I
-
-.field startTime:J
 
 
 # direct methods
-.method constructor <init>(Lcom/android/server/AlarmManagerService$BroadcastStats;Landroid/util/Pair;)V
-    .locals 1
-    .parameter "broadcastStats"
-    .parameter
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Lcom/android/server/AlarmManagerService$BroadcastStats;",
-            "Landroid/util/Pair",
-            "<",
-            "Ljava/lang/String;",
-            "Landroid/content/ComponentName;",
-            ">;)V"
-        }
-    .end annotation
+.method private constructor <init>()V
+    .locals 0
 
     .prologue
-    .line 302
-    .local p2, target:Landroid/util/Pair;,"Landroid/util/Pair<Ljava/lang/String;Landroid/content/ComponentName;>;"
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    .line 156
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 303
-    iput-object p1, p0, Lcom/android/server/AlarmManagerService$FilterStats;->mBroadcastStats:Lcom/android/server/AlarmManagerService$BroadcastStats;
+    return-void
+.end method
 
-    .line 304
-    iput-object p2, p0, Lcom/android/server/AlarmManagerService$FilterStats;->mTarget:Landroid/util/Pair;
+.method synthetic constructor <init>(Lcom/android/server/AlarmManagerService$1;)V
+    .locals 0
+    .parameter "x0"
 
-    .line 305
-    new-instance v0, Lcom/android/server/AlarmManagerService$AlarmPolicy$IntentTimeOutHistory;
+    .prologue
+    .line 156
+    invoke-direct {p0}, Lcom/android/server/AlarmManagerService$FilterStats;-><init>()V
 
-    invoke-direct {v0}, Lcom/android/server/AlarmManagerService$AlarmPolicy$IntentTimeOutHistory;-><init>()V
-
-    iput-object v0, p0, Lcom/android/server/AlarmManagerService$FilterStats;->mIntentTimeOutHistory:Lcom/android/server/AlarmManagerService$AlarmPolicy$IntentTimeOutHistory;
-
-    .line 306
     return-void
 .end method

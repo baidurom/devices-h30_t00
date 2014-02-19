@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="global_action_reboot">Reboot</string>
+    <string name="reboot_confirm">Your phone will reboot.</string>
+    <add-resource type="string" name="reboot_confirm_question" />
+    <string name="reboot_confirm_question">Would you like to reboot?</string>
+
+</resources>

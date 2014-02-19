@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/server/BatteryService$Led;
+        Lcom/android/server/BatteryService$Led;,
+        Lcom/android/server/BatteryService$QuickbootBroadcastReceiver;
     }
 .end annotation
 
@@ -106,6 +107,8 @@
 
 .field private final mInvalidChargerObserver:Landroid/os/UEventObserver;
 
+.field private mIsQbShutdown:Z
+
 .field private mLastBatteryHealth:I
 
 .field private mLastBatteryLevel:I
@@ -137,6 +140,8 @@
 .field private mPlugType:I
 
 .field private final mPowerSupplyObserver:Landroid/os/UEventObserver;
+
+.field private mQuickBoot:Lcom/baidu/service/IQuickBootService;
 
 .field private mSentBatteryTempAbnormalBroadcast:Z
 
@@ -238,6 +243,9 @@
 
     .line 186
     iput-boolean v2, p0, Lcom/android/server/BatteryService;->LowLevelFlag:Z
+
+    .line 174
+    iput-boolean v2, p0, Lcom/android/server/BatteryService;->mIsQbShutdown:Z
 
     .line 823
     new-instance v1, Lcom/android/server/BatteryService$13;
@@ -406,6 +414,9 @@
 
     invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
+    .line 233
+    invoke-direct {p0}, Lcom/android/server/BatteryService;->registerQbReceiver()V
+
     .line 245
     return-void
 
@@ -466,6 +477,17 @@
     iput p1, p0, Lcom/android/server/BatteryService;->mInvalidCharger:I
 
     return p1
+.end method
+
+.method static synthetic access$1004(Lcom/android/server/BatteryService;)Lcom/android/server/BatteryService$Led;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 89
+    iget-object v0, p0, Lcom/android/server/BatteryService;->mLed:Lcom/android/server/BatteryService$Led;
+
+    return-object v0
 .end method
 
 .method static synthetic access$102(Lcom/android/server/BatteryService;Z)Z
@@ -571,6 +593,16 @@
     return p1
 .end method
 
+.method static synthetic access$2400()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    .line 89
+    sget-object v0, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    return-object v0
+.end method
+
 .method static synthetic access$202(Lcom/android/server/BatteryService;I)I
     .locals 0
     .parameter "x0"
@@ -616,6 +648,29 @@
     return-object v0
 .end method
 
+.method static synthetic access$502(Lcom/android/server/BatteryService;Z)Z
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    .line 89
+    iput-boolean p1, p0, Lcom/android/server/BatteryService;->mIsQbShutdown:Z
+
+    return p1
+.end method
+
+.method static synthetic access$600(Lcom/android/server/BatteryService;)Lcom/baidu/service/IQuickBootService;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 89
+    iget-object v0, p0, Lcom/android/server/BatteryService;->mQuickBoot:Lcom/baidu/service/IQuickBootService;
+
+    return-object v0
+.end method
+
 .method static synthetic access$602(Lcom/android/server/BatteryService;Z)Z
     .locals 0
     .parameter "x0"
@@ -626,6 +681,18 @@
     iput-boolean p1, p0, Lcom/android/server/BatteryService;->mSentChargeVoltageBroadcast:Z
 
     return p1
+.end method
+
+.method static synthetic access$604(Lcom/android/server/BatteryService;Lcom/baidu/service/IQuickBootService;)Lcom/baidu/service/IQuickBootService;
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    .line 89
+    iput-object p1, p0, Lcom/android/server/BatteryService;->mQuickBoot:Lcom/baidu/service/IQuickBootService;
+
+    return-object p1
 .end method
 
 .method static synthetic access$700(Lcom/android/server/BatteryService;)I
@@ -651,6 +718,17 @@
     return p1
 .end method
 
+.method static synthetic access$800(Lcom/android/server/BatteryService;)I
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    .line 89
+    iget v0, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    return v0
+.end method
+
 .method static synthetic access$900(Lcom/android/server/BatteryService;)Ljava/lang/Object;
     .locals 1
     .parameter "x0"
@@ -660,6 +738,19 @@
     iget-object v0, p0, Lcom/android/server/BatteryService;->mLock:Ljava/lang/Object;
 
     return-object v0
+.end method
+
+.method static synthetic access$902(Lcom/android/server/BatteryService;IZ)V
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+    .parameter "x2"
+
+    .prologue
+    .line 89
+    invoke-direct {p0, p1, p2}, Lcom/android/server/BatteryService;->notifyQbService(IZ)V
+
+    return-void
 .end method
 
 .method private getIconLocked(I)I
@@ -1422,6 +1513,77 @@
 .end method
 
 .method private native native_update()V
+.end method
+
+.method private notifyQbService(IZ)V
+    .locals 4
+    .parameter "batteryLevel"
+    .parameter "charged"
+
+    .prologue
+    .line 297
+    :try_start_0
+    iget-object v1, p0, Lcom/android/server/BatteryService;->mQuickBoot:Lcom/baidu/service/IQuickBootService;
+
+    if-eqz v1, :cond_0
+
+    .line 298
+    sget-object v1, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Notify the QuickBootService device is charged now? "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 299
+    iget-object v1, p0, Lcom/android/server/BatteryService;->mQuickBoot:Lcom/baidu/service/IQuickBootService;
+
+    invoke-interface {v1, p1, p2}, Lcom/baidu/service/IQuickBootService;->notifyBatteryStatus(IZ)V
+
+    .line 306
+    :goto_0
+    return-void
+
+    .line 301
+    :cond_0
+    sget-object v1, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    const-string v2, "The QuickBootService is null"
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 303
+    :catch_0
+    move-exception v0
+
+    .line 304
+    .local v0, e:Landroid/os/RemoteException;
+    sget-object v1, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    const-string v2, "RemoteException when notify the QuickBootService the plugge state:"
+
+    invoke-static {v1, v2, v0}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    goto :goto_0
 .end method
 
 .method private processValuesLocked()V
@@ -2272,6 +2434,214 @@
     goto/16 :goto_2
 .end method
 
+.method private processValuesWhileQbShutdown()V
+    .locals 7
+
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    .line 271
+    iget-boolean v4, p0, Lcom/android/server/BatteryService;->mAcOnline:Z
+
+    if-eqz v4, :cond_2
+
+    .line 272
+    iput v2, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    .line 280
+    :goto_0
+    sget-object v4, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    new-instance v5, Ljava/lang/StringBuilder;
+
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v6, "mPlugType is: "
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    iget v6, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v5}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 281
+    iget v4, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    if-eqz v4, :cond_5
+
+    move v1, v2
+
+    .line 282
+    .local v1, plugged:Z
+    :goto_1
+    iget v4, p0, Lcom/android/server/BatteryService;->mLastPlugType:I
+
+    if-eqz v4, :cond_6
+
+    move v0, v2
+
+    .line 284
+    .local v0, oldPlugged:Z
+    :goto_2
+    if-ne v1, v0, :cond_0
+
+    iget v2, p0, Lcom/android/server/BatteryService;->mBatteryLevel:I
+
+    iget v3, p0, Lcom/android/server/BatteryService;->mLastBatteryLevel:I
+
+    if-eq v2, v3, :cond_1
+
+    .line 285
+    :cond_0
+    sget-object v2, Lcom/android/server/BatteryService;->TAG:Ljava/lang/String;
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "Device is charged before: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, ", and now: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 286
+    iget v2, p0, Lcom/android/server/BatteryService;->mBatteryLevel:I
+
+    invoke-direct {p0, v2, v1}, Lcom/android/server/BatteryService;->notifyQbService(IZ)V
+
+    .line 289
+    :cond_1
+    iget-object v2, p0, Lcom/android/server/BatteryService;->mLed:Lcom/android/server/BatteryService$Led;
+
+    invoke-virtual {v2}, Lcom/android/server/BatteryService$Led;->updateQbLights()V
+
+    .line 291
+    iget v2, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    iput v2, p0, Lcom/android/server/BatteryService;->mLastPlugType:I
+
+    .line 292
+    iget v2, p0, Lcom/android/server/BatteryService;->mBatteryLevel:I
+
+    iput v2, p0, Lcom/android/server/BatteryService;->mLastBatteryLevel:I
+
+    .line 293
+    return-void
+
+    .line 273
+    .end local v0           #oldPlugged:Z
+    .end local v1           #plugged:Z
+    :cond_2
+    iget-boolean v4, p0, Lcom/android/server/BatteryService;->mUsbOnline:Z
+
+    if-eqz v4, :cond_3
+
+    .line 274
+    const/4 v4, 0x2
+
+    iput v4, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    goto :goto_0
+
+    .line 275
+    :cond_3
+    iget-boolean v4, p0, Lcom/android/server/BatteryService;->mWirelessOnline:Z
+
+    if-eqz v4, :cond_4
+
+    .line 276
+    const/4 v4, 0x4
+
+    iput v4, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    goto :goto_0
+
+    .line 278
+    :cond_4
+    iput v3, p0, Lcom/android/server/BatteryService;->mPlugType:I
+
+    goto :goto_0
+
+    :cond_5
+    move v1, v3
+
+    .line 281
+    goto :goto_1
+
+    .restart local v1       #plugged:Z
+    :cond_6
+    move v0, v3
+
+    .line 282
+    goto :goto_2
+.end method
+
+.method private registerQbReceiver()V
+    .locals 3
+
+    .prologue
+    .line 239
+    new-instance v0, Landroid/content/IntentFilter;
+
+    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+
+    .line 240
+    .local v0, filter:Landroid/content/IntentFilter;
+    const-string v1, "android.intent.action.ACTION_QUICKBOOT_SHUTDOWN"
+
+    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 241
+    const-string v1, "android.intent.action.ACTION_QUICKBOOT_BOOT"
+
+    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 242
+    iget-object v1, p0, Lcom/android/server/BatteryService;->mContext:Landroid/content/Context;
+
+    new-instance v2, Lcom/android/server/BatteryService$QuickbootBroadcastReceiver;
+
+    invoke-direct {v2, p0}, Lcom/android/server/BatteryService$QuickbootBroadcastReceiver;-><init>(Lcom/android/server/BatteryService;)V
+
+    invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+
+    .line 243
+    return-void
+.end method
+
 .method private sendIntentLocked()V
     .locals 4
 
@@ -2516,6 +2886,17 @@
 
     .line 370
     :cond_1
+    iget-boolean v0, p0, Lcom/android/server/BatteryService;->mIsQbShutdown:Z
+
+    if-eqz v0, :cond_2
+
+    .line 421
+    invoke-direct {p0}, Lcom/android/server/BatteryService;->processValuesWhileQbShutdown()V
+
+    goto :goto_0
+
+    .line 426
+    :cond_2
     invoke-direct {p0}, Lcom/android/server/BatteryService;->processValuesLocked()V
 
     goto :goto_0

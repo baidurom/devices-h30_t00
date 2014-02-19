@@ -27,13 +27,13 @@
     .parameter "remote"
 
     .prologue
-    .line 614
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    .line 624
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 615
+    .line 625
     iput-object p1, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    .line 616
+    .line 626
     return-void
 .end method
 
@@ -50,60 +50,60 @@
     .end annotation
 
     .prologue
-    .line 1074
+    .line 1104
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1075
+    .line 1105
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1077
+    .line 1107
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1078
+    .line 1108
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    .line 1079
+    .line 1109
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 1080
+    .line 1110
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x1a
+    const/16 v3, 0x1b
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1081
+    .line 1111
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1084
+    .line 1114
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1085
+    .line 1115
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1087
+    .line 1117
     return-void
 
-    .line 1084
+    .line 1114
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1085
+    .line 1115
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -126,60 +126,60 @@
 
     const/4 v3, 0x0
 
-    .line 976
+    .line 1006
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 977
+    .line 1007
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 980
+    .line 1010
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 981
+    .line 1011
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    .line 982
+    .line 1012
     invoke-virtual {v0, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 983
+    .line 1013
     invoke-virtual {v0, p3}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 984
+    .line 1014
     if-eqz p4, :cond_0
 
-    .line 985
+    .line 1015
     const/4 v4, 0x1
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 986
+    .line 1016
     const/4 v4, 0x0
 
     invoke-virtual {p4, v0, v4}, Landroid/os/WorkSource;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 991
+    .line 1021
     :goto_0
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x15
+    const/16 v5, 0x16
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 992
+    .line 1022
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 993
+    .line 1023
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -188,18 +188,18 @@
 
     if-eqz v4, :cond_1
 
-    .line 996
+    .line 1026
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 997
+    .line 1027
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 999
+    .line 1029
     return v2
 
-    .line 989
+    .line 1019
     .end local v2           #_result:Z
     :cond_0
     const/4 v4, 0x0
@@ -211,13 +211,13 @@
 
     goto :goto_0
 
-    .line 996
+    .line 1026
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 997
+    .line 1027
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -225,7 +225,7 @@
     :cond_1
     move v2, v3
 
-    .line 993
+    .line 1023
     goto :goto_1
 .end method
 
@@ -239,38 +239,38 @@
     .end annotation
 
     .prologue
-    .line 644
+    .line 654
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 645
+    .line 655
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 648
+    .line 658
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 649
+    .line 659
     if-eqz p1, :cond_0
 
-    .line 650
+    .line 660
     const/4 v3, 0x1
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 651
+    .line 661
     const/4 v3, 0x0
 
     invoke-virtual {p1, v0, v3}, Landroid/net/wifi/WifiConfiguration;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 656
+    .line 666
     :goto_0
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
@@ -280,27 +280,27 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 657
+    .line 667
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 658
+    .line 668
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result v2
 
-    .line 661
+    .line 671
     .local v2, _result:I
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 662
+    .line 672
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 664
+    .line 674
     return v2
 
-    .line 654
+    .line 664
     .end local v2           #_result:I
     :cond_0
     const/4 v3, 0x0
@@ -312,13 +312,13 @@
 
     goto :goto_0
 
-    .line 661
+    .line 671
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 662
+    .line 672
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -334,57 +334,57 @@
     .end annotation
 
     .prologue
-    .line 1214
+    .line 1244
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1215
+    .line 1245
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1217
+    .line 1247
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1218
+    .line 1248
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 1219
+    .line 1249
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x22
+    const/16 v3, 0x23
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1220
+    .line 1250
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1223
+    .line 1253
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1224
+    .line 1254
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1226
+    .line 1256
     return-void
 
-    .line 1223
+    .line 1253
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1224
+    .line 1254
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -394,7 +394,7 @@
     .locals 1
 
     .prologue
-    .line 619
+    .line 629
     iget-object v0, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     return-object v0
@@ -414,51 +414,51 @@
 
     const/4 v3, 0x0
 
-    .line 1510
+    .line 1540
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1511
+    .line 1541
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1514
+    .line 1544
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1515
+    .line 1545
     if-eqz p1, :cond_0
 
-    .line 1516
+    .line 1546
     const/4 v4, 0x1
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1517
+    .line 1547
     const/4 v4, 0x0
 
     invoke-virtual {p1, v0, v4}, Landroid/net/wifi/HotspotClient;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1522
+    .line 1552
     :goto_0
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x31
+    const/16 v5, 0x32
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1523
+    .line 1553
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1524
+    .line 1554
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -467,18 +467,18 @@
 
     if-eqz v4, :cond_1
 
-    .line 1527
+    .line 1557
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1528
+    .line 1558
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1530
+    .line 1560
     return v2
 
-    .line 1520
+    .line 1550
     .end local v2           #_result:Z
     :cond_0
     const/4 v4, 0x0
@@ -490,13 +490,13 @@
 
     goto :goto_0
 
-    .line 1527
+    .line 1557
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1528
+    .line 1558
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -504,7 +504,7 @@
     :cond_1
     move v2, v3
 
-    .line 1524
+    .line 1554
     goto :goto_1
 .end method
 
@@ -517,54 +517,54 @@
     .end annotation
 
     .prologue
-    .line 1304
+    .line 1334
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1305
+    .line 1335
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1307
+    .line 1337
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1308
+    .line 1338
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x27
+    const/16 v3, 0x28
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1309
+    .line 1339
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1312
+    .line 1342
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1313
+    .line 1343
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1315
+    .line 1345
     return-void
 
-    .line 1312
+    .line 1342
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1313
+    .line 1343
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -579,54 +579,54 @@
     .end annotation
 
     .prologue
-    .line 1229
+    .line 1259
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1230
+    .line 1260
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1232
+    .line 1262
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1233
+    .line 1263
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x23
+    const/16 v3, 0x24
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1234
+    .line 1264
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1237
+    .line 1267
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1238
+    .line 1268
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1240
+    .line 1270
     return-void
 
-    .line 1237
+    .line 1267
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1238
+    .line 1268
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -644,28 +644,28 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 705
+    .line 715
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 706
+    .line 716
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 709
+    .line 719
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 710
+    .line 720
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 711
+    .line 721
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v4, 0x5
@@ -674,10 +674,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 712
+    .line 722
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 713
+    .line 723
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -688,25 +688,25 @@
 
     const/4 v2, 0x1
 
-    .line 716
+    .line 726
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 717
+    .line 727
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 719
+    .line 729
     return v2
 
-    .line 716
+    .line 726
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 717
+    .line 727
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -721,25 +721,25 @@
     .end annotation
 
     .prologue
-    .line 772
+    .line 782
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 773
+    .line 783
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 775
+    .line 785
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 776
+    .line 786
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v3, 0x9
@@ -748,33 +748,33 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 777
+    .line 787
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 780
+    .line 790
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 781
+    .line 791
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 783
+    .line 793
     return-void
 
-    .line 780
+    .line 790
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 781
+    .line 791
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
 .end method
 
-.method public doCtiaTestOff()Z
+.method public doCTIATestOff()Z
     .locals 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -785,25 +785,101 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1362
+    .line 1392
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1363
+    .line 1393
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1366
+    .line 1396
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1367
+    .line 1397
+    iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    const/16 v4, 0x2b
+
+    const/4 v5, 0x0
+
+    invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+
+    .line 1398
+    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+
+    .line 1399
+    invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    const/4 v2, 0x1
+
+    .line 1402
+    .local v2, _result:Z
+    :cond_0
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 1403
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 1405
+    return v2
+
+    .line 1402
+    .end local v2           #_result:Z
+    :catchall_0
+    move-exception v3
+
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 1403
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    throw v3
+.end method
+
+.method public doCTIATestOn()Z
+    .locals 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 1372
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v0
+
+    .line 1373
+    .local v0, _data:Landroid/os/Parcel;
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v1
+
+    .line 1376
+    .local v1, _reply:Landroid/os/Parcel;
+    :try_start_0
+    const-string v3, "android.net.wifi.IWifiManager"
+
+    invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
+
+    .line 1377
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v4, 0x2a
@@ -812,10 +888,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1368
+    .line 1378
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1369
+    .line 1379
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -826,107 +902,31 @@
 
     const/4 v2, 0x1
 
-    .line 1372
+    .line 1382
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1373
+    .line 1383
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1375
+    .line 1385
     return v2
 
-    .line 1372
+    .line 1382
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1373
+    .line 1383
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
 .end method
 
-.method public doCtiaTestOn()Z
-    .locals 6
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .prologue
-    const/4 v2, 0x0
-
-    .line 1342
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v0
-
-    .line 1343
-    .local v0, _data:Landroid/os/Parcel;
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v1
-
-    .line 1346
-    .local v1, _reply:Landroid/os/Parcel;
-    :try_start_0
-    const-string v3, "android.net.wifi.IWifiManager"
-
-    invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
-
-    .line 1347
-    iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
-
-    const/16 v4, 0x29
-
-    const/4 v5, 0x0
-
-    invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-
-    .line 1348
-    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-
-    .line 1349
-    invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    move-result v3
-
-    if-eqz v3, :cond_0
-
-    const/4 v2, 0x1
-
-    .line 1352
-    .local v2, _result:Z
-    :cond_0
-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
-
-    .line 1353
-    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
-
-    .line 1355
-    return v2
-
-    .line 1352
-    .end local v2           #_result:Z
-    :catchall_0
-    move-exception v3
-
-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
-
-    .line 1353
-    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
-
-    throw v3
-.end method
-
-.method public doCtiaTestRate(I)Z
+.method public doCTIATestRate(I)Z
     .locals 6
     .parameter "rate"
     .annotation system Ldalvik/annotation/Throws;
@@ -938,40 +938,40 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1382
+    .line 1412
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1383
+    .line 1413
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1386
+    .line 1416
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1387
+    .line 1417
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1388
+    .line 1418
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x2b
+    const/16 v4, 0x2c
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1389
+    .line 1419
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1390
+    .line 1420
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -982,25 +982,25 @@
 
     const/4 v2, 0x1
 
-    .line 1393
+    .line 1423
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1394
+    .line 1424
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1396
+    .line 1426
     return v2
 
-    .line 1393
+    .line 1423
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1394
+    .line 1424
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1021,28 +1021,28 @@
 
     const/4 v3, 0x0
 
-    .line 686
+    .line 696
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 687
+    .line 697
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 690
+    .line 700
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 691
+    .line 701
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 692
+    .line 702
     if-eqz p2, :cond_0
 
     move v4, v2
@@ -1050,7 +1050,7 @@
     :goto_0
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 693
+    .line 703
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v5, 0x4
@@ -1059,10 +1059,10 @@
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 694
+    .line 704
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 695
+    .line 705
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -1071,37 +1071,37 @@
 
     if-eqz v4, :cond_1
 
-    .line 698
+    .line 708
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 699
+    .line 709
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 701
+    .line 711
     return v2
 
     .end local v2           #_result:Z
     :cond_0
     move v4, v3
 
-    .line 692
+    .line 702
     goto :goto_0
 
     :cond_1
     move v2, v3
 
-    .line 695
+    .line 705
     goto :goto_1
 
-    .line 698
+    .line 708
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 699
+    .line 709
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1116,61 +1116,61 @@
     .end annotation
 
     .prologue
-    .line 1322
+    .line 1352
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1323
+    .line 1353
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1326
+    .line 1356
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1327
+    .line 1357
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x28
+    const/16 v4, 0x29
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1328
+    .line 1358
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1329
+    .line 1359
     invoke-virtual {v1}, Landroid/os/Parcel;->createStringArray()[Ljava/lang/String;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result-object v2
 
-    .line 1332
+    .line 1362
     .local v2, _result:[Ljava/lang/String;
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1333
+    .line 1363
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1335
+    .line 1365
     return-object v2
 
-    .line 1332
+    .line 1362
     .end local v2           #_result:[Ljava/lang/String;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1333
+    .line 1363
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1186,64 +1186,64 @@
     .end annotation
 
     .prologue
-    .line 1489
+    .line 1519
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1490
+    .line 1520
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1493
+    .line 1523
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1494
+    .line 1524
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 1495
+    .line 1525
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x30
+    const/16 v4, 0x31
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1496
+    .line 1526
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1497
+    .line 1527
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result-object v2
 
-    .line 1500
+    .line 1530
     .local v2, _result:Ljava/lang/String;
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1501
+    .line 1531
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1503
+    .line 1533
     return-object v2
 
-    .line 1500
+    .line 1530
     .end local v2           #_result:Ljava/lang/String;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1501
+    .line 1531
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1258,61 +1258,61 @@
     .end annotation
 
     .prologue
-    .line 1287
+    .line 1317
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1288
+    .line 1318
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1291
+    .line 1321
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1292
+    .line 1322
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x26
+    const/16 v4, 0x27
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1293
+    .line 1323
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1294
+    .line 1324
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result-object v2
 
-    .line 1297
+    .line 1327
     .local v2, _result:Ljava/lang/String;
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1298
+    .line 1328
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1300
+    .line 1330
     return-object v2
 
-    .line 1297
+    .line 1327
     .end local v2           #_result:Ljava/lang/String;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1298
+    .line 1328
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1337,25 +1337,25 @@
     .end annotation
 
     .prologue
-    .line 627
+    .line 637
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 628
+    .line 638
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 631
+    .line 641
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 632
+    .line 642
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v4, 0x1
@@ -1364,10 +1364,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 633
+    .line 643
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 634
+    .line 644
     sget-object v3, Landroid/net/wifi/WifiConfiguration;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {v1, v3}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
@@ -1376,24 +1376,24 @@
 
     move-result-object v2
 
-    .line 637
+    .line 647
     .local v2, _result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/WifiConfiguration;>;"
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 638
+    .line 648
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 640
+    .line 650
     return-object v2
 
-    .line 637
+    .line 647
     .end local v2           #_result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/WifiConfiguration;>;"
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 638
+    .line 648
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1408,25 +1408,25 @@
     .end annotation
 
     .prologue
-    .line 814
+    .line 824
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 815
+    .line 825
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 818
+    .line 828
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 819
+    .line 829
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v4, 0xc
@@ -1435,17 +1435,17 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 820
+    .line 830
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 821
+    .line 831
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 822
+    .line 832
     sget-object v3, Landroid/net/wifi/WifiInfo;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v3, v1}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -1456,18 +1456,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 829
+    .line 839
     .local v2, _result:Landroid/net/wifi/WifiInfo;
     :goto_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 830
+    .line 840
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 832
+    .line 842
     return-object v2
 
-    .line 825
+    .line 835
     .end local v2           #_result:Landroid/net/wifi/WifiInfo;
     :cond_0
     const/4 v2, 0x0
@@ -1475,14 +1475,14 @@
     .restart local v2       #_result:Landroid/net/wifi/WifiInfo;
     goto :goto_0
 
-    .line 829
+    .line 839
     .end local v2           #_result:Landroid/net/wifi/WifiInfo;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 830
+    .line 840
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1497,44 +1497,44 @@
     .end annotation
 
     .prologue
-    .line 954
+    .line 984
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 955
+    .line 985
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 958
+    .line 988
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 959
+    .line 989
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x14
+    const/16 v4, 0x15
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 960
+    .line 990
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 961
+    .line 991
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 962
+    .line 992
     sget-object v3, Landroid/net/DhcpInfo;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v3, v1}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -1545,18 +1545,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 969
+    .line 999
     .local v2, _result:Landroid/net/DhcpInfo;
     :goto_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 970
+    .line 1000
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 972
+    .line 1002
     return-object v2
 
-    .line 965
+    .line 995
     .end local v2           #_result:Landroid/net/DhcpInfo;
     :cond_0
     const/4 v2, 0x0
@@ -1564,14 +1564,14 @@
     .restart local v2       #_result:Landroid/net/DhcpInfo;
     goto :goto_0
 
-    .line 969
+    .line 999
     .end local v2           #_result:Landroid/net/DhcpInfo;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 970
+    .line 1000
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1586,61 +1586,61 @@
     .end annotation
 
     .prologue
-    .line 903
+    .line 933
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 904
+    .line 934
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 907
+    .line 937
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 908
+    .line 938
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x11
+    const/16 v4, 0x12
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 909
+    .line 939
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 910
+    .line 940
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result v2
 
-    .line 913
+    .line 943
     .local v2, _result:I
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 914
+    .line 944
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 916
+    .line 946
     return v2
 
-    .line 913
+    .line 943
     .end local v2           #_result:I
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 914
+    .line 944
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1665,37 +1665,37 @@
     .end annotation
 
     .prologue
-    .line 1469
+    .line 1499
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1470
+    .line 1500
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1473
+    .line 1503
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1474
+    .line 1504
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x2f
+    const/16 v4, 0x30
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1475
+    .line 1505
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1476
+    .line 1506
     sget-object v3, Landroid/net/wifi/HotspotClient;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {v1, v3}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
@@ -1704,24 +1704,24 @@
 
     move-result-object v2
 
-    .line 1479
+    .line 1509
     .local v2, _result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/HotspotClient;>;"
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1480
+    .line 1510
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1482
+    .line 1512
     return-object v2
 
-    .line 1479
+    .line 1509
     .end local v2           #_result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/HotspotClient;>;"
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1480
+    .line 1510
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1731,7 +1731,7 @@
     .locals 1
 
     .prologue
-    .line 623
+    .line 633
     const-string v0, "android.net.wifi.IWifiManager"
 
     return-object v0
@@ -1756,25 +1756,25 @@
     .end annotation
 
     .prologue
-    .line 755
+    .line 765
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 756
+    .line 766
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 759
+    .line 769
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 760
+    .line 770
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v4, 0x8
@@ -1783,10 +1783,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 761
+    .line 771
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 762
+    .line 772
     sget-object v3, Landroid/net/wifi/ScanResult;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {v1, v3}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
@@ -1795,24 +1795,24 @@
 
     move-result-object v2
 
-    .line 765
+    .line 775
     .local v2, _result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/ScanResult;>;"
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 766
+    .line 776
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 768
+    .line 778
     return-object v2
 
-    .line 765
+    .line 775
     .end local v2           #_result:Ljava/util/List;,"Ljava/util/List<Landroid/net/wifi/ScanResult;>;"
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 766
+    .line 776
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1827,44 +1827,44 @@
     .end annotation
 
     .prologue
-    .line 1143
+    .line 1173
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1144
+    .line 1174
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1147
+    .line 1177
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1148
+    .line 1178
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x1e
+    const/16 v4, 0x1f
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1149
+    .line 1179
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1150
+    .line 1180
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 1151
+    .line 1181
     sget-object v3, Landroid/net/wifi/WifiConfiguration;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v3, v1}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -1875,18 +1875,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1158
+    .line 1188
     .local v2, _result:Landroid/net/wifi/WifiConfiguration;
     :goto_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1159
+    .line 1189
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1161
+    .line 1191
     return-object v2
 
-    .line 1154
+    .line 1184
     .end local v2           #_result:Landroid/net/wifi/WifiConfiguration;
     :cond_0
     const/4 v2, 0x0
@@ -1894,14 +1894,14 @@
     .restart local v2       #_result:Landroid/net/wifi/WifiConfiguration;
     goto :goto_0
 
-    .line 1158
+    .line 1188
     .end local v2           #_result:Landroid/net/wifi/WifiConfiguration;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1159
+    .line 1189
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1916,61 +1916,61 @@
     .end annotation
 
     .prologue
-    .line 1126
+    .line 1156
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1127
+    .line 1157
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1130
+    .line 1160
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1131
+    .line 1161
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x1d
+    const/16 v4, 0x1e
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1132
+    .line 1162
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1133
+    .line 1163
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result v2
 
-    .line 1136
+    .line 1166
     .local v2, _result:I
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1137
+    .line 1167
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1139
+    .line 1169
     return v2
 
-    .line 1136
+    .line 1166
     .end local v2           #_result:I
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1137
+    .line 1167
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -1985,61 +1985,61 @@
     .end annotation
 
     .prologue
-    .line 854
+    .line 884
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 855
+    .line 885
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 858
+    .line 888
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 859
+    .line 889
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0xe
+    const/16 v4, 0xf
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 860
+    .line 890
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 861
+    .line 891
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     move-result v2
 
-    .line 864
+    .line 894
     .local v2, _result:I
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 865
+    .line 895
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 867
+    .line 897
     return v2
 
-    .line 864
+    .line 894
     .end local v2           #_result:I
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 865
+    .line 895
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2054,44 +2054,44 @@
     .end annotation
 
     .prologue
-    .line 1243
+    .line 1273
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1244
+    .line 1274
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1247
+    .line 1277
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1248
+    .line 1278
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x24
+    const/16 v4, 0x25
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1249
+    .line 1279
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1250
+    .line 1280
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 1251
+    .line 1281
     sget-object v3, Landroid/os/Messenger;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v3, v1}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -2102,18 +2102,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1258
+    .line 1288
     .local v2, _result:Landroid/os/Messenger;
     :goto_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1259
+    .line 1289
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1261
+    .line 1291
     return-object v2
 
-    .line 1254
+    .line 1284
     .end local v2           #_result:Landroid/os/Messenger;
     :cond_0
     const/4 v2, 0x0
@@ -2121,14 +2121,14 @@
     .restart local v2       #_result:Landroid/os/Messenger;
     goto :goto_0
 
-    .line 1258
+    .line 1288
     .end local v2           #_result:Landroid/os/Messenger;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1259
+    .line 1289
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2143,44 +2143,44 @@
     .end annotation
 
     .prologue
-    .line 1265
+    .line 1295
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1266
+    .line 1296
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1269
+    .line 1299
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1270
+    .line 1300
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x25
+    const/16 v4, 0x26
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1271
+    .line 1301
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1272
+    .line 1302
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result v3
 
     if-eqz v3, :cond_0
 
-    .line 1273
+    .line 1303
     sget-object v3, Landroid/os/Messenger;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v3, v1}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -2191,18 +2191,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1280
+    .line 1310
     .local v2, _result:Landroid/os/Messenger;
     :goto_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1281
+    .line 1311
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1283
+    .line 1313
     return-object v2
 
-    .line 1276
+    .line 1306
     .end local v2           #_result:Landroid/os/Messenger;
     :cond_0
     const/4 v2, 0x0
@@ -2210,20 +2210,20 @@
     .restart local v2       #_result:Landroid/os/Messenger;
     goto :goto_0
 
-    .line 1280
+    .line 1310
     .end local v2           #_result:Landroid/os/Messenger;
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1281
+    .line 1311
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
 .end method
 
-.method public hasConnectableAp()Z
+.method public hasConnectableAP()Z
     .locals 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2234,37 +2234,37 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1643
+    .line 1673
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1644
+    .line 1674
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1647
+    .line 1677
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1648
+    .line 1678
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x37
+    const/16 v4, 0x38
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1649
+    .line 1679
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1650
+    .line 1680
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2275,25 +2275,25 @@
 
     const/4 v2, 0x1
 
-    .line 1653
+    .line 1683
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1654
+    .line 1684
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1656
+    .line 1686
     return v2
 
-    .line 1653
+    .line 1683
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1654
+    .line 1684
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2308,54 +2308,54 @@
     .end annotation
 
     .prologue
-    .line 1043
+    .line 1073
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1044
+    .line 1074
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1046
+    .line 1076
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1047
+    .line 1077
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x18
+    const/16 v3, 0x19
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1048
+    .line 1078
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1051
+    .line 1081
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1052
+    .line 1082
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1054
+    .line 1084
     return-void
 
-    .line 1051
+    .line 1081
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1052
+    .line 1082
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -2372,37 +2372,37 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 920
+    .line 950
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 921
+    .line 951
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 924
+    .line 954
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 925
+    .line 955
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x12
+    const/16 v4, 0x13
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 926
+    .line 956
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 927
+    .line 957
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2413,25 +2413,25 @@
 
     const/4 v2, 0x1
 
-    .line 930
+    .line 960
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 931
+    .line 961
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 933
+    .line 963
     return v2
 
-    .line 930
+    .line 960
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 931
+    .line 961
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2448,37 +2448,37 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1057
+    .line 1087
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1058
+    .line 1088
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1061
+    .line 1091
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1062
+    .line 1092
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x19
+    const/16 v4, 0x1a
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1063
+    .line 1093
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1064
+    .line 1094
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2489,25 +2489,25 @@
 
     const/4 v2, 0x1
 
-    .line 1067
+    .line 1097
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1068
+    .line 1098
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1070
+    .line 1100
     return v2
 
-    .line 1067
+    .line 1097
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1068
+    .line 1098
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2524,25 +2524,25 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 723
+    .line 733
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 724
+    .line 734
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 727
+    .line 737
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 728
+    .line 738
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v4, 0x6
@@ -2551,10 +2551,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 729
+    .line 739
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 730
+    .line 740
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2565,25 +2565,25 @@
 
     const/4 v2, 0x1
 
-    .line 733
+    .line 743
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 734
+    .line 744
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 736
+    .line 746
     return v2
 
-    .line 733
+    .line 743
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 734
+    .line 744
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2598,25 +2598,25 @@
     .end annotation
 
     .prologue
-    .line 800
+    .line 810
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 801
+    .line 811
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 803
+    .line 813
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 804
+    .line 814
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v3, 0xb
@@ -2625,27 +2625,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 805
+    .line 815
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 808
+    .line 818
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 809
+    .line 819
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 811
+    .line 821
     return-void
 
-    .line 808
+    .line 818
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 809
+    .line 819
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -2660,25 +2660,25 @@
     .end annotation
 
     .prologue
-    .line 786
+    .line 796
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 787
+    .line 797
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 789
+    .line 799
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 790
+    .line 800
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v3, 0xa
@@ -2687,27 +2687,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 791
+    .line 801
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 794
+    .line 804
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 795
+    .line 805
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 797
+    .line 807
     return-void
 
-    .line 794
+    .line 804
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 795
+    .line 805
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -2722,54 +2722,54 @@
     .end annotation
 
     .prologue
-    .line 1090
+    .line 1120
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1091
+    .line 1121
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1093
+    .line 1123
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1094
+    .line 1124
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x1b
+    const/16 v3, 0x1c
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1095
+    .line 1125
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1098
+    .line 1128
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1099
+    .line 1129
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1101
+    .line 1131
     return-void
 
-    .line 1098
+    .line 1128
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1099
+    .line 1129
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -2787,40 +2787,40 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1025
+    .line 1055
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1026
+    .line 1056
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1029
+    .line 1059
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1030
+    .line 1060
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    .line 1031
+    .line 1061
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x17
+    const/16 v4, 0x18
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1032
+    .line 1062
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1033
+    .line 1063
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2831,25 +2831,25 @@
 
     const/4 v2, 0x1
 
-    .line 1036
+    .line 1066
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1037
+    .line 1067
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1039
+    .line 1069
     return v2
 
-    .line 1036
+    .line 1066
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1037
+    .line 1067
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -2867,28 +2867,28 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 668
+    .line 678
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 669
+    .line 679
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 672
+    .line 682
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 673
+    .line 683
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 674
+    .line 684
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v4, 0x3
@@ -2897,10 +2897,10 @@
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 675
+    .line 685
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 676
+    .line 686
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2911,31 +2911,31 @@
 
     const/4 v2, 0x1
 
-    .line 679
+    .line 689
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 680
+    .line 690
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 682
+    .line 692
     return v2
 
-    .line 679
+    .line 689
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 680
+    .line 690
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
 .end method
 
-.method public saveApPriority()Z
+.method public saveAPPriority()Z
     .locals 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -2946,37 +2946,37 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1623
+    .line 1653
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1624
+    .line 1654
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1627
+    .line 1657
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1628
+    .line 1658
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x36
+    const/16 v4, 0x37
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1629
+    .line 1659
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1630
+    .line 1660
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -2987,25 +2987,25 @@
 
     const/4 v2, 0x1
 
-    .line 1633
+    .line 1663
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1634
+    .line 1664
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1636
+    .line 1666
     return v2
 
-    .line 1633
+    .line 1663
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1634
+    .line 1664
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3022,37 +3022,37 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 937
+    .line 967
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 938
+    .line 968
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 941
+    .line 971
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 942
+    .line 972
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x13
+    const/16 v4, 0x14
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 943
+    .line 973
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 944
+    .line 974
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3063,25 +3063,25 @@
 
     const/4 v2, 0x1
 
-    .line 947
+    .line 977
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 948
+    .line 978
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 950
+    .line 980
     return v2
 
-    .line 947
+    .line 977
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 948
+    .line 978
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3101,25 +3101,25 @@
 
     const/4 v3, 0x0
 
-    .line 1564
+    .line 1594
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1565
+    .line 1595
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1568
+    .line 1598
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1569
+    .line 1599
     if-eqz p1, :cond_0
 
     move v4, v2
@@ -3127,19 +3127,19 @@
     :goto_0
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1570
+    .line 1600
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x33
+    const/16 v5, 0x34
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1571
+    .line 1601
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1572
+    .line 1602
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3148,37 +3148,37 @@
 
     if-eqz v4, :cond_1
 
-    .line 1575
+    .line 1605
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1576
+    .line 1606
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1578
+    .line 1608
     return v2
 
     .end local v2           #_result:Z
     :cond_0
     move v4, v3
 
-    .line 1569
+    .line 1599
     goto :goto_0
 
     :cond_1
     move v2, v3
 
-    .line 1572
+    .line 1602
     goto :goto_1
 
-    .line 1575
+    .line 1605
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1576
+    .line 1606
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3197,28 +3197,28 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 871
+    .line 901
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 872
+    .line 902
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 874
+    .line 904
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 875
+    .line 905
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    .line 876
+    .line 906
     if-eqz p2, :cond_0
 
     const/4 v2, 0x1
@@ -3226,36 +3226,36 @@
     :cond_0
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 877
+    .line 907
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0xf
+    const/16 v3, 0x10
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 878
+    .line 908
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 881
+    .line 911
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 882
+    .line 912
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 884
+    .line 914
     return-void
 
-    .line 881
+    .line 911
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 882
+    .line 912
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -3274,28 +3274,28 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 887
+    .line 917
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 888
+    .line 918
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 890
+    .line 920
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 891
+    .line 921
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 892
+    .line 922
     if-eqz p2, :cond_0
 
     const/4 v2, 0x1
@@ -3303,36 +3303,36 @@
     :cond_0
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 893
+    .line 923
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x10
+    const/16 v3, 0x11
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 894
+    .line 924
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 897
+    .line 927
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 898
+    .line 928
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 900
+    .line 930
     return-void
 
-    .line 897
+    .line 927
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 898
+    .line 928
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -3350,40 +3350,40 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1424
+    .line 1454
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1425
+    .line 1455
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1428
+    .line 1458
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1429
+    .line 1459
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1430
+    .line 1460
     iget-object v3, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v4, 0x2d
+    const/16 v4, 0x2e
 
     const/4 v5, 0x0
 
     invoke-interface {v3, v4, v0, v1, v5}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1431
+    .line 1461
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1432
+    .line 1462
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3394,25 +3394,25 @@
 
     const/4 v2, 0x1
 
-    .line 1435
+    .line 1465
     .local v2, _result:Z
     :cond_0
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1436
+    .line 1466
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1438
+    .line 1468
     return v2
 
-    .line 1435
+    .line 1465
     .end local v2           #_result:Z
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1436
+    .line 1466
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3432,25 +3432,25 @@
 
     const/4 v3, 0x0
 
-    .line 1403
+    .line 1433
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1404
+    .line 1434
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1407
+    .line 1437
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1408
+    .line 1438
     if-eqz p1, :cond_0
 
     move v4, v2
@@ -3458,19 +3458,19 @@
     :goto_0
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1409
+    .line 1439
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x2c
+    const/16 v5, 0x2d
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1410
+    .line 1440
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1411
+    .line 1441
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3479,37 +3479,37 @@
 
     if-eqz v4, :cond_1
 
-    .line 1414
+    .line 1444
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1415
+    .line 1445
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1417
+    .line 1447
     return v2
 
     .end local v2           #_result:Z
     :cond_0
     move v4, v3
 
-    .line 1408
+    .line 1438
     goto :goto_0
 
     :cond_1
     move v2, v3
 
-    .line 1411
+    .line 1441
     goto :goto_1
 
-    .line 1414
+    .line 1444
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1415
+    .line 1445
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3525,62 +3525,62 @@
     .end annotation
 
     .prologue
-    .line 1165
+    .line 1195
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1166
+    .line 1196
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1168
+    .line 1198
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1169
+    .line 1199
     if-eqz p1, :cond_0
 
-    .line 1170
+    .line 1200
     const/4 v2, 0x1
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1171
+    .line 1201
     const/4 v2, 0x0
 
     invoke-virtual {p1, v0, v2}, Landroid/net/wifi/WifiConfiguration;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1176
+    .line 1206
     :goto_0
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x1f
+    const/16 v3, 0x20
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1177
+    .line 1207
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1180
+    .line 1210
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1181
+    .line 1211
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1183
+    .line 1213
     return-void
 
-    .line 1174
+    .line 1204
     :cond_0
     const/4 v2, 0x0
 
@@ -3591,13 +3591,13 @@
 
     goto :goto_0
 
-    .line 1180
+    .line 1210
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1181
+    .line 1211
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -3618,68 +3618,68 @@
 
     const/4 v3, 0x0
 
-    .line 1104
+    .line 1134
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1105
+    .line 1135
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1107
+    .line 1137
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1108
+    .line 1138
     if-eqz p1, :cond_0
 
-    .line 1109
+    .line 1139
     const/4 v4, 0x1
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1110
+    .line 1140
     const/4 v4, 0x0
 
     invoke-virtual {p1, v0, v4}, Landroid/net/wifi/WifiConfiguration;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1115
+    .line 1145
     :goto_0
     if-eqz p2, :cond_1
 
     :goto_1
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1116
+    .line 1146
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x1c
+    const/16 v3, 0x1d
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1117
+    .line 1147
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1120
+    .line 1150
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1121
+    .line 1151
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1123
+    .line 1153
     return-void
 
-    .line 1113
+    .line 1143
     :cond_0
     const/4 v4, 0x0
 
@@ -3690,13 +3690,13 @@
 
     goto :goto_0
 
-    .line 1120
+    .line 1150
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1121
+    .line 1151
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -3704,7 +3704,7 @@
     :cond_1
     move v2, v3
 
-    .line 1115
+    .line 1145
     goto :goto_1
 .end method
 
@@ -3722,25 +3722,25 @@
 
     const/4 v3, 0x0
 
-    .line 836
+    .line 846
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 837
+    .line 847
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 840
+    .line 850
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 841
+    .line 851
     if-eqz p1, :cond_0
 
     move v4, v2
@@ -3748,7 +3748,7 @@
     :goto_0
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 842
+    .line 852
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/16 v5, 0xd
@@ -3757,10 +3757,10 @@
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 843
+    .line 853
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 844
+    .line 854
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3769,37 +3769,37 @@
 
     if-eqz v4, :cond_1
 
-    .line 847
+    .line 857
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 848
+    .line 858
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 850
+    .line 860
     return v2
 
     .end local v2           #_result:Z
     :cond_0
     move v4, v3
 
-    .line 841
+    .line 851
     goto :goto_0
 
     :cond_1
     move v2, v3
 
-    .line 844
+    .line 854
     goto :goto_1
 
-    .line 847
+    .line 857
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 848
+    .line 858
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3819,25 +3819,25 @@
 
     const/4 v3, 0x0
 
-    .line 1585
+    .line 1615
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1586
+    .line 1616
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1589
+    .line 1619
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1590
+    .line 1620
     if-eqz p1, :cond_0
 
     move v4, v2
@@ -3845,19 +3845,19 @@
     :goto_0
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1591
+    .line 1621
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x34
+    const/16 v5, 0x35
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1592
+    .line 1622
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1593
+    .line 1623
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -3866,37 +3866,134 @@
 
     if-eqz v4, :cond_1
 
-    .line 1596
+    .line 1626
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1597
+    .line 1627
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1599
+    .line 1629
     return v2
 
     .end local v2           #_result:Z
     :cond_0
     move v4, v3
 
-    .line 1590
+    .line 1620
     goto :goto_0
 
     :cond_1
     move v2, v3
 
-    .line 1593
+    .line 1623
     goto :goto_1
 
-    .line 1596
+    .line 1626
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1597
+    .line 1627
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    throw v3
+.end method
+
+.method public setWifiEnabledForQb(Z)Z
+    .locals 7
+    .parameter "enable"
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    .line 865
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v0
+
+    .line 866
+    .local v0, _data:Landroid/os/Parcel;
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v1
+
+    .line 869
+    .local v1, _reply:Landroid/os/Parcel;
+    :try_start_0
+    const-string v4, "android.net.wifi.IWifiManager"
+
+    invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
+
+    .line 870
+    if-eqz p1, :cond_0
+
+    move v4, v2
+
+    :goto_0
+    invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
+
+    .line 871
+    iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    const/16 v5, 0xe
+
+    const/4 v6, 0x0
+
+    invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+
+    .line 872
+    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+
+    .line 873
+    invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
+    .line 876
+    .local v2, _result:Z
+    :goto_1
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 877
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 879
+    return v2
+
+    .end local v2           #_result:Z
+    :cond_0
+    move v4, v3
+
+    .line 870
+    goto :goto_0
+
+    :cond_1
+    move v2, v3
+
+    .line 873
+    goto :goto_1
+
+    .line 876
+    :catchall_0
+    move-exception v3
+
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 877
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -3912,62 +4009,62 @@
     .end annotation
 
     .prologue
-    .line 1445
+    .line 1475
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1446
+    .line 1476
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1448
+    .line 1478
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1449
+    .line 1479
     if-eqz p1, :cond_0
 
-    .line 1450
+    .line 1480
     const/4 v2, 0x1
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1451
+    .line 1481
     const/4 v2, 0x0
 
     invoke-virtual {p1, v0, v2}, Landroid/net/wifi/WpsInfo;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1456
+    .line 1486
     :goto_0
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x2e
+    const/16 v3, 0x2f
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1457
+    .line 1487
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1460
+    .line 1490
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1461
+    .line 1491
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1463
+    .line 1493
     return-void
 
-    .line 1454
+    .line 1484
     :cond_0
     const/4 v2, 0x0
 
@@ -3978,13 +4075,13 @@
 
     goto :goto_0
 
-    .line 1460
+    .line 1490
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1461
+    .line 1491
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -4002,25 +4099,25 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 740
+    .line 750
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 741
+    .line 751
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 743
+    .line 753
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v3, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 744
+    .line 754
     if-eqz p1, :cond_0
 
     const/4 v2, 0x1
@@ -4028,7 +4125,7 @@
     :cond_0
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 745
+    .line 755
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
     const/4 v3, 0x7
@@ -4037,27 +4134,27 @@
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 746
+    .line 756
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 749
+    .line 759
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 750
+    .line 760
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 752
+    .line 762
     return-void
 
-    .line 749
+    .line 759
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 750
+    .line 760
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -4072,54 +4169,54 @@
     .end annotation
 
     .prologue
-    .line 1186
+    .line 1216
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1187
+    .line 1217
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1189
+    .line 1219
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1190
+    .line 1220
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x20
+    const/16 v3, 0x21
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1191
+    .line 1221
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1194
+    .line 1224
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1195
+    .line 1225
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1197
+    .line 1227
     return-void
 
-    .line 1194
+    .line 1224
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1195
+    .line 1225
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -4134,54 +4231,54 @@
     .end annotation
 
     .prologue
-    .line 1200
+    .line 1230
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1201
+    .line 1231
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1203
+    .line 1233
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1204
+    .line 1234
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x21
+    const/16 v3, 0x22
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1205
+    .line 1235
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1208
+    .line 1238
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1209
+    .line 1239
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1211
+    .line 1241
     return-void
 
-    .line 1208
+    .line 1238
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1209
+    .line 1239
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -4196,54 +4293,54 @@
     .end annotation
 
     .prologue
-    .line 1606
+    .line 1636
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1607
+    .line 1637
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1609
+    .line 1639
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1610
+    .line 1640
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x35
+    const/16 v3, 0x36
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1611
+    .line 1641
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1614
+    .line 1644
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1615
+    .line 1645
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1617
+    .line 1647
     return-void
 
-    .line 1614
+    .line 1644
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1615
+    .line 1645
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
@@ -4263,51 +4360,51 @@
 
     const/4 v3, 0x0
 
-    .line 1537
+    .line 1567
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1538
+    .line 1568
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1541
+    .line 1571
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v4, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1542
+    .line 1572
     if-eqz p1, :cond_0
 
-    .line 1543
+    .line 1573
     const/4 v4, 0x1
 
     invoke-virtual {v0, v4}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1544
+    .line 1574
     const/4 v4, 0x0
 
     invoke-virtual {p1, v0, v4}, Landroid/net/wifi/HotspotClient;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1549
+    .line 1579
     :goto_0
     iget-object v4, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v5, 0x32
+    const/16 v5, 0x33
 
     const/4 v6, 0x0
 
     invoke-interface {v4, v5, v0, v1, v6}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1550
+    .line 1580
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
 
-    .line 1551
+    .line 1581
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
@@ -4316,18 +4413,18 @@
 
     if-eqz v4, :cond_1
 
-    .line 1554
+    .line 1584
     .local v2, _result:Z
     :goto_1
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1555
+    .line 1585
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1557
+    .line 1587
     return v2
 
-    .line 1547
+    .line 1577
     .end local v2           #_result:Z
     :cond_0
     const/4 v4, 0x0
@@ -4339,13 +4436,13 @@
 
     goto :goto_0
 
-    .line 1554
+    .line 1584
     :catchall_0
     move-exception v3
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1555
+    .line 1585
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v3
@@ -4353,7 +4450,7 @@
     :cond_1
     move v2, v3
 
-    .line 1551
+    .line 1581
     goto :goto_1
 .end method
 
@@ -4368,65 +4465,65 @@
     .end annotation
 
     .prologue
-    .line 1003
+    .line 1033
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v0
 
-    .line 1004
+    .line 1034
     .local v0, _data:Landroid/os/Parcel;
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
 
-    .line 1006
+    .line 1036
     .local v1, _reply:Landroid/os/Parcel;
     :try_start_0
     const-string v2, "android.net.wifi.IWifiManager"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
 
-    .line 1007
+    .line 1037
     invoke-virtual {v0, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    .line 1008
+    .line 1038
     if-eqz p2, :cond_0
 
-    .line 1009
+    .line 1039
     const/4 v2, 0x1
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 1010
+    .line 1040
     const/4 v2, 0x0
 
     invoke-virtual {p2, v0, v2}, Landroid/os/WorkSource;->writeToParcel(Landroid/os/Parcel;I)V
 
-    .line 1015
+    .line 1045
     :goto_0
     iget-object v2, p0, Landroid/net/wifi/IWifiManager$Stub$Proxy;->mRemote:Landroid/os/IBinder;
 
-    const/16 v3, 0x16
+    const/16 v3, 0x17
 
     const/4 v4, 0x0
 
     invoke-interface {v2, v3, v0, v1, v4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    .line 1016
+    .line 1046
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1019
+    .line 1049
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1020
+    .line 1050
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
-    .line 1022
+    .line 1052
     return-void
 
-    .line 1013
+    .line 1043
     :cond_0
     const/4 v2, 0x0
 
@@ -4437,13 +4534,13 @@
 
     goto :goto_0
 
-    .line 1019
+    .line 1049
     :catchall_0
     move-exception v2
 
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
-    .line 1020
+    .line 1050
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     throw v2
