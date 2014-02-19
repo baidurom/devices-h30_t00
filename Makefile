@@ -5,7 +5,7 @@
 # This value defines which base this project should choose, only for baidu internal.
 # Support values: S710, JRD77SS, YINS, YIGN, I9250
 #-----------------------------------------------------------------------------
-BAIDU_BASE_DEVICE := I9250
+BAIDU_BASE_DEVICE := G4
 
 ##############################################################################
 # Default DALVIK_VM_BUILD setting is 27
@@ -32,12 +32,12 @@ vendor_modify_images := boot recovery
 ##############################################################################
 # Directorys which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-vendor_remove_dirs := app vendor/operator/app delapp
+vendor_remove_dirs := app vendor/overlay/app delapp themes asr media/audio/notifications media/video etc/facerecognition tts/lang_iflytek
 
 ##############################################################################
 # Files which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-# vendor_remove_files := bin/zchgd
+vendor_remove_files := etc/permissions/android.hardware.wifi.direct.xml
 
 ##############################################################################
 # Vendor apks you want to use
@@ -99,7 +99,7 @@ vendor_modify_jars := framework hwframework mediatek-framework mediatek-telephon
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone
+baidu_modify_apps := Phone Settings
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
@@ -112,6 +112,8 @@ baidu_modify_jars := android.policy
 #-----------------------------------------------------------------------------
 
 override_property += \
+    ro.call.record=1 \
+    persist.sys.prevent_wakeup=false \
     ro.config.hwtheme=0
 
 ##############################################################################

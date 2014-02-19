@@ -204,6 +204,7 @@ on fs_property:ro.mount.fs=EXT4
     chmod 6755 /system/xbin/su
     exec /system/xbin/busybox chattr -i -R /system/framework/
     exec /system/xbin/busybox chattr -i -R /system/bin/
+    exec /system/xbin/busybox chattr -i -R /system/lib/
     exec /system/xbin/busybox chattr -i -R /system/xbin/
     exec /system/xbin/busybox chattr -i -R /system/usr/
     exec /system/xbin/busybox chattr -i -R /system/vendor/

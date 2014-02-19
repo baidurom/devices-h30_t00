@@ -170,6 +170,76 @@
     return-object v0
 .end method
 
+.method public static getDefaultPath()Ljava/lang/String;
+    .locals 4
+
+    .prologue
+    .line 647
+    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/io/File;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 656
+    .local v0, path:Ljava/lang/String;
+    const-string v1, "/mnt/sdcard"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    .line 657
+    const-string v0, "/storage/sdcard0"
+
+    .line 664
+    :cond_0
+    :goto_0
+    const-string v1, "StorageManager"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "getDefaultPath path="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 665
+    return-object v0
+
+    .line 659
+    :cond_1
+    const-string v1, "/mnt/sdcard2"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 660
+    const-string v0, "/storage/sdcard1"
+
+    goto :goto_0
+.end method
+
 .method private getNextNonce()I
     .locals 1
 
