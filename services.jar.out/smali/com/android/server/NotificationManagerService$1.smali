@@ -412,6 +412,28 @@
     #setter for: Lcom/android/server/NotificationManagerService;->mInCall:Z
     invoke-static {v4, v2}, Lcom/android/server/NotificationManagerService;->access$1302(Lcom/android/server/NotificationManagerService;Z)Z
 
+    .line 604
+    move-object/from16 v0, p0
+
+    iget-object v1, v0, Lcom/android/server/NotificationManagerService$1;->this$0:Lcom/android/server/NotificationManagerService;
+
+    sget-object v3, Landroid/telephony/TelephonyManager;->EXTRA_STATE_RINGING:Ljava/lang/String;
+
+    const-string v4, "state"
+
+    move-object/from16 v0, p2
+
+    invoke-virtual {v0, v4}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    #setter for: Lcom/android/server/NotificationManagerService;->mCallRinging:Z
+    invoke-static {v1, v3}, Lcom/android/server/NotificationManagerService;->access$1402(Lcom/android/server/NotificationManagerService;Z)Z
+
     .line 628
     move-object/from16 v0, p0
 
