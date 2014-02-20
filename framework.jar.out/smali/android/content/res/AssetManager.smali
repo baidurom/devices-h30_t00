@@ -2831,7 +2831,7 @@
     .line 573
     .restart local v4       #packageId:I
     :cond_2
-    const/4 v8, 0x3
+    const/4 v8, 0x5
 
     if-ne v4, v8, :cond_1
 

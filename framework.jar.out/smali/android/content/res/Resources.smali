@@ -1455,7 +1455,7 @@
     .prologue
     const/high16 v11, 0x7000
 
-    const/4 v10, 0x3
+    const/4 v10, 0x5
 
     const/4 v3, 0x0
 
@@ -1732,7 +1732,7 @@
 
     if-eq v2, v5, :cond_0
 
-    const/4 v7, 0x3
+    const/4 v7, 0x5
 
     if-ne v2, v7, :cond_1
 
