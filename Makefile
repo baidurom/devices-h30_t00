@@ -114,6 +114,7 @@ baidu_modify_jars := android.policy
 override_property += \
     ro.call.record=1 \
     persist.sys.prevent_wakeup=false \
+    ro.baidu.2nd_storage.format=enable \
     ro.config.hwtheme=0
 
 ##############################################################################
