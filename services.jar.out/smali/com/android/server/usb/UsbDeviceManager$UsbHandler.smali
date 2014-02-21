@@ -107,6 +107,7 @@
     iput-object v7, p0, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->mUserSwitchedReceiver:Landroid/content/BroadcastReceiver;
 
     .line 616
+    const/4 v8, 0x0
     new-instance v6, Lcom/android/server/usb/UsbDeviceManager$UsbHandler$QuickbootBroadcastReceiver;
 
     invoke-direct {v6, p0, v8}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler$QuickbootBroadcastReceiver;-><init>(Lcom/android/server/usb/UsbDeviceManager$UsbHandler;Lcom/android/server/usb/UsbDeviceManager$1;)V
@@ -875,7 +876,7 @@
     iget-object v1, p0, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->this$0:Lcom/android/server/usb/UsbDeviceManager;
 
     #getter for: Lcom/android/server/usb/UsbDeviceManager;->mContext:Landroid/content/Context;
-    invoke-static {v1}, Lcom/android/server/usb/UsbDeviceManager;->access$2500(Lcom/android/server/usb/UsbDeviceManager;)Landroid/content/Context;
+    invoke-static {v1}, Lcom/android/server/usb/UsbDeviceManager;->access$2600(Lcom/android/server/usb/UsbDeviceManager;)Landroid/content/Context;
 
     move-result-object v1
 
