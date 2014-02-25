@@ -3199,6 +3199,51 @@
     goto :goto_1
 .end method
 
+.method private isBlockedPackage(Ljava/lang/String;ILandroid/app/Notification;)Z
+    .locals 4
+    .parameter "packageName"
+    .parameter "id"
+    .parameter "notification"
+
+    .prologue
+    .line 1370
+    const/4 v2, 0x0
+
+    .line 1371
+    .local v2, rst:Z
+    const-string v3, "android"
+
+    invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-nez v3, :cond_0
+
+    .line 1372
+    invoke-static {}, Lcom/baidu/notificationdefense/NotificationDefenseManager;->getInstance()Lcom/baidu/notificationdefense/NotificationDefenseManager;
+
+    move-result-object v1
+
+    .line 1373
+    .local v1, ndm:Lcom/baidu/notificationdefense/NotificationDefenseManager;
+    invoke-virtual {v1, p1, p2, p3}, Lcom/baidu/notificationdefense/NotificationDefenseManager;->defense(Ljava/lang/String;ILandroid/app/Notification;)Z
+
+    move-result v0
+
+    .line 1374
+    .local v0, blocked:Z
+    if-eqz v0, :cond_0
+
+    .line 1375
+    const/4 v2, 0x1
+
+    .line 1378
+    .end local v0           #blocked:Z
+    .end local v1           #ndm:Lcom/baidu/notificationdefense/NotificationDefenseManager;
+    :cond_0
+    return v2
+.end method
+
 .method private isWhiteApp(Ljava/lang/String;)Z
     .locals 5
     .parameter "pkg"
@@ -6762,6 +6807,22 @@
 
     .line 1111
     :cond_9
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    move/from16 v2, p5
+
+    move-object/from16 v3, p6
+
+    invoke-direct {v0, v1, v2, v3}, Lcom/android/server/NotificationManagerService;->isBlockedPackage(Ljava/lang/String;ILandroid/app/Notification;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_9b
+
+    goto :goto_3
+    :cond_9b
     move-object/from16 v0, p6
 
     iget v7, v0, Landroid/app/Notification;->priority:I
