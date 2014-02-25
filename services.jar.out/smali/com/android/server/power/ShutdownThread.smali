@@ -830,7 +830,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_a
+    if-eqz v5, :cond_c
 
     .line 623
     :cond_6
@@ -950,42 +950,52 @@
     sput-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     .line 579
-    sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
+    sget-object v7, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
-    const v7, #string@power_off#t
+    sget-boolean v5, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
-    invoke-virtual {p0, v7}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
+    if-eqz v5, :cond_a
 
-    move-result-object v7
+    const v5, #string@global_action_reboot#t
 
-    invoke-virtual {v5, v7}, Landroid/app/ProgressDialog;->setTitle(Ljava/lang/CharSequence;)V
+    :goto_6
+    invoke-virtual {p0, v5}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
 
-    .line 580
-    sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
+    move-result-object v5
 
-    const v7, #string@shutdown_progress#t
+    invoke-virtual {v7, v5}, Landroid/app/ProgressDialog;->setTitle(Ljava/lang/CharSequence;)V
 
-    invoke-virtual {p0, v7}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
+    .line 583
+    sget-object v7, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
-    move-result-object v7
+    sget-boolean v5, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
-    invoke-virtual {v5, v7}, Landroid/app/ProgressDialog;->setMessage(Ljava/lang/CharSequence;)V
+    if-eqz v5, :cond_b
 
-    .line 581
+    const v5, #string@reboot_progress#t
+
+    :goto_7
+    invoke-virtual {p0, v5}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
+
+    move-result-object v5
+
+    invoke-virtual {v7, v5}, Landroid/app/ProgressDialog;->setMessage(Ljava/lang/CharSequence;)V
+
+    .line 587
     sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     const/4 v7, 0x1
 
     invoke-virtual {v5, v7}, Landroid/app/ProgressDialog;->setIndeterminate(Z)V
 
-    .line 582
+    .line 588
     sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     const/4 v7, 0x0
 
     invoke-virtual {v5, v7}, Landroid/app/ProgressDialog;->setCancelable(Z)V
 
-    .line 583
+    .line 589
     sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     invoke-virtual {v5}, Landroid/app/ProgressDialog;->getWindow()Landroid/view/Window;
@@ -996,7 +1006,7 @@
 
     invoke-virtual {v5, v7}, Landroid/view/Window;->setType(I)V
 
-    .line 585
+    .line 591
     sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     invoke-virtual {v5}, Landroid/app/ProgressDialog;->getWindow()Landroid/view/Window;
@@ -1007,7 +1017,7 @@
 
     invoke-virtual {v5, v7}, Landroid/view/Window;->addFlags(I)V
 
-    .line 586
+    .line 592
     sget-object v5, Lcom/android/server/power/ShutdownThread;->mShutdownProgressDialog:Landroid/app/ProgressDialog;
 
     invoke-virtual {v5}, Landroid/app/ProgressDialog;->show()V
@@ -1016,6 +1026,17 @@
 
     goto/16 :goto_3
 
+    .line 579
+    :cond_a
+    const v5, #string@power_off#t
+
+    goto :goto_6
+
+    .line 583
+    :cond_b
+    const v5, #string@shutdown_progress#t
+
+    goto :goto_7
     .line 600
     :catch_1
     move-exception v1
@@ -1057,7 +1078,7 @@
 
     .line 629
     .end local v1           #e:Ljava/lang/SecurityException;
-    :cond_a
+    :cond_c
     sget-object v5, Lcom/android/server/power/ShutdownThread;->sInstance:Lcom/android/server/power/ShutdownThread;
 
     invoke-virtual {v5}, Lcom/android/server/power/ShutdownThread;->start()V
