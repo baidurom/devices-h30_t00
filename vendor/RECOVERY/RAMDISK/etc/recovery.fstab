@@ -3,10 +3,11 @@
 /boot		emmc		/dev/bootimg
 /cache		ext4		/dev/block/mmcblk0p7
 /data		ext4		/dev/block/mmcblk0p8
-/misc		emmc		misc
+#/misc		emmc		/dev/misc
 /pro_info	emmc		pro_info
 /recovery	emmc		/dev/recovery
 /sdcard		vfat		/dev/block/mmcblk1p1    /dev/block/mmcblk1
 /system		ext4		/dev/block/mmcblk0p5
 /cust           ext4            /dev/block/mmcblk0p6
+/sdcard2		datamedia		null
 #/*END PN:DTS2013061403082  Modified by liuxu 00192645, 2013/06/14*/
