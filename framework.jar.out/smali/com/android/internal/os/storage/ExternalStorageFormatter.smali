@@ -997,9 +997,7 @@
     .line 164
     new-instance v7, Landroid/app/ProgressDialog;
 
-    const v8, 0x3060061
-
-    invoke-direct {v7, p0, v8}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
+    invoke-direct {v7, p0}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;)V
 
     iput-object v7, p0, Lcom/android/internal/os/storage/ExternalStorageFormatter;->mProgressDialog:Landroid/app/ProgressDialog;
 
@@ -1085,9 +1083,7 @@
     .line 323
     new-instance v0, Landroid/app/ProgressDialog;
 
-    const v1, 0x3060061
-
-    invoke-direct {v0, p0, v1}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
+    invoke-direct {v0, p0}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;)V
 
     iput-object v0, p0, Lcom/android/internal/os/storage/ExternalStorageFormatter;->mProgressDialog:Landroid/app/ProgressDialog;
 

@@ -5324,7 +5324,7 @@
 
     move/from16 v2, v22
 
-    invoke-direct {v0, v1, v2}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
+    invoke-direct {v0, v8}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
     new-instance v27, Lcom/android/server/InputMethodManagerService$5;
 
@@ -5368,13 +5368,19 @@
     invoke-virtual {v5}, Landroid/content/res/TypedArray;->recycle()V
 
     .line 2714
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/server/InputMethodManagerService;->mContext:Landroid/content/Context;
+
+    move-object/from16 v21, v0
+
     const-string v25, "layout_inflater"
 
     move-object/from16 v0, v21
 
     move-object/from16 v1, v25
 
-    invoke-virtual {v0, v1}, Landroid/view/ContextThemeWrapper;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v15
 
@@ -5382,7 +5388,7 @@
 
     .line 2717
     .local v15, inflater:Landroid/view/LayoutInflater;
-    const v25, 0x3070007
+    const v25, 0x109004b
 
     const/16 v27, 0x0
 
@@ -5422,7 +5428,7 @@
 
     move-object/from16 v25, v0
 
-    const v27, 0x30d0005
+    const v27, 0x102029d
 
     move-object/from16 v0, v25
 
@@ -5460,49 +5466,7 @@
 
     move-object/from16 v25, v0
 
-    const v27, 0x1020258
-
-    move-object/from16 v0, v25
-
-    move/from16 v1, v27
-
-    invoke-virtual {v0, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
-
-    move-result-object v23
-
-    check-cast v23, Landroid/widget/TextView;
-
-    .line 2729
-    .local v23, title:Landroid/widget/TextView;
-    if-eqz v23, :cond_a
-
-    .line 2730
-    const/16 v25, 0x2
-
-    move-object/from16 v0, v23
-
-    move/from16 v1, v25
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setMaxLines(I)V
-
-    .line 2731
-    sget-object v25, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
-
-    move-object/from16 v0, v23
-
-    move-object/from16 v1, v25
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
-
-    .line 2741
-    :cond_a
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/android/server/InputMethodManagerService;->mSwitchingDialogTitleView:Landroid/view/View;
-
-    move-object/from16 v25, v0
-
-    const v27, 0x30d0006
+    const v27, 0x102029e
 
     move-object/from16 v0, v25
 
