@@ -88,7 +88,7 @@ vendor_modify_jars := framework hwframework mediatek-framework mediatek-telephon
 ##############################################################################
 # Files which you want to saved in baidu directory
 #-----------------------------------------------------------------------------
-# baidu_saved_files := lib/libwebcore.so
+baidu_saved_files := fonts/Clockopia.ttf
 
 ##############################################################################
 # baidu_remove_apps: those baidu apk you want remove 
