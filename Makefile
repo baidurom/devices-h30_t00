@@ -42,7 +42,7 @@ vendor_remove_files := etc/permissions/android.hardware.wifi.direct.xml
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-vendor_saved_apps := HwBluetoothImport MtkBt
+vendor_saved_apps := MtkBt HwDtsEffect
 
 ##############################################################################
 # Apks build from current project root directory
