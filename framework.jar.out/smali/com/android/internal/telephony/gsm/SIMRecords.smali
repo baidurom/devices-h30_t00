@@ -15726,7 +15726,7 @@
     move-result-object v2
 
     .line 2204
-    invoke-direct {p0, v3}, Lcom/android/internal/telephony/gsm/SIMRecords;->setOperatorForNewSIM(Ljava/lang/String;)V
+    #invoke-direct {p0, v3}, Lcom/android/internal/telephony/gsm/SIMRecords;->setOperatorForNewSIM(Ljava/lang/String;)V
 
     .line 2206
     iget v5, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mSimId:I
@@ -16131,51 +16131,166 @@
 .end method
 
 .method public setDefaultNameForNewSIM(Ljava/lang/String;)V
-    .locals 7
+    .locals 15
     .parameter "strName"
 
     .prologue
-    .line 1890
-    const/4 v2, 0x0
+    .line 1902
+    const-wide/16 v4, 0x1
+
+    .line 1904
+    .local v4, nameSource:J
+    if-nez p1, :cond_0
+
+    .line 1905
+    const-wide/16 v4, 0x0
+
+    .line 1908
+    :cond_0
+    iget-object v0, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mContext:Landroid/content/Context;
+
+    iget v1, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mSimId:I
+
+    invoke-static {v0, v1}, Landroid/provider/Telephony$SIMInfo;->getSIMInfoBySlot(Landroid/content/Context;I)Landroid/provider/Telephony$SIMInfo;
+
+    move-result-object v9
+
+    .line 1909
+    .local v9, simInfo:Landroid/provider/Telephony$SIMInfo;
+    if-eqz v9, :cond_2
+
+    .line 1912
+    iget v0, v9, Landroid/provider/Telephony$SIMInfo;->mNameSource:I
+
+    int-to-long v6, v0
+
+    .line 1913
+    .local v6, OriNameSource:J
+    iget-object v8, v9, Landroid/provider/Telephony$SIMInfo;->mDisplayName:Ljava/lang/String;
+
+    .line 1914
+    .local v8, simDisplayName:Ljava/lang/String;
+    const-string v0, "GSM"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v2, "setDefaultNameForNewSIM SimInfo simId is "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-wide v2, v9, Landroid/provider/Telephony$SIMInfo;->mSimId:J
+
+    invoke-virtual {v1, v2, v3}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " simDisplayName is "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " newName is "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+    
+    move-object/from16 v2, p1
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " OriNameSource = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v6, v7}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, "NewNameSource = "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1915
+    if-eqz v8, :cond_1
+
+    const-wide/16 v0, 0x0
+
+    cmp-long v0, v6, v0
+
+    if-nez v0, :cond_2
+
+    if-eqz p1, :cond_2
+
+    .line 1917
+    :cond_1
+    const/4 v10, 0x0
 
     .line 1892
-    .local v2, simInfoUpdate:Lcom/mediatek/common/telephony/ISimInfoUpdate;
+    .local v10, simInfoUpdate:Lcom/mediatek/common/telephony/ISimInfoUpdate;
     :try_start_0
-    const-class v3, Lcom/mediatek/common/telephony/ISimInfoUpdate;
+    const-class v11, Lcom/mediatek/common/telephony/ISimInfoUpdate;
 
-    const/4 v4, 0x1
+    const/4 v12, 0x1
 
-    new-array v4, v4, [Ljava/lang/Object;
+    new-array v12, v12, [Ljava/lang/Object;
 
-    const/4 v5, 0x0
+    const/4 v13, 0x0
 
-    const/4 v6, 0x1
+    const/4 v14, 0x1
 
-    invoke-static {v6}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+    invoke-static {v14}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
-    move-result-object v6
+    move-result-object v14
 
-    aput-object v6, v4, v5
+    aput-object v14, v12, v13
 
-    invoke-static {v3, v4}, Lcom/mediatek/common/MediatekClassFactory;->createInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {v11, v12}, Lcom/mediatek/common/MediatekClassFactory;->createInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v3
+    move-result-object v11
 
-    move-object v0, v3
+    move-object v0, v11
 
     check-cast v0, Lcom/mediatek/common/telephony/ISimInfoUpdate;
 
-    move-object v2, v0
+    move-object v10, v0
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 1896
     :goto_0
-    iget-object v3, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mContext:Landroid/content/Context;
+    iget-object v11, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mContext:Landroid/content/Context;
 
-    iget v4, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mSimId:I
+    iget v12, p0, Lcom/android/internal/telephony/gsm/SIMRecords;->mSimId:I
+      
+    move-object/from16 v0, p1
 
-    invoke-interface {v2, v3, p1, v4}, Lcom/mediatek/common/telephony/ISimInfoUpdate;->setDefaultNameForNewSimAdp(Landroid/content/Context;Ljava/lang/String;I)V
+    invoke-interface {v10, v11, v0, v12}, Lcom/mediatek/common/telephony/ISimInfoUpdate;->setDefaultNameForNewSimAdp(Landroid/content/Context;Ljava/lang/String;I)V
 
     .line 1897
     return-void
@@ -16189,6 +16304,12 @@
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
+
+    .line 1921
+    .end local v6           #OriNameSource:J
+    .end local v8           #simDisplayName:Ljava/lang/String;
+    :cond_2
+    return-void
 .end method
 
 .method public setMsisdnNumber(Ljava/lang/String;Ljava/lang/String;Landroid/os/Message;)V
