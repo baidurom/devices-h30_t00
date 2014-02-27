@@ -18311,8 +18311,15 @@
     .line 4851
     :cond_0
     iget-object v2, p0, Lcom/android/server/ConnectivityService;->mContext:Landroid/content/Context;
+    
+    move v4, p1
+    
+    if-ne v4, v6, :cond_2
+    
+    const/4 v4, 0x0
 
-    invoke-static {v2, p1}, Landroid/provider/Telephony$SIMInfo;->getIdBySlot(Landroid/content/Context;I)J
+    :cond_2
+    invoke-static {v2, v4}, Landroid/provider/Telephony$SIMInfo;->getIdBySlot(Landroid/content/Context;I)J
 
     move-result-wide v2
 
