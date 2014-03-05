@@ -202,13 +202,6 @@ on fs_property:ro.mount.fs=EXT4
 
     chown root root /system/xbin/su
     chmod 6755 /system/xbin/su
-    exec /system/xbin/busybox chattr -i -R /system/framework/
-    exec /system/xbin/busybox chattr -i -R /system/bin/
-    exec /system/xbin/busybox chattr -i -R /system/lib/
-    exec /system/xbin/busybox chattr -i -R /system/xbin/
-    exec /system/xbin/busybox chattr -i -R /system/usr/
-    exec /system/xbin/busybox chattr -i -R /system/vendor/
-    exec /system/xbin/busybox chattr -i /system/build.prop
 
     # RIL need to do this before the folder /system changed to read only
     chown radio system /system/etc/ril
