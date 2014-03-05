@@ -60,7 +60,7 @@ vendor_saved_apps := MtkBt HwDtsEffect
 # you need decode FMRadio.apk to the project directory (use apktool d FMRadio.apk) first
 # then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-vendor_modify_apps := FMRadio
+vendor_modify_apps := FMRadio mediatek-res
 
 ##############################################################################
 # Jars build from current project root directory

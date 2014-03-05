@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bootup_mode">
+        <item>双卡</item>
+        <item>SIM1</item>
+        <item>SIM2</item>
+    </string-array>
+    <string-array name="gprs_mode_1">
+        <item>SIM1</item>
+        <item>禁用数据连接</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="gprs_mode_2">
+        <item>SIM2</item>
+        <item>禁用数据连接</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="new_search_engines">
+        <item>--</item>
+        <item>cmcc_zh_CN--移动搜索--s.139.com--search_engine_wap139--http://s.139.com/search.do?q={searchTerms}&amp;amp;category=downloadable|web|browseable&amp;amp;tid=2123,2124,2125,2126&amp;amp;fr=portalcustom2--UTF-8--nil</item>
+        <item>google--Google--google.com--search_engine_google--http://www.google.com/m?hl={language}&amp;amp;ie={inputEncoding}&amp;amp;source=android-browser&amp;amp;q={searchTerms}--UTF-8--http://www.google.com/complete/search?hl={language}&amp;amp;json=true&amp;amp;q={searchTerms}</item>
+        <item>baidu--百度--baidu.com--search_engine_baidu--http://m.baidu.com/s?ie=utf8&amp;amp;word={searchTerms}--UTF-8--http://suggestion.baidu.com/su?wd={searchTerms}</item>
+    </string-array>
+</resources>
