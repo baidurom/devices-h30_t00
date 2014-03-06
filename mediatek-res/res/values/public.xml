@@ -1112,4 +1112,7 @@
     <public type="id" name="indicator_left_anim" id="0x0210008c" />
     <public type="id" name="indicator_right_anim" id="0x0210008d" />
     <public type="id" name="lock_arrow_animation" id="0x0210008e" />
+    <public type="id" name="more_info_indicator" id="0x0210008f" />
+    <public type="id" name="key_dismiss" id="0x02100090" />
+
 </resources>

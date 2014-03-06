@@ -55,6 +55,7 @@
     <item type="id" name="SIMCardName">false</item>
     <item type="id" name="moresiminfo">false</item>
     <item type="id" name="keyguard_sim_pin_puk_view">false</item>
+    <item type="id" name="more_info_indicator">false</item>
     <item type="id" name="keyguard_bouncer_frame">false</item>
     <item type="id" name="pinEntry">false</item>
     <item type="id" name="delete_button">false</item>
@@ -67,6 +68,7 @@
     <item type="id" name="key7">false</item>
     <item type="id" name="key8">false</item>
     <item type="id" name="key9">false</item>
+    <item type="id" name="key_dismiss">false</item>
     <item type="id" name="key0">false</item>
     <item type="id" name="key_enter">false</item>
     <item type="id" name="keyguard_selector_fade_container">false</item>
