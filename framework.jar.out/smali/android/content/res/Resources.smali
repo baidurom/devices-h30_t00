@@ -7686,17 +7686,15 @@
 
     iget-object v3, v0, Landroid/content/res/Resources;->mAssets:Landroid/content/res/AssetManager;
 
-    move-object/from16 v0, p1
-
-    iget v4, v0, Landroid/util/TypedValue;->assetCookie:I
-
     const/4 v7, 0x2
+
+    move-object/from16 v4, p1
 
     move/from16 v6, p2
 
     move/from16 v8, p3
 
-    invoke-virtual/range {v3 .. v8}, Landroid/content/res/AssetManager;->openNonAsset(ILjava/lang/String;IIZ)Ljava/io/InputStream;
+    invoke-virtual/range {v3 .. v8}, Landroid/content/res/AssetManager;->openNonAsset(Landroid/util/TypedValue;Ljava/lang/String;IIZ)Ljava/io/InputStream;
 
     move-result-object v14
 
@@ -9701,6 +9699,19 @@
     invoke-virtual/range {v2 .. v19}, Landroid/content/res/AssetManager;->setConfiguration(IILjava/lang/String;IIIIIIIIIIIIII)V
 
     .line 1948
+    move-object/from16 v0, p0
+
+    iget-object v2, v0, Landroid/content/res/Resources;->mAssets:Landroid/content/res/AssetManager;
+
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Landroid/content/res/Resources;->mConfiguration:Landroid/content/res/Configuration;
+
+    iget v3, v3, Landroid/content/res/Configuration;->densityDpi:I
+
+    invoke-virtual {v2, v3}, Landroid/content/res/AssetManager;->setDensityDpi(I)V
+
+    .line 1949
     move-object/from16 v0, p0
 
     iget-object v2, v0, Landroid/content/res/Resources;->mDrawableCache:Landroid/util/LongSparseArray;
