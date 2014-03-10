@@ -117,6 +117,9 @@ override_property += \
     ro.baidu.2nd_storage.format=enable \
     ro.config.hwtheme=0
 
+override_property += \
+    ro.baidu.default_write.settable=true \
+
 ##############################################################################
 # override_property: this property will override the build.prop
 #-----------------------------------------------------------------------------

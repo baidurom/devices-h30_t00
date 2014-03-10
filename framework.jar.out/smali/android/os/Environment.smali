@@ -6,6 +6,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Landroid/os/Environment$UserEnvironmentSD;,
         Landroid/os/Environment$UserEnvironment;
     }
 .end annotation
@@ -48,6 +49,9 @@
 
 .field private static final EXTERNAL_STORAGE_DIRECTORY:Ljava/io/File; = null
 
+#the value of this static final field might be set in the static constructor
+.field private static final IS_SWITCH_SD_ENABLED:Z = false
+
 .field public static final MEDIA_BAD_REMOVAL:Ljava/lang/String; = "bad_removal"
 
 .field public static final MEDIA_CHECKING:Ljava/lang/String; = "checking"
@@ -80,24 +84,31 @@
 
 .field private static sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
+.field private static sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
 .field private static final sLock:Ljava/lang/Object;
 
 .field private static volatile sPrimaryVolume:Landroid/os/storage/StorageVolume;
 
 .field private static volatile sSecondaryVolume:Landroid/os/storage/StorageVolume;
 
+    .annotation build Lcom/android/internal/annotations/GuardedBy;
+        value = "sLock"
+    .end annotation
+.end field
+
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .locals 3
 
     .prologue
-    .line 43
+    .line 42
     const-string v0, "Android"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_ANDROID:Ljava/lang/String;
 
-    .line 45
+    .line 44
     const-string v0, "ANDROID_ROOT"
 
     const-string v1, "/system"
@@ -108,17 +119,17 @@
 
     sput-object v0, Landroid/os/Environment;->ROOT_DIRECTORY:Ljava/io/File;
 
-    .line 52
+    .line 51
     new-instance v0, Ljava/lang/Object;
 
-    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+    invoke-direct/range {v0 .. v0}, Ljava/lang/Object;-><init>()V
 
     sput-object v0, Landroid/os/Environment;->sLock:Ljava/lang/Object;
 
-    .line 99
+    .line 89
     invoke-static {}, Landroid/os/Environment;->initForCurrentUser()V
 
-    .line 285
+    .line 270
     const-string v0, "ANDROID_DATA"
 
     const-string v1, "/data"
@@ -129,7 +140,7 @@
 
     sput-object v0, Landroid/os/Environment;->DATA_DIRECTORY:Ljava/io/File;
 
-    .line 291
+    .line 276
     const-string v0, "ANDROID_SECURE_DATA"
 
     const-string v1, "/data/secure"
@@ -140,7 +151,7 @@
 
     sput-object v0, Landroid/os/Environment;->SECURE_DATA_DIRECTORY:Ljava/io/File;
 
-    .line 294
+    .line 279
     const-string v0, "DOWNLOAD_CACHE"
 
     const-string v1, "/cache"
@@ -151,7 +162,6 @@
 
     sput-object v0, Landroid/os/Environment;->DOWNLOAD_CACHE_DIRECTORY:Ljava/io/File;
 
-    .line 295
     const-string v0, "EXTERNAL_STORAGE"
 
     const-string v1, "/storage/sdcard0"
@@ -162,7 +172,6 @@
 
     sput-object v0, Landroid/os/Environment;->EXTERNAL_STORAGE_DIRECTORY:Ljava/io/File;
 
-    .line 297
     const-string v0, "SECONDARY_STORAGE"
 
     const-string v1, "/storage/sdcard1"
@@ -173,50 +182,67 @@
 
     sput-object v0, Landroid/os/Environment;->SECONDARY_EXTERNAL_STORAGE_DIRECTORY:Ljava/io/File;
 
-    .line 448
+    .line 380
     const-string v0, "Music"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_MUSIC:Ljava/lang/String;
 
-    .line 460
+    .line 392
     const-string v0, "Podcasts"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_PODCASTS:Ljava/lang/String;
 
-    .line 472
+    .line 404
     const-string v0, "Ringtones"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_RINGTONES:Ljava/lang/String;
 
-    .line 484
+    .line 416
     const-string v0, "Alarms"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_ALARMS:Ljava/lang/String;
 
-    .line 496
+    .line 428
     const-string v0, "Notifications"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_NOTIFICATIONS:Ljava/lang/String;
 
-    .line 504
+    .line 436
     const-string v0, "Pictures"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_PICTURES:Ljava/lang/String;
 
-    .line 512
+    .line 444
     const-string v0, "Movies"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_MOVIES:Ljava/lang/String;
 
-    .line 522
+    .line 454
     const-string v0, "Download"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_DOWNLOADS:Ljava/lang/String;
 
-    .line 529
+    .line 461
     const-string v0, "DCIM"
 
     sput-object v0, Landroid/os/Environment;->DIRECTORY_DCIM:Ljava/lang/String;
+
+    .line 877
+    const-string/jumbo v0, "true"
+
+    const-string/jumbo v1, "ro.config.switchPrimaryVolume"
+
+    const-string v2, "false"
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    sput-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
 
     return-void
 .end method
@@ -225,10 +251,10 @@
     .locals 0
 
     .prologue
-    .line 32
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    .line 33
+    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
 
-    .line 113
+    .line 778
     return-void
 .end method
 
@@ -238,7 +264,7 @@
     .parameter "x1"
 
     .prologue
-    .line 32
+    .line 33
     invoke-static {p0, p1}, Landroid/os/Environment;->buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
@@ -252,10 +278,10 @@
     .parameter "segments"
 
     .prologue
-    .line 817
+    .line 719
     move-object v1, p0
 
-    .line 818
+    .line 720
     .local v1, cur:Ljava/io/File;
     move-object v0, p1
 
@@ -275,16 +301,16 @@
 
     aget-object v5, v0, v3
 
-    .line 819
+    .line 721
     .local v5, segment:Ljava/lang/String;
     if-nez v2, :cond_0
 
-    .line 820
+    .line 722
     new-instance v1, Ljava/io/File;
 
     invoke-direct {v1, v5}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
-    .line 818
+    .line 720
     .end local v2           #cur:Ljava/io/File;
     .restart local v1       #cur:Ljava/io/File;
     :goto_1
@@ -296,7 +322,7 @@
     .restart local v2       #cur:Ljava/io/File;
     goto :goto_0
 
-    .line 822
+    .line 724
     :cond_0
     new-instance v1, Ljava/io/File;
 
@@ -306,7 +332,7 @@
     .restart local v1       #cur:Ljava/io/File;
     goto :goto_1
 
-    .line 825
+    .line 727
     .end local v1           #cur:Ljava/io/File;
     .end local v5           #segment:Ljava/lang/String;
     .restart local v2       #cur:Ljava/io/File;
@@ -314,41 +340,40 @@
     return-object v2
 .end method
 
+.method private static checkPrimaryVolumeIsSD()Z
+    .locals 3
+
+    .prologue
+    const/4 v0, 0x1
+
+    const/4 v1, 0x0
+
+    .line 880
+    const-string/jumbo v2, "persist.sys.primarysd"
+
+    invoke-static {v2, v1}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v2
+
+    if-ne v0, v2, :cond_0
+
+    :goto_0
+    return v0
+
+    :cond_0
+    move v0, v1
+
+    goto :goto_0
+.end method
+
 .method public static getDataDirectory()Ljava/io/File;
     .locals 1
 
     .prologue
-    .line 303
+    .line 285
     sget-object v0, Landroid/os/Environment;->DATA_DIRECTORY:Ljava/io/File;
 
     return-object v0
-.end method
-
-.method static getDirectory(Ljava/lang/String;)Ljava/io/File;
-    .locals 2
-    .parameter "variableName"
-
-    .prologue
-    .line 805
-    invoke-static {p0}, Ljava/lang/System;->getenv(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 806
-    .local v0, path:Ljava/lang/String;
-    if-nez v0, :cond_0
-
-    const/4 v1, 0x0
-
-    :goto_0
-    return-object v1
-
-    :cond_0
-    new-instance v1, Ljava/io/File;
-
-    invoke-direct {v1, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    goto :goto_0
 .end method
 
 .method static getDirectory(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
@@ -357,12 +382,12 @@
     .parameter "defaultPath"
 
     .prologue
-    .line 797
+    .line 708
     invoke-static {p0}, Ljava/lang/System;->getenv(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 798
+    .line 709
     .local v0, path:Ljava/lang/String;
     if-nez v0, :cond_0
 
@@ -385,7 +410,7 @@
     .locals 1
 
     .prologue
-    .line 622
+    .line 596
     sget-object v0, Landroid/os/Environment;->DOWNLOAD_CACHE_DIRECTORY:Ljava/io/File;
 
     return-object v0
@@ -395,7 +420,7 @@
     .locals 3
 
     .prologue
-    .line 430
+    .line 368
     new-instance v0, Ljava/io/File;
 
     const-string v1, "EMULATED_STORAGE_SOURCE"
@@ -416,7 +441,7 @@
     .parameter "userId"
 
     .prologue
-    .line 424
+    .line 362
     new-instance v0, Ljava/io/File;
 
     const-string v1, "EMULATED_STORAGE_SOURCE"
@@ -438,17 +463,39 @@
     .locals 1
 
     .prologue
-    .line 569
+    .line 507
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 570
+    .line 509
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 510
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAndroidDataDir()Ljava/io/File;
+
+    move-result-object v0
+
+    .line 512
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAndroidDataDir()Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageAppCacheDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -456,17 +503,39 @@
     .parameter "packageName"
 
     .prologue
-    .line 614
+    .line 582
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 615
+    .line 584
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 585
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAppCacheDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 587
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAppCacheDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageAppDataDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -474,17 +543,39 @@
     .parameter "packageName"
 
     .prologue
-    .line 578
+    .line 522
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 579
+    .line 524
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 525
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAppDataDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 527
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAppDataDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageAppFilesDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -492,17 +583,39 @@
     .parameter "packageName"
 
     .prologue
-    .line 605
+    .line 567
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 606
+    .line 569
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 570
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAppFilesDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 572
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAppFilesDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageAppMediaDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -510,17 +623,39 @@
     .parameter "packageName"
 
     .prologue
-    .line 587
+    .line 537
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 588
+    .line 539
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 540
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAppMediaDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 542
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAppMediaDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageAppObbDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -528,34 +663,78 @@
     .parameter "packageName"
 
     .prologue
-    .line 596
+    .line 552
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 597
+    .line 554
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 555
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageAppObbDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 557
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageAppObbDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageDirectory()Ljava/io/File;
     .locals 1
 
     .prologue
-    .line 358
+    .line 339
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 359
+    .line 341
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 342
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStorageDirectory()Ljava/io/File;
+
+    move-result-object v0
+
+    .line 344
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0}, Landroid/os/Environment$UserEnvironment;->getExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
@@ -563,24 +742,46 @@
     .parameter "type"
 
     .prologue
-    .line 560
+    .line 492
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 561
+    .line 494
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 495
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironmentSD;->getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    .line 497
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0, p0}, Landroid/os/Environment$UserEnvironment;->getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getExternalStorageState()Ljava/lang/String;
     .locals 6
 
     .prologue
-    .line 692
+    .line 666
     :try_start_0
     const-string/jumbo v3, "mount"
 
@@ -592,13 +793,13 @@
 
     move-result-object v0
 
-    .line 694
+    .line 668
     .local v0, mountService:Landroid/os/storage/IMountService;
-    invoke-static {}, Landroid/os/Environment;->getPrimaryVolume()Landroid/os/storage/StorageVolume;
+    invoke-static {}, Landroid/os/Environment;->getPrimaryVolumeCheck()Landroid/os/storage/StorageVolume;
 
     move-result-object v1
 
-    .line 695
+    .line 669
     .local v1, primary:Landroid/os/storage/StorageVolume;
     invoke-virtual {v1}, Landroid/os/storage/StorageVolume;->getPath()Ljava/lang/String;
 
@@ -606,21 +807,21 @@
 
     invoke-interface {v0, v3}, Landroid/os/storage/IMountService;->getVolumeState(Ljava/lang/String;)Ljava/lang/String;
     :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result-object v3
 
-    .line 698
+    .line 672
     .end local v1           #primary:Landroid/os/storage/StorageVolume;
     :goto_0
     return-object v3
 
-    .line 696
+    .line 670
     :catch_0
     move-exception v2
 
-    .line 697
-    .local v2, rex:Ljava/lang/Exception;
+    .line 671
+    .local v2, rex:Landroid/os/RemoteException;
     const-string v3, "Environment"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -643,7 +844,7 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 698
+    .line 672
     const-string/jumbo v3, "removed"
 
     goto :goto_0
@@ -653,7 +854,7 @@
     .locals 2
 
     .prologue
-    .line 395
+    .line 351
     new-instance v0, Ljava/io/File;
 
     const-string v1, "EXTERNAL_STORAGE"
@@ -671,7 +872,7 @@
     .locals 4
 
     .prologue
-    .line 418
+    .line 356
     invoke-static {}, Landroid/os/Environment;->getLegacyExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v0
@@ -703,17 +904,39 @@
     .locals 1
 
     .prologue
-    .line 260
+    .line 239
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
-    .line 261
+    .line 241
+    sget-boolean v0, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 242
+    sget-object v0, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-virtual {v0}, Landroid/os/Environment$UserEnvironmentSD;->getMediaStorageDirectory()Ljava/io/File;
+
+    move-result-object v0
+
+    .line 244
+    :goto_0
+    return-object v0
+
+    :cond_0
     sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
     invoke-virtual {v0}, Landroid/os/Environment$UserEnvironment;->getMediaStorageDirectory()Ljava/io/File;
 
     move-result-object v0
 
-    return-object v0
+    goto :goto_0
 .end method
 
 .method public static getPhoneMemoryDirectory()Ljava/io/File;
@@ -782,11 +1005,36 @@
     return-object v0
 .end method
 
+.method private static getPrimaryVolumeCheck()Landroid/os/storage/StorageVolume;
+    .locals 1
+
+    .prologue   
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->getPrimaryVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    :cond_0
+    invoke-static {}, Landroid/os/Environment;->getSecondaryVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
+
+    :goto_0
+    return-object v0
+.end method
+
 .method public static getRootDirectory()Ljava/io/File;
     .locals 1
 
     .prologue
-    .line 220
+    .line 199
     sget-object v0, Landroid/os/Environment;->ROOT_DIRECTORY:Ljava/io/File;
 
     return-object v0
@@ -844,19 +1092,36 @@
     goto :goto_0
 .end method
 
+
 .method public static getSecondaryExternalStorageDirectory()Ljava/io/File;
-    .locals 1
+    .locals 2
 
     .prologue
     .line 435
     invoke-static {}, Landroid/os/Environment;->throwIfSystem()V
 
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+    
+    const-string v0, "EXTERNAL_STORAGE"
+
+    goto: goto_0
+
+    :cond_0
     .line 436
-    sget-object v0, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
+    const-string v0, "SECONDARY_STORAGE"
 
-    invoke-virtual {v0}, Landroid/os/Environment$UserEnvironment;->getSecondaryExternalStorageDirectory()Ljava/io/File;
+    :goto_0
+    invoke-static {v0}, Ljava/lang/System;->getenv(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v0
+    move-result-object v1
+
+    new-instance v0, Ljava/io/File;
+
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
     return-object v0
 .end method
@@ -879,7 +1144,7 @@
 
     .line 713
     .local v0, mountService:Landroid/os/storage/IMountService;
-    invoke-static {}, Landroid/os/Environment;->getSecondaryVolume()Landroid/os/storage/StorageVolume;
+    invoke-static {}, Landroid/os/Environment;->getSecondaryVolumeCheck()Landroid/os/storage/StorageVolume;
 
     move-result-object v2
 
@@ -959,21 +1224,47 @@
     return-object v0
 .end method
 
+.method private static getSecondaryVolumeCheck()Landroid/os/storage/StorageVolume;
+    .locals 1
+
+    .prologue
+    .line 95
+    invoke-static {}, Landroid/os/Environment;->checkPrimaryVolumeIsSD()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    invoke-static {}, Landroid/os/Environment;->getSecondaryVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    :cond_0
+    invoke-static {}, Landroid/os/Environment;->getPrimaryVolume()Landroid/os/storage/StorageVolume;
+
+    move-result-object v0
+
+    :goto_0
+    return-object v0
+.end method
+
 .method public static getSecureDataDirectory()Ljava/io/File;
     .locals 1
 
     .prologue
-    .line 246
+    .line 225
     invoke-static {}, Landroid/os/Environment;->isEncryptedFilesystemEnabled()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 247
+    .line 226
     sget-object v0, Landroid/os/Environment;->SECURE_DATA_DIRECTORY:Ljava/io/File;
 
-    .line 249
+    .line 228
     :goto_0
     return-object v0
 
@@ -987,14 +1278,14 @@
     .locals 3
 
     .prologue
-    .line 231
+    .line 210
     invoke-static {}, Landroid/os/Environment;->isEncryptedFilesystemEnabled()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 232
+    .line 211
     new-instance v0, Ljava/io/File;
 
     sget-object v1, Landroid/os/Environment;->SECURE_DATA_DIRECTORY:Ljava/io/File;
@@ -1003,7 +1294,7 @@
 
     invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
-    .line 234
+    .line 213
     :goto_0
     return-object v0
 
@@ -1113,7 +1404,7 @@
     .parameter "userId"
 
     .prologue
-    .line 272
+    .line 257
     new-instance v0, Ljava/io/File;
 
     new-instance v1, Ljava/io/File;
@@ -1322,40 +1613,16 @@
     .end packed-switch
 .end method
 
-.method public static hasPhoneMemory()Z
-    .locals 4
-
-    .prologue
-    .line 390
-    const-string v1, "1"
-
-    const-string/jumbo v2, "persist.sys.hasPhoneMemory"
-
-    const-string v3, "1"
-
-    invoke-static {v2, v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    .line 391
-    .local v0, ret:Z
-    return v0
-.end method
-
 .method public static initForCurrentUser()V
     .locals 3
 
     .prologue
-    .line 104
+    .line 94
     invoke-static {}, Landroid/os/UserHandle;->myUserId()I
 
     move-result v0
 
-    .line 105
+    .line 95
     .local v0, userId:I
     new-instance v1, Landroid/os/Environment$UserEnvironment;
 
@@ -1363,24 +1630,37 @@
 
     sput-object v1, Landroid/os/Environment;->sCurrentUser:Landroid/os/Environment$UserEnvironment;
 
-    .line 107
+    .line 97
+    sget-boolean v1, Landroid/os/Environment;->IS_SWITCH_SD_ENABLED:Z
+
+    if-eqz v1, :cond_0
+
+    .line 98
+    new-instance v1, Landroid/os/Environment$UserEnvironmentSD;
+
+    invoke-direct {v1, v0}, Landroid/os/Environment$UserEnvironmentSD;-><init>(I)V
+
+    sput-object v1, Landroid/os/Environment;->sCurrentUserSd:Landroid/os/Environment$UserEnvironmentSD;
+
+    .line 101
+    :cond_0
     sget-object v2, Landroid/os/Environment;->sLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 108
+    .line 102
     const/4 v1, 0x0
 
     :try_start_0
     sput-object v1, Landroid/os/Environment;->sPrimaryVolume:Landroid/os/storage/StorageVolume;
 
-    .line 109
+    .line 103
     monitor-exit v2
 
-    .line 110
+    .line 104
     return-void
 
-    .line 109
+    .line 103
     :catchall_0
     move-exception v1
 
@@ -1395,7 +1675,7 @@
     .locals 2
 
     .prologue
-    .line 282
+    .line 267
     const-string/jumbo v0, "persist.security.efs.enabled"
 
     const/4 v1, 0x0
@@ -1411,12 +1691,12 @@
     .locals 2
 
     .prologue
-    .line 783
+    .line 703
     invoke-static {}, Landroid/os/Environment;->getPrimaryVolume()Landroid/os/storage/StorageVolume;
 
     move-result-object v0
 
-    .line 784
+    .line 704
     .local v0, primary:Landroid/os/storage/StorageVolume;
     if-eqz v0, :cond_0
 
@@ -1441,103 +1721,16 @@
     .locals 2
 
     .prologue
-    .line 734
-    invoke-static {}, Landroid/os/Environment;->getPrimaryVolume()Landroid/os/storage/StorageVolume;
+    .line 685
+    invoke-static {}, Landroid/os/Environment;->getPrimaryVolumeCheck()Landroid/os/storage/StorageVolume;
 
     move-result-object v0
 
-    .line 735
+    .line 686
     .local v0, primary:Landroid/os/storage/StorageVolume;
     if-eqz v0, :cond_0
 
     invoke-virtual {v0}, Landroid/os/storage/StorageVolume;->isRemovable()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    const/4 v1, 0x1
-
-    :goto_0
-    return v1
-
-    :cond_0
-    const/4 v1, 0x0
-
-    goto :goto_0
-.end method
-
-.method public static isSdcardPrimary()Z
-    .locals 5
-
-    .prologue
-    const/4 v1, 0x1
-
-    const/4 v2, 0x0
-
-    .line 369
-    invoke-static {}, Landroid/os/Environment;->hasPhoneMemory()Z
-
-    move-result v3
-
-    if-nez v3, :cond_1
-
-    .line 380
-    .local v0, value:Ljava/lang/String;
-    :cond_0
-    :goto_0
-    return v1
-
-    .line 372
-    .end local v0           #value:Ljava/lang/String;
-    :cond_1
-    const-string/jumbo v3, "persist.sys.isSdcardPrimary"
-
-    const-string/jumbo v4, "off"
-
-    invoke-static {v3, v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 373
-    .restart local v0       #value:Ljava/lang/String;
-    if-eqz v0, :cond_2
-
-    .line 374
-    const-string/jumbo v3, "on"
-
-    invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_0
-
-    move v1, v2
-
-    .line 377
-    goto :goto_0
-
-    :cond_2
-    move v1, v2
-
-    .line 380
-    goto :goto_0
-.end method
-
-.method public static isSecondaryExternalStorageEmulated()Z
-    .locals 2
-
-    .prologue
-    .line 791
-    invoke-static {}, Landroid/os/Environment;->getSecondaryVolume()Landroid/os/storage/StorageVolume;
-
-    move-result-object v0
-
-    .line 792
-    .local v0, secondary:Landroid/os/storage/StorageVolume;
-    if-eqz v0, :cond_0
-
-    invoke-virtual {v0}, Landroid/os/storage/StorageVolume;->isEmulated()Z
 
     move-result v1
 
@@ -1691,136 +1884,11 @@
     goto :goto_0
 .end method
 
-.method public static isSomeStorageEmulated()Z
-    .locals 5
-
-    .prologue
-    .line 837
-    sget-object v3, Landroid/os/Environment;->sLock:Ljava/lang/Object;
-
-    monitor-enter v3
-
-    .line 839
-    :try_start_0
-    const-string/jumbo v2, "mount"
-
-    invoke-static {v2}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
-
-    move-result-object v2
-
-    invoke-static {v2}, Landroid/os/storage/IMountService$Stub;->asInterface(Landroid/os/IBinder;)Landroid/os/storage/IMountService;
-
-    move-result-object v1
-
-    .line 841
-    .local v1, mountService:Landroid/os/storage/IMountService;
-    invoke-interface {v1}, Landroid/os/storage/IMountService;->isExternalStorageEmulated()Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result v2
-
-    :try_start_1
-    monitor-exit v3
-
-    .line 846
-    :goto_0
-    return v2
-
-    .line 842
-    :catch_0
-    move-exception v0
-
-    .line 843
-    .local v0, e:Ljava/lang/Exception;
-    const-string v2, "Environment"
-
-    const-string v4, "couldn\'t talk to MountService"
-
-    invoke-static {v2, v4, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 845
-    const-string v2, "Environment"
-
-    const-string/jumbo v4, "isSomeStorageEmulated return false."
-
-    invoke-static {v2, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 846
-    const/4 v2, 0x0
-
-    monitor-exit v3
-
-    goto :goto_0
-
-    .line 847
-    .end local v0           #e:Ljava/lang/Exception;
-    :catchall_0
-    move-exception v2
-
-    monitor-exit v3
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    throw v2
-.end method
-
-.method public static setHasPhoneMemory(Z)V
-    .locals 2
-    .parameter "memory"
-
-    .prologue
-    .line 413
-    const-string/jumbo v1, "persist.sys.hasPhoneMemory"
-
-    if-eqz p0, :cond_0
-
-    const-string v0, "1"
-
-    :goto_0
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 414
-    return-void
-
-    .line 413
-    :cond_0
-    const-string v0, "0"
-
-    goto :goto_0
-.end method
-
-.method public static setSdcardPrimary(Z)V
-    .locals 2
-    .parameter "ifSdcard"
-
-    .prologue
-    .line 404
-    const-string/jumbo v1, "persist.sys.isSdcardPrimary"
-
-    if-eqz p0, :cond_0
-
-    const-string/jumbo v0, "on"
-
-    :goto_0
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 405
-    return-void
-
-    .line 404
-    :cond_0
-    const-string/jumbo v0, "off"
-
-    goto :goto_0
-.end method
-
 .method private static throwIfSystem()V
     .locals 3
 
     .prologue
-    .line 811
+    .line 713
     invoke-static {}, Landroid/os/Process;->myUid()I
 
     move-result v0
@@ -1829,7 +1897,7 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 812
+    .line 714
     const-string v0, "Environment"
 
     const-string v1, "Static storage paths aren\'t available from AID_SYSTEM"
@@ -1840,7 +1908,7 @@
 
     invoke-static {v0, v1, v2}, Landroid/util/Log;->wtf(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 814
+    .line 716
     :cond_0
     return-void
 .end method
