@@ -1,0 +1,103 @@
+.method private isHaveExternalSdcard()Z
+    .locals 9
+
+    .prologue
+    const-string v7, "storage"
+
+    invoke-virtual {p0, v7}, Lcom/android/settings/deviceinfo/UsbSettings;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v7
+
+    check-cast v7, Landroid/os/storage/StorageManager;
+
+    invoke-virtual {v7}, Landroid/os/storage/StorageManager;->getVolumeList()[Landroid/os/storage/StorageVolume;
+
+    move-result-object v5
+
+    .line 653
+    .local v5, volumes:[Landroid/os/storage/StorageVolume;
+    move-object v0, v5
+
+    .local v0, arr$:[Landroid/os/storage/StorageVolume;
+    array-length v2, v0
+
+    .local v2, len$:I
+    const/4 v1, 0x0
+
+    .local v1, i$:I
+    :goto_1
+    if-ge v1, v2, :cond_4
+
+    aget-object v4, v0, v1
+
+    .line 654
+    .local v4, volume:Landroid/os/storage/StorageVolume;
+    invoke-virtual {v4}, Landroid/os/storage/StorageVolume;->getPath()Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 655
+    .local v3, path:Ljava/lang/String;
+    invoke-virtual {v4}, Landroid/os/storage/StorageVolume;->isRemovable()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_1
+
+    const-string v6, "/mnt/usb"
+
+    invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_1
+
+    const-string v6, "mounted"
+
+    invoke-virtual {v7, v3}, Landroid/os/storage/StorageManager;->getVolumeState(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v6, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_2
+
+    :cond_1
+    const-string v6, "shared"
+
+    invoke-virtual {v7, v3}, Landroid/os/storage/StorageManager;->getVolumeState(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-virtual {v6, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_3
+
+    .line 658
+    :cond_2
+    .line 659
+    const/4 v6, 0x1
+
+    goto :goto_0
+
+    .line 653
+    :cond_3
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_1
+
+    .line 662
+    .end local v3           #path:Ljava/lang/String;
+    .end local v4           #volume:Landroid/os/storage/StorageVolume;
+    :cond_4
+
+    const/4 v6, 0x0
+
+    .line 663
+    :goto_0
+    return v6
+.end method

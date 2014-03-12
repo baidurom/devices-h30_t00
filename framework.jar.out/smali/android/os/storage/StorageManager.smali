@@ -869,7 +869,7 @@
     goto :goto_0
 .end method
 
-.method public isUsbMassStorageConnected()Z
+.method public isUsbMassStorageConnected_Backup()Z
     .locals 3
 
     .prologue
@@ -903,6 +903,90 @@
     const/4 v1, 0x0
 
     goto :goto_0
+.end method
+
+# add for called from SystemUI StorageNotification.java
+# Return true when Sdcard mounted or shared, else false.
+.method public isUsbMassStorageConnected()Z
+    .locals 5
+
+    .prologue
+    const/4 v3, 0x0
+
+    .line 438
+    invoke-virtual {p0}, Landroid/os/storage/StorageManager;->getVolumeList()[Landroid/os/storage/StorageVolume;
+
+    move-result-object v2
+
+    .line 439
+    .local v2, volumes:[Landroid/os/storage/StorageVolume;
+    if-nez v2, :cond_1
+
+    .line 447
+    :cond_0
+    :goto_0
+    return v3
+
+    .line 440
+    :cond_1
+    const/4 v0, 0x0
+
+    .local v0, i:I
+    :goto_1
+    array-length v4, v2
+
+    if-ge v0, v4, :cond_0
+
+    .line 441
+    aget-object v4, v2, v0
+
+    invoke-virtual {v4}, Landroid/os/storage/StorageVolume;->isRemovable()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_3
+
+    .line 442
+    aget-object v4, v2, v0
+
+    invoke-virtual {v4}, Landroid/os/storage/StorageVolume;->getPath()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {p0, v4}, Landroid/os/storage/StorageManager;->getVolumeState(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 443
+    .local v1, state:Ljava/lang/String;
+    const-string/jumbo v4, "mounted"
+
+    invoke-virtual {v1, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_2
+
+    const-string/jumbo v4, "shared"
+
+    invoke-virtual {v1, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_3
+
+    .line 444
+    :cond_2
+    const/4 v3, 0x1
+
+    goto :goto_0
+
+    .line 440
+    .end local v1           #state:Ljava/lang/String;
+    :cond_3
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_1
 .end method
 
 .method public isUsbMassStorageEnabled()Z
