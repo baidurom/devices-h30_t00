@@ -67,7 +67,6 @@
             
             androidprv:layout_childType="challenge"
             android:padding="0dp"
-            android:layout_marginTop="10dip"
             android:gravity="top|center_horizontal">
             <com.android.internal.policy.impl.keyguard.KeyguardSecurityViewFlipper
                 android:id="@+id/view_flipper"
