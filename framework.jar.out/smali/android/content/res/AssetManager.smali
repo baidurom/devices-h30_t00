@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/content/res/AssetManager$1;,
         Landroid/content/res/AssetManager$AssetInputStream;
     }
 .end annotation
@@ -23,7 +22,23 @@
 
 .field private static final DEBUG_REFS:Z = false
 
-.field private static final OEM_PKGS:[Ljava/lang/String; = null
+.field static FILENAME_COLUMN:Ljava/lang/String; = null
+
+.field private static final OEM_PKGS:Ljava/util/HashMap; = null
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/HashMap",
+            "<",
+            "Ljava/lang/String;",
+            "Ljava/util/ArrayList",
+            "<",
+            "Ljava/lang/String;",
+            ">;>;"
+        }
+    .end annotation
+.end field
+
+.field static PKG_COLUMN:Ljava/lang/String; = null
 
 .field private static final SINA_WEIBO_CONFIG_JASON:Ljava/lang/String; = "cfg.json"
 
@@ -59,6 +74,8 @@
 
 
 # instance fields
+.field mContext:Landroid/content/Context;
+
 .field mDpi:I
 
 .field private mIconMatch:Ljava/util/HashMap;
@@ -91,6 +108,8 @@
 
 .field private mObject:I
 
+.field mObserver:Landroid/database/ContentObserver;
+
 .field private final mOffsets:[J
 
 .field private mOpen:Z
@@ -111,80 +130,39 @@
 
 .field private mStringBlocks:[Landroid/content/res/StringBlock;
 
+.field mUri:Landroid/net/Uri;
+
 .field private final mValue:Landroid/util/TypedValue;
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .locals 1
 
     .prologue
-    .line 77
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     sput-object v0, Landroid/content/res/AssetManager;->sSync:Ljava/lang/Object;
 
-    .line 78
     const/4 v0, 0x0
 
     sput-object v0, Landroid/content/res/AssetManager;->sSystem:Landroid/content/res/AssetManager;
 
-    .line 765
-    const/16 v0, 0x8
+    new-instance v0, Ljava/util/HashMap;
 
-    new-array v0, v0, [Ljava/lang/String;
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    const/4 v1, 0x0
+    sput-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
 
-    const-string v2, "com.baidu.BaiduMap"
+    const-string/jumbo v0, "pkg"
 
-    aput-object v2, v0, v1
+    sput-object v0, Landroid/content/res/AssetManager;->PKG_COLUMN:Ljava/lang/String;
 
-    const/4 v1, 0x1
+    const-string v0, "file"
 
-    const-string v2, "com.baidu.appsearch"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x2
-
-    const-string v2, "com.baidu.searchbox"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x3
-
-    const-string v2, "com.baidu.browser.apps"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x4
-
-    const-string v2, "com.baidu.baidulife"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x5
-
-    const-string v2, "com.baidu.hao123"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x6
-
-    const-string v2, "com.ting.mp3.android"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x7
-
-    const-string v2, "cn.opda.a.phonoalbumshoushou"
-
-    aput-object v2, v0, v1
-
-    sput-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:[Ljava/lang/String;
+    sput-object v0, Landroid/content/res/AssetManager;->FILENAME_COLUMN:Ljava/lang/String;
 
     return-void
 .end method
@@ -195,46 +173,45 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 87
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 67
     new-instance v0, Landroid/util/TypedValue;
 
     invoke-direct {v0}, Landroid/util/TypedValue;-><init>()V
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mValue:Landroid/util/TypedValue;
 
-    .line 68
     const/4 v0, 0x2
 
     new-array v0, v0, [J
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mOffsets:[J
 
-    .line 74
     const/4 v0, 0x0
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mStringBlocks:[Landroid/content/res/StringBlock;
 
-    .line 76
     iput v1, p0, Landroid/content/res/AssetManager;->mNumRefs:I
 
-    .line 77
     iput-boolean v1, p0, Landroid/content/res/AssetManager;->mOpen:Z
+
+    const-string v0, "content://com.baidu.bsy.channel"
+
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/content/res/AssetManager;->mUri:Landroid/net/Uri;
 
     const/4 v0, 0x0
 
     iput v0, p0, Landroid/content/res/AssetManager;->mDpi:I
 
-    .line 88
     monitor-enter p0
 
-    .line 93
     :try_start_0
     invoke-direct {p0}, Landroid/content/res/AssetManager;->init()V
 
-    .line 95
     invoke-static {}, Landroid/content/ThemeDefine;->getIconPath()Ljava/util/HashMap;
 
     move-result-object v0
@@ -271,35 +248,36 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 109
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 67
     new-instance v0, Landroid/util/TypedValue;
 
     invoke-direct {v0}, Landroid/util/TypedValue;-><init>()V
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mValue:Landroid/util/TypedValue;
 
-    .line 68
     const/4 v0, 0x2
 
     new-array v0, v0, [J
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mOffsets:[J
 
-    .line 74
     const/4 v0, 0x0
 
     iput-object v0, p0, Landroid/content/res/AssetManager;->mStringBlocks:[Landroid/content/res/StringBlock;
 
-    .line 76
     iput v1, p0, Landroid/content/res/AssetManager;->mNumRefs:I
 
-    .line 77
     iput-boolean v1, p0, Landroid/content/res/AssetManager;->mOpen:Z
 
-    .line 116
+    const-string v0, "content://com.baidu.bsy.channel"
+
+    invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/content/res/AssetManager;->mUri:Landroid/net/Uri;
+
     const/4 v0, 0x0
 
     iput v0, p0, Landroid/content/res/AssetManager;->mDpi:I
@@ -334,6 +312,7 @@
     return-wide v0
 .end method
 
+
 .method static synthetic access$200(Landroid/content/res/AssetManager;I)I
     .locals 1
     .parameter "x0"
@@ -346,6 +325,17 @@
     move-result v0
 
     return v0
+.end method
+
+.method static synthetic access$201(Landroid/content/res/AssetManager;)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 51
+    invoke-direct {p0}, Landroid/content/res/AssetManager;->readChannelPkgsBackgroud()V
+
+    return-void
 .end method
 
 .method static synthetic access$300(Landroid/content/res/AssetManager;I)J
@@ -362,6 +352,17 @@
     return-wide v0
 .end method
 
+.method static synthetic access$301(Landroid/content/res/AssetManager;)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 51
+    invoke-direct {p0}, Landroid/content/res/AssetManager;->readChannelPkgs()V
+
+    return-void
+.end method
+
 .method static synthetic access$400(Landroid/content/res/AssetManager;I)V
     .locals 0
     .parameter "x0"
@@ -374,6 +375,7 @@
     return-void
 .end method
 
+
 .method static synthetic access$500(Landroid/content/res/AssetManager;I)V
     .locals 0
     .parameter "x0"
@@ -385,6 +387,7 @@
 
     return-void
 .end method
+
 
 .method static synthetic access$600(Landroid/content/res/AssetManager;IJI)J
     .locals 2
@@ -402,6 +405,7 @@
     return-wide v0
 .end method
 
+
 .method static synthetic access$700(Landroid/content/res/AssetManager;I[BII)I
     .locals 1
     .parameter "x0"
@@ -418,6 +422,7 @@
 
     return v0
 .end method
+
 
 .method private final addBaiduWmCfgInSinaWeibo([B)[B
     .locals 11
@@ -920,56 +925,71 @@
 .end method
 
 .method private getNewFile(Ljava/lang/String;)Ljava/io/File;
-    .locals 4
+    .locals 5
     .parameter "filename"
 
     .prologue
-    const/4 v3, 0x3
+    const/4 v1, 0x0
 
-    .line 825
+    const/4 v4, 0x3
+
+    invoke-static {}, Landroid/os/Process;->myUid()I
+
+    move-result v2
+
+    const/16 v3, 0x2710
+
+    if-ge v2, v3, :cond_1
+
+    move-object v0, v1
+
+    :cond_0
+    :goto_0
+    return-object v0
+
+    :cond_1
     const/4 v0, 0x0
 
-    .line 827
     .local v0, file:Ljava/io/File;
     new-instance v0, Ljava/io/File;
 
     .end local v0           #file:Ljava/io/File;
-    new-instance v1, Ljava/lang/StringBuilder;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "/data/system/channel_files/"
+    const-string v3, "/data/system/channel_files/"
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-direct {p0, p1}, Landroid/content/res/AssetManager;->getNewFileName(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {p0, p1}, Landroid/content/res/AssetManager;->getNewFileName(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v3
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v1
+    move-result-object v2
 
-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v0, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
     .line 828
     .restart local v0       #file:Ljava/io/File;
     invoke-virtual {v0}, Ljava/io/File;->exists()Z
 
-    move-result v1
+    move-result v2
 
-    if-eqz v1, :cond_1
+    if-eqz v2, :cond_2
 
     .line 829
     const-string v1, "AssetManager"
 
-    invoke-static {v1, v3}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+    invoke-static {v1, v4}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v1
 
@@ -1023,58 +1043,52 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
-    move-object v1, v0
+    goto :goto_0
 
-    .line 838
-    :goto_0
-    return-object v1
-
-    .line 833
-    :cond_1
+    :cond_2
     new-instance v0, Ljava/io/File;
 
     .end local v0           #file:Ljava/io/File;
-    new-instance v1, Ljava/lang/StringBuilder;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "/system/etc/channel_files/"
+    const-string v3, "/system/etc/channel_files/"
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-direct {p0, p1}, Landroid/content/res/AssetManager;->getNewFileName(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct {p0, p1}, Landroid/content/res/AssetManager;->getNewFileName(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v3
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v1
+    move-result-object v2
 
-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v0, v2}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
     .line 834
     .restart local v0       #file:Ljava/io/File;
     invoke-virtual {v0}, Ljava/io/File;->exists()Z
 
-    move-result v1
+    move-result v2
 
-    if-eqz v1, :cond_3
+    if-eqz v2, :cond_3
 
     .line 835
     const-string v1, "AssetManager"
 
-    invoke-static {v1, v3}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+    invoke-static {v1, v4}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_0
 
     const-string v1, "AssetManager"
 
@@ -1124,17 +1138,12 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
-    move-object v1, v0
+    goto/16 :goto_0
 
-    .line 836
-    goto :goto_0
-
-    .line 838
     :cond_3
-    const/4 v1, 0x0
+    move-object v0, v1
 
-    goto :goto_0
+    goto/16 :goto_0
 .end method
 
 .method private getNewFileName(Ljava/lang/String;)Ljava/lang/String;
@@ -1228,7 +1237,7 @@
     .line 835
     iget-object v2, p0, Landroid/content/res/AssetManager;->mPackageName:Ljava/lang/String;
 
-    invoke-direct {p0, v2}, Landroid/content/res/AssetManager;->isNeedHookPackage(Ljava/lang/String;)Z
+    invoke-direct {p0, v2, p1}, Landroid/content/res/AssetManager;->isNeedHookPackage(Ljava/lang/String;Ljava/lang/String;)Z
 
     move-result v2
 
@@ -1445,56 +1454,66 @@
 .method private final native init()V
 .end method
 
-.method private isNeedHookPackage(Ljava/lang/String;)Z
+.method private isNeedHookPackage(Ljava/lang/String;Ljava/lang/String;)Z
     .locals 5
     .parameter "pkg"
+    .parameter "fileName"
 
     .prologue
-    .line 777
-    sget-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:[Ljava/lang/String;
+    const/4 v3, 0x0
 
-    .local v0, arr$:[Ljava/lang/String;
-    array-length v2, v0
+    .line 785
+    sget-object v4, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
 
-    .local v2, len$:I
-    const/4 v1, 0x0
+    invoke-virtual {v4, p1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .local v1, i$:I
+    move-result-object v1
+
+    check-cast v1, Ljava/util/ArrayList;
+
+    .line 786
+    .local v1, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    if-nez v1, :cond_1
+
+    .line 794
+    :cond_0
     :goto_0
-    if-ge v1, v2, :cond_1
+    return v3
 
-    aget-object v3, v0, v1
+    .line 789
+    :cond_1
+    invoke-virtual {v1}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
-    .line 778
-    .local v3, s:Ljava/lang/String;
-    invoke-virtual {v3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result-object v0
+
+    .local v0, i$:Ljava/util/Iterator;
+    :cond_2
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
     if-eqz v4, :cond_0
 
-    .line 779
-    const/4 v4, 0x1
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    .line 782
-    .end local v3           #s:Ljava/lang/String;
-    :goto_1
-    return v4
+    move-result-object v2
 
-    .line 777
-    .restart local v3       #s:Ljava/lang/String;
-    :cond_0
-    add-int/lit8 v1, v1, 0x1
+    check-cast v2, Ljava/lang/String;
+
+    .line 790
+    .local v2, s:Ljava/lang/String;
+    invoke-virtual {v2, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_2
+
+    .line 791
+    const/4 v3, 0x1
 
     goto :goto_0
-
-    .line 782
-    .end local v3           #s:Ljava/lang/String;
-    :cond_1
-    const/4 v4, 0x0
-
-    goto :goto_1
 .end method
+
 
 .method private final isSinaWeiboCfg(Ljava/lang/String;)Z
     .locals 2
@@ -1821,6 +1840,262 @@
 .method private final native readAssetChar(I)I
 .end method
 
+.method private readChannelPkgs()V
+    .locals 12
+
+    .prologue
+    const/4 v11, 0x3
+
+    const/4 v2, 0x0
+
+    .line 936
+    const-string v0, "AssetManager"
+
+    invoke-static {v0, v11}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const-string v0, "AssetManager"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v3, "readChannelPkgs "
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-static {}, Landroid/os/Process;->myUid()I
+
+    move-result v3
+
+    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 938
+    :cond_0
+    sget-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
+
+    invoke-virtual {v0}, Ljava/util/HashMap;->entrySet()Ljava/util/Set;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v8
+
+    .line 939
+    .local v8, it:Ljava/util/Iterator;,"Ljava/util/Iterator<Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/ArrayList<Ljava/lang/String;>;>;>;"
+    :goto_0
+    invoke-interface {v8}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 940
+    invoke-interface {v8}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/util/Map$Entry;
+
+    invoke-interface {v0}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, Ljava/util/ArrayList;
+
+    .line 941
+    .local v9, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    invoke-virtual {v9}, Ljava/util/ArrayList;->clear()V
+
+    goto :goto_0
+
+    .line 943
+    .end local v9           #list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    :cond_1
+    sget-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
+
+    invoke-virtual {v0}, Ljava/util/HashMap;->clear()V
+
+    .line 946
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v0
+
+    iget-object v1, p0, Landroid/content/res/AssetManager;->mUri:Landroid/net/Uri;
+
+    move-object v3, v2
+
+    move-object v4, v2
+
+    move-object v5, v2
+
+    invoke-virtual/range {v0 .. v5}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object v6
+
+    .line 947
+    .local v6, c:Landroid/database/Cursor;
+    if-eqz v6, :cond_5
+
+    invoke-interface {v6}, Landroid/database/Cursor;->getCount()I
+
+    move-result v0
+
+    if-lez v0, :cond_5
+
+    .line 948
+    :goto_1
+    invoke-interface {v6}, Landroid/database/Cursor;->moveToNext()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 949
+    sget-object v0, Landroid/content/res/AssetManager;->PKG_COLUMN:Ljava/lang/String;
+
+    invoke-interface {v6, v0}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+
+    move-result v0
+
+    invoke-interface {v6, v0}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    .line 950
+    .local v10, pkg:Ljava/lang/String;
+    sget-object v0, Landroid/content/res/AssetManager;->FILENAME_COLUMN:Ljava/lang/String;
+
+    invoke-interface {v6, v0}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+
+    move-result v0
+
+    invoke-interface {v6, v0}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+
+    move-result-object v7
+
+    .line 951
+    .local v7, file:Ljava/lang/String;
+    const-string v0, "AssetManager"
+
+    invoke-static {v0, v11}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    const-string v0, "AssetManager"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string/jumbo v2, "readChannelPkgs "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v2, " "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 952
+    :cond_2
+    sget-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
+
+    invoke-virtual {v0, v10}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, Ljava/util/ArrayList;
+
+    .line 953
+    .restart local v9       #list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    if-eqz v9, :cond_3
+
+    .line 954
+    invoke-virtual {v9, v7}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto :goto_1
+
+    .line 956
+    :cond_3
+    new-instance v9, Ljava/util/ArrayList;
+
+    .end local v9           #list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    invoke-direct {v9}, Ljava/util/ArrayList;-><init>()V
+
+    .line 957
+    .restart local v9       #list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    invoke-virtual {v9, v7}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 958
+    sget-object v0, Landroid/content/res/AssetManager;->OEM_PKGS:Ljava/util/HashMap;
+
+    invoke-virtual {v0, v10, v9}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_1
+
+    .line 961
+    .end local v7           #file:Ljava/lang/String;
+    .end local v9           #list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    .end local v10           #pkg:Ljava/lang/String;
+    :cond_4
+    invoke-interface {v6}, Landroid/database/Cursor;->close()V
+
+    .line 963
+    :cond_5
+    return-void
+.end method
+
+.method private readChannelPkgsBackgroud()V
+    .locals 1
+
+    .prologue
+    .line 924
+    new-instance v0, Landroid/content/res/AssetManager$2;
+
+    invoke-direct {v0, p0}, Landroid/content/res/AssetManager$2;-><init>(Landroid/content/res/AssetManager;)V
+
+    invoke-virtual {v0}, Landroid/content/res/AssetManager$2;->start()V
+
+    .line 930
+    return-void
+.end method
+
 .method private final native seekAsset(IJI)J
 .end method
 
@@ -1875,39 +2150,78 @@
     goto :goto_0
 .end method
 
+.method public clearContext()V
+    .locals 2
+
+    .prologue
+    .line 912
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mObserver:Landroid/database/ContentObserver;
+
+    if-eqz v0, :cond_0
+
+    .line 913
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v0
+
+    iget-object v1, p0, Landroid/content/res/AssetManager;->mObserver:Landroid/database/ContentObserver;
+
+    invoke-virtual {v0, v1}, Landroid/content/ContentResolver;->unregisterContentObserver(Landroid/database/ContentObserver;)V
+
+    .line 915
+    :cond_0
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    if-eqz v0, :cond_1
+
+    .line 916
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    .line 918
+    :cond_1
+    return-void
+.end method
+
 .method public close()V
     .locals 1
 
     .prologue
-    .line 134
     monitor-enter p0
 
-    .line 137
     :try_start_0
     iget-boolean v0, p0, Landroid/content/res/AssetManager;->mOpen:Z
 
     if-eqz v0, :cond_0
 
-    .line 138
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Landroid/content/res/AssetManager;->mOpen:Z
 
-    .line 139
     invoke-virtual {p0}, Ljava/lang/Object;->hashCode()I
 
     move-result v0
 
     invoke-direct {p0, v0}, Landroid/content/res/AssetManager;->decRefsLocked(I)V
 
-    .line 141
     :cond_0
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Landroid/content/res/AssetManager;->mPackageName:Ljava/lang/String;
+
+    invoke-virtual {p0}, Landroid/content/res/AssetManager;->clearContext()V
+
     monitor-exit p0
 
-    .line 142
     return-void
 
-    .line 141
     :catchall_0
     move-exception v0
 
@@ -3738,6 +4052,64 @@
 .end method
 
 .method public final native setConfiguration(IILjava/lang/String;IIIIIIIIIIIIII)V
+.end method
+
+.method public setContext(Landroid/content/Context;)V
+    .locals 4
+    .parameter "context"
+
+    .prologue
+    .line 889
+    invoke-static {}, Landroid/os/Process;->myUid()I
+
+    move-result v0
+
+    const/16 v1, 0x2710
+
+    if-ge v0, v1, :cond_1
+
+    .line 906
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 893
+    :cond_1
+    iget-object v0, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    if-nez v0, :cond_0
+
+    .line 896
+    iput-object p1, p0, Landroid/content/res/AssetManager;->mContext:Landroid/content/Context;
+
+    .line 897
+    invoke-direct {p0}, Landroid/content/res/AssetManager;->readChannelPkgsBackgroud()V
+
+    .line 899
+    new-instance v0, Landroid/content/res/AssetManager$1;
+
+    new-instance v1, Landroid/os/Handler;
+
+    invoke-direct {v1}, Landroid/os/Handler;-><init>()V
+
+    invoke-direct {v0, p0, v1}, Landroid/content/res/AssetManager$1;-><init>(Landroid/content/res/AssetManager;Landroid/os/Handler;)V
+
+    iput-object v0, p0, Landroid/content/res/AssetManager;->mObserver:Landroid/database/ContentObserver;
+
+    .line 905
+    invoke-virtual {p1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v0
+
+    iget-object v1, p0, Landroid/content/res/AssetManager;->mUri:Landroid/net/Uri;
+
+    const/4 v2, 0x0
+
+    iget-object v3, p0, Landroid/content/res/AssetManager;->mObserver:Landroid/database/ContentObserver;
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+
+    goto :goto_0
 .end method
 
 .method setDensityDpi(I)V

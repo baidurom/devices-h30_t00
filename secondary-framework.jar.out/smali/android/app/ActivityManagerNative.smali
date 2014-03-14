@@ -246,6 +246,7 @@
     packed-switch p1, :pswitch_data_0
 
     .line 1884
+    :goto_99
     :pswitch_0
     invoke-super/range {p0 .. p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
@@ -9532,6 +9533,55 @@
 
     goto :goto_60
 
+    :pswitch_f0
+    const-string v5, "android.app.IActivityManager"
+
+    move-object/from16 v0, p2
+
+    invoke-virtual {v0, v5}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    .line 1840
+    sget-object v5, Landroid/content/pm/ApplicationInfo;->CREATOR:Landroid/os/Parcelable$Creator;
+
+    move-object/from16 v0, p2
+
+    invoke-interface {v5, v0}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
+
+    move-result-object v6
+
+    check-cast v6, Landroid/content/pm/ApplicationInfo;
+
+    .line 1841
+    .local v6, app:Landroid/content/pm/ApplicationInfo;
+    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v5
+
+    if-eqz v5, :cond_97
+
+    const/16 v157, 0x1
+
+    .line 1842
+    .local v157, persistent:Z
+    :goto_9f
+    move-object/from16 v0, p0
+
+    move/from16 v1, v157
+
+    invoke-virtual {v0, v6, v1}, Landroid/app/ActivityManagerNative;->setPersistent(Landroid/content/pm/ApplicationInfo;Z)V
+
+    .line 1843
+    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
+
+    goto/16 :goto_99
+
+    .line 1841
+    .end local v157           #persistent:Z
+    :cond_97
+    const/16 v157, 0x0
+
+    goto :goto_9f
+
     .line 115
     :pswitch_data_0
     .packed-switch 0x1
@@ -9702,5 +9752,6 @@
         :pswitch_95
         :pswitch_89
         :pswitch_67
+        :pswitch_f0
     .end packed-switch
 .end method

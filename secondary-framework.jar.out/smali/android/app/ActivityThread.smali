@@ -3223,6 +3223,16 @@
     move-result-object v4
 
     invoke-virtual {v2, v4}, Landroid/content/res/AssetManager;->setPackageName(Ljava/lang/String;)V
+
+    invoke-virtual/range {v24 .. v24}, Landroid/content/res/Resources;->getAssets()Landroid/content/res/AssetManager;
+
+    move-result-object v2
+
+    invoke-virtual {v10}, Landroid/app/Application;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v4
+
+    invoke-virtual {v2, v4}, Landroid/content/res/AssetManager;->setContext(Landroid/content/Context;)V
     :try_end_5
     .catchall {:try_start_5 .. :try_end_5} :catchall_0
 
