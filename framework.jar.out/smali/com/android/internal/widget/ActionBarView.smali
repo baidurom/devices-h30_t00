@@ -5593,28 +5593,28 @@
 
     .line 734
     :goto_8
-    iget-object v9, p0, Lcom/android/internal/widget/ActionBarView;->mTitleLayout:Landroid/widget/LinearLayout;
+    #iget-object v9, p0, Lcom/android/internal/widget/ActionBarView;->mTitleLayout:Landroid/widget/LinearLayout;
 
-    if-nez v4, :cond_12
+    #if-nez v4, :cond_12
 
-    if-eqz v1, :cond_12
+    #if-eqz v1, :cond_12
 
-    move v7, v8
+    #move v7, v8
 
     :goto_9
-    invoke-virtual {v9, v7}, Landroid/widget/LinearLayout;->setEnabled(Z)V
+    #invoke-virtual {v9, v7}, Landroid/widget/LinearLayout;->setEnabled(Z)V
 
     .line 735
-    iget-object v9, p0, Lcom/android/internal/widget/ActionBarView;->mTitleLayout:Landroid/widget/LinearLayout;
+    #iget-object v9, p0, Lcom/android/internal/widget/ActionBarView;->mTitleLayout:Landroid/widget/LinearLayout;
 
-    if-nez v4, :cond_13
+    #if-nez v4, :cond_13
 
-    if-eqz v1, :cond_13
+    #if-eqz v1, :cond_13
 
-    move v7, v8
+    #move v7, v8
 
     :goto_a
-    invoke-virtual {v9, v7}, Landroid/widget/LinearLayout;->setClickable(Z)V
+    #invoke-virtual {v9, v7}, Landroid/widget/LinearLayout;->setClickable(Z)V
 
     .line 738
     .end local v1           #homeAsUp:Z
