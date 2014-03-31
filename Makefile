@@ -119,6 +119,7 @@ override_property += \
 
 override_property += \
     ro.baidu.default_write.settable=true \
+    ro.baidu.asec.type=1 \
 
 ##############################################################################
 # override_property: this property will override the build.prop
