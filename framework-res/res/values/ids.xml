@@ -114,6 +114,7 @@
     <item type="id" name="datePicker">false</item>
     <item type="id" name="keyguard_click_area">false</item>
     <item type="id" name="keyguard_message_area">false</item>
+    <item type="id" name="keyguard_unlock_panel">false</item>
     <item type="id" name="expanded_menu">false</item>
     <item type="id" name="status">false</item>
     <item type="id" name="option1">false</item>

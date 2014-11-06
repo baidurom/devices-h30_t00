@@ -11,6 +11,4 @@ if [ "$jarBaseName" = "android.policy" ];then
 
         sed -i 's/invoke-direct\( .*Lcom\/android\/internal\/policy\/impl\/PhoneWindowManager;->keyguardIsShowingTq()Z\)/invoke-virtual\1/g' $tempSmaliDir/smali/com/android/internal/policy/impl/PhoneWindowManager.smali
     fi
-    echo ">>> update mediatek res id in android.policy"
-    $PORT_ROOT/tools/modifyID.py $PORT_ROOT/devices/h30_t00/overlay/res/merge_update_mediatek_res.txt $tempSmaliDir
 fi

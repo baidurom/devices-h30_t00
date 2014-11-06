@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_menu_airsharing_connected" android:id="@id/action_dlna" android:visible="false" android:title="@string/multiscreen_title" android:showAsAction="always" />
+    <item android:icon="@drawable/ic_menu_ptp_holo_light" android:id="@id/action_import" android:visible="false" android:title="@string/Import" android:showAsAction="always|withText" />
+    <item android:icon="@drawable/ic_menu_share_holo_light" android:id="@id/action_share_panorama" android:visible="false" android:title="@string/share_panorama" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_menu_share_holo_light" android:enabled="true" android:id="@id/action_share" android:visible="false" android:title="@string/share" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/photoshare_menu_download" android:id="@id/action_photoshare_download" android:visible="false" android:title="@string/photoshare_download" android:showAsAction="always" />
+    <item android:icon="@drawable/ic_menu_trash_holo_light" android:id="@id/action_delete" android:visible="false" android:title="@string/delete" android:showAsAction="ifRoom" />
+    <item android:id="@id/action_edit" android:visible="false" android:title="@string/edit" android:showAsAction="never" />
+    <item android:id="@id/action_rotate_ccw" android:title="@string/rotate_left" android:showAsAction="never" />
+    <item android:id="@id/action_rotate_cw" android:title="@string/rotate_right" android:showAsAction="never" />
+    <item android:icon="@drawable/ic_menu_slideshow_holo_light" android:id="@id/action_slideshow" android:title="@string/slideshow" android:showAsAction="never" />
+    <item android:id="@id/action_trim" android:title="@string/trim_action" android:showAsAction="never" />
+    <item android:id="@id/action_setas" android:title="@string/set_as_new" android:showAsAction="never" />
+    <item android:id="@id/action_details" android:title="@string/details" android:showAsAction="never" />
+    <item android:id="@id/action_show_on_map" android:title="@string/show_on_map" android:showAsAction="never" />
+    <item android:id="@id/action_settings" android:visible="false" android:title="@string/settings" android:showAsAction="never" />
+</menu>

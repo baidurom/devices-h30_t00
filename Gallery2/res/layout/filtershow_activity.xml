@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/mainView" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="right" android:orientation="vertical" android:id="@id/imageStatePanel" android:visibility="invisible" android:layout_width="200.0dip" android:layout_height="fill_parent">
+        <TextView android:textSize="24.0sp" android:textStyle="bold" android:textColor="@*android:color/white" android:gravity="center" android:background="@*android:color/transparent" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/imageState" />
+        <ListView android:id="@id/imageStateList" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/mainPanel" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layerType="hardware">
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <com.android.gallery3d.filtershow.imageshow.ImageShow android:id="@id/imageShow" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageStraighten android:id="@id/imageStraighten" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageCrop android:id="@id/imageCrop" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageRotate android:id="@id/imageRotate" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageFlip android:id="@id/imageFlip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.ui.ImageCurves android:id="@id/imageCurves" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layerType="software" />
+            <com.android.gallery3d.filtershow.imageshow.ImageBorder android:id="@id/imageBorder" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageZoom android:id="@id/imageZoom" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.imageshow.ImageTinyPlanet android:id="@id/imageTinyPlanet" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.android.gallery3d.filtershow.CenteredLinearLayout android:layout_gravity="bottom|center" android:orientation="vertical" android:background="@*android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" custom:max_width="600.0dip"
+              xmlns:custom="http://schemas.android.com/apk/res/com.android.gallery3d">
+                <SeekBar android:layout_gravity="bottom" android:id="@id/filterSeekBar" android:padding="16.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:progressDrawable="@drawable/seekbar_progress" android:thumb="@drawable/seekbar_thumb" />
+            </com.android.gallery3d.filtershow.CenteredLinearLayout>
+        </FrameLayout>
+        <com.android.gallery3d.filtershow.CenteredLinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/filtersPanel" android:layout_width="fill_parent" android:layout_height="wrap_content" custom:max_width="800.0dip"
+          xmlns:custom="http://schemas.android.com/apk/res/com.android.gallery3d">
+            <FrameLayout android:id="@id/secondRowPanel" android:background="@drawable/filter_bg" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/filterButtonsList" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <Button android:textSize="18.0sp" android:textColor="@drawable/tab_color" android:gravity="left|center" android:id="@id/aspect" android:background="@drawable/filtershow_spinner_background" android:paddingLeft="8.0dip" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="42.0dip" android:layout_marginRight="6.0dip" android:text="@string/aspectFree_effect" android:layout_centerVertical="true" />
+                        <Button android:textSize="18.0sp" android:textColor="@drawable/tab_color" android:gravity="left|center" android:id="@id/pickCurvesChannel" android:background="@drawable/filtershow_spinner_background" android:paddingLeft="8.0dip" android:visibility="gone" android:layout_width="100.0dip" android:layout_height="42.0dip" android:layout_marginRight="6.0dip" android:text="@string/curves_channel_rgb" android:layout_centerVertical="true" />
+                        <Button android:textSize="18.0sp" android:textColor="@drawable/tab_color" android:gravity="center" android:id="@id/applyEffect" android:background="@drawable/filtershow_resetbutton_background" android:paddingLeft="16.0dip" android:paddingRight="16.0dip" android:layout_width="wrap_content" android:layout_height="42.0dip" android:minWidth="160.0dip" android:text="@string/apply_effect" />
+                    </LinearLayout>
+                </LinearLayout>
+                <HorizontalScrollView android:id="@id/fxList" android:background="@drawable/filter_bg" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:orientation="horizontal" android:id="@id/listFilters" android:background="@drawable/filter_bg" android:paddingLeft="@dimen/thumbnail_margin" android:paddingRight="@dimen/thumbnail_margin" android:layout_width="wrap_content" android:layout_height="fill_parent" />
+                </HorizontalScrollView>
+                <HorizontalScrollView android:id="@id/faceList" android:background="@drawable/filter_bg" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:orientation="horizontal" android:id="@id/listFace" android:background="@drawable/filter_bg" android:paddingLeft="@dimen/thumbnail_margin" android:paddingRight="@dimen/thumbnail_margin" android:layout_width="wrap_content" android:layout_height="fill_parent">
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/faceSmoothButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/face_edit_smooth" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/faceColorButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/face_edit_color" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/faceReshapeButton" android:src="@drawable/filtershow_button_colors_vignette" android:text="@string/face_edit_reshape" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/NoseReshapeButton" android:src="@drawable/filtershow_button_colors_vignette" android:text="@string/nose_edit_reshape" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/TeethWhitenButton" android:src="@drawable/filtershow_button_colors_vignette" android:text="@string/teeth_edit_whiten" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/EyebiggerButton" android:src="@drawable/filtershow_button_colors_vignette" android:text="@string/eye_edit_bigger" style="@style/FilterShowBottomButton" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+                <TextView android:textSize="18.0sp" android:textColor="@*android:color/black" android:gravity="center" android:id="@id/noFaceWarning" android:background="@drawable/filter_noface_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size" android:text="@string/face_edit_warning" />
+                <HorizontalScrollView android:id="@id/bordersList" android:background="@drawable/filter_bg" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:orientation="horizontal" android:id="@id/listBorders" android:background="@drawable/filter_bg" android:paddingLeft="@dimen/thumbnail_margin" android:paddingRight="@dimen/thumbnail_margin" android:layout_width="wrap_content" android:layout_height="fill_parent" />
+                </HorizontalScrollView>
+                <HorizontalScrollView android:id="@id/geometryList" android:background="@drawable/filter_bg" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:id="@id/listGeometry" android:layout_width="wrap_content" android:layout_height="fill_parent">
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/straightenButton" android:src="@drawable/filtershow_button_geometry_straighten" android:text="@string/straighten" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/cropButton" android:src="@drawable/filtershow_button_geometry_crop" android:text="@string/crop" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/rotateButton" android:src="@drawable/filtershow_button_geometry_rotate" android:text="@string/rotate" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/flipButton" android:src="@drawable/filtershow_button_geometry_flip" android:text="@string/mirror" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/redEyeButton" android:visibility="gone" android:src="@drawable/photoeditor_effect_redeye" android:text="@string/redeye" style="@style/FilterShowBottomButton" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+                <HorizontalScrollView android:id="@id/colorsFxList" android:background="@drawable/filter_bg" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="@dimen/thumbnail_size">
+                    <LinearLayout android:orientation="horizontal" android:id="@id/listColorsFx" android:background="@drawable/filter_bg" android:paddingLeft="@dimen/thumbnail_margin" android:paddingRight="@dimen/thumbnail_margin" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/tinyplanetButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/tinyplanet" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/wbalanceButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/Autocolor" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/vignetteButton" android:src="@drawable/filtershow_button_colors_vignette" android:text="@string/vignette" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/contrastButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/contrast" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/exposureButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/exposure" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/saturationButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/Saturation" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/sharpenButton" android:src="@drawable/filtershow_button_colors_sharpen" android:text="@string/Sharpness" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/curvesButtonRGB" android:src="@drawable/filtershow_button_colors_curve" android:text="@string/curvesRGB" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/vibranceButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/vibrance" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/hueButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/hue" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/shadowRecoveryButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/shadow_recovery" style="@style/FilterShowBottomButton" />
+                        <com.android.gallery3d.filtershow.ui.ImageButtonTitle android:id="@id/bwfilterButton" android:src="@drawable/filtershow_button_colors_contrast" android:text="@string/bwfilter" style="@style/FilterShowBottomButton" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </FrameLayout>
+            <View android:background="@color/toolbar_separation_line" android:layout_width="fill_parent" android:layout_height="0.0dip" />
+            <com.android.gallery3d.filtershow.CenteredLinearLayout android:layout_gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" custom:max_width="800.0dip"
+              xmlns:custom="http://schemas.android.com/apk/res/com.android.gallery3d">
+                <RelativeLayout android:layout_gravity="center" android:background="@drawable/toolbar_botton_port" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <LinearLayout android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="48.0dip" android:layout_centerInParent="true">
+                        <ImageButton android:id="@id/fxButton" android:background="@drawable/filtershow_imagebutton_background" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/btn_fx" android:scaleType="centerInside" android:layout_weight="1.0" />
+                        <ImageView android:id="@id/fxButtonLine" android:layout_width="10.0dip" android:layout_height="fill_parent" android:scaleType="fitXY" android:maxWidth="40.0dip" android:layout_weight="1.0" />
+                        <ImageButton android:id="@id/faceButton" android:background="@drawable/filtershow_imagebutton_background" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/btn_face" android:scaleType="centerInside" android:layout_weight="1.0" android:layout_toRightOf="@id/fxButton" />
+                        <ImageView android:id="@id/faceButtonLine" android:layout_width="10.0dip" android:layout_height="fill_parent" android:scaleType="fitXY" android:maxWidth="40.0dip" android:layout_weight="1.0" />
+                        <ImageButton android:id="@id/geometryButton" android:background="@drawable/filtershow_imagebutton_background" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/btn_geometry" android:scaleType="centerInside" android:layout_weight="1.0" android:layout_toRightOf="@id/faceButton" />
+                        <ImageView android:id="@id/geometryButtonLine" android:layout_width="10.0dip" android:layout_height="fill_parent" android:scaleType="fitXY" android:maxWidth="40.0dip" android:layout_weight="1.0" />
+                        <ImageButton android:id="@id/colorsButton" android:background="@drawable/filtershow_imagebutton_background" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/btn_colors" android:scaleType="centerInside" android:layout_weight="1.0" />
+                        <ImageView android:id="@id/colorsButtonLine" android:layout_width="10.0dip" android:layout_height="fill_parent" android:scaleType="fitXY" android:maxWidth="40.0dip" android:layout_weight="1.0" />
+                        <ImageButton android:id="@id/borderButton" android:background="@drawable/filtershow_imagebutton_background" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/btn_border" android:scaleType="centerInside" android:layout_weight="1.0" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </com.android.gallery3d.filtershow.CenteredLinearLayout>
+        </com.android.gallery3d.filtershow.CenteredLinearLayout>
+    </LinearLayout>
+    <ProgressBar android:layout_gravity="center" android:id="@id/loading" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="true" android:indeterminateOnly="true" style="?android:attr/progressBarStyleLarge" />
+    <LinearLayout android:layout_gravity="right" android:orientation="vertical" android:id="@id/historyPanel" android:background="@drawable/history_bg" android:visibility="invisible" android:layout_width="200.0dip" android:layout_height="fill_parent">
+        <TextView android:textSize="14.0sp" android:textColor="@color/crop_button_selected" android:gravity="left" android:background="@*android:color/transparent" android:paddingLeft="8.0dip" android:layout_width="fill_parent" android:layout_height="23.0dip" android:layout_marginLeft="16.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="16.0dip" android:text="@string/history" />
+        <View android:background="@drawable/list_section_divider" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" />
+        <ListView android:id="@id/operationsList" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:layout_weight="1.0" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:textColor="@color/button_red" android:gravity="center" android:id="@id/resetOperationsButton" android:text="@string/reset" style="@style/FilterShowHistoryButton" />
+            <Button android:id="@id/saveOperationsButton" android:visibility="gone" android:text="@string/save" style="@style/FilterShowHistoryButton" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

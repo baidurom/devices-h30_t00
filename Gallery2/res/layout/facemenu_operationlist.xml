@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/facemenu_operationlist" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:orientation="horizontal" android:id="@id/facemenu_name" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textname" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="110.0dip" android:layout_height="wrap_content" android:singleLine="true" />
+        <ImageView android:gravity="right" android:layout_gravity="right|center" android:id="@id/facemenu_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_mms" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_mms" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textmms" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_email" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_email" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textemail" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_changename" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_changename" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textchangename" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_removename" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_removename" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textremovename" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_contactimage" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_contactimage" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textcontactimage" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:orientation="vertical" android:id="@id/facemenu_detail" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_detail" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textdetail" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+</LinearLayout>

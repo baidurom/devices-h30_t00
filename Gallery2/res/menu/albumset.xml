@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_menu_round_share" android:id="@id/action_near" android:visible="false" android:title="@string/dlna_around" android:showAsAction="always" />
+    <item android:icon="@drawable/photoshare_menu_login" android:id="@id/action_cloudphoto" android:title="@string/photoshare" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_menu_camera_holo_light" android:id="@id/action_camera" android:title="@string/switch_to_camera" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/photoshare_switch_to_gallery" android:id="@id/action_gallery" android:visible="false" android:title="@string/app_name" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/photoshare_new_share" android:id="@id/action_photoshare_newshare" android:visible="false" android:title="@string/photoshare_create_new_share" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_menu_trash_holo_light" android:id="@id/action_delete" android:title="@string/delete" android:showAsAction="ifRoom" />
+    <item android:id="@id/action_hide" android:title="@string/set_hide" android:showAsAction="never" />
+    <item android:id="@id/action_select" android:visible="false" android:title="@string/select_album" android:showAsAction="never" />
+    <item android:id="@id/action_manage_offline" android:visible="false" android:title="@string/make_available_offline" android:showAsAction="never" />
+    <item android:id="@id/action_sync_picasa_albums" android:visible="false" android:title="@string/sync_picasa_albums" android:showAsAction="never" />
+    <item android:id="@id/action_config_hide_info" android:visible="false" android:title="@string/show_hidden_albums" android:showAsAction="never" />
+    <item android:id="@id/action_set_private_albums" android:visible="false" android:title="@string/set_private_albums" android:showAsAction="never" />
+    <item android:id="@id/action_settings" android:visible="true" android:title="@string/settings" android:showAsAction="never" />
+    <item android:id="@id/action_photoshare_settings" android:visible="false" android:title="@string/photoshare_setting" android:showAsAction="never" />
+    <item android:id="@id/action_general_help" android:visible="false" android:title="@string/help" android:showAsAction="never" />
+</menu>

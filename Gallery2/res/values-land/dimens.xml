@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="manage_cache_bottom_height">39.0dip</dimen>
+    <dimen name="tabsbar_top_margin">39.0dip</dimen>
+    <dimen name="multiscreen_tips_arrow_top_margin">0.0dip</dimen>
+    <dimen name="multiscreen_controller_top_margin">84.0dip</dimen>
+</resources>

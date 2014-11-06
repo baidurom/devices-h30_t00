@@ -20,9 +20,14 @@ DALVIK_VM_BUILD := 27
 DENSITY := xhdpi
 
 ##############################################################################
+# Default RESOLUTION setting is nothing
+# this used to config the bootanimation
+#-----------------------------------------------------------------------------
+RESOLUTION := 720x1280
+
+##############################################################################
 # customize weather use prebuilt image or pack from BOOT/RECOVERY directory
 # Support Values:
-# vendor_modify_images := boot recovery
 # boot/recovery, pack boot.img/recovery.img from vendor/BOOT / vendor/RECOVERY
 # NULL, check boot.img/recovery.img in project root directory, if it exists,
 # use a prebuilt boot.img/recovery.img, if not, nothing to do
@@ -60,7 +65,7 @@ vendor_saved_apps := MtkBt HwDtsEffect DeviceOriginalSettings
 # you need decode FMRadio.apk to the project directory (use apktool d FMRadio.apk) first
 # then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-vendor_modify_apps := FMRadio mediatek-res
+vendor_modify_apps := FMRadio mediatek-res Gallery2
 
 ##############################################################################
 # Jars build from current project root directory
@@ -78,7 +83,7 @@ vendor_modify_apps := FMRadio mediatek-res
 # you need decode android.policy.jar to the project directory (use apktool d android.policy.jar) first
 # then you can make it by:   make android.policy
 #-----------------------------------------------------------------------------
-vendor_modify_jars := framework hwframework mediatek-framework mediatek-telephony-common secondary-framework services telephony-common
+vendor_modify_jars := framework hwframework mediatek-framework mediatek-telephony-common secondary-framework services telephony-common pm
 
 ##############################################################################
 # Directorys which you want to saved in baidu directory
@@ -93,13 +98,13 @@ baidu_saved_files := fonts/Clockopia.ttf
 ##############################################################################
 # baidu_remove_apps: those baidu apk you want remove 
 #-----------------------------------------------------------------------------
-# baidu_remove_apps := BaiduUserFeedback.apk
+baidu_remove_apps := BaiduCamera
 
 ##############################################################################
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Phone Settings
+baidu_modify_apps := Phone Settings HomePro
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar

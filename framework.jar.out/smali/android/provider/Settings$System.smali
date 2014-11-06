@@ -84,16 +84,6 @@
 
 .field public static final AUTO_TO_GPRS_WHILE_WIFI_DISCONNECT:I = 0x1
 
-.field public static final BATTERY_LIGHT_ENABLED:Ljava/lang/String; = "battery_light_enabled"
-
-.field public static final BATTERY_LIGHT_FULL_COLOR:Ljava/lang/String; = "battery_light_full_color"
-
-.field public static final BATTERY_LIGHT_LOW_COLOR:Ljava/lang/String; = "battery_light_low_color"
-
-.field public static final BATTERY_LIGHT_MEDIUM_COLOR:Ljava/lang/String; = "battery_light_medium_color"
-
-.field public static final BATTERY_LIGHT_PULSE:Ljava/lang/String; = "battery_light_pulse"
-
 .field public static final BLUETOOTH_DISCOVERABILITY:Ljava/lang/String; = "bluetooth_discoverability"
 
 .field public static final BLUETOOTH_DISCOVERABILITY_TIMEOUT:Ljava/lang/String; = "bluetooth_discoverability_timeout"
@@ -207,8 +197,6 @@
 .field public static final ENABLE_EXPAND_ON_HUAWEI_UNLOCK:Ljava/lang/String; = "enable_expand_on_huawei_unlock"
 
 .field public static final ENABLE_INTERNET_CALL:Ljava/lang/String; = "enable_internet_call_value"
-
-.field public static final ENABLE_MWI_NOTIFICATION:Ljava/lang/String; = "enable_mwi_notification"
 
 .field public static final END_BUTTON_BEHAVIOR:Ljava/lang/String; = "end_button_behavior"
 
@@ -415,16 +403,6 @@
 
 .field public static final NOTIFICATION_LIGHT_PULSE:Ljava/lang/String; = "notification_light_pulse"
 
-.field public static final NOTIFICATION_LIGHT_PULSE_CUSTOM_ENABLE:Ljava/lang/String; = "notification_light_pulse_custom_enable"
-
-.field public static final NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES:Ljava/lang/String; = "notification_light_pulse_custom_values"
-
-.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_COLOR:Ljava/lang/String; = "notification_light_pulse_default_color"
-
-.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_LED_OFF:Ljava/lang/String; = "notification_light_pulse_default_led_off"
-
-.field public static final NOTIFICATION_LIGHT_PULSE_DEFAULT_LED_ON:Ljava/lang/String; = "notification_light_pulse_default_led_on"
-
 .field public static final NOTIFICATION_SOUND:Ljava/lang/String; = "notification_sound"
 
 .field public static final OOBE_DISPLAY:Ljava/lang/String; = "oobe_display"
@@ -460,12 +438,6 @@
 .end field
 
 .field public static final PREVENT_WAKEUP:Ljava/lang/String; = "prevent_wakeup"
-
-.field public static final PRE_SET_ALARM_ALERT:Ljava/lang/String; = "pre_set_alarm_alert"
-
-.field public static final PRE_SET_NOTIFICATION_SOUND:Ljava/lang/String; = "pre_set_notification_sound"
-
-.field public static final PRE_SET_RINGTONE:Ljava/lang/String; = "pre_set_ringtone"
 
 .field public static final PREVIOUS_BUILD_CUST_ID:Ljava/lang/String; = "previous_build_cust_id"
 

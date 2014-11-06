@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="access_mode_wifi_and_traffic">WLAN 和移动网络</string>
+    <string name="access_mode_wifi_only">仅 WLAN</string>
+    <string name="access_mode_tips">"提示:
+1.图库在获取文件地理位置及地图信息时，需要开启网络连接
+2.使用移动网络连接，可能产生流量费，建议您选择“仅 WLAN”，以节省流量"</string>
+    <string name="wifi_only_tip">无可用的 WLAN 网络，请开启移动网络。</string>
+</resources>

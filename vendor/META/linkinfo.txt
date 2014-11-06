@@ -8,7 +8,6 @@ system/bin/dd|system/bin/toolbox
 system/bin/debuggerd|system/bin/aee_aed
 system/bin/df|system/bin/toolbox
 system/bin/dmesg|system/bin/toolbox
-system/bin/dumpcrash|system/bin/dumpstate
 system/bin/du|system/bin/toolbox
 system/bin/getevent|system/bin/toolbox
 system/bin/getprop|system/bin/toolbox
@@ -61,3 +60,4 @@ system/bin/watchprops|system/bin/toolbox
 system/bin/wipe|system/bin/toolbox
 system/fonts/DroidSans-Bold.ttf|system/fonts/Roboto-Bold.ttf
 system/fonts/DroidSans.ttf|system/fonts/Roboto-Regular.ttf
+system/lib/modules/wlan.ko|system/lib/modules/wlan_mt6620.ko

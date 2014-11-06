@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="album_width">116.0dip</dimen>
+    <dimen name="album_height">116.0dip</dimen>
+    <dimen name="slot_height_gap">8.0dip</dimen>
+    <dimen name="photo_width">134.0dip</dimen>
+    <dimen name="photo_height">134.0dip</dimen>
+    <dimen name="albumset_label_background_height">24.0dip</dimen>
+    <dimen name="albumset_label_font_size">14.0dip</dimen>
+    <dimen name="albumset_label_left_margin">14.0dip</dimen>
+    <dimen name="albumset_label_max_count_size">42.0dip</dimen>
+    <dimen name="albumset_label_text_offset">6.0dip</dimen>
+</resources>

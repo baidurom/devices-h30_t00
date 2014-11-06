@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:id="@id/display_fragment"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entries="@array/prefs_browse_mode_titles" android:title="@string/browse_mode" android:key="key-browser-mode" android:defaultValue="0" android:dialogTitle="@string/browse_mode" android:entryValues="@array/prefs_browse_method_values" />
+    <SwitchPreference android:title="@string/browse_info_display_time" android:key="key_display_time_info" android:summary="@string/browse_info_display_time_summary" android:defaultValue="true" />
+    <SwitchPreference android:title="@string/browse_info_display_location" android:key="key_display_location_info" android:summary="@string/browse_info_display_location_summary" android:defaultValue="false" />
+    <ListPreference android:entries="@array/prefs_display_info_location_titles" android:title="@string/share_info_display" android:key="key-share-info-display" android:defaultValue="-1" android:dialogTitle="@string/share_info_display" android:entryValues="@array/prefs_display_info_location_values" />
+</PreferenceScreen>

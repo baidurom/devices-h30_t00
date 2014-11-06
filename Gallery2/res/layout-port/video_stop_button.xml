@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/video_stopbutton_layout" android:layout_width="56.0dip" android:layout_height="56.0dip" android:layout_marginRight="10.0dip" android:layout_alignBottom="@id/shutter_button" android:layout_alignParentRight="true"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <com.android.hwcamera.ShutterButton android:id="@id/video_stop_button" android:background="@drawable/selector_video_stop_background" android:focusable="true" android:visibility="invisible" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_video_shutter_stop" android:scaleType="center" android:contentDescription="@string/accessibility_video_stop_button" />
+</RelativeLayout>

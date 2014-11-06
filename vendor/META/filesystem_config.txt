@@ -7,7 +7,6 @@ system/app/ApplicationsProvider.odex 0 0 644
 system/app/BackupRestoreConfirmation.apk 0 0 644
 system/app/BackupRestoreConfirmation.odex 0 0 644
 system/app/BaiduInput_for_Huawei.apk 0 0 644
-system/app/BaiduRoot.apk 0 10088 644
 system/app/BasicDreams.apk 0 0 644
 system/app/BasicDreams.odex 0 0 644
 system/app/BatteryWarning.apk 0 0 644
@@ -46,6 +45,8 @@ system/app/DrmProvider.apk 0 0 644
 system/app/DrmProvider.odex 0 0 644
 system/app/Email.apk 0 0 644
 system/app/Email.odex 0 0 644
+system/app/EmergencyData.apk 0 0 644
+system/app/EmergencyData.odex 0 0 644
 system/app/EngineerMode.apk 0 0 644
 system/app/EngineerMode.odex 0 0 644
 system/app/EngineerModeSim.apk 0 0 644
@@ -68,8 +69,6 @@ system/app/HoloSpiralWallpaper.apk 0 0 644
 system/app/HoloSpiralWallpaper.odex 0 0 644
 system/app/HTMLViewer.apk 0 0 644
 system/app/HTMLViewer.odex 0 0 644
-system/app/HwAccelerator.apk 0 0 644
-system/app/HwAcceleratorService.apk 0 0 644
 system/app/HwAllBackup.apk 0 0 644
 system/app/HwAppObserver.apk 0 0 644
 system/app/HwAppObserver.odex 0 0 644
@@ -91,6 +90,7 @@ system/app/HwHiSync.apk 0 0 644
 system/app/HwID.apk 0 0 644
 system/app/HwLauncher6.apk 0 0 644
 system/app/HwLockScreen.apk 0 0 644
+system/app/HwLogCollectService.apk 0 0 644
 system/app/HwMediaCenter.apk 0 0 644
 system/app/HwMeWidgetH30.apk 0 0 644
 system/app/HwMOCALite.apk 0 0 644
@@ -174,8 +174,8 @@ system/app/Protips.apk 0 0 644
 system/app/Protips.odex 0 0 644
 system/app/Provision.apk 0 0 644
 system/app/Provision.odex 0 0 644
-system/app/Running_Test.apk 0 0 644
-system/app/Running_Test.odex 0 0 644
+system/app/RunningTestII.apk 0 0 644
+system/app/RunningTestII.odex 0 0 644
 system/app/SettingsProvider.apk 0 0 644
 system/app/SettingsProvider.odex 0 0 644
 system/app/SharedStorageBackup.apk 0 0 644
@@ -301,7 +301,6 @@ system/bin/dnsmasq 0 2000 755
 system/bin/drmserver 0 2000 755
 system/bin/du 0 2000 755
 system/bin/dualmdlogger 0 2000 755
-system/bin/dumpcrash 0 2000 755
 system/bin/dumpstate 0 2000 755
 system/bin/dumpsys 0 2000 755
 system/bin/ext4_resize 0 2000 755
@@ -343,6 +342,7 @@ system/bin/linker 0 2000 755
 system/bin/ln 0 2000 755
 system/bin/log 0 2000 755
 system/bin/logcat 0 2000 755
+system/bin/logserver 0 2000 755
 system/bin/logswitchserver 0 2000 755
 system/bin/logwrapper 0 2000 755
 system/bin/ls 0 2000 755
@@ -393,7 +393,7 @@ system/bin/pm 0 2000 755
 system/bin/pppd 0 2000 755
 system/bin/pppd_dt 0 2000 755
 system/bin/pq 0 2000 755
-system/bin/preparesd.sh 0 2000 755
+system/bin/preparesd.sh 0 0 750
 system/bin/printenv 0 2000 755
 system/bin/ps 0 2000 755
 system/bin/qmc5983d 0 2000 755
@@ -486,11 +486,11 @@ system/etc/apns-conf.xml 0 0 644
 system/etc/audio_effects.conf 0 0 644
 system/etc/audio_policy.conf 0 0 644
 system/etc/bluetooth 0 0 755
-system/etc/bluetooth/audio.conf 1002 1002 440
-system/etc/bluetooth/auto_pairing.conf 1000 1000 640
-system/etc/bluetooth/blacklist.conf 3002 3002 444
-system/etc/bluetooth/input.conf 1002 1002 440
-system/etc/bluetooth/network.conf 1002 1002 440
+system/etc/bluetooth/audio.conf 0 0 644
+system/etc/bluetooth/auto_pairing.conf 0 0 644
+system/etc/bluetooth/blacklist.conf 0 0 644
+system/etc/bluetooth/input.conf 0 0 644
+system/etc/bluetooth/network.conf 0 0 644
 system/etc/custom.conf 0 0 644
 system/etc/dbus.conf 1002 1002 440
 system/etc/dhcpcd 0 0 755
@@ -561,7 +561,7 @@ system/etc/geocoding.db 0 0 644
 system/etc/hosts 0 0 644
 system/etc/init.goldfish.sh 0 2000 550
 system/etc/mddb 0 0 755
-system/etc/mddb/BPLGUInfoCustomAppSrcP_MT6582_S00_MOLY_WR8_W1319_MD_TG_MP_V8_P54_1_tg_n 0 0 644
+system/etc/mddb/BPLGUInfoCustomAppSrcP_MT6582_S00_MOLY_WR8_W1319_MD_TG_MP_V8_P61_1_tg_n 0 0 644
 system/etc/media_codecs.xml 0 0 644
 system/etc/mkshrc 0 0 644
 system/etc/mtklog-config.prop 0 0 644
@@ -754,10 +754,6 @@ system/etc/security/otacerts.zip 0 0 644
 system/etc/spn-conf.xml 0 0 644
 system/etc/system_fonts.xml 0 0 644
 system/etc/throttle.sh 0 1000 750
-system/etc/.tp 0 0 755
-system/etc/.tp/.ht120.mtc 0 0 644
-system/etc/.tp/thermal.conf 0 0 644
-system/etc/.tp/thermal.off.conf 0 0 644
 system/etc/virtual-spn-conf-by-efpnn.xml 0 0 644
 system/etc/virtual-spn-conf-by-efspn.xml 0 0 644
 system/etc/virtual-spn-conf-by-imsi.xml 0 0 644
@@ -1287,7 +1283,6 @@ system/lib/libmhalImageCodec.so 0 0 644
 system/lib/libminimapv320.so 0 0 644
 system/lib/libMirrorAudioService.so 0 0 644
 system/lib/libmmfactoryutil.so 0 0 644
-system/lib/libmmirunning.so 0 0 644
 system/lib/libmmitest.so 0 0 644
 system/lib/libmmprofile_jni.so 0 0 644
 system/lib/libmmprofile.so 0 0 644
@@ -1390,6 +1385,7 @@ system/lib/libRSDriver.so 0 0 644
 system/lib/librs_jni.so 0 0 644
 system/lib/libRS.so 0 0 644
 system/lib/librtp_jni.so 0 0 644
+system/lib/librunningtest.so 0 0 644
 system/lib/libsapi_v2.so 0 0 644
 system/lib/libsapi_V5_0.so 0 0 644
 system/lib/libsched.so 0 0 644
@@ -1538,6 +1534,7 @@ system/lib/modules/scsi_tgt.ko 0 0 644
 system/lib/modules/scsi_wait_scan.ko 0 0 644
 system/lib/modules/sec.ko 0 0 644
 system/lib/modules/vcodec_kernel_driver.ko 0 0 644
+system/lib/modules/wlan.ko 0 0 644
 system/lib/modules/wlan_mt.ko 0 0 644
 system/lib/mtk-rilmd2.so 0 0 644
 system/lib/mtk-ril.so 0 0 644
@@ -1602,7 +1599,6 @@ system/media/audio/ringtones/Grassland_Dance.ogg 0 0 644
 system/media/audio/ringtones/Happiness.ogg 0 0 644
 system/media/audio/ringtones/Hello_Ya.ogg 0 0 644
 system/media/audio/ringtones/Huawei_Tune.ogg 0 0 644
-system/media/audio/ringtones/Jazz.ogg 0 0 644
 system/media/audio/ringtones/Little_Ditty.ogg 0 0 644
 system/media/audio/ringtones/Mystic_Harp.ogg 0 0 644
 system/media/audio/ringtones/Sax.ogg 0 0 644
@@ -1643,6 +1639,7 @@ system/res/sound/testpattern1.wav 0 0 644
 system/set_immutable.list 0 0 644
 system/themes 0 0 755
 system/themes/Brightness.hwt 0 0 644
+system/themes/icons 0 0 644
 system/themes/Journey.hwt 0 0 644
 system/themes/youth.hwt 0 0 644
 system/tts 0 0 755
@@ -1710,11 +1707,10 @@ system/vendor/overlay/app/HwLauncher6.apk 0 0 644
 system/vendor/overlay/app/HwSystemManager.apk 0 0 644
 system/vendor/overlay/app/MyEmail.apk 0 0 644
 system/xbin 0 2000 755
-system/xbin/acceleratord 0 2000 755
 system/xbin/BGW 0 2000 755
 system/xbin/busybox 0 2000 755
 system/xbin/dexdump 0 2000 755
 system/xbin/libmnlp_mt6582 0 2000 755
 system/xbin/mnld 0 2000 755
 system/xbin/showmap 0 2000 755
-system/xbin/tcpdump 0 0 6755
+system/xbin/tcpdump 0 0 755

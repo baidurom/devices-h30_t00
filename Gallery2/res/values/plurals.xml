@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="delete_selection">
+        <item quantity="other">Delete selected items?</item>
+        <item quantity="zero">Delete selected items?</item>
+        <item quantity="one">Delete selected item?</item>
+        <item quantity="two">Delete selected items?</item>
+        <item quantity="few">Delete selected items?</item>
+        <item quantity="many">Delete selected items?</item>
+    </plurals>
+    <plurals name="details_title">
+        <item quantity="other">%1$d of %2$d items:</item>
+        <item quantity="zero">%1$d of %2$d items:</item>
+        <item quantity="one">%1$d of %2$d item:</item>
+        <item quantity="two">%1$d of %2$d items:</item>
+        <item quantity="few">%1$d of %2$d items:</item>
+        <item quantity="many">%1$d of %2$d items:</item>
+    </plurals>
+    <plurals name="number_of_items_selected">
+        <item quantity="other">%1$d selected</item>
+        <item quantity="zero">%1$d selected</item>
+        <item quantity="one">%1$d selected</item>
+        <item quantity="two">%1$d selected</item>
+        <item quantity="few">%1$d selected</item>
+        <item quantity="many">%1$d selected</item>
+    </plurals>
+    <plurals name="number_of_albums_selected">
+        <item quantity="other">%1$d selected</item>
+        <item quantity="zero">%1$d selected</item>
+        <item quantity="one">%1$d selected</item>
+        <item quantity="two">%1$d selected</item>
+        <item quantity="few">%1$d selected</item>
+        <item quantity="many">%1$d selected</item>
+    </plurals>
+    <plurals name="number_of_groups_selected">
+        <item quantity="other">%1$d selected</item>
+        <item quantity="zero">%1$d selected</item>
+        <item quantity="one">%1$d selected</item>
+        <item quantity="two">%1$d selected</item>
+        <item quantity="few">%1$d selected</item>
+        <item quantity="many">%1$d selected</item>
+    </plurals>
+    <plurals name="make_albums_available_offline">
+        <item quantity="other">Albums available offline.</item>
+        <item quantity="zero">Albums available offline.</item>
+        <item quantity="one">Album available offline.</item>
+        <item quantity="two">Albums available offline.</item>
+        <item quantity="few">Albums available offline.</item>
+        <item quantity="many">Albums available offline.</item>
+    </plurals>
+    <plurals name="number_details">
+        <item quantity="other">%1$d items</item>
+        <item quantity="zero">%1$d items</item>
+        <item quantity="one">%1$d item</item>
+        <item quantity="two">%1$d items</item>
+        <item quantity="few">%1$d items</item>
+        <item quantity="many">%1$d items</item>
+    </plurals>
+    <plurals name="selection_hide_tips">
+        <item quantity="other">%1$d albums are hidden.</item>
+        <item quantity="zero">%1$d albums are hidden.</item>
+        <item quantity="one">%1$d album is hidden.</item>
+        <item quantity="two">%1$d albums are hidden.</item>
+        <item quantity="few">%1$d albums are hidden.</item>
+        <item quantity="many">%1$d albums are hidden.</item>
+    </plurals>
+    <plurals name="selection_set_private_tips">
+        <item quantity="other">%1$d albums made private.</item>
+        <item quantity="zero">%1$d albums made private.</item>
+        <item quantity="one">%1$d album made private.</item>
+        <item quantity="two">%1$d albums made private.</item>
+        <item quantity="few">%1$d albums made private.</item>
+        <item quantity="many">%1$d albums made private.</item>
+    </plurals>
+    <plurals name="sharesimply_file_to_send">
+        <item quantity="other">Sending %1$d files...</item>
+        <item quantity="zero">Sending %1$d files...</item>
+        <item quantity="one">Sending %1$d file...</item>
+        <item quantity="two">Sending %1$d files...</item>
+        <item quantity="few">Sending %1$d files...</item>
+        <item quantity="many">Sending %1$d files...</item>
+    </plurals>
+    <plurals name="paste_samename_sameaction">
+        <item quantity="other">Do this for the next %1$d conflicts</item>
+        <item quantity="zero">Do this for the next %1$d conflicts</item>
+        <item quantity="one">Do this for the next %1$d conflict</item>
+        <item quantity="two">Do this for the next %1$d conflicts</item>
+        <item quantity="few">Do this for the next %1$d conflicts</item>
+        <item quantity="many">Do this for the next %1$d conflicts</item>
+    </plurals>
+    <plurals name="paste_files_copyed">
+        <item quantity="other">%1$d files have been copied.</item>
+        <item quantity="zero">%1$d files have been copied.</item>
+        <item quantity="one">%1$d file has been copied.</item>
+        <item quantity="two">%1$d files have been copied.</item>
+        <item quantity="few">%1$d files have been copied.</item>
+        <item quantity="many">%1$d files have been copied.</item>
+    </plurals>
+    <plurals name="paste_files_moved">
+        <item quantity="other">%1$d files have been moved.</item>
+        <item quantity="zero">%1$d files have been moved.</item>
+        <item quantity="one">%1$d file has been moved.</item>
+        <item quantity="two">%1$d files have been moved.</item>
+        <item quantity="few">%1$d files have been moved.</item>
+        <item quantity="many">%1$d files have been moved.</item>
+    </plurals>
+    <plurals name="photoshare_progress_message_add_receiver">
+        <item quantity="other">Adding the members…</item>
+        <item quantity="zero">Adding the member…</item>
+        <item quantity="one">Adding the member…</item>
+        <item quantity="two">Adding the members…</item>
+        <item quantity="few">Adding the members…</item>
+        <item quantity="many">Adding the members…</item>
+    </plurals>
+    <plurals name="photoshare_dialog_message_account_invalid">
+        <item quantity="other">{0} have not registered Huawei IDs.</item>
+        <item quantity="zero">{0} has not registered a Huawei ID.</item>
+        <item quantity="one">{0} has not registered a Huawei ID.</item>
+        <item quantity="two">{0} have not registered Huawei IDs.</item>
+        <item quantity="few">{0} have not registered Huawei IDs.</item>
+        <item quantity="many">{0} have not registered Huawei IDs.</item>
+    </plurals>
+    <plurals name="photoshare_toast_add_receiver_fail">
+        <item quantity="other">Failed to add the members. %1$s</item>
+        <item quantity="zero">Failed to add the member. %1$s</item>
+        <item quantity="one">Failed to add the member. %1$s</item>
+        <item quantity="two">Failed to add the members. %1$s</item>
+        <item quantity="few">Failed to add the members. %1$s</item>
+        <item quantity="many">Failed to add the members. %1$s</item>
+    </plurals>
+    <plurals name="photoshare_share_complete">
+        <item quantity="other">Photos will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+        <item quantity="zero">Photos will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+        <item quantity="one">Photo will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+        <item quantity="two">Photos will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+        <item quantity="few">Photos will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+        <item quantity="many">Photos will be synchronized and shared after you are connected to a Wi-Fi or 3G/LTE network.</item>
+    </plurals>
+    <plurals name="share_limit_exceed_msg">
+        <item quantity="other">A maximum of %1$d files can be shared at a time.</item>
+        <item quantity="zero">A maximum of %1$d files can be shared at a time.</item>
+        <item quantity="one">A maximum of %1$d file can be shared at a time.</item>
+        <item quantity="two">A maximum of %1$d files can be shared at a time.</item>
+        <item quantity="few">A maximum of %1$d files can be shared at a time.</item>
+        <item quantity="many">A maximum of %1$d files can be shared at a time.</item>
+    </plurals>
+</resources>

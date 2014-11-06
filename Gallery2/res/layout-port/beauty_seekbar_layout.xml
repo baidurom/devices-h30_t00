@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/beauty_seekbar_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="82.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip">
+        <TextView android:textSize="14.0sp" android:textColor="@*android:color/white" android:id="@id/beauty_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pref_camera_beauty_level_title" android:layout_centerHorizontal="true" style="@style/menuTextStyleBlack" />
+    </RelativeLayout>
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/beauty_seekbar_layout_items" android:background="@drawable/bg_adjustments" android:layout_width="262.0dip" android:layout_height="40.0dip" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
+        <com.android.hwcamera.ui.RotateTextView android:textSize="14.0dip" android:textColor="@*android:color/black" android:gravity="center" android:layout_width="27.0dip" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/pref_camera_beauty_level_min" android:layout_alignParentLeft="true" />
+        <com.android.hwcamera.ui.RotateTextView android:textSize="14.0dip" android:textColor="@*android:color/black" android:gravity="center" android:layout_width="27.0dip" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/pref_camera_beauty_level_max" android:layout_alignParentRight="true" />
+        <SeekBar android:id="@id/beauty_seekbar" android:layout_width="230.0dip" android:layout_height="wrap_content" android:max="10" android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="286.0dip" android:layout_height="wrap_content" android:layout_marginBottom="32.0dip" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
+        <TextView android:textSize="24.0dip" android:textColor="@*android:color/black" android:gravity="center" android:id="@id/beauty_seekbar_tip" android:background="@drawable/bg_tips" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="0.0dip" />
+    </RelativeLayout>
+</RelativeLayout>

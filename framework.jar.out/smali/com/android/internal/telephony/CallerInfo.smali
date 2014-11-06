@@ -3,6 +3,14 @@
 .source "CallerInfo.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/internal/telephony/CallerInfo$BaiduInjector;
+    }
+.end annotation
+
+
 # static fields
 .field public static final PAYPHONE_NUMBER:Ljava/lang/String; = "-3"
 
@@ -59,8 +67,6 @@
 .field public needUpdate:Z
 
 .field public normalizedNumber:Ljava/lang/String;
-
-.field public notes:Ljava/lang/String;
 
 .field public numberLabel:Ljava/lang/String;
 
@@ -566,61 +572,10 @@
     .line 291
     iput-boolean v5, v2, Lcom/android/internal/telephony/CallerInfo;->contactExists:Z
 
-    const-string/jumbo v4, "width"
 
-    invoke-interface {p2, v4}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
-
-    move-result v0
-
-    .line 292
-    invoke-interface {p2, v0}, Landroid/database/Cursor;->getInt(I)I
-
-    move-result v4
-
-    iput v4, v2, Lcom/android/internal/telephony/CallerInfo;->mPhotoWidth:I
-
-    .line 294
-    const-string v4, "height"
-
-    invoke-interface {p2, v4}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
-
-    move-result v0
+    invoke-static {v2, p2}, Lcom/android/internal/telephony/CallerInfo$BaiduInjector;->initCallerInfoExt(Lcom/android/internal/telephony/CallerInfo;Landroid/database/Cursor;)V
 
     .line 295
-    invoke-interface {p2, v0}, Landroid/database/Cursor;->getInt(I)I
-
-    move-result v4
-
-    iput v4, v2, Lcom/android/internal/telephony/CallerInfo;->mPhotoHeight:I
-
-    .line 297
-    const-string/jumbo v4, "photo_id"
-
-    invoke-interface {p2, v4}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
-
-    move-result v0
-
-    .line 298
-    invoke-interface {p2, v0}, Landroid/database/Cursor;->getInt(I)I
-
-    move-result v4
-
-    iput v4, v2, Lcom/android/internal/telephony/CallerInfo;->mPhotoID:I
-
-    .line 300
-    const-string/jumbo v4, "view_mode"
-
-    invoke-interface {p2, v4}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
-
-    move-result v0
-
-    .line 301
-    invoke-interface {p2, v0}, Landroid/database/Cursor;->getInt(I)I
-
-    move-result v4
-
-    iput v4, v2, Lcom/android/internal/telephony/CallerInfo;->mViewMode:I
-
     .end local v0           #columnIndex:I
     :cond_6
     :goto_3
@@ -1839,12 +1794,12 @@
 .end method
 
 .method public updateGeoDescription(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 3
+    .locals 2
     .parameter "context"
     .parameter "fallbackNumber"
 
     .prologue
-    .line 609
+    .line 599
     iget-object v1, p0, Lcom/android/internal/telephony/CallerInfo;->phoneNumber:Ljava/lang/String;
 
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -1855,23 +1810,19 @@
 
     move-object v0, p2
 
-    .line 610
+    .line 600
     .local v0, number:Ljava/lang/String;
     :goto_0
-    const/4 v1, 0x0
-
-    const/4 v2, 0x1
-
-    invoke-static {p1, v0, v1, v2}, Lcom/baidu/internal/telephony/DisturbPreventUtils;->getPhoneLocation(Landroid/content/Context;Ljava/lang/String;ZZ)Ljava/lang/String;
+    invoke-static {p1, v0}, Lcom/android/internal/telephony/CallerInfo;->getGeoDescription(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/internal/telephony/CallerInfo;->geoDescription:Ljava/lang/String;
 
-    .line 611
+    .line 601
     return-void
 
-    .line 609
+    .line 599
     .end local v0           #number:Ljava/lang/String;
     :cond_0
     iget-object v0, p0, Lcom/android/internal/telephony/CallerInfo;->phoneNumber:Ljava/lang/String;
@@ -1879,133 +1830,22 @@
     goto :goto_0
 .end method
 
-.method public updateGeoDescritionAndLabel(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 5
-    .parameter "context"
-    .parameter "fallbackNumber"
-
-    .prologue
-    .line 614
-    iget-object v2, p0, Lcom/android/internal/telephony/CallerInfo;->phoneNumber:Ljava/lang/String;
-
-    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_1
-
-    move-object v0, p2
-
-    .line 615
-    .local v0, number:Ljava/lang/String;
-    :goto_0
-    const/4 v2, 0x0
-
-    const/4 v3, 0x1
-
-    invoke-static {p1, v0, v2, v3}, Lcom/baidu/internal/telephony/DisturbPreventUtils;->getPhoneLocationAndLabel(Landroid/content/Context;Ljava/lang/String;ZZ)Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;
-
-    move-result-object v1
-
-    .line 618
-    .local v1, pl:Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;
-    iget-object v2, v1, Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;->mLocation:Ljava/lang/String;
-
-    iput-object v2, p0, Lcom/android/internal/telephony/CallerInfo;->geoDescription:Ljava/lang/String;
-
-    .line 619
-    iget-object v2, v1, Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;->mLabel:Ljava/lang/String;
-
-    iput-object v2, p0, Lcom/android/internal/telephony/CallerInfo;->label:Ljava/lang/String;
-
-    .line 620
-    iget v2, v1, Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;->mCount:I
-
-    iput v2, p0, Lcom/android/internal/telephony/CallerInfo;->count:I
-
-    .line 622
-    sget-boolean v2, Lcom/android/internal/telephony/CallerInfo;->VDBG:Z
-
-    if-eqz v2, :cond_0
-
-    const-string v2, "CallerInfo"
-
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string/jumbo v4, "updateGeoDescritionAndLabel(\'"
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    iget-object v4, p0, Lcom/android/internal/telephony/CallerInfo;->geoDescription:Ljava/lang/String;
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string v4, ", label = "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    iget-object v4, p0, Lcom/android/internal/telephony/CallerInfo;->label:Ljava/lang/String;
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string v4, " ,count = "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    iget v4, p0, Lcom/android/internal/telephony/CallerInfo;->count:I
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    const-string v4, "\')..."
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v2, v3}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 624
-    :cond_0
-    return-void
-
-    .line 614
-    .end local v0           #number:Ljava/lang/String;
-    .end local v1           #pl:Lcom/baidu/internal/telephony/DisturbPreventUtils$PhoneLabel;
-    :cond_1
-    iget-object v0, p0, Lcom/android/internal/telephony/CallerInfo;->phoneNumber:Ljava/lang/String;
-
-    goto :goto_0
-.end method
-
-.method public updateNotes(Landroid/content/Context;Ljava/lang/String;)V
+.method static synthetic access$sget-VDBG-988cc2()Z
     .locals 1
+
+    .prologue
+    sget-boolean v0, Lcom/android/internal/telephony/CallerInfo;->VDBG:Z
+
+    return v0
+.end method
+
+.method public updateGeoDescriptionAndLabel(Landroid/content/Context;Ljava/lang/String;)V
+    .locals 0
     .parameter "context"
     .parameter "fallbackNumber"
 
     .prologue
-    .line 627
-    const-string v0, "TODO NOTEs"
+    invoke-static {p0, p1, p2}, Lcom/android/internal/telephony/CallerInfo$BaiduInjector;->updateGeoDescriptionAndLabel(Lcom/android/internal/telephony/CallerInfo;Landroid/content/Context;Ljava/lang/String;)V
 
-    iput-object v0, p0, Lcom/android/internal/telephony/CallerInfo;->notes:Ljava/lang/String;
-
-    .line 628
     return-void
 .end method

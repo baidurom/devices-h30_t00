@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/camera_second_menu_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="1.0dip" android:layout_marginBottom="1.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <ImageView android:background="@drawable/bg_menu_spilt_line" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <ScrollView android:id="@id/menu_scroll_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="1.0dip" android:cacheColorHint="@*android:color/transparent" android:overScrollMode="always">
+        <LinearLayout android:orientation="vertical" android:id="@id/scroll_view_content" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </ScrollView>
+</FrameLayout>

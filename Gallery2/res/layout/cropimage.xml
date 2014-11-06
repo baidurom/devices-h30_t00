@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/crop_root" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.gallery3d.ui.SimpleTabWidget android:gravity="center" android:id="@id/crop_tab" android:layout_width="fill_parent" android:layout_height="38.0dip" android:layout_marginLeft="18.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="18.0dip" android:layout_marginBottom="5.0dip" android:layout_centerHorizontal="true" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/crop_split" android:layout_width="fill_parent" android:layout_height="1.0dip" android:src="@drawable/divider_vertical_gray" android:scaleType="fitXY" android:layout_below="@id/crop_tab" android:layout_centerInParent="true" />
+    <Button android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/crop_button" android:background="@drawable/button" android:layout_width="fill_parent" android:layout_height="48.0dip" android:layout_alignParentBottom="true" android:textAllCaps="true" />
+    <FrameLayout android:id="@id/crop_draw" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/crop_button" android:layout_below="@id/crop_split">
+        <include layout="@layout/gl_root_group" />
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateLinearLayout android:id="@id/labels" android:focusable="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="27.0dip" android:layout_marginRight="112.0dip" android:layout_alignTop="@id/frame" android:layout_alignParentRight="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="right" android:duplicateParentState="true" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:id="@id/recording_time" android:visibility="visible" style="@style/OnViewfinderLabel" />
+        <ImageView android:id="@id/recording_time_image" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_recording_indicator" android:layout_toRightOf="@id/recording_time" />
+        <TextView android:id="@id/time_lapse_label" android:visibility="gone" android:text="@string/time_lapse_title" style="@style/OnViewfinderLabel" />
+    </RelativeLayout>
+</com.android.hwcamera.ui.RotateLinearLayout>

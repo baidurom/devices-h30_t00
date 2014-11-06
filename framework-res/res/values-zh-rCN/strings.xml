@@ -1315,7 +1315,7 @@
     <string name="enable_accessibility_canceled">已取消辅助功能。</string>
     <string name="user_switched">当前用户是%1$s。</string>
     <string name="owner_name">机主</string>
-    <string name="phone_reboot_title">重启开机</string>
+    <string name="phone_reboot_title">重启</string>
     <string name="phone_reboot_confirm">重新开机将清除内存中的临时文件。您需要重新开机吗？</string>
     <string name="global_action_phone_reboot">重新启动</string>
     <string name="global_action_phone_reboot_des">关闭所有应用程序并重启手机</string>

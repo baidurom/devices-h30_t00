@@ -1117,76 +1117,59 @@
 .end method
 
 .method public getLastKnownLocation(Ljava/lang/String;)Landroid/location/Location;
-    .locals 8
+    .locals 7
     .parameter "provider"
 
     .prologue
-    const/4 v3, 0x0
-
-    const/4 v7, 0x1
-
-    .line 1159
-    const/4 v4, 0x2
-
-    const/4 v5, 0x0
-
-    new-array v5, v5, [Ljava/lang/Object;
-
-    invoke-static {v4, v7, v5}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
-
-    move-result v4
-
-    if-ne v4, v7, :cond_0
-
-    .line 1174
-    :goto_0
-    return-object v3
-
-    .line 1165
-    :cond_0
+    .line 1140
     invoke-static {p1}, Landroid/location/LocationManager;->checkProvider(Ljava/lang/String;)V
 
-    .line 1166
-    iget-object v4, p0, Landroid/location/LocationManager;->mContext:Landroid/content/Context;
+    .line 1141
+    iget-object v3, p0, Landroid/location/LocationManager;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v4}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
+    invoke-virtual {v3}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 1167
+    .line 1142
     .local v1, packageName:Ljava/lang/String;
-    const-wide/16 v4, 0x0
+    const-wide/16 v3, 0x0
 
-    const/4 v6, 0x0
+    const/4 v5, 0x0
 
-    invoke-static {p1, v4, v5, v6, v7}, Landroid/location/LocationRequest;->createFromDeprecatedProvider(Ljava/lang/String;JFZ)Landroid/location/LocationRequest;
+    const/4 v6, 0x1
+
+    invoke-static {p1, v3, v4, v5, v6}, Landroid/location/LocationRequest;->createFromDeprecatedProvider(Ljava/lang/String;JFZ)Landroid/location/LocationRequest;
 
     move-result-object v2
 
-    .line 1171
+    .line 1146
     .local v2, request:Landroid/location/LocationRequest;
     :try_start_0
-    iget-object v4, p0, Landroid/location/LocationManager;->mService:Landroid/location/ILocationManager;
-
-    invoke-interface {v4, v2, v1}, Landroid/location/ILocationManager;->getLastLocation(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+    invoke-direct {p0, v2, v1}, Landroid/location/LocationManager;->getLastLocationBaidu(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result-object v3
 
-    goto :goto_0
+    .line 1149
+    :goto_0
+    return-object v3
 
-    .line 1172
+    .line 1147
     :catch_0
     move-exception v0
 
-    .line 1173
+    .line 1148
     .local v0, e:Landroid/os/RemoteException;
-    const-string v4, "LocationManager"
+    const-string v3, "LocationManager"
 
-    const-string v5, "RemoteException"
+    const-string v4, "RemoteException"
 
-    invoke-static {v4, v5, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    invoke-static {v3, v4, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 1149
+    const/4 v3, 0x0
 
     goto :goto_0
 .end method
@@ -1851,7 +1834,7 @@
 .end method
 
 .method public requestLocationUpdates(JFLandroid/location/Criteria;Landroid/location/LocationListener;Landroid/os/Looper;)V
-    .locals 5
+    .locals 2
     .parameter "minTime"
     .parameter "minDistance"
     .parameter "criteria"
@@ -1859,44 +1842,27 @@
     .parameter "looper"
 
     .prologue
-    const/4 v4, 0x1
-
-    const/4 v3, 0x0
-
-    .line 492
+    .line 490
     invoke-static {p4}, Landroid/location/LocationManager;->checkCriteria(Landroid/location/Criteria;)V
 
-    .line 493
+    .line 491
     invoke-static {p5}, Landroid/location/LocationManager;->checkListener(Landroid/location/LocationListener;)V
 
-    .line 496
-    const/4 v1, 0x2
+    .line 493
+    const/4 v1, 0x0
 
-    new-array v2, v3, [Ljava/lang/Object;
-
-    invoke-static {v1, v4, v2}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
-
-    move-result v1
-
-    if-ne v1, v4, :cond_0
-
-    .line 506
-    :goto_0
-    return-void
-
-    .line 503
-    :cond_0
-    invoke-static {p4, p1, p2, p3, v3}, Landroid/location/LocationRequest;->createFromDeprecatedCriteria(Landroid/location/Criteria;JFZ)Landroid/location/LocationRequest;
+    invoke-static {p4, p1, p2, p3, v1}, Landroid/location/LocationRequest;->createFromDeprecatedCriteria(Landroid/location/Criteria;JFZ)Landroid/location/LocationRequest;
 
     move-result-object v0
 
-    .line 505
+    .line 495
     .local v0, request:Landroid/location/LocationRequest;
     const/4 v1, 0x0
 
-    invoke-direct {p0, v0, p5, p6, v1}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    invoke-direct {p0, v0, p5, p6, v1}, Landroid/location/LocationManager;->requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
-    goto :goto_0
+    .line 496
+    return-void
 .end method
 
 .method public requestLocationUpdates(Landroid/location/LocationRequest;Landroid/app/PendingIntent;)V
@@ -2137,8 +2103,6 @@
     .parameter "looper"
 
     .prologue
-    const/4 v4, 0x1
-
     .line 646
     invoke-static {p1}, Landroid/location/LocationManager;->checkProvider(Ljava/lang/String;)V
 
@@ -2146,27 +2110,11 @@
     invoke-static {p2}, Landroid/location/LocationManager;->checkListener(Landroid/location/LocationListener;)V
 
     .line 649
-    const/4 v1, 0x2
-
-    const/4 v2, 0x0
-
-    new-array v2, v2, [Ljava/lang/Object;
-
-    invoke-static {v1, v4, v2}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
-
-    move-result v1
-
-    if-ne v1, v4, :cond_0
-
-    .line 670
-    :goto_0
-    return-void
-
-    .line 667
-    :cond_0
     const-wide/16 v1, 0x0
 
     const/4 v3, 0x0
+
+    const/4 v4, 0x1
 
     invoke-static {p1, v1, v2, v3, v4}, Landroid/location/LocationRequest;->createFromDeprecatedProvider(Ljava/lang/String;JFZ)Landroid/location/LocationRequest;
 
@@ -2176,9 +2124,10 @@
     .local v0, request:Landroid/location/LocationRequest;
     const/4 v1, 0x0
 
-    invoke-direct {p0, v0, p2, p3, v1}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    invoke-direct {p0, v0, p2, p3, v1}, Landroid/location/LocationManager;->requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
-    goto :goto_0
+    .line 652
+    return-void
 .end method
 
 .method public sendExtraCommand(Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)Z
@@ -2459,6 +2408,88 @@
 
     .line 1671
     const/4 v1, -0x1
+
+    goto :goto_0
+.end method
+
+.method private checkDynamicPermission()Z
+    .locals 4
+
+    .prologue
+    const/4 v1, 0x0
+
+    const/4 v0, 0x1
+
+    const/4 v2, 0x2
+
+    new-array v3, v1, [Ljava/lang/Object;
+
+    invoke-static {v2, v0, v3}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
+
+    move-result v2
+
+    if-eq v2, v0, :cond_0
+
+    :goto_0
+    return v0
+
+    :cond_0
+    move v0, v1
+
+    goto :goto_0
+.end method
+
+.method private getLastLocationBaidu(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+    .locals 1
+    .parameter "request"
+    .parameter "packageName"
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    invoke-direct {p0}, Landroid/location/LocationManager;->checkDynamicPermission()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    :goto_0
+    return-object v0
+
+    :cond_0
+    iget-object v0, p0, Landroid/location/LocationManager;->mService:Landroid/location/ILocationManager;
+
+    invoke-interface {v0, p1, p2}, Landroid/location/ILocationManager;->getLastLocation(Landroid/location/LocationRequest;Ljava/lang/String;)Landroid/location/Location;
+
+    move-result-object v0
+
+    goto :goto_0
+.end method
+
+.method private requestLocationUpdatesBaidu(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
+    .locals 1
+    .parameter "request"
+    .parameter "listener"
+    .parameter "looper"
+    .parameter "intent"
+
+    .prologue
+    invoke-direct {p0}, Landroid/location/LocationManager;->checkDynamicPermission()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    :goto_0
+    return-void
+
+    :cond_0
+    invoke-direct {p0, p1, p2, p3, p4}, Landroid/location/LocationManager;->requestLocationUpdates(Landroid/location/LocationRequest;Landroid/location/LocationListener;Landroid/os/Looper;Landroid/app/PendingIntent;)V
 
     goto :goto_0
 .end method

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="pref_menu_image_style">0</integer>
+    <integer name="pref_menu_checkbox_style">1</integer>
+    <integer name="pref_menu_singleline_style">2</integer>
+    <integer name="pref_menu_seekbar_style">3</integer>
+    <integer name="pref_menu_shootmode_style">4</integer>
+    <integer name="pref_layout_none_menu_style">1</integer>
+    <integer name="pref_layout_shoot_mode_style">2</integer>
+    <integer name="pref_layout_settings_list_style">3</integer>
+    <integer name="pref_layout_settings_detail_style">4</integer>
+    <integer name="pref_layout_settings_list_with_back_icon_style">5</integer>
+    <integer name="pref_layout_tab_menu_style">6</integer>
+    <integer name="pref_camera_beauty_level_default">5</integer>
+    <integer name="max_video_recording_length">0</integer>
+    <integer name="image_num_columns">3</integer>
+</resources>

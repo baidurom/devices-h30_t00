@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateLinearLayout android:id="@id/progress_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar android:id="@id/progress_bar" android:background="@drawable/progress_bg_camera" android:layout_width="fill_parent" android:layout_height="4.0dip" android:progressDrawable="@drawable/progress_bar_drawable" style="?android:attr/progressBarStyleHorizontal" />
+</com.android.hwcamera.ui.RotateLinearLayout>

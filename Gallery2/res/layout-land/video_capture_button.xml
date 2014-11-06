@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/video_capture_button_layout" android:visibility="gone" android:clickable="true" android:layout_width="56.0dip" android:layout_height="56.0dip" android:layout_marginBottom="8.0dip" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <com.android.hwcamera.ShutterButton android:id="@id/video_capture_button" android:background="@drawable/selector_video_stop_background" android:focusable="true" android:visibility="gone" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/ic_video_shutter_camera" android:scaleType="center" android:contentDescription="@string/accessibility_quick_recording_button" />
+</RelativeLayout>

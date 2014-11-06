@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_menu_airsharing_connected" android:id="@id/action_dlna" android:visible="false" android:title="@string/multiscreen_title" android:showAsAction="always" />
+    <item android:icon="@drawable/icon_video_dts" android:id="@id/action_dts" android:showAsAction="always" />
+    <item android:icon="@drawable/ic_menu_share_holo_light" android:enabled="true" android:id="@id/action_share" android:title="@string/share" android:showAsAction="ifRoom">
+        <menu />
+    </item>
+    <item android:icon="@drawable/setting_stream" android:enabled="true" android:id="@id/action_stream" android:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@id/go_to_url" android:title="@string/stream_video_gourl" />
+            <item android:id="@id/full_screen" android:title="@string/stream_video_fullscreen" />
+            <item android:id="@id/original" android:title="@string/stream_video_originalsize" />
+            <item android:id="@id/mike" android:title="@string/video_mike" />
+            <item android:id="@id/handset" android:title="@string/video_earphone" />
+            <item android:id="@id/go_to_netsetting" android:title="@string/go_to_netsetting" />
+            <item android:id="@id/savebookmark" android:title="@string/video_savebookmark" />
+            <item android:id="@id/editbookmark" android:title="@string/video_editbookmark" />
+        </menu>
+    </item>
+</menu>

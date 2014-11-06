@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/photoshare_login_view" android:background="@color/album_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/photoshare_login_logo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/photoshare_logo" style="@style/photoShareLoginLogo" />
+    <TextView android:id="@id/photoshare_login_title" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/photoShareLoginTitleStyle" />
+    <TextView android:id="@id/photoshare_login_desc" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/photoShareLoginDescStyle" />
+    <Button android:textColor="@drawable/tab_color" android:gravity="center" android:id="@id/photoshare_login_btn" android:layout_width="@dimen/photoshare_loginbtn_width" android:layout_height="@dimen/photoshare_loginbtn_height" style="@style/photoShareLoginBtnStyle" />
+</LinearLayout>

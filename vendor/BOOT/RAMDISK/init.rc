@@ -28,19 +28,19 @@ on early-init
 on early_property:ro.build.type=user
     write /proc/bootprof "INIT: user build setting"
     # BEGIN PN:DTS2013032005191, modified by l00208951,2013/03/29
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/hwframework.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework-yi.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/hwframework.jar
     # END PN:DTS2013032005191, modified by l00208951,2013/03/29
 
 on early_property:ro.build.type=userdebug
     write /proc/bootprof "INIT: userdebug build setting"
     # BEGIN PN:DTS2013032005191, modified by l00208951,2013/03/29
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/hwframework.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework-yi.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/hwframework.jar
     # END PN:DTS2013032005191, modified by l00208951,2013/03/29
 
 on early_property:ro.build.type=eng
     write /proc/bootprof "INIT: eng build setting"
     # BEGIN PN:DTS2013032005191, modified by l00208951,2013/03/29
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/emma.jar:/system/framework/hwframework.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework-yi.jar:/system/framework/telephony-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/mediatek-common.jar:/system/framework/mediatek-framework.jar:/system/framework/secondary-framework.jar:/system/framework/CustomProperties.jar:/system/framework/mediatek-telephony-common.jar:/system/framework/mediatek-op.jar:/system/framework/emma.jar:/system/framework/hwframework.jar
     # END PN:DTS2013032005191, modified by l00208951,2013/03/29
 
 on early_property:ro.hardware=mt6582
@@ -490,7 +490,44 @@ on post-fs-data
 
     #Charging Battery
     chown radio radio /sys/devices/platform/battery/Charging_CallState
-
+    #/* BEGIN PN:DTS2013122506884 ,Added by c00173259, 2013/12/25*/
+    chmod 0664 /sys/devices/platform/battery/enable_charge
+    chown system system  /sys/devices/platform/battery/enable_charge
+    chmod 0664 /sys/devices/platform/mt-pmic/BUCK_VPROC_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/BUCK_VPROC_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/BUCK_VSYS_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/BUCK_VSYS_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/BUCK_VPA_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/BUCK_VPA_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VMC_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VMC_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VMCH_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VMCH_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VEMC_3V3_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VEMC_3V3_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VGP1_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VGP1_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VGP2_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VGP2_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VGP3_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VGP3_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VSIM1_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VSIM1_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VSIM2_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VSIM2_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VCAM_AF_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VCAM_AF_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VIBR_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VIBR_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VM_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VM_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VCAMD_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VCAMD_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VCAMA_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VCAMA_VOLTAGE
+    chmod 0664 /sys/devices/platform/mt-pmic/LDO_VCN33_VOLTAGE
+    chown system system  /sys/devices/platform/mt-pmic/LDO_VCN33_VOLTAGE
+    #/* BEGIN PN:DTS2013122506884 ,Added by c00173259, 2013/12/25*/
     mkdir /data/amit/ 0770 system system
     mkdir /data/misc/sensor 0774 system system
     mkdir /data/misc/akmd 0770 system system
@@ -833,6 +870,12 @@ on boot
     chown radio system /sys/power/tuxonice/do_hibernate
     chmod 0770 /sys/power/tuxonice
     chmod 0220 /sys/power/tuxonice/do_hibernate
+    #/*BEGIN  PN: DTS2014021003126  , Added by h00238058, 2014.2.10*/
+    chmod 0664 /sys/lcd-effect/lcd_state/lcd_state
+    chown system system /sys/lcd-effect/lcd_state/lcd_state
+    chmod 0664 /sys/lcd-effect/scan/scan_state
+    chown system system /sys/lcd-effect/scan/scan_state
+    #/*END  PN: DTS2014021003126  , Added by h00238058, 2014.2.10*/
 
 # AGPS
     mkdir /data/agps_supl 0771 gps system
@@ -982,8 +1025,11 @@ on property:ro.kernel.qemu=1
 service debuggerd /system/bin/debuggerd
     class main
 # BEGIN PN:DTS2013090308106, Added by l00208949, 2013/09/03 */
+# BEGIN PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 service logswitchserver /system/bin/logswitchserver
     class main
+    disabled
+# END PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 # END PN:DTS2013090308106, Added by l00208949, 2013/09/03 */
 
 service mobile_log_d /system/bin/mobile_log_d
@@ -1090,6 +1136,7 @@ service aal /system/bin/aal
     group system graphics radio
 
 #BEGIN PN:DTS2013051701313,Modified by x00107641, 2013/05/17
+#/* BEGIN PN:DTS2014021500417 ,Modified by z00263445, 2014/02/15*/
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     class main
     socket zygote stream 660 root system
@@ -1098,6 +1145,8 @@ service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-sys
     onrestart restart media
     onrestart restart netd
     onrestart restart installd
+    emergency
+#/* END PN:DTS2014021500417 ,Modified by z00263445, 2014/02/15*/
 #END PN:DTS2013051701313,Modified by x00107641, 2013/05/17
 
 #
@@ -1548,12 +1597,12 @@ service BGW /system/xbin/BGW
 	group gps system ccci
 	class main
 #/*BEGIN PN: DTS2013022804500, add by z00170095, 2013/2/28*/#
+#/* BEGIN PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 service setdevid_service /system/bin/setdevid_service 
     user root
     oneshot
     disabled
-    on property:nvram_init=Ready
-    start setdevid_service 
+#/* END PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 #/*END   PN: DTS2013022804500, add by z00170095, 2013/2/28*/#
 
 # /* BEGIN PN:DTS2013062401892, Added by d00195968, 20130624 */
@@ -1583,21 +1632,27 @@ on property:ro.adb.user.debugable=0
     setprop persist.sys.usb.config none
 #/* END PN:DTS2013071203966  ,Added by l00203907, 2013/07/12*/
 #/* BEGIN PN:DTS2013071104358, Added by l00208949, 2013/07/10 */
+#/* BEGIN PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 service hwnffserver /system/bin/hwnffserver
     class main
     socket hwnff stream 0660 root mount
+    disabled
+#/* END PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 #/* END PN:DTS2013071104358, Added by l00208949, 2013/07/10 */
-#DTS2012122601935 j00161244 2012/12/26 add huawei accelerator support begin
-service acceleratord /system/xbin/acceleratord
-  class main
-  user root
-  group root
-  disabled
+#PN: DTS2014030407060,Deleted by l00182656, 2014/03/07
 
-on property:ro.config.hw_acceleratord_onoff=1
-  start acceleratord
-#DTS2012122601935 j00161244 2012/12/26 add huawei accelerator support end
-
+#BEGIN PN:DTS2014021204866,Added by y00230246, 2014/02/13
+on property:persist.sys.easyflag=1
+    write  /sys/bus/ttsp4/devices/main_ttsp_core.cyttsp4_i2c_adapter/easy_wakeup_gesture $persist.sys.easywakeup
+on property:persist.sys.easyflag=0
+    setprop  persist.sys.easywakeup  128  
+#END PN:DTS2014021204866,Added by y00230246, 2013/02/13
+#/* BEGIN PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
+on property:nvram_init=Ready
+    start setdevid_service
+    start logswitchserver
+    start hwnffserver
+#/* END PN: DTS2014040202260, Modified by zwx207871, 2014/04/01 */
 
 # baidu services
 service WordSegService /system/bin/WordSegService

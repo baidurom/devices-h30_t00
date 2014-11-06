@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/secondliststyle" android:background="@drawable/icontext_selector" android:layout_width="95.0dip" android:layout_height="95.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <ImageView android:id="@id/listradioimg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="14.0dip" android:textColor="@color/shotmode_selectd_text" android:gravity="center" android:id="@id/listtitle_selected" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="60.0dip" style="@style/menuTextStyleBlack" />
+    <TextView android:textSize="14.0dip" android:textColor="@*android:color/black" android:gravity="center" android:id="@id/listtitle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="60.0dip" style="@style/menuTextStyleWhite" />
+</RelativeLayout>

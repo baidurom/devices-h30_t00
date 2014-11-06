@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:id="@id/network_fragment"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entries="@array/prefs_access_mode_titles" android:title="@string/network_access" android:key="key-access-mode" android:defaultValue="-1" android:dialogTitle="@string/network_access" android:entryValues="@array/prefs_access_mode_values" />
+</PreferenceScreen>

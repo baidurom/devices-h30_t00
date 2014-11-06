@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerVertical="true">
+        <ProgressBar android:id="@id/best_photo_progress" android:layout_width="57.0dip" android:layout_height="57.0dip" android:layout_centerHorizontal="true" style="?android:attr/progressBarStyle" />
+    </RelativeLayout>
+</RelativeLayout>

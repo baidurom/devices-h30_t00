@@ -765,6 +765,8 @@
 
 .field public static final zz_voice_unlock_area_view:I = 0x10203d5
 
+.field public static final keyguard_unlock_panel:I = 0x10203d9
+
 
 # direct methods
 .method public constructor <init>()V

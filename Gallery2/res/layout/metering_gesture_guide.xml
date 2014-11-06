@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:id="@id/layout_metering" android:background="@drawable/metering_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:onClick="hideMeteringGuide"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center" android:id="@id/metering_image" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/meter_pic_drag" android:contentDescription="@string/meter_hints_for_gesture_guide" />
+    <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/metering_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/gesture_guide_text_margin_bottom" android:text="@string/meter_hints_for_gesture_guide" android:layout_alignParentBottom="true" />
+</RelativeLayout>

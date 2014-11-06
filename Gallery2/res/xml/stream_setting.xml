@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/network_setting">
+        <PreferenceScreen android:title="@string/apn_setting" android:key="apn_settings" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/proxy_setting">
+        <CheckBoxPreference android:title="@string/use_proxy" android:key="use_proxy" android:defaultValue="false" />
+        <EditTextPreference android:singleLine="true" android:title="@string/proxy_ip_setting" android:key="proxy_ip_setting" android:dialogTitle="@string/proxy_ip_setting" android:inputType="textUri" />
+        <EditTextPreference android:singleLine="true" android:title="@string/proxy_port_setting" android:key="proxy_port_setting" android:dialogTitle="@string/proxy_port_setting" android:inputType="number" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/rtp_rtcp_port_setting">
+        <EditTextPreference android:singleLine="true" android:title="@string/rtp_rtcp_max_port_setting" android:key="max_port_setting" android:dialogTitle="@string/rtp_rtcp_max_port_setting" android:inputType="number" />
+        <EditTextPreference android:singleLine="true" android:title="@string/rtp_rtcp_min_port_setting" android:key="min_port_setting" android:dialogTitle="@string/rtp_rtcp_min_port_setting" android:inputType="number" />
+    </PreferenceCategory>
+</PreferenceScreen>

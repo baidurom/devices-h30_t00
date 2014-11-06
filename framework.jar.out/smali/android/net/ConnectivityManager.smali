@@ -1688,62 +1688,31 @@
 .end method
 
 .method public startUsingNetworkFeature(ILjava/lang/String;)I
-    .locals 8
+    .locals 3
     .parameter "networkType"
     .parameter "feature"
 
     .prologue
-    const/4 v1, 0x2
-
-    const/4 v7, 0x1
-
-    .line 626
-    const/4 v2, 0x1
-
-    const/4 v3, 0x1
-
-    const/4 v4, 0x2
-
+    .line 648
     :try_start_0
-    new-array v4, v4, [Ljava/lang/Object;
-
-    const/4 v5, 0x0
-
-    new-instance v6, Ljava/lang/Integer;
-
-    invoke-direct {v6, p1}, Ljava/lang/Integer;-><init>(I)V
-
-    aput-object v6, v4, v5
-
-    const/4 v5, 0x1
-
-    aput-object p2, v4, v5
-
-    invoke-static {v2, v3, v4}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
-
-    move-result v2
-
-    if-ne v2, v7, :cond_0
-
-    .line 636
-    :goto_0
-    return v1
-
-    .line 633
-    :cond_0
     iget-object v1, p0, Landroid/net/ConnectivityManager;->mService:Landroid/net/IConnectivityManager;
 
     new-instance v2, Landroid/os/Binder;
 
     invoke-direct {v2}, Landroid/os/Binder;-><init>()V
 
-    invoke-interface {v1, p1, p2, v2}, Landroid/net/IConnectivityManager;->startUsingNetworkFeature(ILjava/lang/String;Landroid/os/IBinder;)I
+    #invoke-interface {v1, p1, p2, v2}, Landroid/net/IConnectivityManager;->startUsingNetworkFeature(ILjava/lang/String;Landroid/os/IBinder;)I
+
+    invoke-direct {p0, p1, p2}, Landroid/net/ConnectivityManager;->startUsingNetworkFeatureBaidu(ILjava/lang/String;)I
+
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result v1
 
-    goto :goto_0
+    .line 651
+    :goto_0
+    return v1
 
     .line 650
     :catch_0
@@ -1940,6 +1909,58 @@
     .line 1079
     .local v0, e:Landroid/os/RemoteException;
     const/4 v1, 0x0
+
+    goto :goto_0
+.end method
+
+.method private startUsingNetworkFeatureBaidu(ILjava/lang/String;)I
+    .locals 5
+    .parameter "networkType"
+    .parameter "feature"
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    const/4 v0, 0x2
+
+    const/4 v4, 0x1
+
+    .line 635
+    new-array v1, v0, [Ljava/lang/Object;
+
+    const/4 v2, 0x0
+
+    new-instance v3, Ljava/lang/Integer;
+
+    invoke-direct {v3, p1}, Ljava/lang/Integer;-><init>(I)V
+
+    aput-object v3, v1, v2
+
+    aput-object p2, v1, v4
+
+    invoke-static {v4, v4, v1}, Lcom/baidu/server/dp/DynamicPermissionManager;->checkPermission(IZ[Ljava/lang/Object;)I
+
+    move-result v1
+
+    if-ne v1, v4, :cond_0
+
+    .line 642
+    :goto_0
+    return v0
+
+    :cond_0
+    iget-object v0, p0, Landroid/net/ConnectivityManager;->mService:Landroid/net/IConnectivityManager;
+
+    new-instance v1, Landroid/os/Binder;
+
+    invoke-direct {v1}, Landroid/os/Binder;-><init>()V
+
+    invoke-interface {v0, p1, p2, v1}, Landroid/net/IConnectivityManager;->startUsingNetworkFeature(ILjava/lang/String;Landroid/os/IBinder;)I
+
+    move-result v0
 
     goto :goto_0
 .end method

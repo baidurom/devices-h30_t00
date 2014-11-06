@@ -7,8 +7,7 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/server/power/DisplayPowerController$DisplayControllerHandler;,
-        Lcom/android/server/power/DisplayPowerController$Callbacks;,
-        Lcom/android/server/power/DisplayPowerController$QuickbootBroadcastReceiver;
+        Lcom/android/server/power/DisplayPowerController$Callbacks;
     }
 .end annotation
 
@@ -131,8 +130,6 @@
 .field private mElectronBeam:Lcom/android/server/power/ElectronBeam;
 
 .field private mElectronBeamFadesConfig:Z
-
-.field private mElectronBeamFadesConfigOrigin:Z
 
 .field private mElectronBeamOffAnimator:Landroid/animation/ObjectAnimator;
 
@@ -1065,8 +1062,6 @@
     invoke-virtual {v7, v8, v2, v9, v10}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;Ljava/lang/String;Landroid/os/Handler;)Landroid/content/Intent;
 
     .line 522
-    invoke-direct {p0}, Lcom/android/server/power/DisplayPowerController;->registerQbReceiver()V
-
     return-void
 
     .line 480
@@ -1170,30 +1165,6 @@
     return-void
 .end method
 
-
-.method static synthetic access$204(Lcom/android/server/power/DisplayPowerController;)Z
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 80
-    iget-boolean v0, p0, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfigOrigin:Z
-
-    return v0
-.end method
-
-.method static synthetic access$202(Lcom/android/server/power/DisplayPowerController;Z)Z
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    .line 80
-    iput-boolean p1, p0, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfigOrigin:Z
-
-    return p1
-.end method
-
 .method static synthetic access$300(Lcom/android/server/power/DisplayPowerController;)Lcom/android/server/power/DisplayPowerController$Callbacks;
     .locals 1
     .parameter "x0"
@@ -1203,29 +1174,6 @@
     iget-object v0, p0, Lcom/android/server/power/DisplayPowerController;->mCallbacks:Lcom/android/server/power/DisplayPowerController$Callbacks;
 
     return-object v0
-.end method
-
-.method static synthetic access$304(Lcom/android/server/power/DisplayPowerController;)Z
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 80
-    iget-boolean v0, p0, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfig:Z
-
-    return v0
-.end method
-
-.method static synthetic access$302(Lcom/android/server/power/DisplayPowerController;Z)Z
-    .locals 0
-    .parameter "x0"
-    .parameter "x1"
-
-    .prologue
-    .line 80
-    iput-boolean p1, p0, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfig:Z
-
-    return p1
 .end method
 
 .method static synthetic access$400(Lcom/android/server/power/DisplayPowerController;Ljava/io/PrintWriter;)V
@@ -3113,39 +3061,6 @@
     .end packed-switch
 .end method
 
-.method private registerQbReceiver()V
-    .locals 3
-
-    .prologue
-    .line 474
-    new-instance v0, Landroid/content/IntentFilter;
-
-    invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
-
-    .line 475
-    .local v0, filter:Landroid/content/IntentFilter;
-    const-string v1, "android.intent.action.ACTION_QUICKBOOT_SHUTDOWN"
-
-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
-
-    .line 476
-    const-string v1, "android.intent.action.ACTION_QUICKBOOT_BOOT"
-
-    invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
-
-    .line 477
-    iget-object v1, p0, Lcom/android/server/power/DisplayPowerController;->mContext:Landroid/content/Context;
-
-    new-instance v2, Lcom/android/server/power/DisplayPowerController$QuickbootBroadcastReceiver;
-
-    invoke-direct {v2, p0}, Lcom/android/server/power/DisplayPowerController$QuickbootBroadcastReceiver;-><init>(Lcom/android/server/power/DisplayPowerController;)V
-
-    invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
-
-    .line 478
-    return-void
-.end method
-
 .method private sendOnProximityNegative()V
     .locals 2
 
@@ -4443,37 +4358,12 @@
 
     move-result v2
 
-    invoke-direct {p0, v2}, Lcom/android/server/power/DisplayPowerController;->clampScreenBrightness(I)I
+    invoke-direct {p0, v2}, Lcom/android/server/power/DisplayPowerController;->clampScreenBrightnessBaidu(I)I
 
     move-result v10
 
     .line 1426
     .local v10, newScreenAutoBrightness:I
-
-    const-string v2, "persist.sys.brightness_coe"
-
-    const/16 v3, 0x64
-
-    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
-
-    move-result v8
-
-    .local v8, brightnessCoe:I
-    mul-int v2, v10, v8
-
-    div-int/lit8 v10, v2, 0x64
-
-    iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMaximum:I
-
-    invoke-static {v10, v2}, Ljava/lang/Math;->min(II)I
-
-    move-result v10
-
-    iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMinimum:I
-
-    invoke-static {v10, v2}, Ljava/lang/Math;->max(II)I
-
-    move-result v10
     iget v2, p0, Lcom/android/server/power/DisplayPowerController;->mScreenAutoBrightness:I
 
     if-eq v2, v10, :cond_0
@@ -6028,4 +5918,49 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
+.end method
+
+.method private clampScreenBrightnessBaidu(I)I
+    .locals 5
+    .parameter "value"
+
+    .prologue
+    iget v3, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMinimum:I
+
+    iget v4, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMaximum:I
+
+    invoke-static {p1, v3, v4}, Lcom/android/server/power/DisplayPowerController;->clamp(III)I
+
+    move-result v1
+
+    .local v1, brightness:I
+    const/16 v0, 0x64
+
+    .local v0, DEFAULT_BRIGHTNESS_COE:I
+    const-string v3, "persist.sys.brightness_coe"
+
+    const/16 v4, 0x64
+
+    invoke-static {v3, v4}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v2
+
+    .local v2, brightnessCoe:I
+    mul-int v3, v1, v2
+
+    div-int/lit8 v1, v3, 0x64
+
+    iget v3, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMaximum:I
+
+    invoke-static {v1, v3}, Ljava/lang/Math;->min(II)I
+
+    move-result v1
+
+    iget v3, p0, Lcom/android/server/power/DisplayPowerController;->mScreenBrightnessRangeMinimum:I
+
+    invoke-static {v1, v3}, Ljava/lang/Math;->max(II)I
+
+    move-result v1
+
+    return v1
 .end method

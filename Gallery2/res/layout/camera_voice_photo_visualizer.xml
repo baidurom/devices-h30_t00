@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateLayout android:id="@id/camera_voice_photo_visualizer_layout" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <RelativeLayout android:clickable="true" android:layout_width="wrap_content" android:layout_height="fill_parent">
+        <com.android.hwcamera.ui.VisualizerView android:id="@id/camera_voice_photo_shutter_voice" android:focusable="false" android:clickable="false" android:layout_width="300.0dip" android:layout_height="42.0dip" android:layout_alignParentLeft="true" android:layout_centerVertical="true" camera:visualizerWidth="10.0dip" camera:visualizerSpacing="1.0dip" camera:visualizerEdgeWidth="1.0dip" camera:visualizerNum="11" />
+    </RelativeLayout>
+</com.android.hwcamera.ui.RotateLayout>

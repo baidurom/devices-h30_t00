@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/arrow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/actionmode01_arrow_up" />
+    <RelativeLayout android:id="@id/title" android:background="@drawable/btn_face_menu_top" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/facemenu_top_item_height">
+        <TextView android:textSize="18.0sp" android:ellipsize="marquee" android:id="@id/name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:maxWidth="139.0dip" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+        <ImageView android:id="@id/setting" android:layout_width="55.0dip" android:layout_height="wrap_content" android:layout_marginRight="2.0dip" android:src="@drawable/ic_settings" android:scaleType="center" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <LinearLayout android:id="@id/menu_list" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageButton android:id="@id/cellphone" android:background="@drawable/btn_face_menu_left" android:layout_width="@dimen/facemenu_item_left_width" android:layout_height="@dimen/facemenu_bottom_item_height" android:layout_marginBottom="4.0dip" android:src="@drawable/btn_face_menu_call" android:scaleType="center" android:layout_weight="1.0" />
+        <ImageButton android:id="@id/message" android:background="@drawable/btn_face_menu_middle" android:layout_width="@dimen/facemenu_item_middle_width" android:layout_height="@dimen/facemenu_bottom_item_height" android:layout_marginBottom="4.0dip" android:src="@drawable/btn_face_menu_message" android:scaleType="center" android:layout_weight="1.0" />
+        <ImageButton android:id="@id/email" android:background="@drawable/btn_face_menu_middle" android:layout_width="@dimen/facemenu_item_middle_width" android:layout_height="@dimen/facemenu_bottom_item_height" android:layout_marginBottom="4.0dip" android:src="@drawable/btn_face_menu_email" android:scaleType="center" android:layout_weight="1.0" />
+        <ImageButton android:id="@id/about" android:background="@drawable/btn_face_menu_right" android:layout_width="@dimen/facemenu_item_right_width" android:layout_height="@dimen/facemenu_bottom_item_height" android:layout_marginBottom="4.0dip" android:src="@drawable/ic_settings_about" android:scaleType="center" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

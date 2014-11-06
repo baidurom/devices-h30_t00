@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/filtershow_imagebutton_background" android:layout_width="fill_parent" android:layout_height="48.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/typeMark" android:background="@*android:color/transparent" android:visibility="visible" android:layout_width="32.0dip" android:layout_height="fill_parent" android:src="@drawable/filtershow_button_origin" android:scaleType="centerInside" />
+    <TextView android:textSize="18.0dip" android:gravity="left|center" android:id="@id/rowTextView" android:layout_width="fill_parent" android:layout_height="48.0dip" android:layout_marginLeft="8.0dip" android:layout_weight="1.0"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <ImageView android:id="@id/selectedMark" android:background="@*android:color/transparent" android:layout_width="32.0dip" android:layout_height="fill_parent" android:layout_marginLeft="6.0dip" android:layout_marginRight="8.0dip" android:src="@drawable/selectedmark_background" android:scaleType="centerInside" />
+</LinearLayout>

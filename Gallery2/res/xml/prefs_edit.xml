@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:id="@id/edit_fragment"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entries="@array/prefs_edit_resolution_title" android:title="@string/edit_resolution_mode" android:key="key-edit-resolution" android:defaultValue="1" android:dialogTitle="@string/edit_resolution_mode" android:entryValues="@array/prefs_edit_resolution_value" />
+</PreferenceScreen>

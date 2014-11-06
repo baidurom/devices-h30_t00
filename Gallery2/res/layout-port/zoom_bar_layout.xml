@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:orientation="horizontal" android:id="@id/zoom_bar_layout" android:paddingLeft="16.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_alignParentLeft="true"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <com.android.hwcamera.ui.RotateImageView android:gravity="center" android:id="@id/img_zoom_out" android:padding="10.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="102.0dip" android:src="@drawable/ic_zoom_out" android:layout_alignParentTop="true" />
+    <com.android.hwcamera.ui.RotateLayoutForZoom android:gravity="center" android:id="@id/zoom_rotate_seek_bar" android:layout_width="36.0dip" android:layout_height="fill_parent" android:layout_marginTop="138.0dip" android:layout_marginBottom="138.0dip" camera:mOrientation="270">
+        <SeekBar android:gravity="center" android:id="@id/zoom_seek_bar" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/zoombar_draw_ball_style" android:thumbOffset="8.0dip" />
+    </com.android.hwcamera.ui.RotateLayoutForZoom>
+    <com.android.hwcamera.ui.RotateImageView android:gravity="center" android:id="@id/img_zoom_in" android:padding="10.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="102.0dip" android:src="@drawable/ic_zoom_in" android:layout_alignParentBottom="true" />
+</RelativeLayout>

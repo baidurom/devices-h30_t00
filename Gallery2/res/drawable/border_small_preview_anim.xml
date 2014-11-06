@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="133" android:drawable="@drawable/border_small_preview_halfapha" />
+    <item android:duration="133" android:drawable="@drawable/border_small_preview" />
+    <item android:duration="133" android:drawable="@drawable/border_small_preview_halfapha" />
+    <item android:duration="601" android:drawable="@drawable/border_small_preview" />
+</animation-list>

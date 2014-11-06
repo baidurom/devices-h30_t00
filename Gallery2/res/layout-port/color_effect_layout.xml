@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/color_effect_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <RelativeLayout android:gravity="center_horizontal" android:id="@id/hide_and_extend_layout" android:clickable="true" android:layout_width="wrap_content" android:layout_height="24.0dip" android:minWidth="50.0dip" android:layout_centerHorizontal="true">
+        <ImageView android:id="@id/hide_and_extend_button" android:background="@drawable/ic_arrow_effect_down" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:textSize="18.0dip" android:textColor="@*android:color/white" android:id="@id/item_selected" android:paddingLeft="6.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:maxWidth="96.0dip" android:layout_toRightOf="@id/hide_and_extend_button" style="@style/menuTextStyleBlack" />
+    </RelativeLayout>
+    <com.android.hwcamera.ui.RotateLayout android:id="@id/color_effect_content" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:layout_below="@id/hide_and_extend_layout" android:layout_centerHorizontal="true" camera:mOrientation="270">
+        <RelativeLayout android:background="@drawable/bg_adjustments" android:layout_width="104.0dip" android:layout_height="332.0dip">
+            <ListView android:id="@id/list_view_coloreffect_content" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="@drawable/icontext_selector" android:cacheColorHint="#00000000" />
+        </RelativeLayout>
+    </com.android.hwcamera.ui.RotateLayout>
+</RelativeLayout>

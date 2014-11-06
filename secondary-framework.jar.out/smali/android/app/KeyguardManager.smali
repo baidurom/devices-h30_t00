@@ -90,7 +90,7 @@
     :try_start_0
     iget-object v1, p0, Landroid/app/KeyguardManager;->mWM:Landroid/view/IWindowManager;
 
-    if-eqz v1, :cond_90
+    if-eqz v1, :cond_baidu_0
 
     invoke-interface {v1}, Landroid/view/IWindowManager;->inKeyguardRestrictedInputMode()Z
     :try_end_0
@@ -108,7 +108,7 @@
 
     .line 188
     .local v0, ex:Landroid/os/RemoteException;
-    :cond_90
+    :cond_baidu_0
     const/4 v1, 0x0
 
     goto :goto_0

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/review_module_control" android:layout_width="80.0dip" android:layout_height="fill_parent" android:layout_alignParentRight="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.hwcamera.ui.RotateImageView android:layout_gravity="top|center" android:id="@id/btn_done" android:background="@drawable/bg_pressed" android:visibility="gone" android:layout_width="fill_parent" android:src="@drawable/ic_menu_done_holo_light" android:contentDescription="@string/accessibility_review_ok" style="@style/ReviewControlIcon" />
+    <com.android.hwcamera.ui.RotateImageView android:layout_gravity="center" android:id="@id/btn_retake" android:background="@drawable/bg_pressed" android:focusable="true" android:visibility="gone" android:layout_width="fill_parent" android:src="@drawable/ic_btn_shutter_retake" android:scaleType="center" android:contentDescription="@string/accessibility_review_retake" style="@style/ReviewControlIcon" />
+    <com.android.hwcamera.ui.RotateImageView android:layout_gravity="bottom|center" android:id="@id/btn_cancel" android:background="@drawable/bg_pressed" android:visibility="gone" android:layout_width="fill_parent" android:src="@drawable/ic_menu_cancel_holo_light" android:contentDescription="@string/accessibility_review_cancel" style="@style/ReviewControlIcon" />
+</FrameLayout>

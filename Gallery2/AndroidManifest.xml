@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:versionCode="40001" android:versionName="1.1.40001" package="com.android.gallery3d"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <original-package android:name="com.android.gallery3d" />
+    <permission android:name="com.android.gallery3d.permission.GALLERY_PROVIDER" android:protectionLevel="signatureOrSystem" />
+    <permission android:label="@string/photoshare_permission_label" android:name="com.huawei.photoshare.permissions" android:protectionLevel="normal" android:description="@string/photoshare_permission_desc" />
+    <permission android:label="@string/gallery_support_photoshare_permission_label" android:name="com.huawei.android.permission.gallerysupportphotoshare" android:protectionLevel="signatureOrSystem" android:description="@string/gallery_support_photoshare_permission_desc" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_BLUETOOTH_SHARE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="com.android.permission.WHITELIST_BLUETOOTH_DEVICE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.huawei.privacymode.permission.RECV_MODE_CHANGED" />
+    <uses-permission android:name="com.huawei.photoshare.permissions" />
+    <uses-permission android:name="com.huawei.android.permission.photoshareconfig" />
+    <uses-permission android:name="com.android.contacts.permission.READ_CONTACTS_PRIVACY_DATA" />
+    <uses-permission android:name="com.android.contacts.permission.WRITE_CONTACTS_PRIVACY_DATA" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <supports-screens android:anyDensity="true" android:smallScreens="false" android:normalScreens="true" android:largeScreens="true" />
+    <application android:theme="@style/Theme.Gallery" android:label="@string/camera_label" android:icon="@mipmap/ic_launcher_camera" android:name="com.android.gallery3d.app.GalleryAppImpl" android:hardwareAccelerated="true" android:largeHeap="true">
+        <uses-library android:name="com.google.android.media.effects" android:required="false" />
+        <uses-library android:name="com.huawei.hwextcamera" android:required="false" />
+        <permission android:name="com.android.gallery3d.filtershow.permission.READ" android:protectionLevel="signature" />
+        <permission android:name="com.android.gallery3d.filtershow.permission.WRITE" android:protectionLevel="signature" />
+        <provider android:name="com.android.gallery3d.filtershow.provider.SharedImageProvider" android:readPermission="com.android.gallery3d.filtershow.permission.READ" android:writePermission="com.android.gallery3d.filtershow.permission.WRITE" android:authorities="com.android.gallery3d.filtershow.provider.SharedImageProvider" android:grantUriPermissions="true" />
+        <activity android:theme="@style/Theme.Gallery" android:name="com.android.gallery3d.settings.GallerySettings">
+            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui" />
+        </activity>
+        <provider android:name="com.android.gallery3d.provider.GalleryProvider" android:permission="com.android.gallery3d.permission.GALLERY_PROVIDER" android:exported="true" android:authorities="com.android.gallery3d.provider" android:syncable="false" android:grantUriPermissions="true" />
+        <activity android:name="com.android.gallery3d.gadget.WidgetClickHandler" />
+        <activity android:theme="@style/DialogPickerTheme" android:name="com.android.gallery3d.app.DialogPicker" android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui" />
+        </activity>
+        <activity android:theme="@style/DialogPickerTheme" android:name="com.android.gallery3d.app.AlbumPicker" android:configChanges="keyboardHidden|orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui" />
+        </activity>
+        <activity android:theme="@style/Theme.Gallery.Dialog" android:name="com.android.gallery3d.gadget.WidgetTypeChooser" android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui.Dialog" />
+        </activity>
+        <activity android:theme="@style/Theme.Camera" android:label="@string/camera_label" android:icon="@mipmap/ic_launcher_camera" android:name="com.android.hwcamera.CameraActivity" android:taskAffinity="com.android.hwcamera.CameraActivity" android:clearTaskOnLaunch="true" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:theme="@style/Theme.CameraSecure" android:label="@string/camera_label" android:icon="@mipmap/ic_launcher_camera" android:name="com.android.hwcamera.SecureCameraActivity" android:taskAffinity="com.android.hwcamera.SecureCameraActivity" android:clearTaskOnLaunch="true" android:excludeFromRecents="true" android:configChanges="keyboardHidden|orientation|screenSize" android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE_FC" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.keyguard.layout" android:resource="@layout/keyguard_widget" />
+        </activity>
+        <activity-alias android:label="@string/camera_label" android:icon="@mipmap/ic_launcher_camera" android:name="com.android.hwcamera" android:targetActivity="com.android.hwcamera.CameraActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_FC" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.keyguard.layout" android:resource="@layout/keyguard_widget" />
+        </activity-alias>
+        <activity-alias android:label="@string/video_camera_label" android:icon="@mipmap/ic_launcher_video_camera" android:name="com.android.hwcamera.VideoCamera" android:targetActivity="com.android.hwcamera.CameraActivity">
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+        <receiver android:label="@string/appwidget_title" android:name="com.android.gallery3d.gadget.PhotoAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+        </receiver>
+        <receiver android:name="com.android.gallery3d.app.PackagesMonitor">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.android.gallery3d.app.UpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PRE_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.android.gallery3d.app.PackagesMonitor$AsyncService" />
+        <receiver android:name="com.android.hwcamera.CameraButtonIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.CAMERA_BUTTON" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.START_CAMERA" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.android.hwcamera.DisableCameraReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.android.gallery3d.gadget.WidgetService" android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.android.gallery3d.gadget.WidgetConfigure" android:configChanges="keyboardHidden|orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/Theme.ProxyLauncher" android:name="com.android.hwcamera.ProxyLauncher" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareLoginActivity" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareCreateNewShareActivity" android:configChanges="keyboardHidden|navigation|orientation|screenSize" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareEditShareFolderActivity" android:configChanges="keyboardHidden|navigation|orientation|screenSize" />
+        <activity android:name="com.huawei.gallery3d.photoshare.ui.PhotoShareInviteReceivedDialog" android:configChanges="keyboardHidden|navigation|orientation|screenSize" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareEditReceiveFolderActivity" android:configChanges="keyboardHidden|navigation|orientation|screenSize" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareAddReceiverActivity" android:configChanges="keyboardHidden|navigation|orientation|screenSize" />
+        <activity android:name="com.huawei.gallery3d.photoshare.PhotoShareNoPhotoActivity" />
+        <receiver android:name="com.huawei.hicloud.photosharesdk.broadcast.receiver.AccountLogReceiver">
+            <intent-filter>
+                <action android:name="com.huawei.hicloud.intent.action.HICLOUD_LOGON_ACTION" />
+                <action android:name="com.huawei.hicloud.intent.action.HICLOUD_LOGOFF_ACTION" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.huawei.hicloud.photosharesdk.broadcast.receiver.SwitchReceiver">
+            <intent-filter>
+                <action android:name="com.huawei.hicloud.intent.action.PHOTOSTREAM_SWITCH" />
+                <action android:name="com.huawei.hicloud.intent.action.PHOTOSHARE_SWITCH" />
+                <action android:name="com.huawei.hicloud.intent.action.3GALLOW_SWITCH" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.huawei.hicloud.photosharesdk.broadcast.receiver.HiPhotoPushReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+                <action android:name="com.huawei.intent.action.PUSH" />
+                <action android:name="com.huawei.intent.action.PUSH_STATE" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.huawei.hicloud.photosharesdk.service.MainService" android:exported="false" />
+        <meta-data android:name="APPKEY" android:value="5" />
+        <meta-data android:name="CHANNEL" android:value="push" />
+        <receiver android:name="com.huawei.gallery3d.photoshare.receiver.PhotoSharePushNotifyReceiver">
+            <intent-filter>
+                <action android:name="com.huawei.hicloud.photosharesdk.push" />
+            </intent-filter>
+        </receiver>
+        <provider android:name="com.huawei.gallery3d.photoshare.GalleryPhotoShareFeatureProvider" android:permission="com.huawei.android.permission.gallerysupportphotoshare" android:authorities="com.huawei.gallery3d.photoshare.provider" />
+        <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui" />
+    </application>
+</manifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="photoshare_share_complete">
+        <item quantity="other">Photos will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+        <item quantity="zero">Photos will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+        <item quantity="one">Photo will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+        <item quantity="two">Photos will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+        <item quantity="few">Photos will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+        <item quantity="many">Photos will be synchronized and shared after you are connected to a WLAN or 3G/LTE network.</item>
+    </plurals>
+</resources>

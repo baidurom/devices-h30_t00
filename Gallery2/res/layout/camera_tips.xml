@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateLayout android:id="@id/camera_tips" android:layout_width="352.0dip" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/camera_tips_layout" android:layout_width="352.0dip" android:layout_height="wrap_content" />
+</com.android.hwcamera.ui.RotateLayout>

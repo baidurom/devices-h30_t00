@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="global_action_reboot">重启</string>
-    <string name="reboot_confirm">"您的手机将重启。"</string>
-    <string name="reboot_confirm_question">"您要重启吗？"</string>
-</resources>

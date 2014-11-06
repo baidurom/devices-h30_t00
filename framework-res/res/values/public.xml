@@ -2116,6 +2116,7 @@
     <public type="id" name="zz_voiceLockMic" id="0x010203d6" />
     <public type="id" name="zz_voiceLockWave" id="0x010203d7" />
     <public type="id" name="zz_voiceLockCancel" id="0x010203d8" />
+    <public type="id" name="keyguard_unlock_panel" id="0x010203d9" />
     <public type="style" name="Animation" id="0x01030000" />
     <public type="style" name="Animation.Activity" id="0x01030001" />
     <public type="style" name="Animation.Dialog" id="0x01030002" />

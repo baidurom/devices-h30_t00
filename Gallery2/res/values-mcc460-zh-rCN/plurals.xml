@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="photoshare_share_complete">
+        <item quantity="other">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="zero">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="one">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="two">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="few">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="many">连接至 WLAN 或 3G 网络以完成照片的同步和分享。</item>
+    </plurals>
+</resources>

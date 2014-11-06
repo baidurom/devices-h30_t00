@@ -25,13 +25,13 @@
     .parameter "looper"
 
     .prologue
-    .line 3247
+    .line 3200
     iput-object p1, p0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
-    .line 3248
+    .line 3201
     invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
-    .line 3249
+    .line 3202
     return-void
 .end method
 
@@ -42,24 +42,24 @@
     .parameter "msg"
 
     .prologue
-    .line 3254
+    .line 3207
     move-object/from16 v0, p1
 
     iget v13, v0, Landroid/os/Message;->what:I
 
     packed-switch v13, :pswitch_data_0
 
-    .line 3364
+    .line 3314
     :cond_0
     :goto_0
     :pswitch_0
     return-void
 
-    .line 3256
+    .line 3209
     :pswitch_1
     const/4 v1, 0x0
 
-    .line 3257
+    .line 3210
     .local v1, causedBy:Ljava/lang/String;
     move-object/from16 v0, p0
 
@@ -67,7 +67,7 @@
 
     monitor-enter v14
 
-    .line 3258
+    .line 3211
     :try_start_0
     move-object/from16 v0, p1
 
@@ -78,7 +78,7 @@
     iget-object v15, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mNetTransitionWakeLockSerialNumber:I
-    invoke-static {v15}, Lcom/android/server/ConnectivityService;->access$2000(Lcom/android/server/ConnectivityService;)I
+    invoke-static {v15}, Lcom/android/server/ConnectivityService;->access$2100(Lcom/android/server/ConnectivityService;)I
 
     move-result v15
 
@@ -89,7 +89,7 @@
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mNetTransitionWakeLock:Landroid/os/PowerManager$WakeLock;
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2100(Lcom/android/server/ConnectivityService;)Landroid/os/PowerManager$WakeLock;
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2200(Lcom/android/server/ConnectivityService;)Landroid/os/PowerManager$WakeLock;
 
     move-result-object v13
 
@@ -99,38 +99,38 @@
 
     if-eqz v13, :cond_1
 
-    .line 3260
+    .line 3213
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mNetTransitionWakeLock:Landroid/os/PowerManager$WakeLock;
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2100(Lcom/android/server/ConnectivityService;)Landroid/os/PowerManager$WakeLock;
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2200(Lcom/android/server/ConnectivityService;)Landroid/os/PowerManager$WakeLock;
 
     move-result-object v13
 
     invoke-virtual {v13}, Landroid/os/PowerManager$WakeLock;->release()V
 
-    .line 3261
+    .line 3214
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mNetTransitionWakeLockCausedBy:Ljava/lang/String;
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2200(Lcom/android/server/ConnectivityService;)Ljava/lang/String;
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2300(Lcom/android/server/ConnectivityService;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 3263
+    .line 3216
     :cond_1
     monitor-exit v14
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 3264
+    .line 3217
     if-eqz v1, :cond_0
 
-    .line 3265
+    .line 3218
     new-instance v13, Ljava/lang/StringBuilder;
 
     invoke-direct {v13}, Ljava/lang/StringBuilder;-><init>()V
@@ -160,7 +160,7 @@
 
     goto :goto_0
 
-    .line 3263
+    .line 3216
     :catchall_0
     move-exception v13
 
@@ -171,7 +171,7 @@
 
     throw v13
 
-    .line 3269
+    .line 3222
     .end local v1           #causedBy:Ljava/lang/String;
     :pswitch_2
     move-object/from16 v0, p1
@@ -180,37 +180,37 @@
 
     check-cast v12, Lcom/android/server/ConnectivityService$FeatureUser;
 
-    .line 3270
+    .line 3223
     .local v12, u:Lcom/android/server/ConnectivityService$FeatureUser;
     invoke-virtual {v12}, Lcom/android/server/ConnectivityService$FeatureUser;->expire()V
 
     goto :goto_0
 
-    .line 3274
+    .line 3227
     .end local v12           #u:Lcom/android/server/ConnectivityService$FeatureUser;
     :pswitch_3
     move-object/from16 v0, p1
 
     iget v6, v0, Landroid/os/Message;->arg1:I
 
-    .line 3275
+    .line 3228
     .local v6, netType:I
     move-object/from16 v0, p1
 
     iget v2, v0, Landroid/os/Message;->arg2:I
 
-    .line 3276
+    .line 3229
     .local v2, condition:I
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleInetConditionChange(II)V
-    invoke-static {v13, v6, v2}, Lcom/android/server/ConnectivityService;->access$2300(Lcom/android/server/ConnectivityService;II)V
+    invoke-static {v13, v6, v2}, Lcom/android/server/ConnectivityService;->access$2400(Lcom/android/server/ConnectivityService;II)V
 
     goto :goto_0
 
-    .line 3281
+    .line 3234
     .end local v2           #condition:I
     .end local v6           #netType:I
     :pswitch_4
@@ -218,24 +218,24 @@
 
     iget v6, v0, Landroid/os/Message;->arg1:I
 
-    .line 3282
+    .line 3235
     .restart local v6       #netType:I
     move-object/from16 v0, p1
 
     iget v10, v0, Landroid/os/Message;->arg2:I
 
-    .line 3283
+    .line 3236
     .local v10, sequence:I
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleInetConditionHoldEnd(II)V
-    invoke-static {v13, v6, v10}, Lcom/android/server/ConnectivityService;->access$2400(Lcom/android/server/ConnectivityService;II)V
+    invoke-static {v13, v6, v10}, Lcom/android/server/ConnectivityService;->access$2500(Lcom/android/server/ConnectivityService;II)V
 
     goto/16 :goto_0
 
-    .line 3288
+    .line 3241
     .end local v6           #netType:I
     .end local v10           #sequence:I
     :pswitch_5
@@ -243,18 +243,18 @@
 
     iget v9, v0, Landroid/os/Message;->arg1:I
 
-    .line 3289
+    .line 3242
     .local v9, preference:I
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleSetNetworkPreference(I)V
-    invoke-static {v13, v9}, Lcom/android/server/ConnectivityService;->access$2500(Lcom/android/server/ConnectivityService;I)V
+    invoke-static {v13, v9}, Lcom/android/server/ConnectivityService;->access$2600(Lcom/android/server/ConnectivityService;I)V
 
     goto/16 :goto_0
 
-    .line 3294
+    .line 3247
     .end local v9           #preference:I
     :pswitch_6
     move-object/from16 v0, p1
@@ -267,37 +267,37 @@
 
     const/4 v3, 0x1
 
-    .line 3298
+    .line 3248
     .local v3, enabled:Z
     :goto_1
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
-    #calls: Lcom/android/server/ConnectivityService;->handleSetMobileDataEnabled(Z)V
-    invoke-static {v13, v3}, Lcom/android/server/ConnectivityService;->access$2600(Lcom/android/server/ConnectivityService;Z)V
+    #calls: Lcom/android/server/ConnectivityService;->handleSetMobileData(Z)V
+    invoke-static {v13, v3}, Lcom/android/server/ConnectivityService;->access$2700(Lcom/android/server/ConnectivityService;Z)V
 
     goto/16 :goto_0
 
-    .line 3294
+    .line 3247
     .end local v3           #enabled:Z
     :cond_2
     const/4 v3, 0x0
 
     goto :goto_1
 
-    .line 3303
+    .line 3253
     :pswitch_7
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleDeprecatedGlobalHttpProxy()V
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2700(Lcom/android/server/ConnectivityService;)V
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$2800(Lcom/android/server/ConnectivityService;)V
 
     goto/16 :goto_0
 
-    .line 3308
+    .line 3258
     :pswitch_8
     move-object/from16 v0, p1
 
@@ -309,7 +309,7 @@
 
     const/4 v5, 0x1
 
-    .line 3309
+    .line 3259
     .local v5, met:Z
     :goto_2
     move-object/from16 v0, p0
@@ -321,18 +321,18 @@
     iget v14, v0, Landroid/os/Message;->arg2:I
 
     #calls: Lcom/android/server/ConnectivityService;->handleSetDependencyMet(IZ)V
-    invoke-static {v13, v14, v5}, Lcom/android/server/ConnectivityService;->access$2800(Lcom/android/server/ConnectivityService;IZ)V
+    invoke-static {v13, v14, v5}, Lcom/android/server/ConnectivityService;->access$2900(Lcom/android/server/ConnectivityService;IZ)V
 
     goto/16 :goto_0
 
-    .line 3308
+    .line 3258
     .end local v5           #met:Z
     :cond_3
     const/4 v5, 0x0
 
     goto :goto_2
 
-    .line 3314
+    .line 3264
     :pswitch_9
     move-object/from16 v0, p0
 
@@ -347,7 +347,7 @@
 
     if-eq v13, v14, :cond_0
 
-    .line 3315
+    .line 3265
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
@@ -362,11 +362,11 @@
     move-result v14
 
     #calls: Lcom/android/server/ConnectivityService;->handleDnsConfigurationChange(I)V
-    invoke-static {v13, v14}, Lcom/android/server/ConnectivityService;->access$2900(Lcom/android/server/ConnectivityService;I)V
+    invoke-static {v13, v14}, Lcom/android/server/ConnectivityService;->access$3000(Lcom/android/server/ConnectivityService;I)V
 
     goto/16 :goto_0
 
-    .line 3321
+    .line 3271
     :pswitch_a
     move-object/from16 v0, p1
 
@@ -374,25 +374,25 @@
 
     check-cast v4, Landroid/content/Intent;
 
-    .line 3322
+    .line 3272
     .local v4, intent:Landroid/content/Intent;
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->sendStickyBroadcast(Landroid/content/Intent;)V
-    invoke-static {v13, v4}, Lcom/android/server/ConnectivityService;->access$3000(Lcom/android/server/ConnectivityService;Landroid/content/Intent;)V
+    invoke-static {v13, v4}, Lcom/android/server/ConnectivityService;->access$3100(Lcom/android/server/ConnectivityService;Landroid/content/Intent;)V
 
     goto/16 :goto_0
 
-    .line 3326
+    .line 3276
     .end local v4           #intent:Landroid/content/Intent;
     :pswitch_b
     move-object/from16 v0, p1
 
     iget v7, v0, Landroid/os/Message;->arg1:I
 
-    .line 3327
+    .line 3277
     .local v7, networkType:I
     move-object/from16 v0, p1
 
@@ -404,7 +404,7 @@
 
     const/4 v3, 0x1
 
-    .line 3328
+    .line 3278
     .restart local v3       #enabled:Z
     :goto_3
     move-object/from16 v0, p0
@@ -412,18 +412,18 @@
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleSetPolicyDataEnable(IZ)V
-    invoke-static {v13, v7, v3}, Lcom/android/server/ConnectivityService;->access$3100(Lcom/android/server/ConnectivityService;IZ)V
+    invoke-static {v13, v7, v3}, Lcom/android/server/ConnectivityService;->access$3200(Lcom/android/server/ConnectivityService;IZ)V
 
     goto/16 :goto_0
 
-    .line 3327
+    .line 3277
     .end local v3           #enabled:Z
     :cond_4
     const/4 v3, 0x0
 
     goto :goto_3
 
-    .line 3332
+    .line 3282
     .end local v7           #networkType:I
     :pswitch_c
     move-object/from16 v0, p0
@@ -431,19 +431,19 @@
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mLockdownTracker:Lcom/android/server/net/LockdownVpnTracker;
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$1800(Lcom/android/server/ConnectivityService;)Lcom/android/server/net/LockdownVpnTracker;
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$1900(Lcom/android/server/ConnectivityService;)Lcom/android/server/net/LockdownVpnTracker;
 
     move-result-object v13
 
     if-eqz v13, :cond_0
 
-    .line 3333
+    .line 3283
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #getter for: Lcom/android/server/ConnectivityService;->mLockdownTracker:Lcom/android/server/net/LockdownVpnTracker;
-    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$1800(Lcom/android/server/ConnectivityService;)Lcom/android/server/net/LockdownVpnTracker;
+    invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$1900(Lcom/android/server/ConnectivityService;)Lcom/android/server/net/LockdownVpnTracker;
 
     move-result-object v14
 
@@ -457,7 +457,7 @@
 
     goto/16 :goto_0
 
-    .line 3340
+    .line 3290
     :pswitch_d
     move-object/from16 v0, p0
 
@@ -491,7 +491,7 @@
     move/from16 v0, v16
 
     #calls: Lcom/android/server/ConnectivityService;->handleNotificationChange(ZILandroid/app/Notification;)V
-    invoke-static {v15, v14, v0, v13}, Lcom/android/server/ConnectivityService;->access$3200(Lcom/android/server/ConnectivityService;ZILandroid/app/Notification;)V
+    invoke-static {v15, v14, v0, v13}, Lcom/android/server/ConnectivityService;->access$3300(Lcom/android/server/ConnectivityService;ZILandroid/app/Notification;)V
 
     goto/16 :goto_0
 
@@ -502,19 +502,19 @@
 
     goto :goto_4
 
-    .line 3347
+    .line 3297
     :pswitch_e
     move-object/from16 v0, p1
 
     iget v8, v0, Landroid/os/Message;->arg1:I
 
-    .line 3348
+    .line 3298
     .local v8, preSlotId:I
     move-object/from16 v0, p1
 
     iget v11, v0, Landroid/os/Message;->arg2:I
 
-    .line 3350
+    .line 3300
     .local v11, slotId:I
     new-instance v13, Ljava/lang/StringBuilder;
 
@@ -547,17 +547,17 @@
     #calls: Lcom/android/server/ConnectivityService;->log(Ljava/lang/String;)V
     invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$400(Ljava/lang/String;)V
 
-    .line 3351
+    .line 3301
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
 
     #calls: Lcom/android/server/ConnectivityService;->handleMobileDataConnectionChange(II)V
-    invoke-static {v13, v8, v11}, Lcom/android/server/ConnectivityService;->access$3300(Lcom/android/server/ConnectivityService;II)V
+    invoke-static {v13, v8, v11}, Lcom/android/server/ConnectivityService;->access$3400(Lcom/android/server/ConnectivityService;II)V
 
     goto/16 :goto_0
 
-    .line 3357
+    .line 3307
     .end local v8           #preSlotId:I
     .end local v11           #slotId:I
     :pswitch_f
@@ -565,7 +565,7 @@
 
     iget v11, v0, Landroid/os/Message;->arg1:I
 
-    .line 3358
+    .line 3308
     .restart local v11       #slotId:I
     new-instance v13, Ljava/lang/StringBuilder;
 
@@ -588,7 +588,7 @@
     #calls: Lcom/android/server/ConnectivityService;->log(Ljava/lang/String;)V
     invoke-static {v13}, Lcom/android/server/ConnectivityService;->access$400(Ljava/lang/String;)V
 
-    .line 3359
+    .line 3309
     move-object/from16 v0, p0
 
     iget-object v13, v0, Lcom/android/server/ConnectivityService$InternalHandler;->this$0:Lcom/android/server/ConnectivityService;
@@ -597,7 +597,7 @@
 
     goto/16 :goto_0
 
-    .line 3254
+    .line 3207
     nop
 
     :pswitch_data_0

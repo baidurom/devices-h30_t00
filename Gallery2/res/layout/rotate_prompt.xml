@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateLayout android:id="@id/jpeg_prompt" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="@drawable/bg_bubble" android:layout_width="210.0dip" android:layout_height="wrap_content">
+        <TextView android:textSize="15.0dip" android:textColor="@*android:color/black" android:gravity="center_vertical" android:paddingTop="7.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/APKTOOL_DUMMY_01bc" android:lineSpacingExtra="7.0dip" />
+        <CheckedTextView android:gravity="center_vertical" android:id="@id/jpeg_check" android:paddingBottom="3.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:checkMark="?android:listChoiceIndicatorMultiple" android:text="@string/smail_preview_hints" style="@style/PromptTextStyle" />
+    </LinearLayout>
+</com.android.hwcamera.ui.RotateLayout>

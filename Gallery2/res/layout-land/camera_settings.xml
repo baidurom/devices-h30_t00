@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/camera_settings_layout" android:layout_width="wrap_content" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:camera="http://schemas.android.com/apk/res/com.android.gallery3d">
+    <LinearLayout android:orientation="vertical" android:id="@id/camera_main_menu_layout" android:layout_width="80.0dip" android:layout_height="fill_parent" />
+    <com.android.hwcamera.ui.RotateLayout android:id="@id/camera_extand_menu_rotate_layout" android:visibility="gone" android:layout_width="@dimen/extent_menu_width_land" android:layout_height="@dimen/extent_menu_height_land" android:layout_marginTop="14.0dip" android:layout_toRightOf="@id/camera_main_menu_layout" android:layout_alignParentTop="true">
+        <RelativeLayout android:id="@id/camera_extand_menu_layout" android:background="@drawable/bg_menu_1_270" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </com.android.hwcamera.ui.RotateLayout>
+    <com.android.hwcamera.ui.RotateLayout android:id="@id/camera_shootmode_menu_rotate_layout" android:visibility="gone" android:layout_width="@dimen/extent_menu_width_land" android:layout_height="wrap_content" android:layout_marginBottom="14.0dip" android:layout_toRightOf="@id/camera_main_menu_layout" android:layout_alignParentBottom="true">
+        <RelativeLayout android:id="@id/camera_shootmode_menu_layout" android:background="@drawable/bg_menu_270" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </com.android.hwcamera.ui.RotateLayout>
+</RelativeLayout>

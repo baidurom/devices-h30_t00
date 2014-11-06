@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/share_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_bluetooth" android:scaleType="fitCenter" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:contentDescription="@string/sharesimply_image" />
+    <RelativeLayout android:orientation="vertical" android:id="@id/device" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/share_image">
+        <TextView android:textSize="12.0dip" android:textColor="#99ffffff" android:id="@id/sending_state" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24.0dip" android:text="@string/sharesimply_send_complete" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="18.0dip" android:textColor="#ffffffff" android:gravity="center" android:id="@id/stop_share" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="24.0dip" android:layout_marginTop="18.0dip" android:layout_marginRight="24.0dip" android:layout_below="@id/sending_state" android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/button" android:background="@drawable/ab_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/button_split" android:layout_width="1.0dip" android:layout_height="24.0dip" android:src="@drawable/divider_horizontal_gray" android:scaleType="fitXY" android:layout_centerInParent="true" android:contentDescription="@string/sharesimply_image" />
+        <Button android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/cancel_button" android:background="@drawable/toolbar_background" android:layout_width="fill_parent" android:layout_height="48.0dip" android:text="@string/sharesimply_cancel" android:layout_toLeftOf="@id/button_split" android:textAllCaps="true" />
+        <Button android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ok_button" android:background="@drawable/toolbar_background" android:layout_width="fill_parent" android:layout_height="48.0dip" android:text="@string/sharesimply_terminate" android:layout_toRightOf="@id/button_split" android:textAllCaps="true" />
+    </RelativeLayout>
+</RelativeLayout>

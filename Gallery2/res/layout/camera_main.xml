@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/content_all" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/gl_root_group" />
+    <include layout="@layout/pano_preview" />
+    <include layout="@layout/rotate_progress" />
+    <include layout="@layout/metering_gesture_guide" />
+    <RelativeLayout android:id="@id/main_background" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false" />
+    <FrameLayout android:id="@id/main_content" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false" />
+    <RelativeLayout android:id="@id/content" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false">
+        <include layout="@layout/camera_settings" />
+        <include layout="@layout/camera_shutter_switcher" />
+        <include layout="@layout/review_module_control" />
+    </RelativeLayout>
+    <include layout="@layout/camera_best_photo" />
+</RelativeLayout>

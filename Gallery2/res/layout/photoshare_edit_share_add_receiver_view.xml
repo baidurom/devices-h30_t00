@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/album_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@id/photoshare_add_receiver_btn_group" android:layout_width="fill_parent" android:layout_height="@dimen/photoshare_btn_group_height" android:layout_alignParentTop="true" style="@style/photoShareBtnGroupStyle">
+        <Button android:textSize="@dimen/photoshare_btngroup_text_size" android:textColor="@color/photoshare_btngroup_text_color" android:id="@id/photoshare_add_receiver_btn_group_cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/photoshare_btn_group_cancel" android:layout_weight="1.0" style="?android:attr/borderlessButtonStyle" />
+        <ImageView android:id="@id/photoshare_add_receiver_btn_group_divider" style="@style/photoShareBtnGroupVerticalDividerStyle" />
+        <Button android:textSize="@dimen/photoshare_btngroup_text_size" android:textColor="@color/photoshare_btngroup_text_color" android:id="@id/photoshare_add_receiver_btn_group_confirm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/photoshare_btn_group_confirm" android:layout_weight="1.0" style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/add_receiver_recipients_editor_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/photoshare_new_share_name_group_margin" android:layout_marginRight="60.0dip" android:layout_below="@id/photoshare_add_receiver_btn_group">
+        <ScrollView android:id="@id/add_receiver_recipients_editor_scrollview_layout" android:background="@drawable/photoshare_textview_bg_default" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.huawei.gallery3d.photoshare.ui.PhotoShareReceiverViewGroup android:id="@id/add_receiver_viewgroup" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="-8.0dip" android:layout_marginTop="-4.0dip" android:layout_marginBottom="2.0dip">
+                <EditText android:textColor="@*android:color/black" android:ellipsize="end" android:id="@id/add_receiver_editor" android:background="#ffffffff" android:paddingLeft="4.0dip" android:paddingTop="4.0dip" android:paddingBottom="8.0dip" android:focusableInTouchMode="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/photoshare_share_receiver_default_text" android:singleLine="true" android:inputType="text" android:imeOptions="actionDone" style="@style/photoShareNewShareEditTextStyle" />
+            </com.huawei.gallery3d.photoshare.ui.PhotoShareReceiverViewGroup>
+        </ScrollView>
+        <ListView android:scrollbarStyle="outsideOverlay" android:id="@id/add_list_receiver" android:paddingLeft="8.0dip" android:paddingRight="8.0dip" android:layout_width="fill_parent" android:layout_height="48.0dip" android:cacheColorHint="#ff000000" android:divider="@drawable/photoshare_new_share_name_group_divider" android:dividerHeight="1.0dip" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/add_receiver_contacts_icon" android:layout_width="44.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginRight="@dimen/photoshare_new_share_name_group_margin" android:layout_below="@id/photoshare_add_receiver_btn_group" android:layout_alignParentRight="true">
+        <ImageButton android:id="@id/photoshare_add_receiver_contact_icon" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/photoshare_receiver_add_contacts" style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/photoshare_add_receiver_limit_prompt" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="24.0dip" android:layout_below="@id/add_receiver_recipients_editor_layout">
+        <TextView android:textSize="14.0sp" android:textColor="@color/photoshare_new_share_receiver_color" android:id="@id/photoshare_add_receiver_limit_prompt_textview" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/photoshare_new_share_receiver_limit_prompt_textview_name" />
+    </LinearLayout>
+</RelativeLayout>

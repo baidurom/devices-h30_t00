@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip">
+            <TextView android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/min_udp_port" style="?android:attr/textAppearanceSmall" />
+            <TextView android:textColor="#ffff0000" android:id="@id/min_port_err_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:text="@string/min_udp_port" style="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+        <EditText android:id="@id/min_port" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:scrollHorizontally="true" android:singleLine="true" android:inputType="number" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip">
+            <TextView android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/max_udp_port" style="?android:attr/textAppearanceSmall" />
+            <TextView android:textColor="#ffff0000" android:id="@id/max_port_err_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:text="@string/max_udp_port" style="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+        <EditText android:id="@id/max_port" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:scrollHorizontally="true" android:singleLine="true" android:inputType="number" />
+    </LinearLayout>
+</ScrollView>

@@ -21,7 +21,7 @@ on post-fs-data
     write /sys/class/android_usb/android0/f_rndis/manufacturer MediaTek    
     write /sys/class/android_usb/android0/f_rndis/vendorID $sys.usb.vid
 
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     chmod 0777 /sys/class/usb_rawbulk/data/enable
     chmod 0777 /sys/class/usb_rawbulk/ets/enable
     chmod 0777 /sys/class/usb_rawbulk/atc/enable
@@ -42,7 +42,7 @@ on property:persist.sys.usb.config=*
 on property:sys.usb.config=none
     stop adbd
 
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/usb_rawbulk/ets/enable 0
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/android0/enable 0
@@ -85,8 +85,10 @@ on property:sys.usb.config=adb,acm
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
-    write /sys/class/android_usb/android0/idProduct 0001
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013122702994, add by y00183957, 2013/12/28*/
+    write /sys/class/android_usb/android0/idProduct 1037
+#/*END PN: DTS2013122702994, add by y00183957, 2013/12/28*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -99,7 +101,7 @@ on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 1038
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -153,7 +155,7 @@ on property:sys.usb.config=mtp,mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 2016
- /*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+ #/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
  #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -166,7 +168,7 @@ on property:sys.usb.config=mtp,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 1052
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -220,7 +222,7 @@ on property:sys.usb.config=ptp,mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 2015
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -233,7 +235,7 @@ on property:sys.usb.config=ptp,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 2014
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -289,7 +291,7 @@ on property:sys.usb.config=mass_storage,acm
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 200F
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -300,10 +302,13 @@ on property:sys.usb.config=mass_storage,acm
 #23.mass_storage,adb,acm
 on property:sys.usb.config=mass_storage,adb,acm
     write /sys/class/android_usb/android0/enable 0
+#/*BEGIN PN: DTS2013122702994, add by y00183957, 2013/12/28*/
+    write /sys/class/android_usb/android0/iSerial "0123456789ABCDEF"
+#/*END PN: DTS2013122702994, add by y00183957, 2013/12/28*/	
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 0005
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -318,7 +323,7 @@ on property:sys.usb.config=mtp,mass_storage,acm
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 2018
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -332,7 +337,7 @@ on property:sys.usb.config=mtp,mass_storage,adb,acm
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 2019
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -347,7 +352,7 @@ on property:sys.usb.config=ptp,mass_storage,acm
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 201A
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -361,7 +366,7 @@ on property:sys.usb.config=ptp,mass_storage,adb,acm
     write /sys/class/android_usb/android0/idVendor $sys.usb.vid
     write /sys/class/android_usb/android0/idProduct 201B
     write /sys/class/android_usb/android0/f_acm/instances 1
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
     write /sys/class/android_usb/f_mass_storage/luns sdcard
     write /sys/class/android_usb/f_mass_storage/lun/file none
 #/*END PN: DTS2013053000834, add by y00183957, 2013/5/30*/
@@ -554,14 +559,14 @@ on property:mediatek.usb.port.mode=usb
 on property:mediatek.usb.port.mode=uart
 	write /sys/devices/platform/mt_usb/portmode 1
 	
-/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
+#/*BEGIN PN: DTS2013053000834, add by y00183957, 2013/5/30*/
 on property:sys.usb.config=hisuite,mtp,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 1052
-    /*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     #write /sys/class/android_usb/android0/iSerial $ro.serialno
-    /*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     write /sys/class/android_usb/f_mass_storage/luns cdrom
     write /sys/class/android_usb/f_mass_storage/lun/file /system/mobile_toolkit/iAmCdRom.iso
     write /sys/class/android_usb/android0/functions mtp,adb,mass_storage
@@ -573,9 +578,9 @@ on property:sys.usb.config=hisuite,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 1038
-    /*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     #write /sys/class/android_usb/android0/iSerial $ro.serialno
-    /*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     write /sys/class/android_usb/f_mass_storage/luns cdrom
     write /sys/class/android_usb/f_mass_storage/lun/file /system/mobile_toolkit/iAmCdRom.iso
     write /sys/class/android_usb/android0/functions mass_storage,adb
@@ -587,9 +592,9 @@ on property:sys.usb.config=hisuite,mtp,mass_storage
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 12d1
     write /sys/class/android_usb/android0/idProduct 1051
-    /*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*BEGIN  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     #write /sys/class/android_usb/android0/iSerial $ro.serialno
-    /*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
+    #/*END  PN:DTS2013012605452, Modified by y00183957, 2013/1/26*/
     write /sys/class/android_usb/f_mass_storage/luns cdrom
     write /sys/class/android_usb/f_mass_storage/lun/file /system/mobile_toolkit/iAmCdRom.iso
     write /sys/class/android_usb/android0/functions mtp,mass_storage

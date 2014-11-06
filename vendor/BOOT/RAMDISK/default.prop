@@ -1,6 +1,7 @@
 #
 # ADDITIONAL_DEFAULT_PROPERTIES
 #
+ro.crypto.state=unsupported
 ro.secure=0
 ro.allow.mock.location=0
 persist.mtk.aee.aed=on

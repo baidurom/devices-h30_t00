@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.hwcamera.ui.RotateTextView android:textSize="80.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/timer_animation_view" android:visibility="gone" android:layout_width="118.0dip" android:layout_height="118.0dip" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" style="@style/menuTextStyleBlack"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/facemenu_namelist" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:orientation="horizontal" android:id="@id/facemenu_name1" android:background="@drawable/facemenu_namelist_top" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textname1" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout android:orientation="horizontal" android:id="@id/facemenu_name2" android:background="@drawable/facemenu_namelist_middle" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_name2" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textname2" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout android:orientation="horizontal" android:id="@id/facemenu_name3" android:background="@drawable/facemenu_namelist_middle" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_name3" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textname3" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout android:orientation="horizontal" android:id="@id/facemenu_addname" android:background="@drawable/facemenu_namelist_down" android:layout_width="@dimen/facemenu_width" android:layout_height="@dimen/facemenu_height">
+        <ImageView android:id="@id/facemenu_line_addname" android:background="@drawable/line" android:layout_width="@dimen/facemenu_width" android:layout_height="1.0dip" />
+        <TextView android:textSize="@dimen/facemenu_textsize" android:textColor="#ff000000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/facemenu_textaddname" android:paddingLeft="@dimen/facemenu_paddingLeft" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+</LinearLayout>

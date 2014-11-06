@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/visible_panel" android:background="@drawable/dialog_full_holo_dark" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="340.0dip" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <LinearLayout android:orientation="vertical" android:id="@id/slider_group" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </ScrollView>
+        <ImageView android:layout_gravity="center" android:id="@id/expand_button_divider" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginTop="16.0dip" android:layout_marginBottom="16.0dip" android:scaleType="fitXY" />
+        <ImageView android:layout_gravity="center" android:id="@id/expand_button" android:layout_width="wrap_content" android:layout_height="fill_parent" />
+    </LinearLayout>
+    <Button android:id="@id/volume_btn_close" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.5dip" android:layout_marginStart="2.5dip" android:layout_marginEnd="2.5dip" />
+</LinearLayout>

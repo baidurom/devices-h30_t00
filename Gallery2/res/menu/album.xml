@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_menu_refresh_holo_light" android:id="@id/action_refresh" android:title="@string/dlna_refresh" android:showAsAction="never" />
+    <item android:icon="@drawable/ic_menu_camera_holo_light" android:id="@id/action_camera" android:title="@string/switch_to_camera" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_menu_share_holo_light" android:id="@id/action_share" android:visible="true" android:title="@string/share" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/photoshare_new_share" android:id="@id/action_add_picture" android:visible="false" android:title="@string/photoshare_add_picture" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/photoshare_menu_download" android:id="@id/action_photoshare_download" android:visible="false" android:title="@string/photoshare_download" android:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_menu_trash_holo_light" android:id="@id/action_delete" android:visible="true" android:title="@string/delete" android:showAsAction="ifRoom" />
+    <item android:id="@id/action_copy" android:visible="false" android:title="@string/copy" android:showAsAction="never" />
+    <item android:id="@id/action_cut" android:visible="false" android:title="@string/cut" android:showAsAction="never" />
+    <item android:id="@id/action_paste" android:visible="false" android:title="@string/paste" android:showAsAction="never" />
+    <item android:id="@id/action_photoshare_download_short" android:visible="false" android:title="@string/photoshare_download_short" android:showAsAction="never" />
+    <item android:id="@id/action_photoshare_edit" android:visible="false" android:title="@string/photoshare_edit_my_share" android:showAsAction="never" />
+    <item android:icon="@drawable/ic_menu_slideshow_holo_light" android:id="@id/action_slideshow" android:title="@string/slideshow" android:showAsAction="never" />
+    <item android:id="@id/action_select" android:visible="false" android:title="@string/select_item" android:showAsAction="never" />
+    <item android:id="@id/action_group_by" android:title="@string/group_by" android:showAsAction="never" />
+    <item android:id="@id/action_settings" android:visible="true" android:title="@string/settings" android:showAsAction="never" />
+</menu>

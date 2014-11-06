@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/frame_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/picture_remain_text_view" />
+    <include layout="@layout/small_preview_tips" />
+    <include layout="@layout/border_small_preview_view" />
+    <com.android.hwcamera.PreviewFrameLayout android:id="@id/frame" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerInParent="true" android:splitMotionEvents="false">
+        <include layout="@layout/preview_surface_view" />
+        <include layout="@layout/timer_animation_view" />
+        <ViewStub android:id="@id/face_view_stub" android:visibility="gone" android:layout="@layout/face_view" android:inflatedId="@id/face_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <include layout="@layout/focus_indicator" />
+        <include layout="@layout/metering_indicator" />
+        <ViewStub android:id="@id/target_view_stub" android:visibility="gone" android:layout="@layout/target_view" android:inflatedId="@id/target_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <com.android.hwcamera.ui.RenderOverlay android:id="@id/render_overlay" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <ImageView android:id="@id/review_image" android:background="@*android:color/black" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <include layout="@layout/morpho_panorama" />
+        <com.android.hwcamera.ui.RotateImageView android:id="@id/btn_play" android:visibility="gone" android:src="@drawable/ic_gallery_play_big" android:layout_centerInParent="true" android:onClick="onReviewPlayClicked" style="@style/ReviewControlIcon" />
+        <include layout="@layout/camera_voice_photo_visualizer" />
+    </com.android.hwcamera.PreviewFrameLayout>
+    <ImageView android:id="@id/capture_anim_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layerType="hardware" />
+    <include android:layout_alignParentTop="true" layout="@layout/progress_layout" />
+    <include layout="@layout/progress_circle" />
+    <include layout="@layout/viewfinder_labels_video" />
+</RelativeLayout>

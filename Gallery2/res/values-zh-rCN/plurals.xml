@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="delete_selection">
+        <item quantity="other">要删除所选内容吗？</item>
+        <item quantity="zero">要删除所选内容吗？</item>
+        <item quantity="one">要删除所选内容吗？</item>
+        <item quantity="two">要删除所选内容吗？</item>
+        <item quantity="few">要删除所选内容吗？</item>
+        <item quantity="many">要删除所选内容吗？</item>
+    </plurals>
+    <plurals name="details_title">
+        <item quantity="other">第 %1$d 项（共 %2$d 项）：</item>
+        <item quantity="zero">第 %1$d 项（共 %2$d 项）：</item>
+        <item quantity="one">第 %1$d 项（共 %2$d 项）：</item>
+        <item quantity="two">第 %1$d 项（共 %2$d 项）：</item>
+        <item quantity="few">第 %1$d 项（共 %2$d 项）：</item>
+        <item quantity="many">第 %1$d 项（共 %2$d 项）：</item>
+    </plurals>
+    <plurals name="number_of_items_selected">
+        <item quantity="other">选中了 %1$d 项</item>
+        <item quantity="zero">选中了 %1$d 项</item>
+        <item quantity="one">选中了 %1$d 项</item>
+        <item quantity="two">选中了 %1$d 项</item>
+        <item quantity="few">选中了 %1$d 项</item>
+        <item quantity="many">选中了 %1$d 项</item>
+    </plurals>
+    <plurals name="number_of_albums_selected">
+        <item quantity="other">选中了 %1$d 本相册</item>
+        <item quantity="zero">选中了 %1$d 本相册</item>
+        <item quantity="one">选中了 %1$d 本相册</item>
+        <item quantity="two">选中了 %1$d 本相册</item>
+        <item quantity="few">选中了 %1$d 本相册</item>
+        <item quantity="many">选中了 %1$d 本相册</item>
+    </plurals>
+    <plurals name="number_of_groups_selected">
+        <item quantity="other">选中了 %1$d 项</item>
+        <item quantity="zero">选中了 %1$d 项</item>
+        <item quantity="one">选中了 %1$d 项</item>
+        <item quantity="two">选中了 %1$d 项</item>
+        <item quantity="few">选中了 %1$d 项</item>
+        <item quantity="many">选中了 %1$d 项</item>
+    </plurals>
+    <plurals name="make_albums_available_offline">
+        <item quantity="other">允许离线查看相册。</item>
+        <item quantity="zero">允许离线查看相册。</item>
+        <item quantity="one">允许离线查看相册。</item>
+        <item quantity="two">允许离线查看相册。</item>
+        <item quantity="few">允许离线查看相册。</item>
+        <item quantity="many">允许离线查看相册。</item>
+    </plurals>
+    <plurals name="number_details">
+        <item quantity="other">%1$d 项</item>
+        <item quantity="zero">%1$d 项</item>
+        <item quantity="one">%1$d 项</item>
+        <item quantity="two">%1$d 项</item>
+        <item quantity="few">%1$d 项</item>
+        <item quantity="many">%1$d 项</item>
+    </plurals>
+    <plurals name="selection_hide_tips">
+        <item quantity="other">"%1$d  个相册已经被隐藏。"</item>
+        <item quantity="zero">"%1$d  个相册已经被隐藏。"</item>
+        <item quantity="one">"%1$d  个相册已经被隐藏。"</item>
+        <item quantity="two">"%1$d  个相册已经被隐藏。"</item>
+        <item quantity="few">"%1$d  个相册已经被隐藏。"</item>
+        <item quantity="many">"%1$d  个相册已经被隐藏。"</item>
+    </plurals>
+    <plurals name="selection_set_private_tips">
+        <item quantity="other">%1$d个相册已经设为隐私</item>
+        <item quantity="zero">%1$d个相册已经设为隐私</item>
+        <item quantity="one">%1$d个相册已经设为隐私</item>
+        <item quantity="two">%1$d个相册已经设为隐私</item>
+        <item quantity="few">%1$d个相册已经设为隐私</item>
+        <item quantity="many">%1$d个相册已经设为隐私</item>
+    </plurals>
+    <plurals name="sharesimply_file_to_send">
+        <item quantity="other">%1$d 个文件正在发送…</item>
+        <item quantity="zero">%1$d 个文件正在发送…</item>
+        <item quantity="one">%1$d 个文件正在发送…</item>
+        <item quantity="two">%1$d 个文件正在发送…</item>
+        <item quantity="few">%1$d 个文件正在发送…</item>
+        <item quantity="many">%1$d 个文件正在发送…</item>
+    </plurals>
+    <plurals name="paste_samename_sameaction">
+        <item quantity="other">后续 %1$d 个文件也执行此操作</item>
+        <item quantity="zero">后续 %1$d 个文件也执行此操作</item>
+        <item quantity="one">后续 %1$d 个文件也执行此操作</item>
+        <item quantity="two">后续 %1$d 个文件也执行此操作</item>
+        <item quantity="few">后续 %1$d 个文件也执行此操作</item>
+        <item quantity="many">后续 %1$d 个文件也执行此操作</item>
+    </plurals>
+    <plurals name="paste_files_copyed">
+        <item quantity="other">已复制 %1$d 个文件。</item>
+        <item quantity="zero">已复制 %1$d 个文件。</item>
+        <item quantity="one">已复制 %1$d 个文件。</item>
+        <item quantity="two">已复制 %1$d 个文件。</item>
+        <item quantity="few">已复制 %1$d 个文件。</item>
+        <item quantity="many">已复制 %1$d 个文件。</item>
+    </plurals>
+    <plurals name="paste_files_moved">
+        <item quantity="other">已移动 %1$d 个文件。</item>
+        <item quantity="zero">已移动 %1$d 个文件。</item>
+        <item quantity="one">已移动 %1$d 个文件。</item>
+        <item quantity="two">已移动 %1$d 个文件。</item>
+        <item quantity="few">已移动 %1$d 个文件。</item>
+        <item quantity="many">已移动 %1$d 个文件。</item>
+    </plurals>
+    <plurals name="photoshare_progress_message_add_receiver">
+        <item quantity="other">正在添加好友…</item>
+        <item quantity="zero">正在添加好友…</item>
+        <item quantity="one">正在添加好友…</item>
+        <item quantity="two">正在添加好友…</item>
+        <item quantity="few">正在添加好友…</item>
+        <item quantity="many">正在添加好友…</item>
+    </plurals>
+    <plurals name="photoshare_dialog_message_account_invalid">
+        <item quantity="other">{0} 未注册华为帐户</item>
+        <item quantity="zero">{0} 未注册华为帐户</item>
+        <item quantity="one">{0} 未注册华为帐户</item>
+        <item quantity="two">{0} 未注册华为帐户</item>
+        <item quantity="few">{0} 未注册华为帐户</item>
+        <item quantity="many">{0} 未注册华为帐户</item>
+    </plurals>
+    <plurals name="photoshare_toast_add_receiver_fail">
+        <item quantity="other">添加好友失败。%1$s</item>
+        <item quantity="zero">添加好友失败。%1$s</item>
+        <item quantity="one">添加好友失败。%1$s</item>
+        <item quantity="two">添加好友失败。%1$s</item>
+        <item quantity="few">添加好友失败。%1$s</item>
+        <item quantity="many">添加好友失败。%1$s</item>
+    </plurals>
+    <plurals name="photoshare_share_complete">
+        <item quantity="other">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="zero">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="one">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="two">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="few">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+        <item quantity="many">连接至 Wi-Fi 或 3G 网络以完成照片的同步和分享。</item>
+    </plurals>
+    <plurals name="share_limit_exceed_msg">
+        <item quantity="other">每次最多可以分享 %1$d 个文件。</item>
+        <item quantity="zero">每次最多可以分享 %1$d 个文件。</item>
+        <item quantity="one">每次最多可以分享 %1$d 个文件。</item>
+        <item quantity="two">每次最多可以分享 %1$d 个文件。</item>
+        <item quantity="few">每次最多可以分享 %1$d 个文件。</item>
+        <item quantity="many">每次最多可以分享 %1$d 个文件。</item>
+    </plurals>
+</resources>

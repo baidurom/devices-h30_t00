@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="access_mode_wifi_and_traffic">WLAN and mobile network</string>
+    <string name="access_mode_wifi_only">WLAN only</string>
+    <string name="access_mode_tips">"Note:
+1. To obtain location and map information, a network connection is required.
+2. Using a mobile network may generate data usage fees. It is recommended that you select WLAN only."</string>
+    <string name="wifi_only_tip">No WLAN networks. Enable mobile network.</string>
+</resources>
